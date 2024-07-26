@@ -27,8 +27,8 @@ import {
   navigationMobilePersonal,
   navigationMobileProducts,
 } from "./header.consts";
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { classNames } from "../../utils/utils";
 import {
   useGetTreatmentsCorporalNamesQuery,
@@ -38,13 +38,17 @@ import { useGetAreasQuery } from "../../services/areas/areas";
 import { useSelector } from "react-redux";
 import { CardState } from "../../states/card/cardSlide";
 import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
-
+import EmsLogo from "../../public/Images/emsLogo.png";
 import ArrowDown from "../Icons/ArrowDown";
 import ArrowUp from "../Icons/ArrowUp";
 import ArrowRight from "../Icons/ArrowRight";
 import useIsMobile from "../../hooks/useIsMobile";
 import Image from "next/image";
-import { getDescriptionByGiftCardId, getImageByGiftCardId, getQuantityByGiftCardId } from "app/app/cart/cart.utils";
+import {
+  getDescriptionByGiftCardId,
+  getImageByGiftCardId,
+  getQuantityByGiftCardId,
+} from "app/app/cart/cart.utils";
 
 const Header = () => {
   const router = useRouter();
@@ -327,17 +331,9 @@ const Header = () => {
               <div className="flex h-12 items-center justify-between border-b-[1px]">
                 {/* Logo (lg+) */}
                 <div className="hidden lg:flex lg:flex-1 lg:items-center">
-                  <Link
-                    href="/"
-                    onClick={scrollToTop}
-                    className="-m-1.5 p-1.5"
-                  >
+                  <Link href="/" onClick={scrollToTop} className="-m-1.5 p-1.5">
                     <span className="sr-only">Your Company</span>
-                    <Image
-                      alt="logoEMS"
-                      src="https://emsmedicinaestetica.com/assets/img/ems-mobile.png"
-                      className="h-8 w-auto"
-                    />
+                    <Image alt="logoEMS" src={EmsLogo} className="h-8 w-auto" />
                   </Link>
                 </div>
 
@@ -667,7 +663,7 @@ const Header = () => {
                   <span className="sr-only">Your Company</span>
                   <Image
                     alt=""
-                    src="https://emsmedicinaestetica.com/assets/img/ems-mobile.png"
+                    src={EmsLogo}
                     className="h-8 w-auto"
                   />
                 </Link>

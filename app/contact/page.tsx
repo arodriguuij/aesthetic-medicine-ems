@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import {
@@ -12,6 +12,7 @@ import Form from "../../components/Form";
 import useMonths from "./useMonths";
 import Map from "../../components/Map/Map";
 import ContactSummary from "../../components/ContactSummary";
+import AppleMap from "app/components/Map/AppleMap";
 
 const Contact = () => {
   const {
@@ -177,4 +178,4 @@ const Contact = () => {
   );
 };
 
-export default Contact
+export default Contact;

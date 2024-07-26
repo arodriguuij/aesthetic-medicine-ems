@@ -1,10 +1,10 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 const usePages = () => {
-  const router = useRouter();
-  const location = router.asPath;
+  const location = usePathname();
+
   const splitString = location.split("/").filter((part) => part !== "");
 
   const pages = splitString.map((part, index) => {

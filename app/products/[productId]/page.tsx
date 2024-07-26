@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import Breadcrumb from "../../../components/Breadcrumb";
 import { useGetProductQuery } from "../../../services/products/products";
 import { cld } from "../../../utils/cloudinary";
@@ -10,11 +10,10 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
 const Product = () => {
-  const router = useRouter();
-  const { id } = router.query;
+  const pathname = usePathname();
 
   const { data: productData, error: productError } = useGetProductQuery(
-    id + ""
+    pathname + ""
   );
 
   return (

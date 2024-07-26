@@ -1,7 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
+import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
   useGetTreatmentsFacialQuery,
@@ -23,9 +22,8 @@ import { useGetTreatmentsAreaQuery } from "../../services/areas/areas";
 import Image from "next/image";
 
 const Treatments = () => {
-  /* const location = usePathname();
-  const router = useRouter();
-  const { id } = router.query;
+  const location = usePathname();
+  const id = useSearchParams();
 
   let data, error, title, subTitle;
   const { data: treatmentsData, error: treatmentsError } =
@@ -60,7 +58,7 @@ const Treatments = () => {
     error = treatmentsError;
     title = titleTreatments;
     subTitle = subTitleTreatments;
-  } */
+  }
 
   return (
     <div className="isolate mx-auto  px-6 lg:px-8 items-center">
@@ -76,7 +74,7 @@ const Treatments = () => {
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-yellow-600/10 ring-1 ring-yellow-50 sm:-mr-80 lg:-mr-96"
           aria-hidden="true"
         />
-        {/* {error ? (
+        {error ? (
           <div className="mx-auto pb-2 sm:px-6 sm:pb-4 lg:max-w-7xl lg:px-8">
             Error en la carga de los tratamiento
           </div>
@@ -159,7 +157,7 @@ const Treatments = () => {
                 ))}
             </div>
           </>
-        )} */}
+        )}
       </div>
     </div>
   );

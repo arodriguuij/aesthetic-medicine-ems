@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
   useGetTreatmentsFacialQuery,
@@ -22,9 +22,8 @@ import { useGetTreatmentsAreaQuery } from "../../../services/areas/areas";
 import Image from "next/image";
 
 const Treatments = () => {
-  const router = useRouter();
-  const location = router.asPath; 
-  const { id } = router.query;
+  const location = usePathname();
+  const id = useSearchParams();
 
   let data, error, title, subTitle;
   const { data: treatmentsData, error: treatmentsError } =

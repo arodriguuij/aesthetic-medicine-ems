@@ -1,3 +1,18 @@
+import FacialTreatments from "../public/Images/TratamientosFaciales.jpg";
+import CorporalTreatments from "../public/Images/TratamientosCorporales.jpg";
+import MerzLogo from "../public/Images/branches/MerzLogo.png";
+import SinclareLogo from "../public/Images/branches/SinclairLogo.png";
+import TexoaneLogo from "../public/Images/branches/TexoaneLogo.png";
+import AllerganLogo from "../public/Images/branches/Allergan.png";
+import GladermaLogo from "../public/Images/branches/GaldermaLogo.png";
+import ThrLogo from "../public/Images/branches/ThrLogo.png";
+import DhLogo from "../public/Images/branches/DhLogo.png";
+import MesosteticLogo from "../public/Images/branches/Mesoestetic.png";
+import MedidermaLogo from "../public/Images/branches/MedidermaLogo.png";
+import DermicaLogo from "../public/Images/branches/DermicaLogo.png";
+import CantabriaLabsLogo from "../public/Images/branches/CantabriaLabsLogo.png";
+import LaRocheLogo from "../public/Images/branches/LaRocheLogo.png";
+
 export const featuredTestimonial = {
   body: "Una gran profesional! Te asesora en lo que quieras y todo lo que hace lo hace con cariño y delicadeza. Sin duda es una de las mejores doctoras en la que confiar :) recomendable 100%",
   author: {
@@ -5,7 +20,6 @@ export const featuredTestimonial = {
     handle: "https://g.co/kgs/S3N4Kpo",
     imageUrl:
       "https://lh3.googleusercontent.com/a-/ALV-UjWCqbaKhnZ2SBVdOpHZ4SBi8cIJStRA-SEiGI0bppY797Broaed=w120-h120-p-rp-mo-br100",
-    //logoUrl: "https://tailwindui.com/img/logos/savvycal-logo-gray-900.svg",
   },
 };
 
@@ -155,9 +169,7 @@ export const collections = [
   {
     name: "Tratamientos Faciales",
     href: "/treatments/facial",
-    imageSrc:
-      //"https://www.dracarmenmartin.es/images/easyblog_articles/18/facial-tech-dra-carmen-martin-madrid-profhilo.jpg",
-      "https://clinicagonzalezlemonnier.com/wp-content/uploads/2020/01/Cirugi%CC%81a-Este%CC%81tica.jpg",
+    imageSrc: FacialTreatments,
     imageAlt: "Tratamientos Faciales",
     description:
       "Medicina que se centra en el rejuvenecimiento o embelleciemiento facial para reducir los signos de la edad, firmeza cutánea, manchas en la piel y corrección de arrugas. Es una medicina que no necesita de quirófano y supone una recuperación rápida.",
@@ -165,8 +177,7 @@ export const collections = [
   {
     name: "Tratamientos Corporales",
     href: "/treatments/corporal",
-    imageSrc:
-      "https://doctoraanasanchez.es/wp-content/uploads/Hilos-Tensores-Corporales.jpg",
+    imageSrc: CorporalTreatments,
     imageAlt: "Tratamientos Corporales",
     description:
       "Medicina dirigida a la mejoría de la apariencia física, tanto con tratamientos estéticos como funcionales. Ayudando a conseguir un mejor estado físico y autoestima. Es una medicina que no necesita de quirófano",
@@ -176,68 +187,63 @@ export const collections = [
 export const branches = [
   {
     id: 1,
-    name: "",
-    //image: "https://emsmedicinaestetica.com/assets/img/marcas/1.png",
-    image:
-      "https://barzilaidesign.com/wp-content/uploads/2023/12/MERZ-logo_case-study-1.jpg",
+    name: "Merz Logo",
+    image: MerzLogo,
   },
   {
     id: 2,
-    name: "",
-    image: "https://emsmedicinaestetica.com/assets/img/marcas/2.png",
+    name: "Sinclare Logo",
+    image: SinclareLogo,
   },
   {
     id: 3,
-    name: "",
-    image: "https://emsmedicinaestetica.com/assets/img/marcas/3.png",
+    name: "Texoane Logo",
+    image: TexoaneLogo,
   },
   {
     id: 4,
-    name: "",
-    image: "https://emsmedicinaestetica.com/assets/img/marcas/4.png",
+    name: "Allergan Logo",
+    image: AllerganLogo,
   },
   {
     id: 5,
-    name: "",
-    image: "https://emsmedicinaestetica.com/assets/img/marcas/5.png",
+    name: "Galderma Logo",
+    image: GladermaLogo,
   },
   {
     id: 6,
-    name: "",
-    image: "https://emsmedicinaestetica.com/assets/img/marcas/6.png",
+    name: "THR Logo",
+    image: ThrLogo,
   },
   {
     id: 7,
-    name: "",
-    image: "https://emsmedicinaestetica.com/assets/img/marcas/7.png",
+    name: "DH Logo",
+    image: DhLogo,
   },
   {
     id: 8,
-    name: "",
-    //image: "https://emsmedicinaestetica.com/assets/img/marcas/8.png",
-    image:
-      "https://www.skinarchitect.co.uk/wp-content/uploads/2022/10/mesoestetic-logo-768x158.png",
+    name: "Mesoestetic Logo",
+    image: MesosteticLogo,
   },
   {
     id: 9,
-    name: "",
-    image: "https://emsmedicinaestetica.com/assets/img/marcas/9.png",
+    name: "Mediderma Logo",
+    image: MedidermaLogo,
   },
   {
     id: 10,
-    name: "",
-    image: "https://emsmedicinaestetica.com/assets/img/marcas/10.png",
+    name: "Dermica Logo",
+    image: DermicaLogo,
   },
   {
     id: 11,
-    name: "",
-    image: "https://emsmedicinaestetica.com/assets/img/marcas/11.png",
+    name: "Cantabria Labs Logo",
+    image: CantabriaLabsLogo,
   },
   {
     id: 12,
-    name: "",
-    // image: "https://emsmedicinaestetica.com/assets/img/marcas/12.png",
-    image: "https://asset.brandfetch.io/id8qfX0Atg/idJhcNfdGS.png",
+    name: "La Roche Logo",
+    image: LaRocheLogo,
   },
 ];
 
