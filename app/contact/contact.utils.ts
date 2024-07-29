@@ -1,4 +1,4 @@
-import { Day } from "../../assets/information/calendar";
+import { Day } from "@/public/information/calendar";
 import { DayObject, MonthObject } from "./contact.types";
 
 export const getTodayString = (): string => {

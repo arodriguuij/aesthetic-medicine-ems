@@ -6,24 +6,24 @@ import { GiftCardForm } from "../../states/card/cardSlide";
 // Define a service using a base URL and expected endpoints
 export const giftCardsApi = createApi({
   reducerPath: "giftCardsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "/api/" }),
   endpoints: (builder) => ({
     getGiftCards: builder.query<GiftCard[], string>({
-      query: () => "api/giftCards",
+      query: () => "giftCards",
     }),
     getGiftCardById: builder.query<GiftCard, string>({
-      query: (id) => `api/giftCards/${id}`,
+      query: (id) => `giftCards/${id}`,
     }),
     addGiftCardOrder: builder.query<void, GiftCard[]>({
       query: (body) => ({
-        url: "api/giftCards",
+        url: "giftCards",
         method: "POST",
         body,
       }),
     }),
     addGiftCardOrder2: builder.mutation<any, GiftCardForm[]>({
       query: (data) => ({
-        url: "api/giftCards",
+        url: "giftCards",
         method: "POST",
         body: data,
       }),

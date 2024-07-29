@@ -1,7 +1,7 @@
 "use client"
 
 import { APIProvider } from "@vis.gl/react-google-maps";
-import { store } from "app/states/store";
+import { store } from "@/states/store";
 import React from "react";
 import { Provider } from "react-redux";
 

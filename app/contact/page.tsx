@@ -12,7 +12,6 @@ import Form from "../../components/Form";
 import useMonths from "./useMonths";
 import Map from "../../components/Map/Map";
 import ContactSummary from "../../components/ContactSummary";
-import AppleMap from "app/components/Map/AppleMap";
 
 const Contact = () => {
   const {

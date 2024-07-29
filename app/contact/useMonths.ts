@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { getTodayString } from "./contact.utils";
-import { calendar } from "../../assets/information/calendar";
+import { calendar } from "@/public/information/calendar";
 
 const useMonths = () => {
   const [selectedMonth, setSelectedMonth] = useState(calendar[0]);

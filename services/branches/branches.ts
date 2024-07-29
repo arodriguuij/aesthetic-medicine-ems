@@ -5,10 +5,10 @@ import { Branch } from "./branches.types";
 // Define a service using a base URL and expected endpoints
 export const branchesApi = createApi({
   reducerPath: "branchesApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "/api/" }),
   endpoints: (builder) => ({
     getBranches: builder.query<Branch[], string>({
-      query: () => "api/branches",
+      query: () => "branches",
     }),
   }),
 });

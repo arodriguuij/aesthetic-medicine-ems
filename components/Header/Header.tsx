@@ -48,7 +48,7 @@ import {
   getDescriptionByGiftCardId,
   getImageByGiftCardId,
   getQuantityByGiftCardId,
-} from "app/app/cart/cart.utils";
+} from "@/app/cart/cart.utils";
 
 const Header = () => {
   const router = useRouter();
