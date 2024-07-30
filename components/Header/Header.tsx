@@ -49,6 +49,7 @@ import {
   getImageByGiftCardId,
   getQuantityByGiftCardId,
 } from "@/app/cart/cart.utils";
+import useIsTablet from "@/hooks/useIsTablet";
 
 const Header = () => {
   const router = useRouter();
@@ -78,6 +79,8 @@ const Header = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
+  
 
   const CartButton = () => (
     <div className="flex items-center lg:ml-8">
@@ -195,7 +198,7 @@ const Header = () => {
   );
 
   return (
-    <header className="z-50 bg-white sticky top-0 ">
+    <header className="z-20 bg-white sticky top-0 ">
       {/* Mobile menu */}
       <Dialog
         open={mobileMenuOpen}
@@ -509,7 +512,7 @@ const Header = () => {
                                             className="group relative rounded-lg p-2 text-sm leading-6"
                                           >
                                             <Link
-                                              href={`/treatments/facial/${id}`}
+                                              href={`/treatments/corporal/${id}`}
                                               className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
                                               onClick={scrollToTop}
                                             >
@@ -522,7 +525,7 @@ const Header = () => {
                                   </div>
                                   <div className="mx-auto max-w-7xl px-6 lg:px-8">
                                     <Link
-                                      href={"/treatments/facial"}
+                                      href={"/treatments/corporal"}
                                       onClick={scrollToTop}
                                       className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
                                     >
@@ -670,7 +673,7 @@ const Header = () => {
 
                 {/* Cart */}
                 <div className="flex flex-1 items-center justify-end">
-                  {isMobile ? (
+                  {isMobile || isTablet ? (
                     <button
                       type="button"
                       onClick={() => setMobileMenuOpen(true)}

@@ -9,7 +9,6 @@ export const getAreas = async () => {
 
 export const getAreasById = async (id: number) => {
   const area = await getAreaByIdService(id);
-  console.log('in')
   const treatments = await getTreatmentsByAreaId(id);
   for (const treatment of treatments) {
     treatment.properties.populatedAreas = await getPopulatedAreas(

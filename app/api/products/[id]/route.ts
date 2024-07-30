@@ -6,8 +6,8 @@ export async function GET(req: NextRequest) {
   const res = NextResponse.next();
   await corsMiddleware(req, res);
 
-  const { searchParams } = new URL(req.url);
-  const id = searchParams.get('id');
+  const { pathname } = new URL(req.url);
+  const id = pathname.split("/").pop();
 
   if (!id) {
     return NextResponse.json({ error: 'Missing id parameter' }, { status: 400 });

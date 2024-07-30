@@ -3,11 +3,11 @@
 import { ChevronRightIcon, HomeIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { scrollToTop } from "../../utils/utils";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 const Breadcrumb = () => {
-  /* const router = useRouter();
-  const location = router.asPath;
+  const pathname = usePathname();
+  const location = pathname;
   const splitString = location.split("/").filter((part) => part !== "");
 
   const pages = splitString.map((part, index) => {
@@ -19,7 +19,7 @@ const Breadcrumb = () => {
       href: href,
       current: isLast,
     };
-  }); */
+  });
 
   return (
     <nav className="flex" aria-label="Breadcrumb">
@@ -36,7 +36,7 @@ const Breadcrumb = () => {
             </Link>
           </div>
         </li>
-        {/* {pages.map((page) => (
+        {pages.map((page) => (
           <li key={page.name}>
             <div className="flex items-center">
               <ChevronRightIcon
@@ -62,7 +62,7 @@ const Breadcrumb = () => {
               )}
             </div>
           </li>
-        ))} */}
+        ))}
       </ol>
     </nav>
   );

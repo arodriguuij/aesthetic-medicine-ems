@@ -52,7 +52,6 @@ export const getTreatmentsCorporal = async () => {
 //TODO: Refactor this method to calculate the related treatments in the DB function
 export const getTreatmentById = async (thisId: number) => {
   const treatment = await getTreatmentByIdService(thisId);
-  console.log({treatment})
   treatment[0].properties.populatedAreas = await getPopulatedAreas(
     treatment[0].properties.areas
   );

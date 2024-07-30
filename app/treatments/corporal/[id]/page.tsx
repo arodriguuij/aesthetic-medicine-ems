@@ -8,7 +8,7 @@ import {
 } from "@headlessui/react";
 import { PlusSmallIcon } from "@heroicons/react/20/solid";
 import { MinusSmallIcon } from "@heroicons/react/20/solid";
-import { useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import Breadcrumb from "../../../../components/Breadcrumb";
 import useIsMobile from "../../../../hooks/useIsMobile";
@@ -25,8 +25,7 @@ import Image from "next/image";
 // Find a better Hero from the Home page
 
 const Treatment = () => {
-  const id = useSearchParams();
-
+  const { id } = useParams();
 
   const { data: treatmentData, error: treatmentError } = useGetTreatmentQuery(
     id + ""

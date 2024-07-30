@@ -11,6 +11,7 @@ import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "../utils/cloudinary";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import VaricesStar from "../public/Images/varicesStar.png";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
@@ -101,8 +102,8 @@ export default function HomePage() {
       >
         <div className="relative overflow-hidden rounded-lg lg:h-96">
           <div className="absolute inset-0">
-            <Image
-              src="https://farmalastic.cinfa.com/wp-content/uploads/2121x826_ART-1_Operaciones-de-varices.jpg"
+            <AdvancedImage
+              cldImg={cld.image("EMS/VaricesStar")}
               alt=""
               className="h-full w-full object-cover object-center"
             />

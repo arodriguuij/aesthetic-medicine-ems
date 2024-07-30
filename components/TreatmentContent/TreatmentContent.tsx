@@ -1,65 +1,25 @@
-"use client";
-
-import { usePathname, useSearchParams } from "next/navigation";
+import React from "react";
+import Breadcrumb from "../Breadcrumb";
+import { Treatment } from "@/app/types/treatments.types";
 import Link from "next/link";
-import {
-  useGetTreatmentsFacialQuery,
-  useGetTreatmentsQuery,
-} from "../../../services/treatments/treatments";
-import { useGetTreatmentsCorporalQuery } from "../../../services/treatments/treatments";
-import {
-  subTitleCorporal,
-  subTitleFacial,
-  subTitleTreatments,
-  titleArea,
-  titleCorporal,
-  titleFacial,
-  titleTreatments,
-} from "./treatments.const";
-import Breadcrumb from "../../../components/Breadcrumb";
-import { scrollToTop } from "../../../utils/utils";
-import { useGetTreatmentsAreaQuery } from "../../../services/areas/areas";
-import Image from "next/image";
+import { scrollToTop } from "@/utils/utils";
+import { AdvancedImage } from "@cloudinary/react";
+import { cld } from "@/utils/cloudinary";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { SerializedError } from "@reduxjs/toolkit";
 
-const Treatments = () => {
-  const location = usePathname();
-  const id = useSearchParams();
-
-  let data, error, title, subTitle;
-  const { data: treatmentsData, error: treatmentsError } =
-    useGetTreatmentsQuery("");
-  const { data: facialTreatmentsData, error: facialTreatmentsError } =
-    useGetTreatmentsFacialQuery("");
-  const { data: corporalTreatmentsData, error: corporalTreatmentsError } =
-    useGetTreatmentsCorporalQuery("");
-  const { data: areaTreatmentsData, error: areaTreatmentsError } =
-    useGetTreatmentsAreaQuery(id + "", id ? { skip: false } : { skip: true });
-
-  if (location === "/treatments/facial") {
-    data = facialTreatmentsData;
-    error = facialTreatmentsError;
-    title = titleFacial;
-    subTitle = subTitleFacial;
-  }
-  if (location === "/treatments/corporal") {
-    data = corporalTreatmentsData;
-    error = corporalTreatmentsError;
-    title = titleCorporal;
-    subTitle = subTitleCorporal;
-  }
-  if (location === `/treatments/areas/${id}`) {
-    data = areaTreatmentsData?.treatments;
-    error = areaTreatmentsError;
-    title = `${titleArea} ${areaTreatmentsData?.areaName} (${areaTreatmentsData?.treatments.length})`;
-    subTitle = areaTreatmentsData?.description;
-  }
-  if (location === `/treatments`) {
-    data = treatmentsData;
-    error = treatmentsError;
-    title = titleTreatments;
-    subTitle = subTitleTreatments;
-  }
-
+interface ITreatmentContent {
+  error: FetchBaseQueryError | SerializedError | undefined;
+  title: string;
+  subTitle: string;
+  data?: Treatment[];
+}
+const TreatmentContent = ({
+  error,
+  title,
+  subTitle,
+  data,
+}: ITreatmentContent) => {
   return (
     <div className="isolate mx-auto  px-6 lg:px-8 items-center">
       {/* Breadcrumb */}
@@ -68,7 +28,6 @@ const Treatments = () => {
       </div>
 
       {/* Treatments */}
-
       <div className="relative isolate -z-10 overflow-hidden bg-gradient-to-b from-yellow-100/20 pt-4">
         <div
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-yellow-600/10 ring-1 ring-yellow-50 sm:-mr-80 lg:-mr-96"
@@ -106,8 +65,8 @@ const Treatments = () => {
                           treatment.id
                         }`}
                       >
-                        <Image
-                          src={treatment.images.main}
+                        <AdvancedImage
+                          cldImg={cld.image(treatment.images.main)}
                           alt=""
                           className="aspect-[16/9] w-full rounded-2xl border border-amber-400 bg-white object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                         />
@@ -163,4 +122,4 @@ const Treatments = () => {
   );
 };
 
-export default Treatments;
+export default TreatmentContent;
