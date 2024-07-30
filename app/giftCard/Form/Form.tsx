@@ -14,8 +14,8 @@ import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
 import { addGiftCard, GiftCardForm } from "@/states/card/cardSlide";
 import { setSnackbarVisibility } from "@/states/snackbar/snackbarSlide";
 import { scrollToTop } from "@/utils/utils";
-import Image from "next/image";
-import EmsLogo from "@/public/Images/giftCard.png";
+import { AdvancedImage } from "@cloudinary/react";
+import { cld } from "@/utils/cloudinary";
 
 export interface DataForm {
   selectedGiftCardId: number | null;
@@ -73,9 +73,9 @@ const Form = () => {
     <>
       <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
         <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
-          <Image
+          <AdvancedImage
+            cldImg={cld.image("EMS/GiftCard/GiftCard")}
             alt="GiftCardImageAl"
-            src={EmsLogo}
             className="h-full w-full object-cover object-center"
           />
         </div>

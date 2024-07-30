@@ -50,6 +50,8 @@ import {
   getQuantityByGiftCardId,
 } from "@/app/cart/cart.utils";
 import useIsTablet from "@/hooks/useIsTablet";
+import { AdvancedImage } from "@cloudinary/react";
+import { cld } from "@/utils/cloudinary";
 
 const Header = () => {
   const router = useRouter();
@@ -80,7 +82,6 @@ const Header = () => {
   };
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
-  
 
   const CartButton = () => (
     <div className="flex items-center lg:ml-8">
@@ -129,14 +130,14 @@ const Header = () => {
                     key={product.selectedGiftCardId + index}
                     className="flex items-center px-4 py-6"
                   >
-                    <Image
-                      alt={product.selectedGiftCardId + "Image"}
-                      src={
+                    <AdvancedImage
+                      cldImg={cld.image(
                         getImageByGiftCardId(
                           giftCardsData,
                           product.selectedGiftCardId
                         ) || ""
-                      }
+                      )}
+                      alt={product.selectedGiftCardId + "Image"}
                       className="h-16 w-26 flex-none rounded-md border border-gray-200"
                     />
                     <div className="ml-4 flex-auto">
@@ -336,7 +337,11 @@ const Header = () => {
                 <div className="hidden lg:flex lg:flex-1 lg:items-center">
                   <Link href="/" onClick={scrollToTop} className="-m-1.5 p-1.5">
                     <span className="sr-only">Your Company</span>
-                    <Image alt="logoEMS" src={EmsLogo} className="h-8 w-auto" />
+                    <AdvancedImage
+                      cldImg={cld.image("EMS/General/EmsLogo")}
+                      alt="logoEMS"
+                      className="h-8 w-auto"
+                    />
                   </Link>
                 </div>
 
@@ -664,9 +669,9 @@ const Header = () => {
                 {/* Logo (lg-) */}
                 <Link href="/" onClick={scrollToTop} className="lg:hidden">
                   <span className="sr-only">Your Company</span>
-                  <Image
-                    alt=""
-                    src={EmsLogo}
+                  <AdvancedImage
+                    cldImg={cld.image("EMS/General/EmsLogo")}
+                    alt="EMS logo"
                     className="h-8 w-auto"
                   />
                 </Link>

@@ -3,13 +3,13 @@
 import { useGetTreatmentsFacialQuery } from "../../../services/treatments/treatments";
 
 import { subTitleFacial, titleFacial } from "../treatments.const";
-import TreatmentContent from "@/components/TreatmentContent";
+import TreatmentsContent from "@/components/TreatmentsContent";
 
 const Treatments = () => {
   const { data, error } = useGetTreatmentsFacialQuery("");
 
   return (
-    <TreatmentContent
+    <TreatmentsContent
       title={titleFacial}
       subTitle={subTitleFacial}
       error={error}

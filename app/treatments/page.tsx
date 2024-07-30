@@ -3,13 +3,13 @@
 import { useGetTreatmentsQuery } from "../../services/treatments/treatments";
 import { subTitleTreatments, titleTreatments } from "./treatments.const";
 
-import TreatmentContent from "@/components/TreatmentContent";
+import TreatmentsContent from "@/components/TreatmentsContent";
 
 const Treatments = () => {
   const { data, error } = useGetTreatmentsQuery("");
 
   return (
-    <TreatmentContent
+    <TreatmentsContent
       title={titleTreatments}
       subTitle={subTitleTreatments}
       error={error}

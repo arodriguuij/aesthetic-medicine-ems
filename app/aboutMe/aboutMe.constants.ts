@@ -33,15 +33,14 @@ export const people = [
   {
     name: "Elvira Morgado Sánchez",
     role: "Médico Estético",
-    imageUrl: "https://emsmedicinaestetica.com/assets/img/dra-medico.jpg",
+    imageUrl: "EMS/HowAmI/ElviraMorgado",
     xUrl: "#",
     linkedinUrl: "#",
   },
   {
     name: "Whitney Francis",
     role: "Auxiliar de enfermería",
-    imageUrl:
-      "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80",
+    imageUrl: "EMS/HowAmI/Auxiliar",
     xUrl: "#",
     linkedinUrl: "#",
   },

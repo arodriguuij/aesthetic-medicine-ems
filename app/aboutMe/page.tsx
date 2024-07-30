@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { classNames } from "../../utils/utils";
@@ -6,11 +6,8 @@ import { people, tiers, timeline } from "./aboutMe.constants";
 import Breadcrumb from "../../components/Breadcrumb";
 import { cld } from "../../utils/cloudinary";
 import { AdvancedImage } from "@cloudinary/react";
-import Image from "next/image";
 
 const AboutMe = () => {
-  const image = cld.image("EMS/za6qfis1x6xqmcpr7ner");
-
   return (
     <div className="isolate mx-auto  px-6 lg:px-8 items-center">
       <div className="mx-auto py-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8 ">
@@ -83,7 +80,7 @@ const AboutMe = () => {
                 </div>
               </div>
               <AdvancedImage
-                cldImg={image}
+                cldImg={cld.image("EMS/General/ElviraMorgadoPhoto")}
                 className="mt-10 aspect-[4/5] w-full max-w-lg rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-20"
               />
             </div>
@@ -216,10 +213,10 @@ const AboutMe = () => {
         >
           {people.map((person) => (
             <li key={person.name} className="flex flex-col gap-6 xl:flex-row">
-              <Image
+              <AdvancedImage
+                cldImg={cld.image(person.imageUrl)}
                 className="aspect-[4/5] w-52 flex-none rounded-2xl object-cover"
-                src={person.imageUrl}
-                alt=""
+                alt="WorkerPhoto"
               />
 
               <div className="flex-auto">

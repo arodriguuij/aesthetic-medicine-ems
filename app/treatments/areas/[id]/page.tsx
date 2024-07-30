@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useGetTreatmentsAreaQuery } from "@/services/areas/areas";
 import { titleArea } from "../../treatments.const";
-import TreatmentContent from "@/components/TreatmentContent";
+import TreatmentContent from "@/components/TreatmentsContent";
 
 const Treatments = () => {
   const { id } = useParams();

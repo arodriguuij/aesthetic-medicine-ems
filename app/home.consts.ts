@@ -1,18 +1,3 @@
-import FacialTreatments from "../public/Images/TratamientosFaciales.jpg";
-import CorporalTreatments from "../public/Images/TratamientosCorporales.jpg";
-import MerzLogo from "../public/Images/branches/MerzLogo.png";
-import SinclareLogo from "../public/Images/branches/SinclairLogo.png";
-import TexoaneLogo from "../public/Images/branches/TexoaneLogo.png";
-import AllerganLogo from "../public/Images/branches/Allergan.png";
-import GladermaLogo from "../public/Images/branches/GaldermaLogo.png";
-import ThrLogo from "../public/Images/branches/ThrLogo.png";
-import DhLogo from "../public/Images/branches/DhLogo.png";
-import MesosteticLogo from "../public/Images/branches/Mesoestetic.png";
-import MedidermaLogo from "../public/Images/branches/MedidermaLogo.png";
-import DermicaLogo from "../public/Images/branches/DermicaLogo.png";
-import CantabriaLabsLogo from "../public/Images/branches/CantabriaLabsLogo.png";
-import LaRocheLogo from "../public/Images/branches/LaRocheLogo.png";
-
 export const featuredTestimonial = {
   body: "Una gran profesional! Te asesora en lo que quieras y todo lo que hace lo hace con cariño y delicadeza. Sin duda es una de las mejores doctoras en la que confiar :) recomendable 100%",
   author: {
@@ -169,7 +154,7 @@ export const collections = [
   {
     name: "Tratamientos Faciales",
     href: "/treatments/facial",
-    imageSrc: FacialTreatments,
+    imageSrc: "EMS/HomePage/TratamientosFaciales",
     imageAlt: "Tratamientos Faciales",
     description:
       "Medicina que se centra en el rejuvenecimiento o embelleciemiento facial para reducir los signos de la edad, firmeza cutánea, manchas en la piel y corrección de arrugas. Es una medicina que no necesita de quirófano y supone una recuperación rápida.",
@@ -177,7 +162,7 @@ export const collections = [
   {
     name: "Tratamientos Corporales",
     href: "/treatments/corporal",
-    imageSrc: CorporalTreatments,
+    imageSrc: "EMS/HomePage/TratamientosCorporales",
     imageAlt: "Tratamientos Corporales",
     description:
       "Medicina dirigida a la mejoría de la apariencia física, tanto con tratamientos estéticos como funcionales. Ayudando a conseguir un mejor estado físico y autoestima. Es una medicina que no necesita de quirófano",
@@ -188,62 +173,62 @@ export const branches = [
   {
     id: 1,
     name: "Merz Logo",
-    image: MerzLogo,
+    image: "EMS/Branches/MerzLogo",
   },
   {
     id: 2,
-    name: "Sinclare Logo",
-    image: SinclareLogo,
+    name: "Sinclair Logo",
+    image: "EMS/Branches/SinclairLogo",
   },
   {
     id: 3,
     name: "Texoane Logo",
-    image: TexoaneLogo,
+    image: "EMS/Branches/TexoaneLogo",
   },
   {
     id: 4,
     name: "Allergan Logo",
-    image: AllerganLogo,
+    image: "EMS/Branches/AllerganLogo",
   },
   {
     id: 5,
     name: "Galderma Logo",
-    image: GladermaLogo,
+    image: "EMS/Branches/GaldermaLogo",
   },
   {
     id: 6,
     name: "THR Logo",
-    image: ThrLogo,
+    image: "EMS/Branches/ThrLogo",
   },
   {
     id: 7,
     name: "DH Logo",
-    image: DhLogo,
+    image: "EMS/Branches/DhLogo",
   },
   {
     id: 8,
     name: "Mesoestetic Logo",
-    image: MesosteticLogo,
+    image: "EMS/Branches/MesoesteticLogo",
   },
   {
     id: 9,
     name: "Mediderma Logo",
-    image: MedidermaLogo,
+    image: "EMS/Branches/MedidermaLogo",
   },
   {
     id: 10,
     name: "Dermica Logo",
-    image: DermicaLogo,
+    image: "EMS/Branches/DermicaLogo",
   },
   {
     id: 11,
     name: "Cantabria Labs Logo",
-    image: CantabriaLabsLogo,
+    image: "EMS/Branches/CantabriaLabsLogo",
   },
   {
     id: 12,
     name: "La Roche Logo",
-    image: LaRocheLogo,
+    image: "EMS/Branches/LaRocheLogo",
   },
 ];
 
@@ -255,7 +240,6 @@ export const testimonials = [
       handle: "https://g.co/kgs/S3N4Kpo",
       imageUrl:
         "https://lh3.googleusercontent.com/a-/ALV-UjWCqbaKhnZ2SBVdOpHZ4SBi8cIJStRA-SEiGI0bppY797Broaed=w120-h120-p-rp-mo-br100",
-      //logoUrl: "https://tailwindui.com/img/logos/savvycal-logo-gray-900.svg",
     },
   },
   {
@@ -267,7 +251,6 @@ export const testimonials = [
         "https://lh3.googleusercontent.com/a/ACg8ocIRg9iPuGvdhMO1PgkPW-q3iMnfb0q0dbPOb7rmBxiyi36iZw=w120-h120-p-rp-mo-br100",
     },
   },
-  // More testimonials...
   {
     body: "La definición del trabajo de la Dra Morgado, se puede se resumir en una palabra…MAGIA, con solo mirarte ya sabe que necesitas y aún así,te asesora en base a lo que tú deseas, los resultados son insuperables, siempre sales de allí feliz, y no solo por cómo te ves de bien si no, por cómo te trata y cómo te hace sentir…Me declaro incondicional de esta gran profesional, sin duda la recomiendo porque no me han tocado mejores manos…",
     author: {

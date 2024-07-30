@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import Breadcrumb from "../../components/Breadcrumb";
 import {
   useAddGiftCardOrder2Mutation,
@@ -11,8 +11,14 @@ import {
 import { CardState, resetCard } from "../../states/card/cardSlide";
 import { setDialogVisibility } from "../../states/dialog/dialogSlide";
 import { scrollToTop } from "../../utils/utils";
-import Image from "next/image";
-import { getDescriptionByGiftCardId, getImageByGiftCardId, getQuantityByGiftCardId, getSubTotal } from "./cart.utils";
+import {
+  getDescriptionByGiftCardId,
+  getImageByGiftCardId,
+  getQuantityByGiftCardId,
+  getSubTotal,
+} from "./cart.utils";
+import { AdvancedImage } from "@cloudinary/react";
+import { cld } from "@/utils/cloudinary";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -71,14 +77,14 @@ const Cart = () => {
                     style={{ overflow: "auto" }}
                   >
                     <div className="flex-shrink-0">
-                      <Image
-                        alt={gifCard.selectedGiftCardId + "image"}
-                        src={
+                      <AdvancedImage
+                        cldImg={cld.image(
                           getImageByGiftCardId(
                             giftCardsData,
                             gifCard.selectedGiftCardId
                           ) || ""
-                        }
+                        )}
+                        alt={gifCard.selectedGiftCardId + "image"}
                         className="h-24 w-26 rounded-md object-cover object-center sm:h-48 sm:w-68"
                       />
                     </div>

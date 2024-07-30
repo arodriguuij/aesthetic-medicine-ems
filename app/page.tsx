@@ -3,7 +3,6 @@
 import { branches, collections, testimonials } from "./home.consts";
 import Link from "next/link";
 import { scrollToTop } from "../utils/utils";
-import profile from "../public/Images/profile.png";
 import useIsMobile from "../hooks/useIsMobile";
 import useIsTablet from "../hooks/useIsTablet";
 import { useGetProductsQuery } from "../services/products/products";
@@ -11,7 +10,6 @@ import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "../utils/cloudinary";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import VaricesStar from "../public/Images/varicesStar.png";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
@@ -79,8 +77,8 @@ export default function HomePage() {
                 aria-hidden="true"
                 className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg"
               >
-                <Image
-                  src={collection.imageSrc}
+                <AdvancedImage
+                  cldImg={cld.image(collection.imageSrc)}
                   alt={collection.imageAlt}
                   className=" w-full object-cover object-center"
                 />
@@ -103,7 +101,7 @@ export default function HomePage() {
         <div className="relative overflow-hidden rounded-lg lg:h-96">
           <div className="absolute inset-0">
             <AdvancedImage
-              cldImg={cld.image("EMS/VaricesStar")}
+              cldImg={cld.image("EMS/HomePage/VaricesStar")}
               alt=""
               className="h-full w-full object-cover object-center"
             />
@@ -237,11 +235,11 @@ export default function HomePage() {
           </div>
           <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-4 gap-y-6 sm:max-w-3xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
             {branches.map(({ id, image, name }, index) => (
-              <Image
+              <AdvancedImage
+                cldImg={cld.image(image)}
                 key={id + index}
                 //style={{ filter: "grayscale(1)" }}
                 className="col-span-2 max-h-8 w-full object-contain lg:col-span-1"
-                src={image}
                 alt={name}
                 width={158}
                 height={48}
@@ -276,9 +274,9 @@ export default function HomePage() {
                   style={{ height: "39rem" }}
                   className="relative overflow-hidden rounded-3xl px-6 pb-9 pt-64 sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10 h-4/5"
                 >
-                  <Image
+                  <AdvancedImage
+                    cldImg={cld.image("EMS/HomePage/Profile")}
                     className="absolute inset-0 h-full w-full object-cover"
-                    src={profile}
                     alt=""
                   />
                 </div>

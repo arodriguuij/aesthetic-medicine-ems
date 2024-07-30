@@ -1,6 +1,7 @@
-import Image from "next/image";
 import { navigation } from "./footer.consts";
 import ListOfItems from "./ListOfItems";
+import { cld } from "@/utils/cloudinary";
+import { AdvancedImage } from "@cloudinary/react";
 
 const Footer = () => (
   <footer aria-labelledby="footer-heading">
@@ -17,9 +18,9 @@ const Footer = () => (
         <div className="xl:grid xl:grid-cols-2 xl:gap-8">
           <div className="space-y-5 pb-12 lg:pb-12">
             <span className="sr-only">Your Company</span>
-            <Image
+            <AdvancedImage
+              cldImg={cld.image("EMS/General/EmsLogo")}
               className="h-8 w-auto"
-              src="https://emsmedicinaestetica.com/assets/img/ems-mobile.png"
               alt=""
             />
             <p className="text-sm leading-6 text-gray-600">
