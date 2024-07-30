@@ -238,8 +238,7 @@ export const testimonials = [
     author: {
       name: "Laura Gómez Millanes",
       handle: "https://g.co/kgs/S3N4Kpo",
-      imageUrl:
-        "https://lh3.googleusercontent.com/a-/ALV-UjWCqbaKhnZ2SBVdOpHZ4SBi8cIJStRA-SEiGI0bppY797Broaed=w120-h120-p-rp-mo-br100",
+      imageUrl: "EMS/Reviews/Review1",
     },
   },
   {
@@ -247,8 +246,7 @@ export const testimonials = [
     author: {
       name: "cristina lopez",
       handle: "https://g.co/kgs/YRcz2Yx",
-      imageUrl:
-        "https://lh3.googleusercontent.com/a/ACg8ocIRg9iPuGvdhMO1PgkPW-q3iMnfb0q0dbPOb7rmBxiyi36iZw=w120-h120-p-rp-mo-br100",
+      imageUrl: "EMS/Reviews/Review2",
     },
   },
   {
@@ -256,8 +254,7 @@ export const testimonials = [
     author: {
       name: "Jessica Montes",
       handle: "https://g.co/kgs/J6f5RcE",
-      imageUrl:
-        "https://lh3.googleusercontent.com/a/ACg8ocIEaMlU2g5i4sYOhVTjPOZkA5KOKSoP8NV5RTv4v1kDdxDvHQ=s40-c-rp-mo-br100",
+      imageUrl: "EMS/Reviews/Review3",
     },
   },
   {
@@ -265,8 +262,7 @@ export const testimonials = [
     author: {
       name: "Carmen Sánchez",
       handle: "https://g.co/kgs/oYrhspi",
-      imageUrl:
-        "https://lh3.googleusercontent.com/a-/ALV-UjX6rVS7bd3jjKw2zWlbzeGXUeeYzvJco4ZM0qB4HcOAzfiuZik=w120-h120-p-rp-mo-br100",
+      imageUrl: "EMS/Reviews/Review4",
     },
   },
   {
@@ -274,8 +270,7 @@ export const testimonials = [
     author: {
       name: "Kyria Barros Borelli",
       handle: "https://g.co/kgs/rgBAWsD",
-      imageUrl:
-        "https://lh3.googleusercontent.com/a/ACg8ocITiQCAmLaIxqBYaKLQHCdAzeiQThi0WsQVIDBDJWbvyB8dFw=s40-c-rp-mo-br100",
+      imageUrl: "EMS/Reviews/Review5",
     },
   },
   {
@@ -283,8 +278,7 @@ export const testimonials = [
     author: {
       name: "Cc Yoyo",
       handle: "https://g.co/kgs/FWu8TmN",
-      imageUrl:
-        "https://lh3.googleusercontent.com/a/ACg8ocIlcYEss1_r7OtaZxaf6d7iZTqt8Jbsbxzu1MZzsAFF6fji_w=s40-c-rp-mo-br100",
+      imageUrl: "EMS/Reviews/Review6",
     },
   },
   {
@@ -292,8 +286,7 @@ export const testimonials = [
     author: {
       name: "Local Guide",
       handle: "https://g.co/kgs/vfk5hB9",
-      imageUrl:
-        "https://lh3.googleusercontent.com/a-/ALV-UjX4NfhDYV-vGowVA8PzMQUiXDvJPJC5HPdnO5IJeEpL_xys6tfAcw=s40-c-rp-mo-ba4-br100",
+      imageUrl: "EMS/Reviews/Review7",
     },
   },
   {
@@ -301,8 +294,7 @@ export const testimonials = [
     author: {
       name: "noemi de pedro",
       handle: "https://g.co/kgs/BQu1ev1",
-      imageUrl:
-        "https://lh3.googleusercontent.com/a/ACg8ocK5wJ-euPQCssVa1fvyLx6Ntx7chs4cpRqQ3Qzcr936P-eqhw=s40-c-rp-mo-br100",
+      imageUrl: "EMS/Reviews/Review8",
     },
   },
 ];

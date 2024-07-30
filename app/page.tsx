@@ -9,7 +9,6 @@ import { useGetProductsQuery } from "../services/products/products";
 import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "../utils/cloudinary";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
@@ -457,9 +456,9 @@ export default function HomePage() {
                           className="text-gray-600"
                         >
                           <figcaption className="mt-6 flex items-center gap-x-4">
-                            <Image
+                            <AdvancedImage
+                              cldImg={cld.image(testimonial.author.imageUrl)}
                               className="h-10 w-10 rounded-full bg-gray-50"
-                              src={testimonial.author.imageUrl}
                               alt=""
                             />
                             <div>
