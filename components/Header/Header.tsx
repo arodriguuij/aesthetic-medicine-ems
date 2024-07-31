@@ -60,9 +60,15 @@ const Header = () => {
     useGetTreatmentsFacialNamesQuery("");
   const { data: corporalTreatments, error: corporalTreatmentsError } =
     useGetTreatmentsCorporalNamesQuery("");
-  const { data: areasData, error: areasError } = useGetAreasQuery("");
+  //const { data: areasData, error: areasError } = useGetAreasQuery("");
   const { data: giftCardsData, error: giftCardsError } =
     useGetGiftCardsQuery("");
+
+  const areasData = [{
+    name: 'string',
+    id: "string",
+  }];
+  const areasError = undefined;
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isPopoverFacialVisible, setPopoverFacialVisible] = useState(false);

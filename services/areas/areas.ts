@@ -23,5 +23,4 @@ export const areasApi = createApi({
 export const {
   useGetTreatmentsAreaQuery,
   useGetAreasQuery,
-  useLazyGetTreatmentsAreaQuery,
 } = areasApi;
