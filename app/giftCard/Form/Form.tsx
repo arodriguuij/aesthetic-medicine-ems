@@ -44,8 +44,17 @@ const Form = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const { data: giftCardsData, error: giftCardsError } =
-    useGetGiftCardsQuery("");
+  //const { data: giftCardsData, error: giftCardsError } =    useGetGiftCardsQuery("");
+
+  const giftCardsData = [
+    {
+      id: 1,
+      quantity: 1,
+      image: "string",
+      description: "string",
+    },
+  ];
+  const giftCardsError = undefined;
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();

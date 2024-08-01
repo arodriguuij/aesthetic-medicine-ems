@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
 import { AdvancedImage } from "@cloudinary/react";
-import Link from 'next/link';
+import Link from "next/link";
 import Breadcrumb from "../../components/Breadcrumb";
 import { useGetBranchesQuery } from "../../services/branches/branches";
 import { useGetProductsQuery } from "../../services/products/products";
@@ -9,8 +9,35 @@ import { cld } from "../../utils/cloudinary";
 import { scrollToTop } from "../../utils/utils";
 
 const Products = () => {
-  const { data: productsData, error: productsError } = useGetProductsQuery("");
-  const { data: branchesData, error: branchesError } = useGetBranchesQuery("");
+  //const { data: productsData, error: productsError } = useGetProductsQuery("");
+  //const { data: branchesData, error: branchesError } = useGetBranchesQuery("");
+
+  const branchesData = [
+    {
+      id: 1,
+      name: "name",
+      priority: 1,
+    },
+  ];
+  const branchesError = undefined;
+
+  const productsData = [
+    {
+      id: 1,
+      name: "string",
+      branch: "string",
+      type: "Facial",
+      quantity: 1,
+      description: "string",
+      images: ["string"],
+      featured: true,
+      benefits: ["string"],
+      howToUse: ["string"],
+      ingredients: ["string"],
+      priority: 1,
+    },
+  ];
+  const productsError = undefined;
 
   return (
     <div className="isolate mx-auto px-6 lg:px-8 items-center">

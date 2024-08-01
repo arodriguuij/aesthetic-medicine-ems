@@ -52,22 +52,38 @@ import {
 import useIsTablet from "@/hooks/useIsTablet";
 import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "@/utils/cloudinary";
+import { Treatment } from "@/app/types/treatments.types";
 
 const Header = () => {
   const router = useRouter();
 
-  const { data: facialTreatmentsData, error: facialTreatmentsError } =
-    useGetTreatmentsFacialNamesQuery("");
-  const { data: corporalTreatments, error: corporalTreatmentsError } =
-    useGetTreatmentsCorporalNamesQuery("");
+  //const { data: facialTreatmentsData, error: facialTreatmentsError } = useGetTreatmentsFacialNamesQuery("");
+  //const { data: corporalTreatments, error: corporalTreatmentsError } = useGetTreatmentsCorporalNamesQuery("");
   //const { data: areasData, error: areasError } = useGetAreasQuery("");
-  const { data: giftCardsData, error: giftCardsError } =
-    useGetGiftCardsQuery("");
+  //const { data: giftCardsData, error: giftCardsError } =  useGetGiftCardsQuery("");
 
-  const areasData = [{
-    name: 'string',
-    id: "string",
-  }];
+  const facialTreatmentsData: Treatment[] = [];
+  const facialTreatmentsError = undefined;
+
+  const corporalTreatments: Treatment[] = [];
+  const corporalTreatmentsError = undefined;
+
+  const giftCardsData = [
+    {
+      id: 1,
+      quantity: 1,
+      image: "string",
+      description: "string",
+    },
+  ];
+  const giftCardsError = undefined;
+
+  const areasData = [
+    {
+      name: "string",
+      id: "string",
+    },
+  ];
   const areasError = undefined;
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

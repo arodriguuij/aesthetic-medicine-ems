@@ -32,7 +32,6 @@ export const giftCardsApi = createApi({
 });
 
 export const {
-  useGetGiftCardByIdQuery,
   useGetGiftCardsQuery,
   useAddGiftCardOrderQuery,
   useAddGiftCardOrder2Mutation,

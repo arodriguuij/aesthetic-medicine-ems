@@ -12,9 +12,27 @@ import { CheckIcon } from "@heroicons/react/24/outline";
 const Product = () => {
   const { productId } = useParams();
 
-  const { data: productData, error: productError } = useGetProductQuery(
+  /* const { data: productData, error: productError } = useGetProductQuery(
     productId + ""
-  );
+  ); */
+
+  const productData = [
+    {
+      id: 1,
+      name: "string",
+      branch: "string",
+      type: "Facial",
+      quantity: 1,
+      description: "string",
+      images: ["string"],
+      featured: true,
+      benefits: ["string"],
+      howToUse: ["string"],
+      ingredients: ["string"],
+      priority: 1,
+    },
+  ];
+  const productError = undefined;
 
   return (
     <div className="isolate mx-auto px-6 lg:px-8 items-center">

@@ -13,7 +13,25 @@ import dynamic from "next/dynamic";
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 export default function HomePage() {
-  const { data: productsData, error: productsError } = useGetProductsQuery("");
+  //const { data: productsData, error: productsError } = useGetProductsQuery("");
+
+  const productsData = [
+    {
+      id: 1,
+      name: "string",
+      branch: "string",
+      type: "Facial",
+      quantity: 1,
+      description: "string",
+      images: ["string"],
+      featured: true,
+      benefits: ["string"],
+      howToUse: ["string"],
+      ingredients: ["string"],
+      priority: 1,
+    },
+  ];
+  const productsError = undefined;
 
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
