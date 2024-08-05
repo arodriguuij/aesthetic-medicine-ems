@@ -285,7 +285,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
               <div className="mt-6 sm:hidden">
                 <Link
                   href="/products"
-                  className="block text-sm font-semibold text-amber-400 hover:text-amber-300"
+                  className="block text-sm font-semibold text-amber-400 hover:text-amber-500"
                   onClick={scrollToTop}
                 >
                   Ver todas las categorías

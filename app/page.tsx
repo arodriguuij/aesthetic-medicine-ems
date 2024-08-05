@@ -13,25 +13,7 @@ import dynamic from "next/dynamic";
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 export default function HomePage() {
-  //const { data: productsData, error: productsError } = useGetProductsQuery("");
-
-  const productsData = [
-    {
-      id: 1,
-      name: "string",
-      branch: "string",
-      type: "Facial",
-      quantity: 1,
-      description: "string",
-      images: ["string"],
-      featured: true,
-      benefits: ["string"],
-      howToUse: ["string"],
-      ingredients: ["string"],
-      priority: 1,
-    },
-  ];
-  const productsError = undefined;
+  const { data: productsData, error: productsError } = useGetProductsQuery("");
 
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
@@ -166,7 +148,7 @@ export default function HomePage() {
                 <Link
                   href="/products"
                   onClick={scrollToTop}
-                  className="hidden text-sm font-semibold text-amber-400 hover:text-amber-300 sm:block"
+                  className="hidden text-sm font-semibold text-amber-400 hover:text-amber-500 sm:block"
                 >
                   Ver todas las categorías
                   <span aria-hidden="true"> &rarr;</span>
@@ -220,7 +202,7 @@ export default function HomePage() {
             <div className="mt-6 sm:hidden">
               <Link
                 href="/products"
-                className="block text-sm font-semibold text-amber-400 hover:text-amber-300"
+                className="block text-sm font-semibold text-amber-400 hover:text-amber-500"
                 onClick={scrollToTop}
               >
                 Ver todas las categorías

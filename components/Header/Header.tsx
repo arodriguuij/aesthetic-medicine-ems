@@ -52,39 +52,17 @@ import {
 import useIsTablet from "@/hooks/useIsTablet";
 import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "@/utils/cloudinary";
-import { Treatment } from "@/app/types/treatments.types";
 
 const Header = () => {
   const router = useRouter();
 
-  //const { data: facialTreatmentsData, error: facialTreatmentsError } = useGetTreatmentsFacialNamesQuery("");
-  //const { data: corporalTreatments, error: corporalTreatmentsError } = useGetTreatmentsCorporalNamesQuery("");
-  //const { data: areasData, error: areasError } = useGetAreasQuery("");
-  //const { data: giftCardsData, error: giftCardsError } =  useGetGiftCardsQuery("");
-
-  const facialTreatmentsData: Treatment[] = [];
-  const facialTreatmentsError = undefined;
-
-  const corporalTreatments: Treatment[] = [];
-  const corporalTreatmentsError = undefined;
-
-  const giftCardsData = [
-    {
-      id: 1,
-      quantity: 1,
-      image: "string",
-      description: "string",
-    },
-  ];
-  const giftCardsError = undefined;
-
-  const areasData = [
-    {
-      name: "string",
-      id: "string",
-    },
-  ];
-  const areasError = undefined;
+  const { data: facialTreatmentsData, error: facialTreatmentsError } =
+    useGetTreatmentsFacialNamesQuery("");
+  const { data: corporalTreatments, error: corporalTreatmentsError } =
+    useGetTreatmentsCorporalNamesQuery("");
+  const { data: areasData, error: areasError } = useGetAreasQuery("");
+  const { data: giftCardsData, error: giftCardsError } =
+    useGetGiftCardsQuery("");
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isPopoverFacialVisible, setPopoverFacialVisible] = useState(false);
@@ -121,10 +99,10 @@ const Header = () => {
             aria-hidden="true"
             className="h-6 w-6 flex-shrink-0 text-gray-400 hover:text-amber-600 data-[open]:text-amber-700"
           />
-          <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+          <span className="ml-2 text-sm font-medium text-gray-400 hover:text-amber-600 data-[open]:text-amber-700">
             {gifCards.length}
           </span>
-          <span className="sr-only">items in cart, view bag</span>
+          <span className="sr-only">Productos en el carro</span>
         </PopoverButton>
         <Transition
           show={isPopoverGiftCartsVisible}

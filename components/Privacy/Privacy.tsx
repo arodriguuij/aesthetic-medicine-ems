@@ -15,7 +15,7 @@ const Privacy = () => {
           <Link
             onClick={scrollToTop}
             href="/policy"
-            className="font-semibold text-amber-300"
+            className="font-semibold text-amber-400"
           >
             política de cookies
           </Link>

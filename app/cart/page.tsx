@@ -25,21 +25,11 @@ const Cart = () => {
   const router = useRouter();
 
   const { gifCards } = useSelector((state: { card: CardState }) => state.card);
-  //const { data: giftCardsData, error: giftCardsError } = useGetGiftCardsQuery("");
+  const { data: giftCardsData, error: giftCardsError } =
+    useGetGiftCardsQuery("");
 
-  const giftCardsData = [
-    {
-      id: 1,
-      quantity: 1,
-      image: "string",
-      description: "string",
-    },
-  ];
-  const giftCardsError = undefined;
+  const [addGiftCardOrder2] = useAddGiftCardOrder2Mutation();
 
-  //const [addGiftCardOrder2] = useAddGiftCardOrder2Mutation();
-
-  const addGiftCardOrder2 = (gifCards: any) => {};
   return (
     <div className="isolate mx-auto  px-6 lg:px-8 items-center">
       {/* Breadcrumb */}

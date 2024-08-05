@@ -8,13 +8,7 @@ import TreatmentContent from "@/components/TreatmentsContent";
 const Treatments = () => {
   const { id } = useParams();
 
-  //const { data, error } = useGetTreatmentsAreaQuery(id + "");
-  const data= {
-    treatments: [],
-    areaName: 'string',
-    description: 'string'
-  }
-  const error=undefined
+  const { data, error } = useGetTreatmentsAreaQuery(id + "");
 
   return data ? (
     <TreatmentContent
