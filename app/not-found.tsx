@@ -23,12 +23,14 @@ export default function NotFound() {
           Lo siento, no pudimos encontrar la página que estás buscando.
         </p>
         <div className="mt-10 flex justify-center">
-          <Link
-            href="/"
-            onClick={scrollToTop}
-            className="text-sm font-semibold leading-7 text-white"
-          >
-            <span aria-hidden="true">&larr;</span> Vuelta a la página principal
+          <Link href="/" passHref>
+            <a
+              onClick={scrollToTop}
+              className="text-sm font-semibold leading-7 text-white"
+            >
+              <span aria-hidden="true">&larr;</span> Vuelta a la página
+              principal
+            </a>
           </Link>
         </div>
       </div>

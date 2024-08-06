@@ -2,13 +2,13 @@
 
 import { branches, collections, testimonials } from "./home.consts";
 import Link from "next/link";
-import { scrollToTop } from "../utils/utils";
 import useIsMobile from "../hooks/useIsMobile";
 import useIsTablet from "../hooks/useIsTablet";
 import { useGetProductsQuery } from "../services/products/products";
 import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "../utils/cloudinary";
 import dynamic from "next/dynamic";
+import useScrollToTop from "@/hooks/useScrollToTop";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
@@ -19,12 +19,16 @@ export default function HomePage() {
   const isTablet = useIsTablet();
   const testimonialsNew = isMobile ? testimonials.slice(0, 4) : testimonials;
 
+  const scrollToTopFunction = useScrollToTop();
+
   return (
     <div>
       {/* Hero section */}
       <div className="relative w-full overflow-hidden">
         <div className="react-player-wrapper">
           <ReactPlayer
+            //url="https://vimeo.com/778608645"
+            //url="https://vimeo.com/778606684"
             url="https://player.vimeo.com/video/842100023"
             className="react-player"
             playing
@@ -67,28 +71,25 @@ export default function HomePage() {
       >
         <div className="mt-10 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:space-y-0">
           {collections.map((collection) => (
-            <Link
-              onClick={scrollToTop}
-              key={collection.name}
-              href={collection.href}
-              className="group block"
-            >
-              <div
-                aria-hidden="true"
-                className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg"
-              >
-                <AdvancedImage
-                  cldImg={cld.image(collection.imageSrc)}
-                  alt={collection.imageAlt}
-                  className=" w-full object-cover object-center"
-                />
-              </div>
-              <h3 className="mt-4 text-base font-semibold text-gray-900">
-                {collection.name}
-              </h3>
-              <p className="mt-2 text-sm text-gray-500">
-                {collection.description}
-              </p>
+            <Link key={collection.name} href={collection.href} passHref>
+              <a onClick={scrollToTopFunction} className="group block">
+                <div
+                  aria-hidden="true"
+                  className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg"
+                >
+                  <AdvancedImage
+                    cldImg={cld.image(collection.imageSrc)}
+                    alt={collection.imageAlt}
+                    className=" w-full object-cover object-center"
+                  />
+                </div>
+                <h3 className="mt-4 text-base font-semibold text-gray-900">
+                  {collection.name}
+                </h3>
+                <p className="mt-2 text-sm text-gray-500">
+                  {collection.description}
+                </p>
+              </a>
             </Link>
           ))}
         </div>
@@ -122,12 +123,13 @@ export default function HomePage() {
                 apariencia de las venas varicosas en las piernas.
               </p>
             </div>
-            <Link
-              onClick={scrollToTop}
-              href="/treatments/corporal/19"
-              className="mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 px-4 py-3 text-base font-medium text-white hover:bg-opacity-10 sm:ml-8 sm:mt-0 lg:ml-0 lg:w-full"
-            >
-              Ver más información
+            <Link href="/treatments/corporal/19" passHref>
+              <a
+                onClick={scrollToTopFunction}
+                className="mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 px-4 py-3 text-base font-medium text-white hover:bg-opacity-10 sm:ml-8 sm:mt-0 lg:ml-0 lg:w-full"
+              >
+                Ver más información
+              </a>
             </Link>
           </div>
         </div>
@@ -146,13 +148,14 @@ export default function HomePage() {
                 <h2 className="text-xl font-bold tracking-tight text-gray-900">
                   Productos y cremas
                 </h2>
-                <Link
-                  href="/products"
-                  onClick={scrollToTop}
-                  className="hidden text-sm font-semibold text-amber-400 hover:text-amber-500 sm:block"
-                >
-                  Ver todas las categorías
-                  <span aria-hidden="true"> &rarr;</span>
+                <Link href="/products" passHref>
+                  <a
+                    onClick={scrollToTopFunction}
+                    className="hidden text-sm font-semibold text-amber-400 hover:text-amber-500 sm:block"
+                  >
+                    Ver todas las categorías
+                    <span aria-hidden="true"> &rarr;</span>
+                  </a>
                 </Link>
               </div>
               <p className="mt-2 text-sm text-gray-500">
@@ -171,29 +174,29 @@ export default function HomePage() {
                       productsData
                         .filter(({ featured }) => featured)
                         .map(({ name, id, images }) => (
-                          <Link
-                            key={name}
-                            onClick={scrollToTop}
-                            href={`products/${id}`}
-                            className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
-                          >
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0"
+                          <Link key={name} href={`products/${id}`} passHref>
+                            <a
+                              onClick={scrollToTopFunction}
+                              className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
                             >
-                              <AdvancedImage
-                                cldImg={cld.image(images[0])}
-                                alt={`Image-${name}`}
-                                className="h-full w-full object-cover object-center"
+                              <span
+                                aria-hidden="true"
+                                className="absolute inset-0"
+                              >
+                                <AdvancedImage
+                                  cldImg={cld.image(images[0])}
+                                  alt={`Image-${name}`}
+                                  className="h-full w-full object-cover object-center"
+                                />
+                              </span>
+                              <span
+                                aria-hidden="true"
+                                className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
                               />
-                            </span>
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
-                            />
-                            <span className="relative mt-auto text-center text-xl font-bold text-white">
-                              {name}
-                            </span>
+                              <span className="relative mt-auto text-center text-xl font-bold text-white">
+                                {name}
+                              </span>
+                            </a>
                           </Link>
                         ))}
                   </div>
@@ -201,13 +204,14 @@ export default function HomePage() {
               </div>
             </div>
             <div className="mt-6 sm:hidden">
-              <Link
-                href="/products"
-                className="block text-sm font-semibold text-amber-400 hover:text-amber-500"
-                onClick={scrollToTop}
-              >
-                Ver todas las categorías
-                <span aria-hidden="true"> &rarr;</span>
+              <Link href="/products" passHref>
+                <a
+                  onClick={scrollToTopFunction}
+                  className="block text-sm font-semibold text-amber-400 hover:text-amber-500"
+                >
+                  Ver todas las categorías
+                  <span aria-hidden="true"> &rarr;</span>
+                </a>
               </Link>
             </div>
           </div>
@@ -325,12 +329,14 @@ export default function HomePage() {
               </div>
 
               <div className="mt-10 flex">
-                <Link
-                  onClick={scrollToTop}
-                  href="/aboutMe"
-                  className="text-base font-semibold leading-7 text-amber-400"
-                >
-                  Saber más sobre Elvira <span aria-hidden="true">&rarr;</span>
+                <Link href="/aboutMe" passHref>
+                  <a
+                    onClick={scrollToTopFunction}
+                    className="text-base font-semibold leading-7 text-amber-400"
+                  >
+                    Saber más sobre Elvira
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
                 </Link>
               </div>
             </div>

@@ -26,13 +26,17 @@ const Breadcrumb = () => {
       <ol role="list" className="flex items-center space-x-4">
         <li>
           <div>
-            <Link
-              href="/"
-              onClick={scrollToTop}
-              className="text-amber-500 hover:text-amber-600"
-            >
-              <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
-              <span className="sr-only">Home</span>
+            <Link href="/" passHref>
+              <a
+                onClick={scrollToTop}
+                className="text-amber-500 hover:text-amber-600"
+              >
+                <HomeIcon
+                  className="h-5 w-5 flex-shrink-0"
+                  aria-hidden="true"
+                />
+                <span className="sr-only">Home</span>
+              </a>
             </Link>
           </div>
         </li>
@@ -53,11 +57,15 @@ const Breadcrumb = () => {
               ) : (
                 <Link
                   href={page.href}
-                  onClick={scrollToTop}
-                  className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                   aria-current={page.current ? "page" : undefined}
+                  passHref
                 >
-                  {page.name}
+                  <a
+                    onClick={scrollToTop}
+                    className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                  >
+                    {page.name}
+                  </a>
                 </Link>
               )}
             </div>

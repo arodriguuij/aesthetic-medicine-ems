@@ -1,7 +1,7 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { GiftCard } from "./giftCards.types";
-import { GiftCardForm } from "../../states/card/cardSlide";
+import { GiftCardForm } from "../../lib/card/cardSlide";
 
 // Define a service using a base URL and expected endpoints
 export const giftCardsApi = createApi({

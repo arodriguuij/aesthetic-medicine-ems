@@ -8,8 +8,8 @@ import {
   useAddGiftCardOrder2Mutation,
   useGetGiftCardsQuery,
 } from "../../services/giftCards/giftCards";
-import { CardState, resetCard } from "../../states/card/cardSlide";
-import { setDialogVisibility } from "../../states/dialog/dialogSlide";
+import { resetCard, selectCard } from "../../lib/card/cardSlide";
+import { setDialogVisibility } from "../../lib/dialog/dialogSlide";
 import { scrollToTop } from "../../utils/utils";
 import {
   getDescriptionByGiftCardId,
@@ -19,15 +19,17 @@ import {
 } from "./cart.utils";
 import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "@/utils/cloudinary";
+import { RootState } from "@/lib/store";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const { gifCards } = useSelector((state: { card: CardState }) => state.card);
+  const gifCards = useSelector((state: RootState) => selectCard(state.card));
   const { data: giftCardsData, error: giftCardsError } =
     useGetGiftCardsQuery("");
 
+  console.log({ gifCards });
   const [addGiftCardOrder2] = useAddGiftCardOrder2Mutation();
 
   return (

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setSnackbarVisibility,
   SnackbarState,
-} from "../../states/snackbar/snackbarSlide";
+} from "../../lib/snackbar/snackbarSlide";
 
 const SnackBar = () => {
   const dispatch = useDispatch();

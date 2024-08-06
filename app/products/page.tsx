@@ -89,14 +89,16 @@ const Products = () => {
                                 />
                               </div>
                               <h3 className="mt-4">
-                                <Link
-                                  onClick={scrollToTop}
-                                  href={`/products/${id}`}
-                                >
-                                  <span className="absolute inset-0 " />
-                                  <p className="text-base text-gray-900">
-                                    {name}
-                                  </p>
+                                <Link href={`/products/${id}`} passHref>
+                                  <a
+                                    onClick={scrollToTop}
+                                    className="text-sm font-semibold leading-7 text-white"
+                                  >
+                                    <span className="absolute inset-0 " />
+                                    <p className="text-base text-gray-900">
+                                      {name}
+                                    </p>
+                                  </a>
                                 </Link>
                               </h3>
                               <p className="mt-1 text-sm text-gray-500">

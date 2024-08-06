@@ -2,7 +2,7 @@
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
-import { setBannerVisibility } from "../../states/banner/bannerSlide";
+import { setBannerVisibility } from "../../lib/banner/bannerSlide";
 import Whatsapp from "../Icons/Whatsapp";
 import Phone from "../Icons/Phone";
 import useIsMobile from "../../hooks/useIsMobile";

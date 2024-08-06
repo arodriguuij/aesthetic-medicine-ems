@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setSnackbarVisibility } from "../../states/snackbar/snackbarSlide";
+import { setSnackbarVisibility } from "../../lib/snackbar/snackbarSlide";
 import { scrollToTop } from "../../utils/utils";
 
 interface DataForm {

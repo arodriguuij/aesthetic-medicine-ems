@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 import { NavigationItem } from "../footer.types";
 import { scrollToTop } from "../../../utils/utils";
 
@@ -11,12 +11,13 @@ const ListOfItems = ({ item }: { item: NavigationItem }) => (
       </div>
     )}
     {item.isLink ? (
-      <Link
-        href={item.href || "/"}
-        onClick={scrollToTop}
-        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-      >
-        {item.name}
+      <Link href={item.href || "/"} passHref>
+        <a
+          onClick={scrollToTop}
+          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+        >
+          {item.name}
+        </a>
       </Link>
     ) : (
       <a

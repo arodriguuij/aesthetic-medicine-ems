@@ -60,17 +60,19 @@ const TreatmentsContent = ({
                   >
                     <div className="relative w-full hover:opacity-75">
                       <Link
-                        onClick={scrollToTop}
                         href={`/treatments/${treatment.type.toLowerCase()}/${
                           treatment.id
                         }`}
+                        passHref
                       >
-                        <AdvancedImage
-                          cldImg={cld.image(treatment.images.main)}
-                          alt=""
-                          className="aspect-[16/9] w-full rounded-2xl border border-amber-400 bg-white object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-                        />
-                        <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+                        <a onClick={scrollToTop}>
+                          <AdvancedImage
+                            cldImg={cld.image(treatment.images.main)}
+                            alt=""
+                            className="aspect-[16/9] w-full rounded-2xl border border-amber-400 bg-white object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                          />
+                          <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+                        </a>
                       </Link>
                     </div>
                     <div className="max-w-xl">
@@ -86,25 +88,26 @@ const TreatmentsContent = ({
                             ?.slice(0, 3)
                             ?.map((area, index) => (
                               <Link
-                                onClick={scrollToTop}
                                 key={area.id + index + area.name}
                                 href={`/treatments/areas/${area.id}`}
+                                passHref
                               >
-                                <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
-                                  {area.name}
-                                </span>
+                                <a onClick={scrollToTop}>
+                                  <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
+                                    {area.name}
+                                  </span>
+                                </a>
                               </Link>
                             ))}
                         </div>
                       </div>
                       <div className="group relative">
                         <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                          <Link
-                            href={`${location}/${treatment.id}`}
-                            onClick={scrollToTop}
-                          >
-                            <span className="absolute inset-0" />
-                            {treatment.title}
+                          <Link href={`${location}/${treatment.id}`} passHref>
+                            <a onClick={scrollToTop}>
+                              <span className="absolute inset-0" />
+                              {treatment.title}
+                            </a>
                           </Link>
                         </h3>
                         <p className="mt-2 line-clamp-3 text-sm leading-6 text-gray-600">

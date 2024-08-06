@@ -36,7 +36,7 @@ import {
 } from "../../services/treatments/treatments";
 import { useGetAreasQuery } from "../../services/areas/areas";
 import { useSelector } from "react-redux";
-import { CardState } from "../../states/card/cardSlide";
+import { CardState } from "../../lib/card/cardSlide";
 import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
 import ArrowDown from "../Icons/ArrowDown";
 import ArrowUp from "../Icons/ArrowUp";
@@ -50,10 +50,11 @@ import {
 import useIsTablet from "@/hooks/useIsTablet";
 import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "@/utils/cloudinary";
+import useScrollToTop from "@/hooks/useScrollToTop";
 
 const Header = () => {
   const router = useRouter();
-
+  const scrollToTopFunction = useScrollToTop();
   const { data: facialTreatmentsData, error: facialTreatmentsError } =
     useGetTreatmentsFacialNamesQuery("");
   const { data: corporalTreatments, error: corporalTreatmentsError } =
@@ -76,7 +77,7 @@ const Header = () => {
     setPopoverCorporalVisible(false);
     setPopoverAreasVisible(false);
     setPopoverGiftCartsVisible(false);
-    scrollToTop();
+    scrollToTopFunction();
   };
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
@@ -265,16 +266,20 @@ const Header = () => {
                                         <Link
                                           key={item.name + index}
                                           href={`/treatments/areas/${item.id}`}
-                                          onClick={() => {
-                                            setMobileMenuOpen(false);
-                                            scrollToTop();
-                                          }}
                                           style={{ textAlign: "center" }}
-                                          className="-mx-3 block rounded-lg px-3 py-2 text-sm font-semibold leading-7 text-gray-200 hover:bg-gray-800"
+                                          passHref
                                         >
-                                          <p className="text-sm text-gray-200">
-                                            {item.name}
-                                          </p>
+                                          <a
+                                            onClick={() => {
+                                              setMobileMenuOpen(false);
+                                              scrollToTop();
+                                            }}
+                                            className="-mx-3 block rounded-lg px-3 py-2 text-sm font-semibold leading-7 text-gray-200 hover:bg-gray-800"
+                                          >
+                                            <p className="text-sm text-gray-200">
+                                              {item.name}
+                                            </p>
+                                          </a>
                                         </Link>
                                       ))}
                                     </DisclosurePanel>
@@ -287,14 +292,18 @@ const Header = () => {
                               <Link
                                 key={item.name}
                                 href={item.href}
-                                onClick={() => {
-                                  setMobileMenuOpen(false);
-                                  scrollToTop();
-                                }}
                                 style={{ textAlign: "center" }}
-                                className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-gray-800"
+                                passHref
                               >
-                                {item.name}
+                                <a
+                                  onClick={() => {
+                                    setMobileMenuOpen(false);
+                                    scrollToTop();
+                                  }}
+                                  className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-gray-800"
+                                >
+                                  {item.name}
+                                </a>
                               </Link>
                             );
                         })}
@@ -309,14 +318,18 @@ const Header = () => {
                   <Link
                     key={item.name + index}
                     href={item.href}
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      scrollToTop();
-                    }}
                     style={{ textAlign: "center" }}
-                    className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-amber-50"
+                    passHref
                   >
-                    {item.name}
+                    <a
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        scrollToTop();
+                      }}
+                      className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-amber-50"
+                    >
+                      {item.name}
+                    </a>
                   </Link>
                 ))}
               </div>
@@ -333,13 +346,15 @@ const Header = () => {
               <div className="flex h-12 items-center justify-between border-b-[1px]">
                 {/* Logo (lg+) */}
                 <div className="hidden lg:flex lg:flex-1 lg:items-center">
-                  <Link href="/" onClick={scrollToTop} className="-m-1.5 p-1.5">
-                    <span className="sr-only">Your Company</span>
-                    <AdvancedImage
-                      cldImg={cld.image("EMS/General/EmsLogo")}
-                      alt="logoEMS"
-                      className="h-8 w-auto"
-                    />
+                  <Link href="/" passHref>
+                    <a onClick={scrollToTop} className="-m-1.5 p-1.5">
+                      <span className="sr-only">Your Company</span>
+                      <AdvancedImage
+                        cldImg={cld.image("EMS/General/EmsLogo")}
+                        alt="logoEMS"
+                        className="h-8 w-auto"
+                      />
+                    </a>
                   </Link>
                 </div>
 
@@ -418,24 +433,29 @@ const Header = () => {
                                           >
                                             <Link
                                               href={`/treatments/facial/${id}`}
-                                              className="block text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
-                                              onClick={scrollToTop}
+                                              passHref
                                             >
-                                              {title}
-                                              <span className="absolute inset-0" />
+                                              <a
+                                                onClick={scrollToTop}
+                                                className="block text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
+                                              >
+                                                {title}
+                                                <span className="absolute inset-0" />
+                                              </a>
                                             </Link>
                                           </div>
                                         )
                                       )}
                                   </div>
                                   <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                                    <Link
-                                      href={"/treatments/facial"}
-                                      onClick={scrollToTop}
-                                      className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
-                                    >
-                                      Todos los tratamientos faciales
-                                      <ArrowRight />
+                                    <Link href={"/treatments/facial"} passHref>
+                                      <a
+                                        onClick={scrollToTop}
+                                        className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
+                                      >
+                                        Todos los tratamientos faciales
+                                        <ArrowRight />
+                                      </a>
                                     </Link>
                                   </div>
                                 </>
@@ -516,11 +536,15 @@ const Header = () => {
                                           >
                                             <Link
                                               href={`/treatments/corporal/${id}`}
-                                              className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
-                                              onClick={scrollToTop}
+                                              passHref
                                             >
-                                              {title}
-                                              <span className="absolute inset-0" />
+                                              <a
+                                                onClick={scrollToTop}
+                                                className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
+                                              >
+                                                {title}
+                                                <span className="absolute inset-0" />
+                                              </a>
                                             </Link>
                                           </div>
                                         )
@@ -529,11 +553,15 @@ const Header = () => {
                                   <div className="mx-auto max-w-7xl px-6 lg:px-8">
                                     <Link
                                       href={"/treatments/corporal"}
-                                      onClick={scrollToTop}
-                                      className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
+                                      passHref
                                     >
-                                      Todos los tratamientos corporales
-                                      <ArrowRight />
+                                      <a
+                                        onClick={scrollToTop}
+                                        className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
+                                      >
+                                        Todos los tratamientos corporales
+                                        <ArrowRight />
+                                      </a>
                                     </Link>
                                   </div>
                                 </>
@@ -608,11 +636,15 @@ const Header = () => {
                                         >
                                           <Link
                                             href={`/treatments/areas/${id}`}
-                                            className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
-                                            onClick={scrollToTop}
+                                            passHref
                                           >
-                                            {name}
-                                            <span className="absolute inset-0" />
+                                            <a
+                                              onClick={scrollToTop}
+                                              className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
+                                            >
+                                              {name}
+                                              <span className="absolute inset-0" />
+                                            </a>
                                           </Link>
                                         </div>
                                       );
@@ -624,36 +656,40 @@ const Header = () => {
                         </Transition>
                       </Popover>
 
-                      <Link
-                        onClick={scrollToTop}
-                        href="/products"
-                        className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
-                      >
-                        Productos
+                      <Link href="/products" passHref>
+                        <a
+                          onClick={scrollToTop}
+                          className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
+                        >
+                          Productos
+                        </a>
                       </Link>
 
-                      <Link
-                        onClick={scrollToTop}
-                        href="/giftCard"
-                        className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
-                      >
-                        Tarjeta Regalo
+                      <Link href="/giftCard" passHref>
+                        <a
+                          onClick={scrollToTop}
+                          className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
+                        >
+                          Tarjeta Regalo
+                        </a>
                       </Link>
 
-                      <Link
-                        href="/aboutMe"
-                        onClick={scrollToTop}
-                        className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
-                      >
-                        Sobre mi
+                      <Link href="/aboutMe" passHref>
+                        <a
+                          onClick={scrollToTop}
+                          className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
+                        >
+                          Sobre mi
+                        </a>
                       </Link>
 
-                      <Link
-                        onClick={scrollToTop}
-                        href="/contact"
-                        className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-600"
-                      >
-                        Contacto
+                      <Link href="/contact" passHref>
+                        <a
+                          onClick={scrollToTop}
+                          className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-600"
+                        >
+                          Contacto
+                        </a>
                       </Link>
                     </div>
                   </PopoverGroup>
@@ -665,13 +701,15 @@ const Header = () => {
                 </div>
 
                 {/* Logo (lg-) */}
-                <Link href="/" onClick={scrollToTop} className="lg:hidden">
-                  <span className="sr-only">Your Company</span>
-                  <AdvancedImage
-                    cldImg={cld.image("EMS/General/EmsLogo")}
-                    alt="EMS logo"
-                    className="h-8 w-auto"
-                  />
+                <Link href="/" passHref>
+                  <a onClick={scrollToTop} className="lg:hidden">
+                    <span className="sr-only">Your Company</span>
+                    <AdvancedImage
+                      cldImg={cld.image("EMS/General/EmsLogo")}
+                      alt="EMS logo"
+                      className="h-8 w-auto"
+                    />
+                  </a>
                 </Link>
 
                 {/* Cart */}

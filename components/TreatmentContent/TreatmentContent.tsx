@@ -105,12 +105,14 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                   {data[0].properties.populatedAreas?.map((area, index) => (
                     <Link
                       key={area.id + index}
-                      onClick={scrollToTop}
                       href={`/treatments/areas/${area.id}`}
+                      passHref
                     >
-                      <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
-                        {area.name}
-                      </span>
+                      <a onClick={scrollToTop}>
+                        <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
+                          {area.name}
+                        </span>
+                      </a>
                     </Link>
                   ))}
                 </dd>
@@ -249,34 +251,30 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                 <div className="-my-2">
                   <div className="relative box-content h-80 overflow-x-auto py-2 xl:overflow-visible">
                     <div className="absolute flex space-x-8 xl:relative xl:grid xl:grid-cols-5 xl:gap-x-8 xl:space-x-0 xl:px-0">
-                      {data[0].relatedProducts
-                        .map(({ name, id, images }) => (
-                          <Link
-                            key={name}
-                            onClick={scrollToTop}
-                            href={`/products/${id}`} //FIXME: /treatments/facial/3/products/1
-                            replace
-                            className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
-                          >
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0"
-                            >
-                              <AdvancedImage
-                                cldImg={cld.image(images[0])}
-                                alt={`Image-${name}`}
-                                className="h-full w-full object-cover object-center"
-                              />
-                            </span>
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
+                      {data[0].relatedProducts.map(({ name, id, images }) => (
+                        <Link
+                          key={name}
+                          onClick={scrollToTop}
+                          href={`/products/${id}`} //FIXME: /treatments/facial/3/products/1
+                          replace
+                          className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
+                        >
+                          <span aria-hidden="true" className="absolute inset-0">
+                            <AdvancedImage
+                              cldImg={cld.image(images[0])}
+                              alt={`Image-${name}`}
+                              className="h-full w-full object-cover object-center"
                             />
-                            <span className="relative mt-auto text-center text-xl font-bold text-white">
-                              {name}
-                            </span>
-                          </Link>
-                        ))}
+                          </span>
+                          <span
+                            aria-hidden="true"
+                            className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
+                          />
+                          <span className="relative mt-auto text-center text-xl font-bold text-white">
+                            {name}
+                          </span>
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 </div>
