@@ -294,7 +294,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
             </div>
           )}
 
-          {data[0].relatedTreatments && (
+          {/* {data[0].relatedTreatments && (
             <div className="mx-auto mt-8 max-w-7xl sm:mt-16 lg:px-6">
               <div className="flex items-center justify-between space-x-4">
                 <div>
@@ -339,7 +339,6 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                             {title}
                           </Link>
                         </h3>
-                        {/* <p>{product.price}</p> */}
                       </div>
                       <p className="mt-1 text-sm text-gray-500">{type}</p>
                     </div>
@@ -347,7 +346,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                 )}
               </div>
             </div>
-          )}
+          )} */}
         </>
       )}
     </div>
