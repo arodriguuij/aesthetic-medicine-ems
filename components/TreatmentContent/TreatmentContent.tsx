@@ -250,7 +250,6 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                   <div className="relative box-content h-80 overflow-x-auto py-2 xl:overflow-visible">
                     <div className="absolute flex space-x-8 xl:relative xl:grid xl:grid-cols-5 xl:gap-x-8 xl:space-x-0 xl:px-0">
                       {data[0].relatedProducts
-                        .filter(({ featured }) => featured)
                         .map(({ name, id, images }) => (
                           <Link
                             key={name}
