@@ -8,6 +8,7 @@ export const getAreasService = async () => {
     AreasServiceFunctions.GET_AREAS,
     []
   );
+  console.log("Query Result:", rows);
 
   return rows;
 };
