@@ -11,7 +11,7 @@ export const _getDataBaseConnection = () => {
         },
       };
 
-  console.log("SSL Config:", sslConfig); // Agregar mensaje de depuración
+  console.log("SSL Config:", sslConfig, process.env.NEXT_PUBLIC_LOCAL_DATA_BASE); // Agregar mensaje de depuración
 
   const poolConfig: PoolConfig = process.env.NEXT_PUBLIC_LOCAL_DATA_BASE
     ? {
