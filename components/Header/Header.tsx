@@ -38,12 +38,10 @@ import { useGetAreasQuery } from "../../services/areas/areas";
 import { useSelector } from "react-redux";
 import { CardState } from "../../states/card/cardSlide";
 import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
-import EmsLogo from "../../public/Images/emsLogo.png";
 import ArrowDown from "../Icons/ArrowDown";
 import ArrowUp from "../Icons/ArrowUp";
 import ArrowRight from "../Icons/ArrowRight";
 import useIsMobile from "../../hooks/useIsMobile";
-import Image from "next/image";
 import {
   getDescriptionByGiftCardId,
   getImageByGiftCardId,
@@ -78,7 +76,7 @@ const Header = () => {
     setPopoverCorporalVisible(false);
     setPopoverAreasVisible(false);
     setPopoverGiftCartsVisible(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToTop();
   };
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
