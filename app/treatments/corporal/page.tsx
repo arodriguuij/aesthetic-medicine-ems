@@ -4,9 +4,12 @@ import TreatmentsContent from "@/components/TreatmentsContent";
 import { useGetTreatmentsCorporalQuery } from "../../../services/treatments/treatments";
 
 import { subTitleCorporal, titleCorporal } from "../treatments.const";
+import Loader from "@/components/Loader";
 
 const Treatments = () => {
-  const { data, error } = useGetTreatmentsCorporalQuery("");
+  const { data, error, status } = useGetTreatmentsCorporalQuery("");
+
+  if (status === "pending") return <Loader />;
 
   return (
     <TreatmentsContent

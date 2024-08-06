@@ -1,16 +1,28 @@
-'use client'
+"use client";
 
 import { AdvancedImage } from "@cloudinary/react";
-import Link from 'next/link';
+import Link from "next/link";
 import Breadcrumb from "../../components/Breadcrumb";
 import { useGetBranchesQuery } from "../../services/branches/branches";
 import { useGetProductsQuery } from "../../services/products/products";
 import { cld } from "../../utils/cloudinary";
 import { scrollToTop } from "../../utils/utils";
+import Loader from "@/components/Loader";
 
 const Products = () => {
-  const { data: productsData, error: productsError } = useGetProductsQuery("");
-  const { data: branchesData, error: branchesError } = useGetBranchesQuery("");
+  const {
+    data: productsData,
+    error: productsError,
+    status: productsStatus,
+  } = useGetProductsQuery("");
+  const {
+    data: branchesData,
+    error: branchesError,
+    status: branchesStatus,
+  } = useGetBranchesQuery("");
+
+  if (productsStatus === "pending" || branchesStatus === "pending")
+    return <Loader />;
 
   return (
     <div className="isolate mx-auto px-6 lg:px-8 items-center">

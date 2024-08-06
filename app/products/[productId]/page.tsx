@@ -8,31 +8,14 @@ import { AdvancedImage } from "@cloudinary/react";
 import { Fragment } from "react";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
+import Loader from "@/components/Loader";
 
 const Product = () => {
   const { productId } = useParams();
 
-  /* const { data: productData, error: productError } = useGetProductQuery(
-    productId + ""
-  ); */
+  const { data, error, status } = useGetProductQuery(productId + "");
 
-  const productData = [
-    {
-      id: 1,
-      name: "string",
-      branch: "string",
-      type: "Facial",
-      quantity: 1,
-      description: "string",
-      images: ["string"],
-      featured: true,
-      benefits: ["string"],
-      howToUse: ["string"],
-      ingredients: ["string"],
-      priority: 1,
-    },
-  ];
-  const productError = undefined;
+  if (status === "pending") return <Loader />;
 
   return (
     <div className="isolate mx-auto px-6 lg:px-8 items-center">
@@ -42,7 +25,7 @@ const Product = () => {
       </div>
 
       {/* Content */}
-      {productError || !productData ? (
+      {error || !data ? (
         <div className="relative mx-auto lg:max-w-7xl lg:px-8 isolate -z-10 overflow-hidden pt-4">
           Error en la carga del producto
         </div>
@@ -51,11 +34,11 @@ const Product = () => {
           <div className="mx-auto sm:px-6 mb-2 lg:max-w-7xl lg:px-0">
             <div className="flex">
               <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                {productData[0].name}
+                {data[0].name}
               </h2>
             </div>
             <p className="mt-2 text-sm leading-6 text-gray-600">
-              {productData[0].branch}
+              {data[0].branch}
             </p>
           </div>
 
@@ -97,7 +80,7 @@ const Product = () => {
                   <div className="mt-6 lg:col-span-5 lg:mt-0">
                     <div className="bg-gray-10">
                       <AdvancedImage
-                        cldImg={cld.image(productData[0].images[0])}
+                        cldImg={cld.image(data[0].images[0])}
                         alt="ProductImage"
                         className="h-full w-full object-cover object-center"
                       />
@@ -113,7 +96,7 @@ const Product = () => {
                         aria-hidden="true"
                       />
                       <p className="mt-2 text-sm text-gray-500">
-                        {productData[0].description}
+                        {data[0].description}
                       </p>
                     </div>
                     <div className="flex">
@@ -122,7 +105,7 @@ const Product = () => {
                         aria-hidden="true"
                       />
                       <p className="mt-2 text-sm text-gray-500">
-                        {productData[0].howToUse}
+                        {data[0].howToUse}
                       </p>
                     </div>
                   </div>
@@ -139,7 +122,7 @@ const Product = () => {
                   <div className="mt-6 lg:col-span-5 lg:mt-0">
                     <div className="bg-gray-10">
                       <AdvancedImage
-                        cldImg={cld.image(productData[0].images[0])}
+                        cldImg={cld.image(data[0].images[0])}
                         alt="ProductImage"
                         className="h-full w-full object-cover object-center"
                       />
@@ -149,7 +132,7 @@ const Product = () => {
                     <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                       Beneficios
                     </h2>
-                    {productData[0].benefits.map((benefit, index) => (
+                    {data[0].benefits.map((benefit, index) => (
                       <p
                         className="mt-2 text-sm text-gray-500 flex"
                         key={benefit + index}
@@ -175,7 +158,7 @@ const Product = () => {
                   <div className="mt-6 lg:col-span-5 lg:mt-0">
                     <div className="bg-gray-10">
                       <AdvancedImage
-                        cldImg={cld.image(productData[0].images[0])}
+                        cldImg={cld.image(data[0].images[0])}
                         alt="ProductImage"
                         className="h-full w-full object-cover object-center"
                       />
@@ -186,7 +169,7 @@ const Product = () => {
                       <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                         Ingredientes
                       </h2>
-                      {productData[0].ingredients.map((ingredient, index) => (
+                      {data[0].ingredients.map((ingredient, index) => (
                         <p
                           className="mt-2 text-sm text-gray-500 flex"
                           key={ingredient + index}
