@@ -25,7 +25,8 @@ export default function HomePage() {
       <div className="relative w-full overflow-hidden">
         <div className="react-player-wrapper">
           <ReactPlayer
-            url="https://player.vimeo.com/video/842100023?muted=1&autoplay=1&loop=1&background=1&app_id=122963"
+            //url="https://player.vimeo.com/video/842100023?muted=1&autoplay=1&loop=1&background=1&app_id=122963"
+            url="https://player.vimeo.com/video/842100023"
             className="react-player"
             playing
             loop
@@ -33,6 +34,7 @@ export default function HomePage() {
             volume={0}
             width="100%"
             height="100%"
+            onError={(e) => console.error('Error playing video:', e)}
           />
         </div>
       </div>
