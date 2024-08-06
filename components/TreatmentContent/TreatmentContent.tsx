@@ -254,25 +254,32 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                       {data[0].relatedProducts.map(({ name, id, images }) => (
                         <Link
                           key={name}
-                          onClick={scrollToTop}
                           href={`/products/${id}`} //FIXME: /treatments/facial/3/products/1
                           replace
-                          className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
+                          passHref
                         >
-                          <span aria-hidden="true" className="absolute inset-0">
-                            <AdvancedImage
-                              cldImg={cld.image(images[0])}
-                              alt={`Image-${name}`}
-                              className="h-full w-full object-cover object-center"
+                          <a
+                            onClick={scrollToTop}
+                            className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-0"
+                            >
+                              <AdvancedImage
+                                cldImg={cld.image(images[0])}
+                                alt={`Image-${name}`}
+                                className="h-full w-full object-cover object-center"
+                              />
+                            </span>
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
                             />
-                          </span>
-                          <span
-                            aria-hidden="true"
-                            className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
-                          />
-                          <span className="relative mt-auto text-center text-xl font-bold text-white">
-                            {name}
-                          </span>
+                            <span className="relative mt-auto text-center text-xl font-bold text-white">
+                              {name}
+                            </span>
+                          </a>
                         </Link>
                       ))}
                     </div>
@@ -280,13 +287,14 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                 </div>
               </div>
               <div className="mt-6 sm:hidden">
-                <Link
-                  href="/products"
-                  className="block text-sm font-semibold text-amber-400 hover:text-amber-500"
-                  onClick={scrollToTop}
-                >
-                  Ver todas las categorías
-                  <span aria-hidden="true"> &rarr;</span>
+                <Link href="/products" passHref>
+                  <a
+                    onClick={scrollToTop}
+                    className="block text-sm font-semibold text-amber-400 hover:text-amber-500"
+                  >
+                    Ver todas las categorías
+                    <span aria-hidden="true"> &rarr;</span>
+                  </a>
                 </Link>
               </div>
             </div>
