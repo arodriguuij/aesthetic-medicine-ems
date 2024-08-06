@@ -11,6 +11,8 @@ export const _getDataBaseConnection = () => {
         },
       };
 
+  console.log("SSL Config:", sslConfig); // Agregar mensaje de depuración
+
   const poolConfig: PoolConfig = {
     host: process.env.NEXT_PUBLIC_HOST_DATA_BASE,
     port: +(process.env.NEXT_PUBLIC_PORT_DATA_BASE || POSTGRESQL_DEFAULT_PORT),
@@ -19,6 +21,7 @@ export const _getDataBaseConnection = () => {
     database: process.env.NEXT_PUBLIC_NAME_DATA_BASE,
     ...sslConfig,
   };
+  console.log("Database Connection Config:", poolConfig); // Agregar mensaje de depuración
 
   return new Pool(poolConfig);
 };
