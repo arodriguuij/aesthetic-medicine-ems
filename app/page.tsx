@@ -10,7 +10,7 @@ import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "../utils/cloudinary";
 import dynamic from "next/dynamic";
 
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 export default function HomePage() {
   const { data: productsData, error: productsError } = useGetProductsQuery("");
@@ -33,7 +33,7 @@ export default function HomePage() {
             volume={0}
             width="100%"
             height="100%"
-            onError={(e) => console.error('Error playing video:', e)}
+            onError={(e) => console.error("Error playing video:", e)}
           />
         </div>
       </div>
