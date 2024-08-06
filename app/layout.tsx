@@ -4,6 +4,7 @@ import Providers from "@/components/Providers/Providers";
 import Layout from "@/components/Layout/Layout";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default function RootLayout({
       <Providers>
         <Layout>{children}</Layout>
         <SpeedInsights />
+        <Analytics />
       </Providers>
     </html>
   );
