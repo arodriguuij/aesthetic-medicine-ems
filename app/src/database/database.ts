@@ -4,12 +4,7 @@ import _once from "lodash/once";
 export const POSTGRESQL_DEFAULT_PORT = 5432;
 export const _getDataBaseConnection = () => {
   let poolConfig: PoolConfig;
-  console.log({
-    env: process.env.NEXT_PUBLIC_DATA_BASE_ENVIRONMENT,
-    checkProd: process.env.NEXT_PUBLIC_DATA_BASE_ENVIRONMENT === "prod",
-    checkLocalhost:
-      process.env.NEXT_PUBLIC_DATA_BASE_ENVIRONMENT === "localhost",
-  });
+
   switch (process.env.NEXT_PUBLIC_DATA_BASE_ENVIRONMENT) {
     case "prod":
       poolConfig = {
@@ -41,8 +36,6 @@ export const _getDataBaseConnection = () => {
       poolConfig = {};
       break;
   }
-
-  console.log("Database Connection Config:", poolConfig);
 
   return new Pool(poolConfig);
 };
