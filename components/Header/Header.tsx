@@ -684,14 +684,13 @@ const Header = () => {
                 </div>
 
                 {/* Logo (lg-) */}
-                <Link href="/">
+                <Link href="/" arial-label="Enlace a la pagina home">
                   <div onClick={scrollToTop} className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <AdvancedImage
                       cldImg={cld.image("EMS/General/EmsLogo")}
                       alt="EMS logo"
                       className="h-8 w-auto"
-                      arial-label="Enlace a la pagina home"
                     />
                   </div>
                 </Link>
