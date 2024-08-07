@@ -254,7 +254,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                       {data[0].relatedProducts.map(({ name, id, images }) => (
                         <Link
                           key={name}
-                          href={`/products/${id}`} //FIXME: /treatments/facial/3/products/1
+                          href={`/products/${id}`}
                           replace
                           passHref
                         >

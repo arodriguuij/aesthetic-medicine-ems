@@ -1,7 +1,6 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import Breadcrumb from "../../../components/Breadcrumb";
 import { useGetProductQuery } from "../../../services/products/products";
 import { cld } from "../../../utils/cloudinary";
 import { AdvancedImage } from "@cloudinary/react";

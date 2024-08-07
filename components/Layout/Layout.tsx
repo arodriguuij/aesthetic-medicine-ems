@@ -35,15 +35,19 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({
       )}
       <Header />
       <Suspense fallback={<div>Loading...</div>}>
-        {pathname === "/" ? (
+        {pathname === "/" ||
+        pathname.includes("/treatments/facial/") ||
+        pathname.includes("/treatments/corporal/") ? (
           <main>{children}</main>
         ) : (
-          <div className="isolate mx-auto  px-6 lg:px-8 items-center">
-            <div className="mx-auto py-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
-              <Breadcrumb />
+          <main>
+            <div className="isolate mx-auto  px-6 lg:px-8 items-center">
+              <div className="mx-auto py-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
+                <Breadcrumb />
+              </div>
+              {children}
             </div>
-            <main>{children}</main>
-          </div>
+          </main>
         )}
       </Suspense>
       {isDialogVisible && <DialogComponent />}
