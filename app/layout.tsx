@@ -8,7 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "EMS Clinica estetica",
+  title: "EMS Clinica Estetica",
   description: "Medicina Estetica Dra. Elvira Morgado EMS",
 };
 

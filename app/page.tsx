@@ -150,7 +150,7 @@ export default function HomePage() {
                 <Link href="/products" aria-label="Enlace a la pagina productos">
                   <div
                     onClick={scrollToTopFunction}
-                    className="hidden text-sm font-semibold text-amber-400 hover:text-amber-500 sm:block"
+                    className="hidden text-sm font-semibold text-amber-500 hover:text-amber-600 sm:block"
                   >
                     Ver todas las categorías
                     <span aria-hidden="true"> &rarr;</span>
@@ -206,7 +206,7 @@ export default function HomePage() {
               <Link href="/products" aria-label="Enlace a la pagina de productos">
                 <div
                   onClick={scrollToTopFunction}
-                  className="block text-sm font-semibold text-amber-400 hover:text-amber-500"
+                  className="block text-sm font-semibold text-amber-500 hover:text-amber-600"
                 >
                   Ver todas las categorías
                   <span aria-hidden="true"> &rarr;</span>
@@ -287,7 +287,7 @@ export default function HomePage() {
             )}
             <div>
               <div className="text-base leading-7 text-gray-700 lg:max-w-lg">
-                <p className="text-base font-semibold leading-7 text-amber-400">
+                <p className="text-base font-semibold leading-7 text-amber-500">
                   Doctora en Medicina
                 </p>
                 <h1 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
@@ -331,7 +331,7 @@ export default function HomePage() {
                 <Link href="/aboutMe" aria-label="Enlace a la pagina sobre mi">
                   <div
                     onClick={scrollToTopFunction}
-                    className="text-base font-semibold leading-7 text-amber-400"
+                    className="text-base font-semibold leading-7 text-amber-500"
                   >
                     Saber más sobre Elvira
                     <span aria-hidden="true">&rarr;</span>

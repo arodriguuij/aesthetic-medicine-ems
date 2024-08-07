@@ -95,7 +95,7 @@ const TreatmentsContent = ({
                     </div>
                     <div className="group relative">
                       <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                        <Link href={`${location}/${treatment.id}`}  aria-label="Enlace a la pagina del tratamiento">
+                        <Link href={`${location}/${treatment.id}`}  aria-label="Enlace a la pagina del tratamientoVer todas las categorías ">
                           <a
                             onClick={scrollToTop}
                             href={`${location}/${treatment.id}`}
