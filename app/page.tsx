@@ -331,7 +331,7 @@ export default function HomePage() {
                 <Link href="/aboutMe" aria-label="Enlace a la pagina sobre mi">
                   <div
                     onClick={scrollToTopFunction}
-                    className="text-base font-semibold leading-7 text-amber-600"
+                    className="text-base font-bold leading-7 text-amber-500"
                   >
                     Saber más sobre Elvira
                     <span aria-hidden="true">&rarr;</span>
