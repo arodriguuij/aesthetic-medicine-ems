@@ -8,15 +8,17 @@ import Banner from "../Banner";
 import SnackBar from "../SnackBar";
 import DialogComponent from "../Dialog";
 import useVisibility from "./useVisibility";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { usePathname } from "next/navigation";
+import Breadcrumb from "../Breadcrumb";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
+  const pathname = usePathname();
+  console.log({ pathname });
+
   const {
     isPrivacyVisible,
     isBannerVisible,
@@ -33,7 +35,16 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({
       )}
       <Header />
       <Suspense fallback={<div>Loading...</div>}>
-        <main>{children}</main>
+        {pathname === "/" ? (
+          <main>{children}</main>
+        ) : (
+          <div className="isolate mx-auto  px-6 lg:px-8 items-center">
+            <div className="mx-auto py-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
+              <Breadcrumb />
+            </div>
+            <main>{children}</main>
+          </div>
+        )}
       </Suspense>
       {isDialogVisible && <DialogComponent />}
       {isPrivacyVisible && <Privacy />}

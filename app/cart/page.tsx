@@ -3,7 +3,6 @@
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import Breadcrumb from "../../components/Breadcrumb";
 import {
   useAddGiftCardOrder2Mutation,
   useGetGiftCardsQuery,
@@ -29,17 +28,10 @@ const Cart = () => {
   const { data: giftCardsData, error: giftCardsError } =
     useGetGiftCardsQuery("");
 
-  console.log({ gifCards });
   const [addGiftCardOrder2] = useAddGiftCardOrder2Mutation();
 
   return (
-    <div className="isolate mx-auto  px-6 lg:px-8 items-center">
-      {/* Breadcrumb */}
-      <div className="mx-auto py-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
-        <Breadcrumb />
-      </div>
-
-      {/* Content */}
+    <>
       <div className="relative mx-auto lg:max-w-7xl lg:px-8 isolate -z-10 overflow-hidden bg-gradient-to-b from-yellow-100/20 pt-4">
         <div
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-yellow-600/10 ring-1 ring-yellow-50 sm:-mr-80 lg:-mr-96"
@@ -219,7 +211,7 @@ const Cart = () => {
           </section>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

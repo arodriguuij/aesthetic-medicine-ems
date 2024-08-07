@@ -656,40 +656,36 @@ const Header = () => {
                         </Transition>
                       </Popover>
 
-                      <Link href="/products" passHref>
-                        <a
-                          onClick={scrollToTop}
-                          className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
-                        >
-                          Productos
-                        </a>
+                      <Link
+                        href="/products"
+                        className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
+                        passHref
+                      >
+                        <a onClick={scrollToTop}>Productos</a>
                       </Link>
 
-                      <Link href="/giftCard" passHref>
-                        <a
-                          onClick={scrollToTop}
-                          className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
-                        >
-                          Tarjeta Regalo
-                        </a>
+                      <Link
+                        href="/giftCard"
+                        className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
+                        passHref
+                      >
+                        <a onClick={scrollToTop}>Tarjeta Regalo</a>
                       </Link>
 
-                      <Link href="/aboutMe" passHref>
-                        <a
-                          onClick={scrollToTop}
-                          className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
-                        >
-                          Sobre mi
-                        </a>
+                      <Link
+                        href="/aboutMe"
+                        className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
+                        passHref
+                      >
+                        <a onClick={scrollToTop}>Sobre mi</a>
                       </Link>
 
-                      <Link href="/contact" passHref>
-                        <a
-                          onClick={scrollToTop}
-                          className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-600"
-                        >
-                          Contacto
-                        </a>
+                      <Link
+                        href="/contact"
+                        className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-600"
+                        passHref
+                      >
+                        <a onClick={scrollToTop}>Contacto</a>
                       </Link>
                     </div>
                   </PopoverGroup>

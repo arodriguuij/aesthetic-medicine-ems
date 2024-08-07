@@ -3,17 +3,12 @@
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { classNames } from "../../utils/utils";
 import { people, tiers, timeline } from "./aboutMe.constants";
-import Breadcrumb from "../../components/Breadcrumb";
 import { cld } from "../../utils/cloudinary";
 import { AdvancedImage } from "@cloudinary/react";
 
 const AboutMe = () => {
   return (
-    <div className="isolate mx-auto  px-6 lg:px-8 items-center">
-      <div className="mx-auto py-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8 ">
-        <Breadcrumb />
-      </div>
-
+    <div>
       {/* Hero section */}
       <div className="relative isolate -z-10 overflow-hidden bg-gradient-to-b from-yellow-100/20 pt-4">
         <div

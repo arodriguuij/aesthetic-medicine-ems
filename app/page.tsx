@@ -10,7 +10,7 @@ import { cld } from "../utils/cloudinary";
 import dynamic from "next/dynamic";
 import useScrollToTop from "@/hooks/useScrollToTop";
 
-const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 export default function HomePage() {
   const { data: productsData, error: productsError } = useGetProductsQuery("");

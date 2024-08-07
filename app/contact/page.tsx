@@ -7,7 +7,6 @@ import {
   isTodayInArray,
 } from "./contact.utils";
 import { classNames } from "../../utils/utils";
-import Breadcrumb from "../../components/Breadcrumb";
 import Form from "../../components/Form";
 import useMonths from "./useMonths";
 import Map from "../../components/Map/Map";
@@ -23,13 +22,7 @@ const Contact = () => {
   } = useMonths();
 
   return (
-    <div className="isolate mx-auto px-6 lg:px-8 items-center">
-      {/* Breadcrumb */}
-      <div className="mx-auto py-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
-        <Breadcrumb />
-      </div>
-
-      {/* Calendar */}
+    <>
       <div className="relative isolate -z-10 overflow-hidden bg-gradient-to-b from-amber-100/20 py-4">
         <div
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-amber-600/10 ring-1 ring-amber-50 sm:-mr-80 lg:-mr-96"
@@ -173,7 +166,7 @@ const Contact = () => {
       <div className="mx-auto max-w-7xl text-center sm:px-6 lg:px-8 justify-center ">
         <Map />
       </div>
-    </div>
+    </>
   );
 };
 
