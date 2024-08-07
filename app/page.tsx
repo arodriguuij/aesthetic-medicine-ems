@@ -5,7 +5,7 @@ import Link from "next/link";
 import useIsMobile from "../hooks/useIsMobile";
 import useIsTablet from "../hooks/useIsTablet";
 import { useGetProductsQuery } from "../services/products/products";
-import { AdvancedImage } from "@cloudinary/react";
+import { AdvancedImage, AdvancedVideo } from "@cloudinary/react";
 import { cld } from "../utils/cloudinary";
 import dynamic from "next/dynamic";
 import useScrollToTop from "@/hooks/useScrollToTop";
@@ -26,17 +26,12 @@ export default function HomePage() {
       {/* Hero section */}
       <div className="relative w-full overflow-hidden">
         <div className="react-player-wrapper">
-          <ReactPlayer
-            //url="https://vimeo.com/778608645"
-            //url="https://vimeo.com/778606684"
-            url="https://player.vimeo.com/video/842100023"
+          <AdvancedVideo
+            cldVid={cld.video("EMS/HomePage/video")}
             className="react-player"
-            playing
+            autoPlay
             loop
             muted
-            volume={0}
-            width="100%"
-            height="100%"
             onError={(e) => console.error("Error playing video:", e)}
           />
         </div>
