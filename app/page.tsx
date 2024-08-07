@@ -71,7 +71,12 @@ export default function HomePage() {
       >
         <div className="mt-10 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:space-y-0">
           {collections.map((collection) => (
-            <Link key={collection.name} href={collection.href} passHref>
+            <Link
+              key={collection.name}
+              href={collection.href}
+              aria-label={`Link a la pagina ${collection.href}`}
+              passHref
+            >
               <a onClick={scrollToTopFunction} className="group block">
                 <div
                   aria-hidden="true"

@@ -17,7 +17,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({
   children: React.ReactNode;
 }) => {
   const pathname = usePathname();
-  console.log({ pathname });
 
   const {
     isPrivacyVisible,

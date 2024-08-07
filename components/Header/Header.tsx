@@ -346,7 +346,7 @@ const Header = () => {
               <div className="flex h-12 items-center justify-between border-b-[1px]">
                 {/* Logo (lg+) */}
                 <div className="hidden lg:flex lg:flex-1 lg:items-center">
-                  <Link href="/" passHref>
+                  <Link href="/">
                     <a onClick={scrollToTop} className="-m-1.5 p-1.5">
                       <span className="sr-only">Your Company</span>
                       <AdvancedImage
@@ -697,7 +697,7 @@ const Header = () => {
                 </div>
 
                 {/* Logo (lg-) */}
-                <Link href="/" passHref>
+                <Link href="/">
                   <a onClick={scrollToTop} className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <AdvancedImage
