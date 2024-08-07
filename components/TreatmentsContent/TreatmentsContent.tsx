@@ -55,6 +55,7 @@ const TreatmentsContent = ({
                       href={`/treatments/${treatment.type.toLowerCase()}/${
                         treatment.id
                       }`}
+                       arial-label="Enlace a la pagina del tratamiento"
                     >
                       <div onClick={scrollToTop}>
                         <AdvancedImage
@@ -81,6 +82,7 @@ const TreatmentsContent = ({
                             <Link
                               key={area.id + index + area.name}
                               href={`/treatments/areas/${area.id}`}
+                               arial-label="Enlace a la pagina del area"
                             >
                               <div onClick={scrollToTop}>
                                 <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
@@ -93,7 +95,7 @@ const TreatmentsContent = ({
                     </div>
                     <div className="group relative">
                       <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                        <Link href={`${location}/${treatment.id}`}>
+                        <Link href={`${location}/${treatment.id}`}  arial-label="Enlace a la pagina del tratamiento">
                           <a
                             onClick={scrollToTop}
                             href={`${location}/${treatment.id}`}

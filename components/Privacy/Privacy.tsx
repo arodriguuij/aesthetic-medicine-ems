@@ -12,7 +12,7 @@ const Privacy = () => {
         <p className="text-sm leading-6 text-gray-900">
           Este sitio web utiliza cookies. Aceptar nuestras cookies es opcional,
           pero recomendado, ¡son deliciosas! Consulta nuestra{" "}
-          <Link href="/policy">
+          <Link href="/policy"  arial-label="Enlace a la pagina de politicas de cookies">
             <div onClick={scrollToTop} className="font-semibold text-amber-400">
               política de cookies
             </div>

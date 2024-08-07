@@ -81,7 +81,7 @@ const Products = () => {
                               />
                             </div>
                             <h3 className="mt-4">
-                              <Link href={`/products/${id}`}>
+                              <Link href={`/products/${id}`} arial-label="Enlace a la pagina del producto">
                                 <div
                                   onClick={scrollToTop}
                                   className="text-sm font-semibold leading-7 text-white"
