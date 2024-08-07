@@ -285,8 +285,9 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                 </div>
               </div>
               <div className="mt-6 sm:hidden">
-                <Link href="/products" passHref>
+                <Link href="/products">
                   <a
+                    href="/products"
                     onClick={scrollToTop}
                     className="block text-sm font-semibold text-amber-400 hover:text-amber-500"
                   >
