@@ -29,7 +29,7 @@ import {
 } from "./header.consts";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { classNames } from "../../utils/utils";
+import { classNames, scrollToTop } from "../../utils/utils";
 import {
   useGetTreatmentsCorporalNamesQuery,
   useGetTreatmentsFacialNamesQuery,
@@ -50,11 +50,9 @@ import {
 import useIsTablet from "@/hooks/useIsTablet";
 import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "@/utils/cloudinary";
-import useScrollToTop from "@/hooks/useScrollToTop";
 
 const Header = () => {
   const router = useRouter();
-  const scrollToTopFunction = useScrollToTop();
   const { data: facialTreatmentsData, error: facialTreatmentsError } =
     useGetTreatmentsFacialNamesQuery("");
   const { data: corporalTreatments, error: corporalTreatmentsError } =
@@ -72,12 +70,12 @@ const Header = () => {
 
   const { gifCards } = useSelector((state: { card: CardState }) => state.card);
 
-  const scrollToTop = () => {
+  const scrollToTopFnc = () => {
     setPopoverFacialVisible(false);
     setPopoverCorporalVisible(false);
     setPopoverAreasVisible(false);
     setPopoverGiftCartsVisible(false);
-    scrollToTopFunction();
+    scrollToTop();
   };
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
@@ -167,7 +165,7 @@ const Header = () => {
                   onClick={() => {
                     setPopoverGiftCartsVisible(false);
                     router.push("/giftCard");
-                    scrollToTop();
+                    scrollToTopFnc();
                   }}
                   className="w-full mt-6 text-center rounded-md border border-transparent bg-amber-100 px-4 py-2 text-sm font-medium text-amber-600 hover:text-amber-700 shadow-sm hover:bg-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                 >
@@ -179,7 +177,7 @@ const Header = () => {
                 onClick={() => {
                   setPopoverGiftCartsVisible(false);
                   router.push("/cart");
-                  scrollToTop();
+                  scrollToTopFnc();
                 }}
                 disabled={!giftCardsData || gifCards.length === 0}
                 className={
@@ -272,7 +270,7 @@ const Header = () => {
                                           <div
                                             onClick={() => {
                                               setMobileMenuOpen(false);
-                                              scrollToTop();
+                                              scrollToTopFnc();
                                             }}
                                             className="-mx-3 block rounded-lg px-3 py-2 text-sm font-semibold leading-7 text-gray-200 hover:bg-gray-800"
                                           >
@@ -298,7 +296,7 @@ const Header = () => {
                                 <div
                                   onClick={() => {
                                     setMobileMenuOpen(false);
-                                    scrollToTop();
+                                    scrollToTopFnc();
                                   }}
                                   className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-gray-800"
                                 >
@@ -324,7 +322,7 @@ const Header = () => {
                     <div
                       onClick={() => {
                         setMobileMenuOpen(false);
-                        scrollToTop();
+                        scrollToTopFnc();
                       }}
                       className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-amber-50"
                     >
@@ -347,7 +345,7 @@ const Header = () => {
                 {/* Logo (lg+) */}
                 <div className="hidden lg:flex lg:flex-1 lg:items-center">
                   <Link href="/" aria-label="Enlace a la pagina home">
-                    <div onClick={scrollToTop} className="-m-1.5 p-1.5">
+                    <div onClick={scrollToTopFnc} className="-m-1.5 p-1.5">
                       <span className="sr-only">Your Company</span>
                       <AdvancedImage
                         cldImg={cld.image("EMS/General/EmsLogo")}
@@ -436,7 +434,7 @@ const Header = () => {
                                               aria-label="Enlace a la pagina del tratamiento facial"
                                             >
                                               <div
-                                                onClick={scrollToTop}
+                                                onClick={scrollToTopFnc}
                                                 className="block text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                                               >
                                                 {title}
@@ -453,7 +451,7 @@ const Header = () => {
                                       aria-label="Enlace a la pagina de tratamientos faciales"
                                     >
                                       <div
-                                        onClick={scrollToTop}
+                                        onClick={scrollToTopFnc}
                                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
                                       >
                                         Todos los tratamientos faciales
@@ -542,7 +540,7 @@ const Header = () => {
                                               aria-label="Enlace a la pagina del tratamiento corporal"
                                             >
                                               <div
-                                                onClick={scrollToTop}
+                                                onClick={scrollToTopFnc}
                                                 className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
                                               >
                                                 {title}
@@ -559,7 +557,7 @@ const Header = () => {
                                       aria-label="Enlace a la pagina de tratamientos corporales"
                                     >
                                       <div
-                                        onClick={scrollToTop}
+                                        onClick={scrollToTopFnc}
                                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
                                       >
                                         Todos los tratamientos corporales
@@ -639,10 +637,10 @@ const Header = () => {
                                         >
                                           <Link
                                             href={`/treatments/areas/${id}`}
-                                             aria-label="Enlace a la pagina del area"
+                                            aria-label="Enlace a la pagina del area"
                                           >
                                             <div
-                                              onClick={scrollToTop}
+                                              onClick={scrollToTopFnc}
                                               className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
                                             >
                                               {name}
@@ -661,34 +659,34 @@ const Header = () => {
 
                       <Link
                         href="/products"
-                         aria-label="Enlace a la pagina de productos"
+                        aria-label="Enlace a la pagina de productos"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
-                        <div onClick={scrollToTop}>Productos</div>
+                        <div onClick={scrollToTopFnc}>Productos</div>
                       </Link>
 
                       <Link
                         href="/giftCard"
-                         aria-label="Enlace a la pagina de tarjeta de regalo"
+                        aria-label="Enlace a la pagina de tarjeta de regalo"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
-                        <div onClick={scrollToTop}>Tarjeta Regalo</div>
+                        <div onClick={scrollToTopFnc}>Tarjeta Regalo</div>
                       </Link>
 
                       <Link
                         href="/aboutMe"
-                         aria-label="Enlace a la pagina sobre mi"
+                        aria-label="Enlace a la pagina sobre mi"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
-                        <div onClick={scrollToTop}>Sobre mi</div>
+                        <div onClick={scrollToTopFnc}>Sobre mi</div>
                       </Link>
 
                       <Link
                         href="/contact"
-                         aria-label="Enlace a la pagina de contacto"
+                        aria-label="Enlace a la pagina de contacto"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-600"
                       >
-                        <div onClick={scrollToTop}>Contacto</div>
+                        <div onClick={scrollToTopFnc}>Contacto</div>
                       </Link>
                     </div>
                   </PopoverGroup>
@@ -701,7 +699,7 @@ const Header = () => {
 
                 {/* Logo (lg-) */}
                 <Link href="/" aria-label="Enlace a la pagina home">
-                  <div onClick={scrollToTop} className="lg:hidden">
+                  <div onClick={scrollToTopFnc} className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <AdvancedImage
                       cldImg={cld.image("EMS/General/EmsLogo")}

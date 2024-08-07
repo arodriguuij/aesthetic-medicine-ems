@@ -7,10 +7,7 @@ import useIsTablet from "../hooks/useIsTablet";
 import { useGetProductsQuery } from "../services/products/products";
 import { AdvancedImage, AdvancedVideo } from "@cloudinary/react";
 import { cld } from "../utils/cloudinary";
-import dynamic from "next/dynamic";
-import useScrollToTop from "@/hooks/useScrollToTop";
-
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+import { scrollToTop } from "@/utils/utils";
 
 export default function HomePage() {
   const { data: productsData, error: productsError } = useGetProductsQuery("");
@@ -18,8 +15,6 @@ export default function HomePage() {
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
   const testimonialsNew = isMobile ? testimonials.slice(0, 4) : testimonials;
-
-  const scrollToTopFunction = useScrollToTop();
 
   return (
     <div>
@@ -71,7 +66,7 @@ export default function HomePage() {
               key={collection.name}
               aria-label={`Enlace a la pagina ${collection.href}`}
             >
-              <div onClick={scrollToTopFunction} className="group block">
+              <div onClick={scrollToTop} className="group block">
                 <div
                   aria-hidden="true"
                   className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg"
@@ -127,7 +122,7 @@ export default function HomePage() {
               aria-label="Enlace al tratamiento de Eslerosis de varices"
             >
               <div
-                onClick={scrollToTopFunction}
+                onClick={scrollToTop}
                 className="mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 px-4 py-3 text-base font-medium text-white hover:bg-opacity-10 sm:ml-8 sm:mt-0 lg:ml-0 lg:w-full"
               >
                 Ver más información
@@ -155,7 +150,7 @@ export default function HomePage() {
                   aria-label="Enlace a la pagina productos"
                 >
                   <div
-                    onClick={scrollToTopFunction}
+                    onClick={scrollToTop}
                     className="hidden text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500 sm:block"
                   >
                     Ver todas las categorías
@@ -185,7 +180,7 @@ export default function HomePage() {
                             aria-label="Enlace a la pagina del producto"
                           >
                             <div
-                              onClick={scrollToTopFunction}
+                              onClick={scrollToTop}
                               className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
                             >
                               <span
@@ -218,7 +213,7 @@ export default function HomePage() {
                 aria-label="Enlace a la pagina de productos"
               >
                 <div
-                  onClick={scrollToTopFunction}
+                  onClick={scrollToTop}
                   className="block text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500"
                 >
                   Ver todas las categorías
@@ -300,7 +295,7 @@ export default function HomePage() {
             )}
             <div>
               <div className="text-base leading-7 text-gray-700 lg:max-w-lg">
-                <p className="text-base font-medium leading-7 text-indigo-600 hover:text-indigo-500">
+                <p className="text-base font-medium leading-7 text-indigo-600">
                   Doctora en Medicina
                 </p>
                 <h1 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
@@ -343,7 +338,7 @@ export default function HomePage() {
               <div className="mt-10 flex">
                 <Link href="/aboutMe" aria-label="Enlace a la pagina sobre mi">
                   <div
-                    onClick={scrollToTopFunction}
+                    onClick={scrollToTop}
                     className="text-base font-medium leading-7 text-indigo-600 hover:text-indigo-500"
                   >
                     Saber más sobre Elvira

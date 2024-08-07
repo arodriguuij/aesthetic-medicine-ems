@@ -1,5 +1,6 @@
 import { addGiftCards, getGetGiftCards } from "@/app/src/controllers/giftCards";
 import { corsMiddleware } from "@/app/src/middleware/cors";
+import { GiftCardForm } from "@/app/types/giftCards.types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -20,9 +21,10 @@ export async function POST(req: NextRequest) {
   await corsMiddleware(req, res);
 
   try {
-    const body = await req.json();
-    const newGiftCard = await addGiftCards(body);
-    return NextResponse.json(newGiftCard, { status: 201 });
+    const body = (await req.json()) as GiftCardForm[];
+    const newGiftCards = await addGiftCards(body);
+
+    return NextResponse.json(newGiftCards, { status: 201 });
   } catch (error) {
     console.error("Error adding gift card:", error);
     return NextResponse.error();

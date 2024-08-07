@@ -12,3 +12,7 @@ export interface GiftCardForm {
   nameReceiver: string;
   message: string;
 }
+
+export interface GiftCardFormGet extends GiftCardForm {
+  id: number;
+}

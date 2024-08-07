@@ -4,7 +4,7 @@ import { CheckIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import {
-  useAddGiftCardOrder2Mutation,
+  useAddGiftCardOrderMutation,
   useGetGiftCardsQuery,
 } from "../../services/giftCards/giftCards";
 import { resetCard, selectCard } from "../../lib/card/cardSlide";
@@ -28,7 +28,25 @@ const Cart = () => {
   const { data: giftCardsData, error: giftCardsError } =
     useGetGiftCardsQuery("");
 
-  const [addGiftCardOrder2] = useAddGiftCardOrder2Mutation();
+  const [addGiftCardOrder2] = useAddGiftCardOrderMutation();
+
+  const paymentProcess = () => {
+    if (giftCardsData?.length) {
+      const giftCardsDB = addGiftCardOrder2(gifCards);
+      dispatch(
+        setDialogVisibility({
+          isVisible: true,
+          title: " Payment successful",
+          content: giftCardsDB.toString(),
+          goBackText: "Go back to dashboard",
+          goBackUrl: "/",
+        })
+      );
+      scrollToTop();
+      dispatch(resetCard());
+      router.push("/");
+    }
+  };
 
   return (
     <>
@@ -181,22 +199,7 @@ const Cart = () => {
 
             <div className="mt-6">
               <button
-                onClick={() => {
-                  scrollToTop();
-                  dispatch(resetCard());
-                  dispatch(
-                    setDialogVisibility({
-                      isVisible: true,
-                      title: " Payment successful",
-                      content:
-                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.",
-                      goBackText: "Go back to dashboard",
-                      goBackUrl: "/",
-                    })
-                  );
-                  giftCardsData?.length && addGiftCardOrder2(gifCards);
-                  router.push("/");
-                }}
+                onClick={paymentProcess}
                 disabled={gifCards.length === 0}
                 type="submit"
                 className={

@@ -2,6 +2,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { GiftCard } from "./giftCards.types";
 import { GiftCardForm } from "../../lib/card/cardSlide";
+import { GiftCardFormGet } from "@/app/types/giftCards.types";
 
 // Define a service using a base URL and expected endpoints
 export const giftCardsApi = createApi({
@@ -14,14 +15,7 @@ export const giftCardsApi = createApi({
     getGiftCardById: builder.query<GiftCard, string>({
       query: (id) => `giftCards/${id}`,
     }),
-    addGiftCardOrder: builder.query<void, GiftCard[]>({
-      query: (body) => ({
-        url: "giftCards",
-        method: "POST",
-        body,
-      }),
-    }),
-    addGiftCardOrder2: builder.mutation<any, GiftCardForm[]>({
+    addGiftCardOrder: builder.mutation<GiftCardFormGet[], GiftCardForm[]>({
       query: (data) => ({
         url: "giftCards",
         method: "POST",
@@ -33,6 +27,5 @@ export const giftCardsApi = createApi({
 
 export const {
   useGetGiftCardsQuery,
-  useAddGiftCardOrderQuery,
-  useAddGiftCardOrder2Mutation,
+  useAddGiftCardOrderMutation,
 } = giftCardsApi;

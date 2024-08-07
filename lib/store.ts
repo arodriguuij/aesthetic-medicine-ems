@@ -10,6 +10,7 @@ import { areasApi } from "../services/areas/areas";
 import { productsApi } from "../services/products/products";
 import { branchesApi } from "../services/branches/branches";
 import { giftCardsApi } from "../services/giftCards/giftCards";
+import { mailApi } from "../services/mails/mails";
 import { combineReducers } from "@reduxjs/toolkit";
 
 export const store = configureStore({
@@ -24,6 +25,7 @@ export const store = configureStore({
     [productsApi.reducerPath]: productsApi.reducer,
     [branchesApi.reducerPath]: branchesApi.reducer,
     [giftCardsApi.reducerPath]: giftCardsApi.reducer,
+    [mailApi.reducerPath]: mailApi.reducer,
   }),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -31,7 +33,8 @@ export const store = configureStore({
       .concat(areasApi.middleware)
       .concat(productsApi.middleware)
       .concat(branchesApi.middleware)
-      .concat(giftCardsApi.middleware),
+      .concat(giftCardsApi.middleware)
+      .concat(mailApi.middleware),
 });
 setupListeners(store.dispatch);
 
