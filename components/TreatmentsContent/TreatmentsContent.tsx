@@ -56,19 +56,14 @@ const TreatmentsContent = ({
                         treatment.id
                       }`}
                     >
-                      <a
-                        onClick={scrollToTop}
-                        href={`/treatments/${treatment.type.toLowerCase()}/${
-                          treatment.id
-                        }`}
-                      >
+                      <div onClick={scrollToTop}>
                         <AdvancedImage
                           cldImg={cld.image(treatment.images.main)}
                           alt=""
                           className="aspect-[16/9] w-full rounded-2xl border border-amber-400 bg-white object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                         />
                         <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-                      </a>
+                      </div>
                     </Link>
                   </div>
                   <div className="max-w-xl">
@@ -87,14 +82,11 @@ const TreatmentsContent = ({
                               key={area.id + index + area.name}
                               href={`/treatments/areas/${area.id}`}
                             >
-                              <a
-                                onClick={scrollToTop}
-                                href={`/treatments/areas/${area.id}`}
-                              >
+                              <div onClick={scrollToTop}>
                                 <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
                                   {area.name}
                                 </span>
-                              </a>
+                              </div>
                             </Link>
                           ))}
                       </div>

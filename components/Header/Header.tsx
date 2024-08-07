@@ -268,8 +268,7 @@ const Header = () => {
                                           href={`/treatments/areas/${item.id}`}
                                           style={{ textAlign: "center" }}
                                         >
-                                          <a
-                                            href={`/treatments/areas/${item.id}`}
+                                          <div
                                             onClick={() => {
                                               setMobileMenuOpen(false);
                                               scrollToTop();
@@ -279,7 +278,7 @@ const Header = () => {
                                             <p className="text-sm text-gray-200">
                                               {item.name}
                                             </p>
-                                          </a>
+                                          </div>
                                         </Link>
                                       ))}
                                     </DisclosurePanel>
@@ -294,8 +293,7 @@ const Header = () => {
                                 href={item.href}
                                 style={{ textAlign: "center" }}
                               >
-                                <a
-                                  href={item.href}
+                                <div
                                   onClick={() => {
                                     setMobileMenuOpen(false);
                                     scrollToTop();
@@ -303,7 +301,7 @@ const Header = () => {
                                   className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-gray-800"
                                 >
                                   {item.name}
-                                </a>
+                                </div>
                               </Link>
                             );
                         })}
@@ -320,8 +318,7 @@ const Header = () => {
                     href={item.href}
                     style={{ textAlign: "center" }}
                   >
-                    <a
-                      href={item.href}
+                    <div
                       onClick={() => {
                         setMobileMenuOpen(false);
                         scrollToTop();
@@ -329,7 +326,7 @@ const Header = () => {
                       className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-amber-50"
                     >
                       {item.name}
-                    </a>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -347,14 +344,14 @@ const Header = () => {
                 {/* Logo (lg+) */}
                 <div className="hidden lg:flex lg:flex-1 lg:items-center">
                   <Link href="/">
-                    <a onClick={scrollToTop} href="/" className="-m-1.5 p-1.5">
+                    <div onClick={scrollToTop} className="-m-1.5 p-1.5">
                       <span className="sr-only">Your Company</span>
                       <AdvancedImage
                         cldImg={cld.image("EMS/General/EmsLogo")}
                         alt="logoEMS"
                         className="h-8 w-auto"
                       />
-                    </a>
+                    </div>
                   </Link>
                 </div>
 
@@ -434,14 +431,13 @@ const Header = () => {
                                             <Link
                                               href={`/treatments/facial/${id}`}
                                             >
-                                              <a
-                                                href={`/treatments/facial/${id}`}
+                                              <div
                                                 onClick={scrollToTop}
                                                 className="block text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                                               >
                                                 {title}
                                                 <span className="absolute inset-0" />
-                                              </a>
+                                              </div>
                                             </Link>
                                           </div>
                                         )
@@ -449,14 +445,13 @@ const Header = () => {
                                   </div>
                                   <div className="mx-auto max-w-7xl px-6 lg:px-8">
                                     <Link href={"/treatments/facial"}>
-                                      <a
-                                        href={"/treatments/facial"}
+                                      <div
                                         onClick={scrollToTop}
                                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
                                       >
                                         Todos los tratamientos faciales
                                         <ArrowRight />
-                                      </a>
+                                      </div>
                                     </Link>
                                   </div>
                                 </>
@@ -538,14 +533,13 @@ const Header = () => {
                                             <Link
                                               href={`/treatments/corporal/${id}`}
                                             >
-                                              <a
-                                                href={`/treatments/corporal/${id}`}
+                                              <div
                                                 onClick={scrollToTop}
                                                 className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
                                               >
                                                 {title}
                                                 <span className="absolute inset-0" />
-                                              </a>
+                                              </div>
                                             </Link>
                                           </div>
                                         )
@@ -553,14 +547,13 @@ const Header = () => {
                                   </div>
                                   <div className="mx-auto max-w-7xl px-6 lg:px-8">
                                     <Link href={"/treatments/corporal"}>
-                                      <a
-                                        href={"/treatments/corporal"}
+                                      <div
                                         onClick={scrollToTop}
                                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
                                       >
                                         Todos los tratamientos corporales
                                         <ArrowRight />
-                                      </a>
+                                      </div>
                                     </Link>
                                   </div>
                                 </>
@@ -636,14 +629,13 @@ const Header = () => {
                                           <Link
                                             href={`/treatments/areas/${id}`}
                                           >
-                                            <a
-                                              href={`/treatments/areas/${id}`}
+                                            <div
                                               onClick={scrollToTop}
                                               className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
                                             >
                                               {name}
                                               <span className="absolute inset-0" />
-                                            </a>
+                                            </div>
                                           </Link>
                                         </div>
                                       );
@@ -659,36 +651,28 @@ const Header = () => {
                         href="/products"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
-                        <a onClick={scrollToTop} href="/products">
-                          Productos
-                        </a>
+                        <div onClick={scrollToTop}>Productos</div>
                       </Link>
 
                       <Link
                         href="/giftCard"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
-                        <a onClick={scrollToTop} href="/giftCard">
-                          Tarjeta Regalo
-                        </a>
+                        <div onClick={scrollToTop}>Tarjeta Regalo</div>
                       </Link>
 
                       <Link
                         href="/aboutMe"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
-                        <a onClick={scrollToTop} href="/aboutMe">
-                          Sobre mi
-                        </a>
+                        <div onClick={scrollToTop}>Sobre mi</div>
                       </Link>
 
                       <Link
                         href="/contact"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-600"
                       >
-                        <a onClick={scrollToTop} href="/contact">
-                          Contacto
-                        </a>
+                        <div onClick={scrollToTop}>Contacto</div>
                       </Link>
                     </div>
                   </PopoverGroup>
@@ -701,14 +685,14 @@ const Header = () => {
 
                 {/* Logo (lg-) */}
                 <Link href="/">
-                  <a onClick={scrollToTop} href="/" className="lg:hidden">
+                  <div onClick={scrollToTop} className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <AdvancedImage
                       cldImg={cld.image("EMS/General/EmsLogo")}
                       alt="EMS logo"
                       className="h-8 w-auto"
                     />
-                  </a>
+                  </div>
                 </Link>
 
                 {/* Cart */}

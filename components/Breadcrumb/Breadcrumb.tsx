@@ -27,8 +27,7 @@ const Breadcrumb = () => {
         <li>
           <div>
             <Link href="/">
-              <a
-                href="/"
+              <div
                 onClick={scrollToTop}
                 className="text-amber-500 hover:text-amber-600"
               >
@@ -37,7 +36,7 @@ const Breadcrumb = () => {
                   aria-hidden="true"
                 />
                 <span className="sr-only">Home</span>
-              </a>
+              </div>
             </Link>
           </div>
         </li>
@@ -60,13 +59,12 @@ const Breadcrumb = () => {
                   href={page.href}
                   aria-current={page.current ? "page" : undefined}
                 >
-                  <a
-                    href={page.href}
+                  <div
                     onClick={scrollToTop}
                     className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                   >
                     {page.name}
-                  </a>
+                  </div>
                 </Link>
               )}
             </div>

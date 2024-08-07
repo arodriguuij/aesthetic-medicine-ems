@@ -12,13 +12,12 @@ const ListOfItems = ({ item }: { item: NavigationItem }) => (
     )}
     {item.isLink ? (
       <Link href={item.href || "/"}>
-        <a
-          href={item.href || "/"}
+        <div
           onClick={scrollToTop}
           className="text-sm leading-6 text-gray-600 hover:text-gray-900"
         >
           {item.name}
-        </a>
+        </div>
       </Link>
     ) : item.href ? (
       <a

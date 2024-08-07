@@ -13,13 +13,9 @@ const Privacy = () => {
           Este sitio web utiliza cookies. Aceptar nuestras cookies es opcional,
           pero recomendado, ¡son deliciosas! Consulta nuestra{" "}
           <Link href="/policy">
-            <a
-              onClick={scrollToTop}
-              href="/policy"
-              className="font-semibold text-amber-400"
-            >
+            <div onClick={scrollToTop} className="font-semibold text-amber-400">
               política de cookies
-            </a>
+            </div>
           </Link>
           .
         </p>

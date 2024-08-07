@@ -82,8 +82,7 @@ const Products = () => {
                             </div>
                             <h3 className="mt-4">
                               <Link href={`/products/${id}`}>
-                                <a
-                                  href={`/products/${id}`}
+                                <div
                                   onClick={scrollToTop}
                                   className="text-sm font-semibold leading-7 text-white"
                                 >
@@ -91,7 +90,7 @@ const Products = () => {
                                   <p className="text-base text-gray-900">
                                     {name}
                                   </p>
-                                </a>
+                                </div>
                               </Link>
                             </h3>
                             <p className="mt-1 text-sm text-gray-500">
