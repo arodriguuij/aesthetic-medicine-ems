@@ -122,7 +122,7 @@ export default function HomePage() {
                 apariencia de las venas varicosas en las piernas.
               </p>
             </div>
-            <Link href="/treatments/corporal/19" arial-label="Enlace al tratamiento de Eslerosis de varices">
+            <Link href="/treatments/corporal/19" aria-label="Enlace al tratamiento de Eslerosis de varices">
               <div
                 onClick={scrollToTopFunction}
                 className="mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 px-4 py-3 text-base font-medium text-white hover:bg-opacity-10 sm:ml-8 sm:mt-0 lg:ml-0 lg:w-full"
@@ -147,7 +147,7 @@ export default function HomePage() {
                 <h2 className="text-xl font-bold tracking-tight text-gray-900">
                   Productos y cremas
                 </h2>
-                <Link href="/products" arial-label="Enlace a la pagina productos">
+                <Link href="/products" aria-label="Enlace a la pagina productos">
                   <div
                     onClick={scrollToTopFunction}
                     className="hidden text-sm font-semibold text-amber-400 hover:text-amber-500 sm:block"
@@ -173,7 +173,7 @@ export default function HomePage() {
                       productsData
                         .filter(({ featured }) => featured)
                         .map(({ name, id, images }) => (
-                          <Link key={name} href={`products/${id}`} arial-label="Enlace a la pagina del producto">
+                          <Link key={name} href={`products/${id}`} aria-label="Enlace a la pagina del producto">
                             <div
                               onClick={scrollToTopFunction}
                               className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
@@ -203,7 +203,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="mt-6 sm:hidden">
-              <Link href="/products" arial-label="Enlace a la pagina de productos">
+              <Link href="/products" aria-label="Enlace a la pagina de productos">
                 <div
                   onClick={scrollToTopFunction}
                   className="block text-sm font-semibold text-amber-400 hover:text-amber-500"
@@ -328,7 +328,7 @@ export default function HomePage() {
               </div>
 
               <div className="mt-10 flex">
-                <Link href="/aboutMe" arial-label="Enlace a la pagina sobre mi">
+                <Link href="/aboutMe" aria-label="Enlace a la pagina sobre mi">
                   <div
                     onClick={scrollToTopFunction}
                     className="text-base font-semibold leading-7 text-amber-400"

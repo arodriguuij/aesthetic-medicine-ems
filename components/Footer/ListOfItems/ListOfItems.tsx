@@ -11,7 +11,7 @@ const ListOfItems = ({ item }: { item: NavigationItem }) => (
       </div>
     )}
     {item.isLink ? (
-      <Link href={item.href || "/"} arial-label="Enlace a la pagina home">
+      <Link href={item.href || "/"} aria-label="Enlace a la pagina home">
         <div
           onClick={scrollToTop}
           className="text-sm leading-6 text-gray-600 hover:text-gray-900"

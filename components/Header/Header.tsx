@@ -267,7 +267,7 @@ const Header = () => {
                                           key={item.name + index}
                                           href={`/treatments/areas/${item.id}`}
                                           style={{ textAlign: "center" }}
-                                          arial-label="Enlace a la pagina del area"
+                                          aria-label="Enlace a la pagina del area"
                                         >
                                           <div
                                             onClick={() => {
@@ -293,7 +293,7 @@ const Header = () => {
                                 key={item.name}
                                 href={item.href}
                                 style={{ textAlign: "center" }}
-                                arial-label={`Enlace a la pagina ${item.name}`}
+                                aria-label={`Enlace a la pagina ${item.name}`}
                               >
                                 <div
                                   onClick={() => {
@@ -319,7 +319,7 @@ const Header = () => {
                     key={item.name + index}
                     href={item.href}
                     style={{ textAlign: "center" }}
-                    arial-label={`Enlace a la pagina ${item.name}`}
+                    aria-label={`Enlace a la pagina ${item.name}`}
                   >
                     <div
                       onClick={() => {
@@ -346,7 +346,7 @@ const Header = () => {
               <div className="flex h-12 items-center justify-between border-b-[1px]">
                 {/* Logo (lg+) */}
                 <div className="hidden lg:flex lg:flex-1 lg:items-center">
-                  <Link href="/" arial-label="Enlace a la pagina home">
+                  <Link href="/" aria-label="Enlace a la pagina home">
                     <div onClick={scrollToTop} className="-m-1.5 p-1.5">
                       <span className="sr-only">Your Company</span>
                       <AdvancedImage
@@ -433,7 +433,7 @@ const Header = () => {
                                           >
                                             <Link
                                               href={`/treatments/facial/${id}`}
-                                              arial-label="Enlace a la pagina del tratamiento facial"
+                                              aria-label="Enlace a la pagina del tratamiento facial"
                                             >
                                               <div
                                                 onClick={scrollToTop}
@@ -450,7 +450,7 @@ const Header = () => {
                                   <div className="mx-auto max-w-7xl px-6 lg:px-8">
                                     <Link
                                       href={"/treatments/facial"}
-                                      arial-label="Enlace a la pagina de tratamientos faciales"
+                                      aria-label="Enlace a la pagina de tratamientos faciales"
                                     >
                                       <div
                                         onClick={scrollToTop}
@@ -539,7 +539,7 @@ const Header = () => {
                                           >
                                             <Link
                                               href={`/treatments/corporal/${id}`}
-                                              arial-label="Enlace a la pagina del tratamiento corporal"
+                                              aria-label="Enlace a la pagina del tratamiento corporal"
                                             >
                                               <div
                                                 onClick={scrollToTop}
@@ -556,7 +556,7 @@ const Header = () => {
                                   <div className="mx-auto max-w-7xl px-6 lg:px-8">
                                     <Link
                                       href={"/treatments/corporal"}
-                                      arial-label="Enlace a la pagina de tratamientos corporales"
+                                      aria-label="Enlace a la pagina de tratamientos corporales"
                                     >
                                       <div
                                         onClick={scrollToTop}
@@ -639,7 +639,7 @@ const Header = () => {
                                         >
                                           <Link
                                             href={`/treatments/areas/${id}`}
-                                             arial-label="Enlace a la pagina del area"
+                                             aria-label="Enlace a la pagina del area"
                                           >
                                             <div
                                               onClick={scrollToTop}
@@ -661,7 +661,7 @@ const Header = () => {
 
                       <Link
                         href="/products"
-                         arial-label="Enlace a la pagina de productos"
+                         aria-label="Enlace a la pagina de productos"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
                         <div onClick={scrollToTop}>Productos</div>
@@ -669,7 +669,7 @@ const Header = () => {
 
                       <Link
                         href="/giftCard"
-                         arial-label="Enlace a la pagina de tarjeta de regalo"
+                         aria-label="Enlace a la pagina de tarjeta de regalo"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
                         <div onClick={scrollToTop}>Tarjeta Regalo</div>
@@ -677,7 +677,7 @@ const Header = () => {
 
                       <Link
                         href="/aboutMe"
-                         arial-label="Enlace a la pagina sobre mi"
+                         aria-label="Enlace a la pagina sobre mi"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
                         <div onClick={scrollToTop}>Sobre mi</div>
@@ -685,7 +685,7 @@ const Header = () => {
 
                       <Link
                         href="/contact"
-                         arial-label="Enlace a la pagina de contacto"
+                         aria-label="Enlace a la pagina de contacto"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-600"
                       >
                         <div onClick={scrollToTop}>Contacto</div>
@@ -700,7 +700,7 @@ const Header = () => {
                 </div>
 
                 {/* Logo (lg-) */}
-                <Link href="/" arial-label="Enlace a la pagina home">
+                <Link href="/" aria-label="Enlace a la pagina home">
                   <div onClick={scrollToTop} className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <AdvancedImage

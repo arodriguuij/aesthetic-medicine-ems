@@ -26,7 +26,7 @@ const Breadcrumb = () => {
       <ol role="list" className="flex items-center space-x-4">
         <li>
           <div>
-            <Link href="/" arial-label="Enlace a la pagina home">
+            <Link href="/" aria-label="Enlace a la pagina home">
               <div
                 onClick={scrollToTop}
                 className="text-amber-500 hover:text-amber-600"
@@ -58,7 +58,7 @@ const Breadcrumb = () => {
                 <Link
                   href={page.href}
                   aria-current={page.current ? "page" : undefined}
-                  arial-label={`Enlace a la pagina ${page.name}`}
+                  aria-label={`Enlace a la pagina ${page.name}`}
                 >
                   <div
                     onClick={scrollToTop}

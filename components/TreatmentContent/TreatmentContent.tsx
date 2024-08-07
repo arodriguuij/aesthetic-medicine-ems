@@ -106,7 +106,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                     <Link
                       key={area.id + index}
                       href={`/treatments/areas/${area.id}`}
-                      arial-label="Enlace a la pagina del area"
+                      aria-label="Enlace a la pagina del area"
                     >
                       <div onClick={scrollToTop}>
                         <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
@@ -256,7 +256,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                           key={name}
                           href={`/products/${id}`}
                           replace
-                          arial-label="Enlace a la pagina del producto"
+                          aria-label="Enlace a la pagina del producto"
                         >
                           <div
                             onClick={scrollToTop}
@@ -289,7 +289,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
               <div className="mt-6 sm:hidden">
                 <Link
                   href="/products"
-                  arial-label="Enlace a la pagina de los productos"
+                  aria-label="Enlace a la pagina de los productos"
                 >
                   <div
                     onClick={scrollToTop}
