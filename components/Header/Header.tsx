@@ -267,9 +267,9 @@ const Header = () => {
                                           key={item.name + index}
                                           href={`/treatments/areas/${item.id}`}
                                           style={{ textAlign: "center" }}
-                                          passHref
                                         >
                                           <a
+                                            href={`/treatments/areas/${item.id}`}
                                             onClick={() => {
                                               setMobileMenuOpen(false);
                                               scrollToTop();
@@ -293,9 +293,9 @@ const Header = () => {
                                 key={item.name}
                                 href={item.href}
                                 style={{ textAlign: "center" }}
-                                passHref
                               >
                                 <a
+                                  href={item.href}
                                   onClick={() => {
                                     setMobileMenuOpen(false);
                                     scrollToTop();
@@ -319,9 +319,9 @@ const Header = () => {
                     key={item.name + index}
                     href={item.href}
                     style={{ textAlign: "center" }}
-                    passHref
                   >
                     <a
+                      href={item.href}
                       onClick={() => {
                         setMobileMenuOpen(false);
                         scrollToTop();
@@ -433,9 +433,9 @@ const Header = () => {
                                           >
                                             <Link
                                               href={`/treatments/facial/${id}`}
-                                              passHref
                                             >
                                               <a
+                                                href={`/treatments/facial/${id}`}
                                                 onClick={scrollToTop}
                                                 className="block text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                                               >
@@ -448,8 +448,9 @@ const Header = () => {
                                       )}
                                   </div>
                                   <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                                    <Link href={"/treatments/facial"} passHref>
+                                    <Link href={"/treatments/facial"}>
                                       <a
+                                        href={"/treatments/facial"}
                                         onClick={scrollToTop}
                                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
                                       >
@@ -536,9 +537,9 @@ const Header = () => {
                                           >
                                             <Link
                                               href={`/treatments/corporal/${id}`}
-                                              passHref
                                             >
                                               <a
+                                                href={`/treatments/corporal/${id}`}
                                                 onClick={scrollToTop}
                                                 className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
                                               >
@@ -551,11 +552,9 @@ const Header = () => {
                                       )}
                                   </div>
                                   <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                                    <Link
-                                      href={"/treatments/corporal"}
-                                      passHref
-                                    >
+                                    <Link href={"/treatments/corporal"}>
                                       <a
+                                        href={"/treatments/corporal"}
                                         onClick={scrollToTop}
                                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
                                       >
@@ -636,9 +635,9 @@ const Header = () => {
                                         >
                                           <Link
                                             href={`/treatments/areas/${id}`}
-                                            passHref
                                           >
                                             <a
+                                              href={`/treatments/areas/${id}`}
                                               onClick={scrollToTop}
                                               className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
                                             >
@@ -659,33 +658,37 @@ const Header = () => {
                       <Link
                         href="/products"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
-                        passHref
                       >
-                        <a onClick={scrollToTop}>Productos</a>
+                        <a onClick={scrollToTop} href="/products">
+                          Productos
+                        </a>
                       </Link>
 
                       <Link
                         href="/giftCard"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
-                        passHref
                       >
-                        <a onClick={scrollToTop}>Tarjeta Regalo</a>
+                        <a onClick={scrollToTop} href="/giftCard">
+                          Tarjeta Regalo
+                        </a>
                       </Link>
 
                       <Link
                         href="/aboutMe"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
-                        passHref
                       >
-                        <a onClick={scrollToTop}>Sobre mi</a>
+                        <a onClick={scrollToTop} href="/aboutMe">
+                          Sobre mi
+                        </a>
                       </Link>
 
                       <Link
                         href="/contact"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-600"
-                        passHref
                       >
-                        <a onClick={scrollToTop}>Contacto</a>
+                        <a onClick={scrollToTop} href="/contact">
+                          Contacto
+                        </a>
                       </Link>
                     </div>
                   </PopoverGroup>
@@ -698,7 +701,7 @@ const Header = () => {
 
                 {/* Logo (lg-) */}
                 <Link href="/">
-                  <a onClick={scrollToTop} className="lg:hidden">
+                  <a onClick={scrollToTop} href="/" className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <AdvancedImage
                       cldImg={cld.image("EMS/General/EmsLogo")}

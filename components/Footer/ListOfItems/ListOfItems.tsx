@@ -11,8 +11,9 @@ const ListOfItems = ({ item }: { item: NavigationItem }) => (
       </div>
     )}
     {item.isLink ? (
-      <Link href={item.href || "/"} passHref>
+      <Link href={item.href || "/"}>
         <a
+          href={item.href || "/"}
           onClick={scrollToTop}
           className="text-sm leading-6 text-gray-600 hover:text-gray-900"
         >

@@ -81,8 +81,9 @@ const Products = () => {
                               />
                             </div>
                             <h3 className="mt-4">
-                              <Link href={`/products/${id}`} passHref>
+                              <Link href={`/products/${id}`}>
                                 <a
+                                  href={`/products/${id}`}
                                   onClick={scrollToTop}
                                   className="text-sm font-semibold leading-7 text-white"
                                 >

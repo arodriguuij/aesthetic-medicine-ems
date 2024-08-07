@@ -72,12 +72,15 @@ export default function HomePage() {
         <div className="mt-10 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:space-y-0">
           {collections.map((collection) => (
             <Link
-              key={collection.name}
               href={collection.href}
+              key={collection.name}
               aria-label={`Link a la pagina ${collection.href}`}
-              passHref
             >
-              <a onClick={scrollToTopFunction} className="group block">
+              <a
+                onClick={scrollToTopFunction}
+                href={collection.href}
+                className="group block"
+              >
                 <div
                   aria-hidden="true"
                   className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg"
@@ -128,8 +131,9 @@ export default function HomePage() {
                 apariencia de las venas varicosas en las piernas.
               </p>
             </div>
-            <Link href="/treatments/corporal/19" passHref>
+            <Link href="/treatments/corporal/19">
               <a
+                href="/treatments/corporal/19"
                 onClick={scrollToTopFunction}
                 className="mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 px-4 py-3 text-base font-medium text-white hover:bg-opacity-10 sm:ml-8 sm:mt-0 lg:ml-0 lg:w-full"
               >
@@ -153,8 +157,9 @@ export default function HomePage() {
                 <h2 className="text-xl font-bold tracking-tight text-gray-900">
                   Productos y cremas
                 </h2>
-                <Link href="/products" passHref>
+                <Link href="/products">
                   <a
+                    href="/products"
                     onClick={scrollToTopFunction}
                     className="hidden text-sm font-semibold text-amber-400 hover:text-amber-500 sm:block"
                   >
@@ -179,8 +184,9 @@ export default function HomePage() {
                       productsData
                         .filter(({ featured }) => featured)
                         .map(({ name, id, images }) => (
-                          <Link key={name} href={`products/${id}`} passHref>
+                          <Link key={name} href={`products/${id}`}>
                             <a
+                              href={`products/${id}`}
                               onClick={scrollToTopFunction}
                               className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
                             >
@@ -209,8 +215,9 @@ export default function HomePage() {
               </div>
             </div>
             <div className="mt-6 sm:hidden">
-              <Link href="/products" passHref>
+              <Link href="/products">
                 <a
+                  href="/products"
                   onClick={scrollToTopFunction}
                   className="block text-sm font-semibold text-amber-400 hover:text-amber-500"
                 >
@@ -334,8 +341,9 @@ export default function HomePage() {
               </div>
 
               <div className="mt-10 flex">
-                <Link href="/aboutMe" passHref>
+                <Link href="/aboutMe">
                   <a
+                    href="/aboutMe"
                     onClick={scrollToTopFunction}
                     className="text-base font-semibold leading-7 text-amber-400"
                   >

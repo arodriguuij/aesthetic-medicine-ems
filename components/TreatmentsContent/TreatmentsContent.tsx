@@ -55,9 +55,13 @@ const TreatmentsContent = ({
                       href={`/treatments/${treatment.type.toLowerCase()}/${
                         treatment.id
                       }`}
-                      passHref
                     >
-                      <a onClick={scrollToTop}>
+                      <a
+                        onClick={scrollToTop}
+                        href={`/treatments/${treatment.type.toLowerCase()}/${
+                          treatment.id
+                        }`}
+                      >
                         <AdvancedImage
                           cldImg={cld.image(treatment.images.main)}
                           alt=""
@@ -82,9 +86,11 @@ const TreatmentsContent = ({
                             <Link
                               key={area.id + index + area.name}
                               href={`/treatments/areas/${area.id}`}
-                              passHref
                             >
-                              <a onClick={scrollToTop}>
+                              <a
+                                onClick={scrollToTop}
+                                href={`/treatments/areas/${area.id}`}
+                              >
                                 <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
                                   {area.name}
                                 </span>
@@ -95,8 +101,11 @@ const TreatmentsContent = ({
                     </div>
                     <div className="group relative">
                       <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                        <Link href={`${location}/${treatment.id}`} passHref>
-                          <a onClick={scrollToTop}>
+                        <Link href={`${location}/${treatment.id}`}>
+                          <a
+                            onClick={scrollToTop}
+                            href={`${location}/${treatment.id}`}
+                          >
                             <span className="absolute inset-0" />
                             {treatment.title}
                           </a>
