@@ -691,6 +691,7 @@ const Header = () => {
                       cldImg={cld.image("EMS/General/EmsLogo")}
                       alt="EMS logo"
                       className="h-8 w-auto"
+                      arial-label="Enlace a la pagina home"
                     />
                   </div>
                 </Link>
