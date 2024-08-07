@@ -293,7 +293,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                 >
                   <div
                     onClick={scrollToTop}
-                    className="block text-sm font-semibold text-amber-500 hover:text-amber-600"
+                    className="block text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500"
                   >
                     Ver todas las categorías
                     <span aria-hidden="true"> &rarr;</span>
