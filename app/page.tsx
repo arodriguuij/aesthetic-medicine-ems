@@ -70,12 +70,9 @@ export default function HomePage() {
               href={collection.href}
               key={collection.name}
               aria-label={`Link a la pagina ${collection.href}`}
+              passHref
             >
-              <a
-                onClick={scrollToTopFunction}
-                href={collection.href}
-                className="group block"
-              >
+              <div onClick={scrollToTopFunction} className="group block">
                 <div
                   aria-hidden="true"
                   className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg"
@@ -92,7 +89,7 @@ export default function HomePage() {
                 <p className="mt-2 text-sm text-gray-500">
                   {collection.description}
                 </p>
-              </a>
+              </div>
             </Link>
           ))}
         </div>
@@ -126,14 +123,13 @@ export default function HomePage() {
                 apariencia de las venas varicosas en las piernas.
               </p>
             </div>
-            <Link href="/treatments/corporal/19">
-              <a
-                href="/treatments/corporal/19"
+            <Link href="/treatments/corporal/19" passHref>
+              <div
                 onClick={scrollToTopFunction}
                 className="mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 px-4 py-3 text-base font-medium text-white hover:bg-opacity-10 sm:ml-8 sm:mt-0 lg:ml-0 lg:w-full"
               >
                 Ver más información
-              </a>
+              </div>
             </Link>
           </div>
         </div>
@@ -153,14 +149,13 @@ export default function HomePage() {
                   Productos y cremas
                 </h2>
                 <Link href="/products">
-                  <a
-                    href="/products"
+                  <div
                     onClick={scrollToTopFunction}
                     className="hidden text-sm font-semibold text-amber-400 hover:text-amber-500 sm:block"
                   >
                     Ver todas las categorías
                     <span aria-hidden="true"> &rarr;</span>
-                  </a>
+                  </div>
                 </Link>
               </div>
               <p className="mt-2 text-sm text-gray-500">
@@ -180,8 +175,7 @@ export default function HomePage() {
                         .filter(({ featured }) => featured)
                         .map(({ name, id, images }) => (
                           <Link key={name} href={`products/${id}`}>
-                            <a
-                              href={`products/${id}`}
+                            <div
                               onClick={scrollToTopFunction}
                               className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
                             >
@@ -202,7 +196,7 @@ export default function HomePage() {
                               <span className="relative mt-auto text-center text-xl font-bold text-white">
                                 {name}
                               </span>
-                            </a>
+                            </div>
                           </Link>
                         ))}
                   </div>
@@ -211,14 +205,13 @@ export default function HomePage() {
             </div>
             <div className="mt-6 sm:hidden">
               <Link href="/products">
-                <a
-                  href="/products"
+                <div
                   onClick={scrollToTopFunction}
                   className="block text-sm font-semibold text-amber-400 hover:text-amber-500"
                 >
                   Ver todas las categorías
                   <span aria-hidden="true"> &rarr;</span>
-                </a>
+                </div>
               </Link>
             </div>
           </div>
@@ -337,14 +330,13 @@ export default function HomePage() {
 
               <div className="mt-10 flex">
                 <Link href="/aboutMe">
-                  <a
-                    href="/aboutMe"
+                  <div
                     onClick={scrollToTopFunction}
                     className="text-base font-semibold leading-7 text-amber-400"
                   >
                     Saber más sobre Elvira
                     <span aria-hidden="true">&rarr;</span>
-                  </a>
+                  </div>
                 </Link>
               </div>
             </div>
