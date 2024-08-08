@@ -5,9 +5,10 @@ import React from "react";
 import { getImageByGiftCardId } from "./cart.utils";
 import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "@/utils/cloudinary";
-import { GiftCardForm } from "@/lib/card/cardSlide";
+import { GiftCardForm, removeCard } from "@/lib/card/cardSlide";
 import { GiftCard } from "@/services/giftCards/giftCards.types";
 import { XMarkIcon as XMarkIconMini } from "@heroicons/react/20/solid";
+import { useDispatch } from "react-redux";
 
 const CartItem = ({
   giftCard,
@@ -18,6 +19,8 @@ const CartItem = ({
   giftCardsData: GiftCard[];
   quantity: number;
 }) => {
+  const dispatch = useDispatch();
+
   const hasStock = true;
   return (
     <li className="flex py-6 sm:py-10" style={{ overflow: "auto" }}>
@@ -53,6 +56,7 @@ const CartItem = ({
             <div className="absolute right-0 top-0">
               <button
                 type="button"
+                onClick={() => dispatch(removeCard(giftCard))}
                 className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
               >
                 <span className="sr-only">Remove</span>

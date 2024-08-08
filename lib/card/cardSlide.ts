@@ -41,7 +41,31 @@ export const cardSlice = createSlice({
           break;
       }
     },
-    //TODO: remove GiftCard
+    removeCard: (state, action: PayloadAction<GiftCardForm>) => {
+      switch (action.payload.selectedGiftCardId) {
+        case 1:
+          state.giftCard200.giftCards=state.giftCard200.giftCards.filter(
+            (giftCard) =>
+              JSON.stringify(giftCard) !== JSON.stringify(action.payload)
+          );
+          state.giftCard200.quantity = state.giftCard200.quantity - 1;
+          break;
+        case 2:
+          state.giftCard300.giftCards=state.giftCard300.giftCards.filter(
+            (giftCard) =>
+              JSON.stringify(giftCard) !== JSON.stringify(action.payload)
+          );
+          state.giftCard300.quantity = state.giftCard300.quantity - 1;
+          break;
+        case 3:
+          state.giftCard500.giftCards=state.giftCard500.giftCards.filter(
+            (giftCard) =>
+              JSON.stringify(giftCard) !== JSON.stringify(action.payload)
+          );
+          state.giftCard500.quantity = state.giftCard500.quantity - 1;
+          break;
+      }
+    },
     resetCard: (state) => {
       state = initialState;
     },
@@ -53,6 +77,6 @@ export const selectCards300 = (state: CardState) => state.giftCard300;
 export const selectCards500 = (state: CardState) => state.giftCard500;
 
 // Action creators are generated for each case reducer function
-export const { addGiftCard, resetCard } = cardSlice.actions;
+export const { addGiftCard, removeCard, resetCard } = cardSlice.actions;
 
 export default cardSlice.reducer;
