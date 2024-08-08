@@ -10,11 +10,15 @@ export interface GiftCardForm {
 }
 
 export interface CardState {
-  gifCards: GiftCardForm[];
+  giftCard200: { giftCards: GiftCardForm[]; quantity: number };
+  giftCard300: { giftCards: GiftCardForm[]; quantity: number };
+  giftCard500: { giftCards: GiftCardForm[]; quantity: number };
 }
 
 const initialState: CardState = {
-  gifCards: [],
+  giftCard200: { giftCards: [], quantity: 0 },
+  giftCard300: { giftCards: [], quantity: 0 },
+  giftCard500: { giftCards: [], quantity: 0 },
 };
 
 export const cardSlice = createSlice({
@@ -22,15 +26,32 @@ export const cardSlice = createSlice({
   initialState,
   reducers: {
     addGiftCard: (state, action: PayloadAction<GiftCardForm>) => {
-      state.gifCards.push(action.payload);
+      switch (action.payload.selectedGiftCardId) {
+        case 1:
+          state.giftCard200.giftCards.push(action.payload);
+          state.giftCard200.quantity = state.giftCard200.quantity + 1;
+          break;
+        case 2:
+          state.giftCard300.giftCards.push(action.payload);
+          state.giftCard300.quantity = state.giftCard300.quantity + 1;
+          break;
+        case 3:
+          state.giftCard500.giftCards.push(action.payload);
+          state.giftCard500.quantity = state.giftCard500.quantity + 1;
+          break;
+      }
     },
+    //TODO: remove GiftCard
     resetCard: (state) => {
-      state.gifCards = initialState.gifCards;
+      state = initialState;
     },
   },
 });
 
-export const selectCard = (state: CardState) => state.gifCards;
+export const selectCards200 = (state: CardState) => state.giftCard200;
+export const selectCards300 = (state: CardState) => state.giftCard300;
+export const selectCards500 = (state: CardState) => state.giftCard500;
+
 // Action creators are generated for each case reducer function
 export const { addGiftCard, resetCard } = cardSlice.actions;
 

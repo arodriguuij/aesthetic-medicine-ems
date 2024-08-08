@@ -422,7 +422,7 @@ export default function HomePage() {
               5
             </p>
             <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
-              (21 opiniones) {/* TODO: fetch info from DB or Google */}
+              (26 opiniones) {/* TODO: fetch info from DB or Google */}
             </p>
           </div>
 

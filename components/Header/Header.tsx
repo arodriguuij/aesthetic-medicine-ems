@@ -22,6 +22,7 @@ import {
   ChevronDownIcon,
   ShoppingBagIcon,
   XMarkIcon,
+  HashtagIcon,
 } from "@heroicons/react/24/outline";
 import {
   navigationMobilePersonal,
@@ -36,7 +37,7 @@ import {
 } from "../../services/treatments/treatments";
 import { useGetAreasQuery } from "../../services/areas/areas";
 import { useSelector } from "react-redux";
-import { CardState } from "../../lib/card/cardSlide";
+
 import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
 import ArrowDown from "../Icons/ArrowDown";
 import ArrowUp from "../Icons/ArrowUp";
@@ -50,6 +51,7 @@ import {
 import useIsTablet from "@/hooks/useIsTablet";
 import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "@/utils/cloudinary";
+import { CardState } from "@/lib/card/cardSlide";
 
 const Header = () => {
   const router = useRouter();
@@ -68,7 +70,9 @@ const Header = () => {
   const [isPopoverGiftCartsVisible, setPopoverGiftCartsVisible] =
     useState(false);
 
-  const { gifCards } = useSelector((state: { card: CardState }) => state.card);
+  const { giftCard200, giftCard300, giftCard500 } = useSelector(
+    (state: { card: CardState }) => state.card
+  );
 
   const scrollToTopFnc = () => {
     setPopoverFacialVisible(false);
@@ -97,7 +101,7 @@ const Header = () => {
             className="h-6 w-6 flex-shrink-0 text-gray-400 hover:text-amber-600 data-[open]:text-amber-700"
           />
           <span className="ml-2 text-sm font-medium text-gray-400 hover:text-amber-600 data-[open]:text-amber-700">
-            {gifCards.length}
+            {giftCard200.quantity + giftCard300.quantity + giftCard500.quantity}
           </span>
           <span className="sr-only">Productos en el carro</span>
         </PopoverButton>
@@ -121,44 +125,137 @@ const Header = () => {
               {giftCardsError && (
                 <>Error en la carga de las tarjetas de regalo</>
               )}
-              {giftCardsData &&
-                gifCards.map((product, index) => (
-                  <li
-                    key={product.selectedGiftCardId + index}
-                    className="flex items-center px-4 py-6"
-                  >
-                    <AdvancedImage
-                      cldImg={cld.image(
-                        getImageByGiftCardId(
-                          giftCardsData,
-                          product.selectedGiftCardId
-                        ) || ""
+              {giftCardsData && giftCard200.quantity > 0 && (
+                <li
+                  key={giftCard200.giftCards[0].selectedGiftCardId}
+                  className="flex items-center px-4 py-6"
+                >
+                  <AdvancedImage
+                    cldImg={cld.image(
+                      getImageByGiftCardId(
+                        giftCardsData,
+                        giftCard200.giftCards[0].selectedGiftCardId
+                      ) || ""
+                    )}
+                    alt={giftCard200.giftCards[0].selectedGiftCardId + "Image"}
+                    className="h-16 w-26 flex-none rounded-md border border-gray-200"
+                  />
+                  <div className="ml-4 flex-auto">
+                    <h3 className="font-medium text-gray-900">
+                      Tarjeta de regalo
+                    </h3>
+                    <p className="text-gray-500">
+                      {getDescriptionByGiftCardId(
+                        giftCardsData,
+                        giftCard200.giftCards[0].selectedGiftCardId
                       )}
-                      alt={product.selectedGiftCardId + "Image"}
-                      className="h-16 w-26 flex-none rounded-md border border-gray-200"
+                    </p>
+                    <p className="text-gray-500">
+                      {getQuantityByGiftCardId(
+                        giftCardsData,
+                        giftCard200.giftCards[0].selectedGiftCardId
+                      )}
+                      €
+                    </p>
+                  </div>
+                  <p className="flex space-x-2 text-sm text-gray-700">
+                    <HashtagIcon
+                      aria-hidden="true"
+                      className="h-5 w-5 flex-shrink-0 text-green-500"
                     />
-                    <div className="ml-4 flex-auto">
-                      <h3 className="font-medium text-gray-900">
-                        Tarjeta de regalo
-                      </h3>
-                      <p className="text-gray-500">
-                        {getDescriptionByGiftCardId(
-                          giftCardsData,
-                          product.selectedGiftCardId
-                        )}
-                      </p>
-                      <p className="text-gray-500">
-                        {getQuantityByGiftCardId(
-                          giftCardsData,
-                          product.selectedGiftCardId
-                        )}
-                        €
-                      </p>
-                    </div>
-                  </li>
-                ))}
+                    <span>{giftCard200.quantity}</span>
+                  </p>
+                </li>
+              )}
+              {giftCardsData && giftCard300.quantity > 0 && (
+                <li
+                  key={giftCard300.giftCards[0].selectedGiftCardId}
+                  className="flex items-center px-4 py-6"
+                >
+                  <AdvancedImage
+                    cldImg={cld.image(
+                      getImageByGiftCardId(
+                        giftCardsData,
+                        giftCard300.giftCards[0].selectedGiftCardId
+                      ) || ""
+                    )}
+                    alt={giftCard300.giftCards[0].selectedGiftCardId + "Image"}
+                    className="h-16 w-26 flex-none rounded-md border border-gray-200"
+                  />
+                  <div className="ml-4 flex-auto">
+                    <h3 className="font-medium text-gray-900">
+                      Tarjeta de regalo
+                    </h3>
+                    <p className="text-gray-500">
+                      {getDescriptionByGiftCardId(
+                        giftCardsData,
+                        giftCard300.giftCards[0].selectedGiftCardId
+                      )}
+                    </p>
+                    <p className="text-gray-500">
+                      {getQuantityByGiftCardId(
+                        giftCardsData,
+                        giftCard300.giftCards[0].selectedGiftCardId
+                      )}
+                      €
+                    </p>
+                  </div>
+                  <p className="flex space-x-2 text-sm text-gray-700">
+                    <HashtagIcon
+                      aria-hidden="true"
+                      className="h-5 w-5 flex-shrink-0 text-green-500"
+                    />
+                    <span>{giftCard300.quantity}</span>
+                  </p>
+                </li>
+              )}
+              {giftCardsData && giftCard500.quantity > 0 && (
+                <li
+                  key={giftCard500.giftCards[0].selectedGiftCardId}
+                  className="flex items-center px-4 py-6"
+                >
+                  <AdvancedImage
+                    cldImg={cld.image(
+                      getImageByGiftCardId(
+                        giftCardsData,
+                        giftCard500.giftCards[0].selectedGiftCardId
+                      ) || ""
+                    )}
+                    alt={giftCard500.giftCards[0].selectedGiftCardId + "Image"}
+                    className="h-16 w-26 flex-none rounded-md border border-gray-200"
+                  />
+                  <div className="ml-4 flex-auto">
+                    <h3 className="font-medium text-gray-900">
+                      Tarjeta de regalo
+                    </h3>
+                    <p className="text-gray-500">
+                      {getDescriptionByGiftCardId(
+                        giftCardsData,
+                        giftCard500.giftCards[0].selectedGiftCardId
+                      )}
+                    </p>
+                    <p className="text-gray-500">
+                      {getQuantityByGiftCardId(
+                        giftCardsData,
+                        giftCard500.giftCards[0].selectedGiftCardId
+                      )}
+                      €
+                    </p>
+                  </div>
+                  <p className="flex space-x-2 text-sm text-gray-700">
+                    <HashtagIcon
+                      aria-hidden="true"
+                      className="h-5 w-5 flex-shrink-0 text-green-500"
+                    />
+                    <span>{giftCard500.quantity}</span>
+                  </p>
+                </li>
+              )}
             </ul>
-            {gifCards.length === 0 ? (
+            {giftCard200.quantity +
+              giftCard300.quantity +
+              giftCard500.quantity ===
+            0 ? (
               <p className="mt-6 text-center">
                 <p className="text-center">El carrito está vacío :(</p>
                 <button
@@ -179,9 +276,19 @@ const Header = () => {
                   router.push("/cart");
                   scrollToTopFnc();
                 }}
-                disabled={!giftCardsData || gifCards.length === 0}
+                disabled={
+                  !giftCardsData ||
+                  giftCard200.quantity +
+                    giftCard300.quantity +
+                    giftCard500.quantity ===
+                    0
+                }
                 className={
-                  giftCardsData && gifCards.length > 0
+                  giftCardsData &&
+                  giftCard200.quantity +
+                    giftCard300.quantity +
+                    giftCard500.quantity >
+                    0
                     ? "w-full mt-6 text-center rounded-md border border-transparent bg-amber-400 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                     : "w-full mt-6 text-center rounded-md border border-transparent bg-gray-400 px-4 py-2 text-sm font-medium text-white shadow-sm"
                 }

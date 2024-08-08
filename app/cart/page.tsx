@@ -6,27 +6,33 @@ import {
   useAddGiftCardOrderMutation,
   useGetGiftCardsQuery,
 } from "../../services/giftCards/giftCards";
-import { resetCard, selectCard } from "../../lib/card/cardSlide";
+import { CardState, resetCard } from "../../lib/card/cardSlide";
 import { setDialogVisibility } from "../../lib/dialog/dialogSlide";
 import { scrollToTop } from "../../utils/utils";
 import { getSubTotal } from "./cart.utils";
-import { RootState } from "@/lib/store";
 import CartItem from "./cartItem";
-import { GiftCardForm } from "../types/giftCards.types";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const gifCards = useSelector((state: RootState) => selectCard(state.card));
+  const { giftCard200, giftCard300, giftCard500 } = useSelector(
+    (state: { card: CardState }) => state.card
+  );
+
   const { data: giftCardsData, error: giftCardsError } =
     useGetGiftCardsQuery("");
 
   const [addGiftCardOrder2] = useAddGiftCardOrderMutation();
 
+  const giftCards = [
+    ...giftCard200.giftCards,
+    ...giftCard300.giftCards,
+    ...giftCard500.giftCards,
+  ];
   const paymentProcess = () => {
     if (giftCardsData?.length) {
-      const giftCardsDB = addGiftCardOrder2(gifCards);
+      const giftCardsDB = addGiftCardOrder2(giftCards);
       dispatch(
         setDialogVisibility({
           isVisible: true,
@@ -76,59 +82,35 @@ const Cart = () => {
                 <>Error en la carga de las tarjetas de regalo</>
               )}
               {giftCardsData &&
-                gifCards.some(
-                  (giftCard) => giftCard.selectedGiftCardId === 1
-                ) && (
+                giftCard200.quantity > 0 &&
+                giftCard200.giftCards.map((giftCard, index) => (
                   <CartItem
-                    gifCard={
-                      gifCards.find(
-                        (giftCard) => giftCard.selectedGiftCardId === 1
-                      ) as GiftCardForm
-                    }
+                    key={giftCard.selectedGiftCardId + index}
                     giftCardsData={giftCardsData}
-                    quantity={
-                      gifCards.filter(
-                        (gifCard) => gifCard.selectedGiftCardId === 1
-                      ).length
-                    }
+                    giftCard={giftCard}
+                    quantity={giftCard200.quantity}
                   />
-                )}
+                ))}
               {giftCardsData &&
-                gifCards.some(
-                  (giftCard) => giftCard.selectedGiftCardId === 2
-                ) && (
+                giftCard300.quantity > 0 &&
+                giftCard300.giftCards.map((giftCard, index) => (
                   <CartItem
-                    gifCard={
-                      gifCards.find(
-                        (giftCard) => giftCard.selectedGiftCardId === 2
-                      ) as GiftCardForm
-                    }
+                    key={giftCard.selectedGiftCardId + index}
                     giftCardsData={giftCardsData}
-                    quantity={
-                      gifCards.filter(
-                        (gifCard) => gifCard.selectedGiftCardId === 2
-                      ).length
-                    }
+                    giftCard={giftCard}
+                    quantity={giftCard300.quantity}
                   />
-                )}
+                ))}
               {giftCardsData &&
-                gifCards.some(
-                  (giftCard) => giftCard.selectedGiftCardId === 3
-                ) && (
+                giftCard500.quantity > 0 &&
+                giftCard500.giftCards.map((giftCard, index) => (
                   <CartItem
-                    gifCard={
-                      gifCards.find(
-                        (giftCard) => giftCard.selectedGiftCardId === 3
-                      ) as GiftCardForm
-                    }
+                    key={giftCard.selectedGiftCardId + index}
                     giftCardsData={giftCardsData}
-                    quantity={
-                      gifCards.filter(
-                        (gifCard) => gifCard.selectedGiftCardId === 3
-                      ).length
-                    }
+                    giftCard={giftCard}
+                    quantity={giftCard500.quantity}
                   />
-                )}
+                ))}
             </ul>
           </section>
 
@@ -148,7 +130,7 @@ const Cart = () => {
               <div className="flex items-center justify-between">
                 <dt className="text-sm text-gray-600">Subtotal</dt>
                 <dd className="text-sm font-medium text-gray-900">
-                  {giftCardsData && getSubTotal(giftCardsData, gifCards)}€
+                  {giftCardsData && getSubTotal(giftCardsData, giftCards)}€
                 </dd>
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
@@ -168,7 +150,7 @@ const Cart = () => {
                   Total del pedido
                 </dt>
                 <dd className="text-base font-medium text-gray-900">
-                  {giftCardsData && getSubTotal(giftCardsData, gifCards)}€
+                  {giftCardsData && getSubTotal(giftCardsData, giftCards)}€
                 </dd>
               </div>
             </dl>
@@ -176,10 +158,10 @@ const Cart = () => {
             <div className="mt-6">
               <button
                 onClick={paymentProcess}
-                disabled={gifCards.length === 0}
+                disabled={giftCards.length === 0}
                 type="submit"
                 className={
-                  gifCards.length === 0
+                  giftCards.length === 0
                     ? "w-full rounded-md border border-transparent bg-gray-600 px-4 py-3 text-base font-medium text-white shadow-sm"
                     : "w-full rounded-md border border-transparent bg-amber-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                 }
