@@ -27,6 +27,7 @@ export default function HomePage() {
             autoPlay
             loop
             muted
+            playsInline
             onError={(e) => console.error("Error playing video:", e)}
           />
         </div>
