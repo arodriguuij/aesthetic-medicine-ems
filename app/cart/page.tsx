@@ -8,9 +8,9 @@ import {
 } from "../../services/giftCards/giftCards";
 import { CardState, resetCard } from "../../lib/card/cardSlide";
 import { setDialogVisibility } from "../../lib/dialog/dialogSlide";
-import { scrollToTop } from "../../utils/utils";
 import { getSubTotal } from "./cart.utils";
 import CartItem from "./cartItem";
+import { scrollToTop } from "@/utils/utils";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -32,8 +32,8 @@ const Cart = () => {
   ];
   const paymentProcess = () => {
     if (giftCardsData?.length) {
-      const giftCardsDB = addGiftCardOrder2(giftCards);
-      dispatch(
+      //const giftCardsDB = addGiftCardOrder2(giftCards);
+      /* dispatch(
         setDialogVisibility({
           isVisible: true,
           title: " Payment successful",
@@ -41,10 +41,10 @@ const Cart = () => {
           goBackText: "Go back to dashboard",
           goBackUrl: "/",
         })
-      );
+      ); */
       scrollToTop();
-      dispatch(resetCard());
-      router.push("/");
+      //dispatch(resetCard());
+      router.push("/payment");
     }
   };
 

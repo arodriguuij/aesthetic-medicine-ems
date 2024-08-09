@@ -19,7 +19,7 @@ const ListOfItems = ({ item }: { item: NavigationItem }) => (
           {item.name}
         </div>
       </Link>
-    ) : item.href ? (
+    ) : (
       <a
         href={item.href}
         target="_blank"
@@ -28,11 +28,6 @@ const ListOfItems = ({ item }: { item: NavigationItem }) => (
       >
         {item.name}
       </a>
-    ) : (
-      <p className="text-sm leading-6 text-gray-600 hover:text-gray-900">
-        {" "}
-        {item.name}
-      </p>
     )}
   </li>
 );

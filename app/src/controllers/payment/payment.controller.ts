@@ -1,8 +1,7 @@
 import { postPaymentService } from "../../services/payment";
 
 export interface IPayment {
-  paymentMethodId: number;
   amount: number;
 }
-export const postPaymentById = async (payment: IPayment) =>
+export const postPayment = async (payment: IPayment) =>
   await postPaymentService(payment);

@@ -2,22 +2,15 @@ import { IPayment } from "@/app/src/controllers/payment";
 
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 
-export const postPaymentService = async ({
-  paymentMethodId,
-  amount,
-}: IPayment) => {
+export const postPaymentService = async ({ amount }: IPayment) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: "usd",
-      payment_method: paymentMethodId,
-      confirmation_method: "manual",
-      confirm: true,
+      automatic_payment_methods: { enabled: true },
     });
 
-    return {
-      clientSecret: paymentIntent.client_secret,
-    };
+    return paymentIntent.client_secret;
   } catch (e: any) {
     return { error: e.message };
   }

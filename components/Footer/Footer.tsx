@@ -12,7 +12,7 @@ const Footer = () => (
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-16 lg:px-8 lg:pt-16 ">
+      <div className="mx-auto max-w-7xl px-6 pb-8 pt-8 sm:pt-8 lg:px-8 lg:pt-8 ">
         <div className="mt-8 border-t border-gray-900/10 pt-8 sm:mt-12 lg:mt-16"></div>
 
         <div className="xl:grid xl:grid-cols-2 xl:gap-8">
@@ -20,14 +20,14 @@ const Footer = () => (
             <span className="sr-only">Your Company</span>
             <AdvancedImage
               cldImg={cld.image("EMS/General/EmsLogo")}
-              className="h-8 w-auto"
+              className="h-8 w-auto mt-0"
               alt=""
             />
-            <p className="text-sm leading-6 text-gray-600">
+            <p className="text-sm leading-6 text-gray-600 mt-2">
               Making the world a better place through constructing elegant
               hierarchies.
             </p>
-            <div className="flex space-x-6">
+            <div className="flex space-x-6 mt-2">
               {navigation.social.map((item) => (
                 <a
                   key={item.name}
@@ -44,7 +44,7 @@ const Footer = () => (
                 </a>
               ))}
             </div>
-            <p className="text-xs leading-5 text-gray-500">
+            <p className="text-xs leading-5 text-gray-500 mt-2">
               &copy; 2024 EMS, Inc. All rights reserved.
             </p>
           </div>
@@ -53,17 +53,17 @@ const Footer = () => (
               <h3 className="text-sm font-semibold leading-6 text-gray-900">
                 Contacto
               </h3>
-              <ul role="list" className="mt-6 space-y-4">
+              <ul role="list" className="mt-2 space-y-4">
                 {navigation.contact.map((item, index) => (
                   <ListOfItems item={item} key={item.name + index} />
                 ))}
               </ul>
             </div>
-            <div className="mt-10 md:mt-0">
+            <div className="mt-6 md:mt-0">
               <h3 className="text-sm font-semibold leading-6 text-gray-900">
                 Donde encontrarnos
               </h3>
-              <ul role="list" className="mt-6 space-y-4">
+              <ul role="list" className="mt-2 space-y-4">
                 {navigation.support.map((item, index) => (
                   <ListOfItems item={item} key={item.name + index} />
                 ))}
@@ -73,7 +73,7 @@ const Footer = () => (
               <h3 className="text-sm font-semibold leading-6 text-gray-900">
                 Legal
               </h3>
-              <ul role="list" className="mt-6 space-y-4">
+              <ul role="list" className="mt-2 space-y-4">
                 {navigation.legal.map((item, index) => (
                   <ListOfItems item={item} key={item.name + index} />
                 ))}
