@@ -7,6 +7,13 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import { usePaymentMutation } from "@/services/payments/payments";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { scrollToTop } from "@/utils/utils";
+import { setDialogVisibility } from "@/lib/dialog/dialogSlide";
+import { useAddGiftCardOrderMutation } from "@/services/giftCards/giftCards";
+import { CardState } from "@/lib/card/cardSlide";
+import { GiftCardFormGet } from "@/app/types/giftCards.types";
 
 const CheckoutPage = ({ amount }: { amount: number }) => {
   const stripe = useStripe();
@@ -15,7 +22,14 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { giftCard200, giftCard300, giftCard500 } = useSelector(
+    (state: { card: CardState }) => state.card
+  );
+
   const [paymentMethod] = usePaymentMutation();
+  const [addGiftCardOrder] = useAddGiftCardOrderMutation();
 
   useEffect(() => {
     const fetchDataAsyncFnc = async () => await paymentMethod({ amount });
@@ -51,6 +65,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       confirmParams: {
         return_url: `http://www.localhost:3000/paymentSuccess?amount=${amount}`,
       },
+      redirect: "if_required", // Prevent automatic redirect
     });
 
     if (error) {
@@ -60,6 +75,31 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
     } else {
       // The payment UI automatically closes with a success animation.
       // Your customer is redirected to your `return_url`.
+
+      const giftCards = [
+        ...giftCard200.giftCards,
+        ...giftCard300.giftCards,
+        ...giftCard500.giftCards,
+      ];
+      const giftCardsDB = await addGiftCardOrder(giftCards);
+      /* dispatch(
+        setDialogVisibility({
+          isVisible: true,
+          title: " Payment successful",
+          content: (giftCardsDB.data as GiftCardFormGet[])
+            .map(({ id }) => id)
+            .join(","),
+          goBackText: "Go back to dashboard",
+          goBackUrl: "/",
+        })
+      ); */
+      scrollToTop();
+      //dispatch(resetCard());
+      router.push(
+        `/paymentSuccess?amount=${amount}&ids=${
+          giftCardsDB.data as GiftCardFormGet[]
+        }`
+      );
     }
 
     setLoading(false);

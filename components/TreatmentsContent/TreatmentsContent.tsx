@@ -6,6 +6,7 @@ import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "@/utils/cloudinary";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
+import { usePathname } from "next/navigation";
 
 interface ITreatmentsContent {
   error: FetchBaseQueryError | SerializedError | undefined;
@@ -19,6 +20,8 @@ const TreatmentsContent = ({
   subTitle,
   data,
 }: ITreatmentsContent) => {
+  const location = usePathname();
+
   return (
     <div className="relative isolate -z-10 overflow-hidden bg-gradient-to-b from-yellow-100/20 pt-4">
       <div

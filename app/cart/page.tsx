@@ -1,19 +1,14 @@
 "use client";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import {
-  useAddGiftCardOrderMutation,
-  useGetGiftCardsQuery,
-} from "../../services/giftCards/giftCards";
-import { CardState, resetCard } from "../../lib/card/cardSlide";
-import { setDialogVisibility } from "../../lib/dialog/dialogSlide";
+import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
+import { CardState } from "../../lib/card/cardSlide";
 import { getSubTotal } from "./cart.utils";
 import CartItem from "./cartItem";
 import { scrollToTop } from "@/utils/utils";
 
 const Cart = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
 
   const { giftCard200, giftCard300, giftCard500 } = useSelector(
@@ -23,29 +18,14 @@ const Cart = () => {
   const { data: giftCardsData, error: giftCardsError } =
     useGetGiftCardsQuery("");
 
-  const [addGiftCardOrder2] = useAddGiftCardOrderMutation();
-
   const giftCards = [
     ...giftCard200.giftCards,
     ...giftCard300.giftCards,
     ...giftCard500.giftCards,
   ];
   const paymentProcess = () => {
-    if (giftCardsData?.length) {
-      //const giftCardsDB = addGiftCardOrder2(giftCards);
-      /* dispatch(
-        setDialogVisibility({
-          isVisible: true,
-          title: " Payment successful",
-          content: giftCardsDB.toString(),
-          goBackText: "Go back to dashboard",
-          goBackUrl: "/",
-        })
-      ); */
-      scrollToTop();
-      //dispatch(resetCard());
-      router.push("/payment");
-    }
+    scrollToTop();
+    router.push("/payment");
   };
 
   return (
