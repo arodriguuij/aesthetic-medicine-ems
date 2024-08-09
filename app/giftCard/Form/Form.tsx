@@ -50,12 +50,12 @@ const Form = () => {
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
     dispatch(addGiftCard(dataForm as GiftCardForm));
-    dispatch(
+    /* dispatch(
       setSnackbarVisibility({
         visibility: true,
         message: "Tarjeta de relago añadida :)",
       })
-    );
+    ); */
     setDataForm(initState);
     scrollToTop();
     router.push("/cart");

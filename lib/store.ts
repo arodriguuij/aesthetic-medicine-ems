@@ -1,18 +1,20 @@
-import cardReducer from "./card/cardSlide";
-import dialogReducer from "./dialog/dialogSlide";
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import { paymentApi } from "@/services/payments/payments";
+import { combineReducers } from "@reduxjs/toolkit";
+
+import cardReducer from "./card/cardSlide";
+import dialogReducer from "./dialog/dialogSlide";
 import privacyReducer from "./privacy/privacySlide";
 import bannerReducer from "./banner/bannerSlide";
 import snackbarReducer from "./snackbar/snackbarSlide";
+import orderHistoryReducer from "./orderHistory/orderHistorySlide";
 import { treatmentsApi } from "../services/treatments/treatments";
 import { areasApi } from "../services/areas/areas";
 import { productsApi } from "../services/products/products";
 import { branchesApi } from "../services/branches/branches";
 import { giftCardsApi } from "../services/giftCards/giftCards";
 import { mailApi } from "../services/mails/mails";
-import { combineReducers } from "@reduxjs/toolkit";
-import { paymentApi } from "@/services/payments/payments";
 
 export const store = configureStore({
   reducer: combineReducers({
@@ -21,6 +23,7 @@ export const store = configureStore({
     snackbar: snackbarReducer,
     card: cardReducer,
     dialog: dialogReducer,
+    orderHistory: orderHistoryReducer,
     [treatmentsApi.reducerPath]: treatmentsApi.reducer,
     [areasApi.reducerPath]: areasApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,

@@ -20,7 +20,7 @@ const TreatmentsContent = ({
   subTitle,
   data,
 }: ITreatmentsContent) => {
-  const location = usePathname();
+  const pathName = usePathname();
 
   return (
     <div className="relative isolate -z-10 overflow-hidden bg-gradient-to-b from-yellow-100/20 pt-4">
@@ -106,7 +106,7 @@ const TreatmentsContent = ({
                         >
                           <a
                             onClick={scrollToTop}
-                            href={`${location}/${treatment.id}`}
+                            href={`${pathName}/${treatment.id}`}
                           >
                             <span className="absolute inset-0" />
                             {treatment.title}

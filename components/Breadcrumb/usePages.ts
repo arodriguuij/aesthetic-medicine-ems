@@ -3,9 +3,9 @@
 import { usePathname } from "next/navigation";
 
 const usePages = () => {
-  const location = usePathname();
+  const pathName = usePathname();
 
-  const splitString = location.split("/").filter((part) => part !== "");
+  const splitString = pathName.split("/").filter((part) => part !== "");
 
   const pages = splitString.map((part, index) => {
     const isLast = index === splitString.length - 1;

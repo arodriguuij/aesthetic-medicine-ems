@@ -6,9 +6,8 @@ import { scrollToTop } from "../../utils/utils";
 import { usePathname } from "next/navigation";
 
 const Breadcrumb = () => {
-  const pathname = usePathname();
-  const location = pathname;
-  const splitString = location.split("/").filter((part) => part !== "");
+  const pathName = usePathname();
+  const splitString = pathName.split("/").filter((part) => part !== "");
 
   const pages = splitString.map((part, index) => {
     const isLast = index === splitString.length - 1;

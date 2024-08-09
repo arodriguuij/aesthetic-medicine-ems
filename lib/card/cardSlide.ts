@@ -25,6 +25,9 @@ export const cardSlice = createSlice({
   name: "card",
   initialState,
   reducers: {
+    resetCard: (state) => {
+      return { ...initialState }; // Create a new copy of initialState
+    },
     addGiftCard: (state, action: PayloadAction<GiftCardForm>) => {
       switch (action.payload.selectedGiftCardId) {
         case 1:
@@ -44,21 +47,21 @@ export const cardSlice = createSlice({
     removeCard: (state, action: PayloadAction<GiftCardForm>) => {
       switch (action.payload.selectedGiftCardId) {
         case 1:
-          state.giftCard200.giftCards=state.giftCard200.giftCards.filter(
+          state.giftCard200.giftCards = state.giftCard200.giftCards.filter(
             (giftCard) =>
               JSON.stringify(giftCard) !== JSON.stringify(action.payload)
           );
           state.giftCard200.quantity = state.giftCard200.quantity - 1;
           break;
         case 2:
-          state.giftCard300.giftCards=state.giftCard300.giftCards.filter(
+          state.giftCard300.giftCards = state.giftCard300.giftCards.filter(
             (giftCard) =>
               JSON.stringify(giftCard) !== JSON.stringify(action.payload)
           );
           state.giftCard300.quantity = state.giftCard300.quantity - 1;
           break;
         case 3:
-          state.giftCard500.giftCards=state.giftCard500.giftCards.filter(
+          state.giftCard500.giftCards = state.giftCard500.giftCards.filter(
             (giftCard) =>
               JSON.stringify(giftCard) !== JSON.stringify(action.payload)
           );
@@ -66,15 +69,8 @@ export const cardSlice = createSlice({
           break;
       }
     },
-    resetCard: (state) => {
-      state = initialState;
-    },
   },
 });
-
-export const selectCards200 = (state: CardState) => state.giftCard200;
-export const selectCards300 = (state: CardState) => state.giftCard300;
-export const selectCards500 = (state: CardState) => state.giftCard500;
 
 // Action creators are generated for each case reducer function
 export const { addGiftCard, removeCard, resetCard } = cardSlice.actions;

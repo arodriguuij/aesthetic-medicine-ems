@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { convertToSubCurrency, scrollToTop } from "@/utils/utils";
 import { useAddGiftCardOrderMutation } from "@/services/giftCards/giftCards";
 import { CardState, resetCard } from "@/lib/card/cardSlide";
+import { addGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import { GiftCardFormGet } from "@/app/types/giftCards.types";
 
 const CheckoutPage = ({ amount }: { amount: number }) => {
@@ -69,37 +70,22 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
     });
 
     if (error) {
-      // This point is only reached if there's an immediate error when
-      // confirming the payment. Show the error to your customer (for example, payment details incomplete)
       setErrorMessage(error.message);
+      //TODO: send to an error page
     } else {
-      // The payment UI automatically closes with a success animation.
-      // Your customer is redirected to your `return_url`.
-
       const giftCards = [
         ...giftCard200.giftCards,
         ...giftCard300.giftCards,
         ...giftCard500.giftCards,
       ];
-      const giftCardsDB = await addGiftCardOrder(giftCards);
-      /* dispatch(
-        setDialogVisibility({
-          isVisible: true,
-          title: " Payment successful",
-          content: (giftCardsDB.data as GiftCardFormGet[])
-            .map(({ id }) => id)
-            .join(","),
-          goBackText: "Go back to dashboard",
-          goBackUrl: "/",
-        })
-      ); */
-      scrollToTop();
-      const ids = (giftCardsDB.data as GiftCardFormGet[])
-        .map(({ id }) => id)
-        .join(",");
-
-      router.push(`/paymentSuccess?amount=${amount}&ids=${ids}`);
+      const orderHistory = await addGiftCardOrder(giftCards);
+      //TODO: check for error in addGiftCardOrder
       dispatch(resetCard());
+      dispatch(
+        addGiftCardsOrderHistory(orderHistory.data as GiftCardFormGet[])
+      );
+      scrollToTop();
+      router.push("/paymentSuccess");
     }
 
     setLoading(false);
