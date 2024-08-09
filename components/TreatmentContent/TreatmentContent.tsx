@@ -140,46 +140,51 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
             </dl>
           </div>
 
-          <div className="mx-auto max-w-7xl pt-16 sm:pb-8 sm:px-6 sm:pb-18 lg:px-8">
-            <div className="sm:py-8 xl:mx-auto xl:max-w-7xl">
-              <div className=" sm:flex sm:items-center sm:justify-between  xl:px-0">
-                <div>
-                  <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-                    Resultados en clientes
-                  </h2>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Observa las transformaciones reales de nuestros clientes.
-                  </p>
+          {data[0].images.clients.length > 0 && (
+            <div className="mx-auto max-w-7xl pt-16 sm:pb-8 sm:px-6 sm:pb-18 lg:px-8">
+              <div className="sm:py-8 xl:mx-auto xl:max-w-7xl">
+                <div className=" sm:flex sm:items-center sm:justify-between  xl:px-0">
+                  <div>
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+                      Resultados en clientes
+                    </h2>
+                    <p className="mt-2 text-sm text-gray-500">
+                      Observa las transformaciones reales de nuestros clientes.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="mt-4 flow-root">
-                <div className="-my-2">
-                  <div className="relative box-content h-80 overflow-x-auto py-2 xl:overflow-visible">
-                    <div className="absolute flex space-x-8">
-                      {data[0].images.clients.map((image, index) => (
-                        <div
-                          key={image.slice(0, 10) + index}
-                          className="relative flex h-72 w-72 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75"
-                        >
-                          <span aria-hidden="true" className="absolute inset-0">
-                            <AdvancedImage
-                              cldImg={cld.image(image)}
-                              alt={`image-${index}`}
-                              className="object-cover object-center"
+                <div className="mt-4 flow-root">
+                  <div className="-my-2">
+                    <div className="relative box-content h-80 overflow-x-auto py-2 xl:overflow-visible">
+                      <div className="absolute flex space-x-8">
+                        {data[0].images.clients.map((image, index) => (
+                          <div
+                            key={image.slice(0, 10) + index}
+                            className="relative flex h-72 w-72 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-0"
+                            >
+                              <AdvancedImage
+                                cldImg={cld.image(image)}
+                                alt={`image-${index}`}
+                                className="object-cover object-center"
+                              />
+                            </span>
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
                             />
-                          </span>
-                          <span
-                            aria-hidden="true"
-                            className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
-                          />
-                        </div>
-                      ))}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
           <div className="mx-auto max-w-7xl pt-16 pb-12 sm:px-6 sm:pb-12">
             <div className="mx-auto max-w-7xl divide-y divide-gray-900/10">
@@ -237,7 +242,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
             </div>
           </div>
 
-          {data[0].relatedProducts && (
+          {data[0].relatedProducts && data[0].relatedProducts?.length > 0 && (
             <div className="mx-auto mt-8 max-w-7xl sm:mt-16 pb-8 lg:px-6">
               <div>
                 <h2 className="text-xl font-bold tracking-tight text-gray-900">
