@@ -8,9 +8,18 @@ import { useGetProductsQuery } from "../services/products/products";
 import { AdvancedImage, AdvancedVideo } from "@cloudinary/react";
 import { cld } from "../utils/cloudinary";
 import { scrollToTop } from "@/utils/utils";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { resetGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 
 export default function HomePage() {
+  const dispatch = useDispatch();
+
   const { data: productsData, error: productsError } = useGetProductsQuery("");
+
+  useEffect(() => {
+    dispatch(resetGiftCardsOrderHistory());
+  }, [dispatch]);
 
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();

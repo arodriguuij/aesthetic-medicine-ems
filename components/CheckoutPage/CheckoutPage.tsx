@@ -13,9 +13,15 @@ import { convertToSubCurrency, scrollToTop } from "@/utils/utils";
 import { useAddGiftCardOrderMutation } from "@/services/giftCards/giftCards";
 import { CardState, resetCard } from "@/lib/card/cardSlide";
 import { addGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
-import { GiftCardFormGet } from "@/app/types/giftCards.types";
+import { GiftCardForm, GiftCardFormGet } from "@/app/types/giftCards.types";
 
-const CheckoutPage = ({ amount }: { amount: number }) => {
+const CheckoutPage = ({
+  amount,
+  giftCards,
+}: {
+  amount: number;
+  giftCards: GiftCardForm[];
+}) => {
   const stripe = useStripe();
   const dispatch = useDispatch();
   const elements = useElements();
@@ -24,25 +30,25 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
-  const { giftCard200, giftCard300, giftCard500 } = useSelector(
-    (state: { card: CardState }) => state.card
-  );
 
   const [paymentMethod] = usePaymentMutation();
   const [addGiftCardOrder] = useAddGiftCardOrderMutation();
 
   useEffect(() => {
-    const fetchDataAsyncFnc = async () =>
-      await paymentMethod({ amount: convertToSubCurrency(amount) });
+    console.log({ amount });
+    if (amount > 0) {
+      const fetchDataAsyncFnc = async () =>
+        await paymentMethod({ amount: convertToSubCurrency(amount) });
 
-    fetchDataAsyncFnc()
-      .then((res) => {
-        setClientSecret(res.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, [amount, paymentMethod]);
+      fetchDataAsyncFnc()
+        .then((res) => {
+          setClientSecret(res.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -73,19 +79,14 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       setErrorMessage(error.message);
       //TODO: send to an error page
     } else {
-      const giftCards = [
-        ...giftCard200.giftCards,
-        ...giftCard300.giftCards,
-        ...giftCard500.giftCards,
-      ];
       const orderHistory = await addGiftCardOrder(giftCards);
       //TODO: check for error in addGiftCardOrder
+      router.push("/paymentSuccess");
       dispatch(resetCard());
       dispatch(
         addGiftCardsOrderHistory(orderHistory.data as GiftCardFormGet[])
       );
       scrollToTop();
-      router.push("/paymentSuccess");
     }
 
     setLoading(false);
