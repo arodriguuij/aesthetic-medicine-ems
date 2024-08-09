@@ -162,7 +162,7 @@ export const collections = [
   {
     name: "Tratamientos Corporales",
     href: "/treatments/corporal",
-    imageSrc: "EMS/HomePage/TratamientosCorporales",
+    imageSrc: "EMS/HomePage/TratamientosCorporales2",
     imageAlt: "Tratamientos Corporales",
     description:
       "Medicina dirigida a la mejoría de la apariencia física, tanto con tratamientos estéticos como funcionales. Ayudando a conseguir un mejor estado físico y autoestima. Es una medicina que no necesita de quirófano",
