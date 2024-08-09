@@ -19,7 +19,10 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero section */}
-      <div className="relative w-full overflow-hidden">
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ maxHeight: "75vh" }}
+      >
         <div className="react-player-wrapper">
           <AdvancedVideo
             cldVid={cld.video("EMS/HomePage/video")}
