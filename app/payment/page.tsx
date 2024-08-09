@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { GiftCard } from "../types/giftCards.types";
 import { useSelector } from "react-redux";
 import { CardState } from "@/lib/card/cardSlide";
+import { convertToSubCurrency } from "@/utils/utils";
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
   throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined");
@@ -24,13 +25,13 @@ const Payment = () => {
     (state: { card: CardState }) => state.card
   );
 
-  if (!giftCardsData || error) router.push("/");
-
   const giftCards = [
     ...giftCard200.giftCards,
     ...giftCard300.giftCards,
     ...giftCard500.giftCards,
   ];
+
+  if (!giftCardsData || error || !giftCards.length) router.push("/");
 
   const amount = getSubTotal(giftCardsData as GiftCard[], giftCards);
 
@@ -39,7 +40,7 @@ const Payment = () => {
       stripe={stripePromise}
       options={{
         mode: "payment",
-        amount,
+        amount: convertToSubCurrency(amount),
         currency: "eur",
         locale: "es",
       }}

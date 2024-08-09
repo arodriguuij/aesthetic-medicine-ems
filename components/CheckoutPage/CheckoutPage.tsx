@@ -9,7 +9,7 @@ import {
 import { usePaymentMutation } from "@/services/payments/payments";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { scrollToTop } from "@/utils/utils";
+import { convertToSubCurrency, scrollToTop } from "@/utils/utils";
 import { useAddGiftCardOrderMutation } from "@/services/giftCards/giftCards";
 import { CardState, resetCard } from "@/lib/card/cardSlide";
 import { GiftCardFormGet } from "@/app/types/giftCards.types";
@@ -31,7 +31,8 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
   const [addGiftCardOrder] = useAddGiftCardOrderMutation();
 
   useEffect(() => {
-    const fetchDataAsyncFnc = async () => await paymentMethod({ amount });
+    const fetchDataAsyncFnc = async () =>
+      await paymentMethod({ amount: convertToSubCurrency(amount) });
 
     fetchDataAsyncFnc()
       .then((res) => {
