@@ -11,7 +11,27 @@ import { GiftCard } from "../types/giftCards.types";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/Loader";
 
-const step = 4;
+const incentives = [
+  {
+    name: "Envío por Email",
+    imageSrc: "https://cdn-icons-png.flaticon.com/512/1997/1997305.png",
+    description:
+      "Gracias al envío por email, has ayudado a reducir el impacto contra el medio ambiente producido por la mensajería.",
+  },
+  {
+    name: "2 años de garantía",
+    imageSrc: "https://cdn-icons-png.flaticon.com/512/4357/4357393.png",
+    description:
+      "La tarjeta de regalo que ha comprado tiene una validez de 2 años. Puede usarse para cualquier tratamiento.",
+  },
+  {
+    name: "Contacto",
+    imageSrc:
+      "https://images.vexels.com/media/users/3/154431/isolated/preview/1b0612bca0cd99911b17c88392db70ca-icono-de-contacto-de-soporte-al-cliente.png",
+    description: "Si tiene cualquier duda. Póngase en contacto con nosotros y le resolveremos cualquier duda. ",
+  },
+];
+const step = 2;
 
 const PaymentSuccess = () => {
   const router = useRouter();
@@ -60,18 +80,19 @@ const PaymentSuccess = () => {
                 Confirmación de pago
               </h2>
               <p className="mt-2 text-base text-gray-500">
-                We appreciate your order, we’re currently processing it. So hang
-                tight and we’ll send you confirmation very soon!
+                Agradecemos tu pedido, actualmente lo estamos procesando. ¡Así
+                que espera un momento y te enviaremos un mail con la tarjeta de
+                regalo muy pronto!
               </p>
             </div>
             <p className="text-sm text-gray-600 mt-4">
-              Order placed:{" "}
+              Pedido realizado:{" "}
               <time dateTime="2021-03-22" className="font-medium text-gray-900">
-                March 22, 2021
+                {new Date().toLocaleDateString()}
               </time>
             </p>
             <div className="flex">
-              <p className="text-sm text-gray-600 ">Order number(s):</p>
+              <p className="text-sm text-gray-600 ">Número(s) del pedido:</p>
               <p className="ml-1 text-sm font-medium text-indigo-600 hover:text-indigo-500">
                 {giftCards.map(({ id }) => `#${id}`).join(", ")}
               </p>
@@ -79,7 +100,7 @@ const PaymentSuccess = () => {
           </div>
 
           {/* Products */}
-          <div className="mx-auto max-w-2xl pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
+          <div className="mx-auto max-w-2xl pb-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <section aria-labelledby="products-heading" className="mt-6">
               <h2 id="products-heading" className="sr-only">
                 Products purchased
@@ -89,14 +110,14 @@ const PaymentSuccess = () => {
                 {giftCard200.map((product) => (
                   <div
                     key={product.id}
-                    className="border-b border-t border-gray-200 bg-white shadow-sm sm:rounded-lg sm:border"
+                    className="border rounded-lg border-gray-200 bg-white shadow-sm sm:rounded-lg sm:border"
                   >
                     <div className="px-4 py-6 sm:px-6 lg:grid lg:grid-cols-12 lg:gap-x-8 lg:p-8">
                       <div className="sm:flex lg:col-span-7">
-                        <div className="mt-6 sm:ml-6 sm:mt-0">
+                        <div className="sm:ml-6 sm:mt-0">
                           <div className="flex items-center">
                             <h3 className="text-lg text-indigo-500">
-                              Tarjeta de reagalo:{" "}
+                              Tarjeta de regalo:{" "}
                               {getQuantityByGiftCardId(
                                 giftCardsData as GiftCard[],
                                 product.selectedGiftCardId
@@ -105,7 +126,7 @@ const PaymentSuccess = () => {
                             </h3>
                           </div>
                           <div className="flex items-center	">
-                            <p className="text-gray-900">Nombre: </p>
+                            <p className="text-gray-900">Comprador: </p>
                             <p className=" text-sm text-gray-500 ml-1">
                               {product.nameBuyer}
                             </p>
@@ -117,7 +138,7 @@ const PaymentSuccess = () => {
                             </p>
                           </div>
                           <div className="flex items-center	">
-                            <p className="text-gray-900">Email: </p>
+                            <p className="text-gray-900">Email destino: </p>
                             <p className=" text-sm text-gray-500 ml-1">
                               {product.email}
                             </p>
@@ -139,21 +160,13 @@ const PaymentSuccess = () => {
                     <div className="overflow-hidden rounded-full bg-gray-200">
                       <div
                         style={{
-                          width: `calc((${step} * 2 + 1) / 8 * 100%)`,
+                          width: `50%`,
                         }}
                         className="h-2 rounded-full bg-indigo-600"
                       />
                     </div>
-                    <div className="mt-6 grid-cols-4 text-sm font-medium text-gray-600 sm:grid">
+                    <div className="mt-6 grid-cols-3 text-sm font-medium text-gray-600 sm:grid">
                       <div className="text-indigo-600">Orden procesada</div>
-                      <div
-                        className={classNames(
-                          step > 0 ? "text-indigo-600" : "",
-                          "text-center"
-                        )}
-                      >
-                        Procesando pago
-                      </div>
                       <div
                         className={classNames(
                           step > 1 ? "text-indigo-600" : "",
@@ -175,6 +188,44 @@ const PaymentSuccess = () => {
                 </div>
               </div>
             </section>
+          </div>
+
+          <div>
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="rounded-2xl px-6 py-8 sm:p-16">
+                <div className="mx-auto max-w-xl lg:max-w-none">
+                  <div className="text-center">
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900"></h2>
+                  </div>
+                  <div className="mx-auto mt-12 grid max-w-sm grid-cols-1 gap-x-8 gap-y-10 sm:max-w-none lg:grid-cols-3">
+                    {incentives.map((incentive) => (
+                      <div
+                        key={incentive.name}
+                        className="text-center sm:flex sm:text-left lg:block lg:text-center"
+                      >
+                        <div className="sm:flex-shrink-0">
+                          <div className="flow-root">
+                            <img
+                              alt=""
+                              src={incentive.imageSrc}
+                              className="mx-auto h-16 w-16"
+                            />
+                          </div>
+                        </div>
+                        <div className="mt-3 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
+                          <h3 className="text-sm font-medium text-gray-900">
+                            {incentive.name}
+                          </h3>
+                          <p className="mt-2 text-sm text-gray-500">
+                            {incentive.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </>
       ) : (

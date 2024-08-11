@@ -75,10 +75,10 @@ const Cart = () => {
         <div className="mx-auto grid max-w-lg grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           {/* Order Summary */}
           <div className="mx-auto w-full max-w-lg">
-            <h2 className="sr-only">Order summary</h2>
+            <h2 className="sr-only">Resumen del pedido</h2>
             {/* Products */}
             <div className="flow-root">
-              <ul role="list" className="-my-6 divide-y divide-gray-200">
+              <ul role="list" className="-my-6 divide-y divide-gray-200 overflow-auto">
                 {giftCardsError && (
                   <>Error en la carga de las tarjetas de regalo</>
                 )}
