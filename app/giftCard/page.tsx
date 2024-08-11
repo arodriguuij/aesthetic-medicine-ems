@@ -37,10 +37,8 @@ const GiftCard = () => {
 
             <div className="mt-4 space-y-6">
               <p className="text-base text-gray-500">
-                Don not compromise on snack-carrying capacity with this
-                lightweight and spacious bag. The drawstring top keeps all your
-                favorite chips, crisps, fries, biscuits, crackers, and cookies
-                secure.
+                Se enviará un correo electrónico con la tarjeta de regalo del importe elegido.
+                Puede canjearse para cualquier tratamiento de la página web. Y tiene una duración de 2 años de validez.
               </p>
             </div>
 
@@ -50,7 +48,7 @@ const GiftCard = () => {
                 className="h-5 w-5 flex-shrink-0 text-green-500"
               />
               <p className="ml-2 text-sm text-gray-500">
-                En stock y listo para enviar
+                Disponible y listo para enviar
               </p>
             </div>
           </section>

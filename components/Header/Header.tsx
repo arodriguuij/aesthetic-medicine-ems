@@ -275,7 +275,7 @@ const Header = () => {
               giftCard500.quantity ===
             0 ? (
               <p className="mt-6 text-center">
-                <p className="text-center">El carrito está vacío :(</p>
+                <p className="text-center">El carrito está vacío</p>
                 <button
                   onClick={() => {
                     setPopoverGiftCartsVisible(false);
