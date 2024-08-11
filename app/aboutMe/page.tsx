@@ -5,15 +5,8 @@ import { classNames, scrollToTop } from "../../utils/utils";
 import { people, tiers, timeline } from "./aboutMe.constants";
 import { cld } from "../../utils/cloudinary";
 import { AdvancedImage } from "@cloudinary/react";
-import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef } from "react";
-import { Router } from "next/router";
 
 const AboutMe = () => {
-  useEffect(() => {
-    window.history.scrollRestoration = "manual";
-  }, []);
-
   return (
     <div>
       {/* Hero section */}
