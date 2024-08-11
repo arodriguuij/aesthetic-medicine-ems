@@ -8,10 +8,10 @@ import {
 } from "@stripe/react-stripe-js";
 import { usePaymentMutation } from "@/services/payments/payments";
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { convertToSubCurrency, scrollToTop } from "@/utils/utils";
 import { useAddGiftCardOrderMutation } from "@/services/giftCards/giftCards";
-import { CardState, resetCard } from "@/lib/card/cardSlide";
+import { resetCard } from "@/lib/card/cardSlide";
 import { addGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import { GiftCardForm, GiftCardFormGet } from "@/app/types/giftCards.types";
 
@@ -35,7 +35,6 @@ const CheckoutPage = ({
   const [addGiftCardOrder] = useAddGiftCardOrderMutation();
 
   useEffect(() => {
-    console.log({ amount });
     if (amount > 0) {
       const fetchDataAsyncFnc = async () =>
         await paymentMethod({ amount: convertToSubCurrency(amount) });
@@ -48,7 +47,7 @@ const CheckoutPage = ({
           console.error("Error fetching data:", error);
         });
     }
-  }, []);
+  }, [amount, paymentMethod]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -82,7 +81,6 @@ const CheckoutPage = ({
       const orderHistory = await addGiftCardOrder(giftCards);
       //TODO: check for error in addGiftCardOrder
       router.push("/paymentSuccess");
-      dispatch(resetCard());
       dispatch(
         addGiftCardsOrderHistory(orderHistory.data as GiftCardFormGet[])
       );
@@ -115,8 +113,9 @@ const CheckoutPage = ({
 
       <button
         disabled={!stripe || loading}
-        className="text-white w-full p-5 bg-black mt-2 rounded-md font-bold disabled:opacity-50 disabled:animate-pulse"
+        className="flex w-full mt-4 items-center justify-center rounded-md border border-transparent bg-black py-2 text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
       >
+        <span className="sr-only">Pay</span>
         {!loading ? `Pagar ${amount}€` : "Procesando..."}
       </button>
     </form>
