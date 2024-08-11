@@ -17,6 +17,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html{
+  overflow:auto !important
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

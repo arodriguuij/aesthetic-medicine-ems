@@ -173,7 +173,7 @@ export default function HomePage() {
                     onClick={scrollToTop}
                     className="hidden text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500 sm:block"
                   >
-                    Ver todas las categorías
+                    Ver todos los productos
                     <span aria-hidden="true"> &rarr;</span>
                   </div>
                 </Link>

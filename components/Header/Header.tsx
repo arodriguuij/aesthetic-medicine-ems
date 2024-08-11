@@ -86,11 +86,11 @@ const Header = () => {
   );
 
   const scrollToTopFnc = () => {
+    scrollToTop();
     setPopoverFacialVisible(false);
     setPopoverCorporalVisible(false);
     setPopoverAreasVisible(false);
     setPopoverGiftCartsVisible(false);
-    scrollToTop();
   };
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
@@ -323,7 +323,7 @@ const Header = () => {
   return (
     <header className="z-20 bg-white sticky top-0 ">
       {/* Mobile menu */}
-      <Dialog
+      <Dialog	
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
         className="relative z-50 lg:hidden"
@@ -394,8 +394,8 @@ const Header = () => {
                                         >
                                           <div
                                             onClick={() => {
-                                              setMobileMenuOpen(false);
                                               scrollToTopFnc();
+                                              setMobileMenuOpen(false);
                                             }}
                                             className="-mx-3 block rounded-lg px-3 py-2 text-sm font-semibold leading-7 text-gray-200 hover:bg-gray-800"
                                           >
