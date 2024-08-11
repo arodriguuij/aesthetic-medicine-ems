@@ -1,6 +1,6 @@
 "use client";
 
-import { branches, collections, testimonials } from "./home.consts";
+import { collections, testimonials } from "./home.consts";
 import Link from "next/link";
 import useIsMobile from "../hooks/useIsMobile";
 import useIsTablet from "../hooks/useIsTablet";
@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import Loader from "@/components/Loader";
+import { useGetBranchesHomeQuery } from "@/services/branchesHome/branchesHome";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -19,8 +20,13 @@ export default function HomePage() {
   const {
     data: productsData,
     error: productsError,
-    status,
+    status: productsStatus,
   } = useGetProductsQuery("");
+  const {
+    data: branchesHomeData,
+    error: branchesHomeError,
+    status: branchesHomeStatus,
+  } = useGetBranchesHomeQuery("");
 
   useEffect(() => {
     dispatch(resetGiftCardsOrderHistory());
@@ -30,7 +36,8 @@ export default function HomePage() {
   const isTablet = useIsTablet();
   const testimonialsNew = isMobile ? testimonials.slice(0, 4) : testimonials;
 
-  if (status === "pending") return <Loader />;
+  if (productsStatus === "pending" || branchesHomeStatus === "pending")
+    return <Loader />;
 
   return (
     <div>
@@ -238,40 +245,41 @@ export default function HomePage() {
         )}
       </div>
       {/* Branches */}
-      <div
-        aria-labelledby="collection-heading"
-        className="mx-auto max-w-3xl px-4 pt-14 sm:px-6 sm:pt-8 lg:max-w-7xl lg:px-8"
-      >
-        <div className="pb-4 sm:py-8 xl:mx-auto xl:max-w-7xl">
-          <div className=" sm:flex sm:items-center sm:justify-between  xl:px-0">
-            <div>
-              <h2 className="text-xl font-bold tracking-tight text-gray-900">
-                Marcas con las que trabajamos
-              </h2>
-              <p className="mt-2 text-sm text-gray-500">
-                En nuestra clínica de medicina estética, colaboramos con marcas
-                líderes en belleza y cuidado de la piel. A continuación, puedes
-                ver las imágenes de las marcas que nos permiten ofrecer
-                tratamientos de alta calidad, innovadores y seguros para tu
-                bienestar y satisfacción.
-              </p>
+      {!branchesHomeError && branchesHomeData && (
+        <div
+          aria-labelledby="collection-heading"
+          className="mx-auto max-w-3xl px-4 pt-14 sm:px-6 sm:pt-8 lg:max-w-7xl lg:px-8"
+        >
+          <div className="pb-4 sm:py-8 xl:mx-auto xl:max-w-7xl">
+            <div className=" sm:flex sm:items-center sm:justify-between  xl:px-0">
+              <div>
+                <h2 className="text-xl font-bold tracking-tight text-gray-900">
+                  Marcas con las que trabajamos
+                </h2>
+                <p className="mt-2 text-sm text-gray-500">
+                  En nuestra clínica de medicina estética, colaboramos con
+                  marcas líderes en belleza y cuidado de la piel. A
+                  continuación, puedes ver las imágenes de las marcas que nos
+                  permiten ofrecer tratamientos de alta calidad, innovadores y
+                  seguros para tu bienestar y satisfacción.
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-4 gap-y-6 sm:max-w-3xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+              {branchesHomeData.map(({ id, image, name }, index) => (
+                <AdvancedImage
+                  cldImg={cld.image(image)}
+                  key={id + index}
+                  className="col-span-2 max-h-8 w-full object-contain lg:col-span-1"
+                  alt={name}
+                  width={158}
+                  height={48}
+                />
+              ))}
             </div>
           </div>
-          <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-4 gap-y-6 sm:max-w-3xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-            {branches.map(({ id, image, name }, index) => (
-              <AdvancedImage
-                cldImg={cld.image(image)}
-                key={id + index}
-                //style={{ filter: "grayscale(1)" }}
-                className="col-span-2 max-h-8 w-full object-contain lg:col-span-1"
-                alt={name}
-                width={158}
-                height={48}
-              />
-            ))}
-          </div>
         </div>
-      </div>
+      )}
       {/* Sobre Mi */}
       {!isMobile && (
         <div
