@@ -52,14 +52,25 @@ import useIsTablet from "@/hooks/useIsTablet";
 import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "@/utils/cloudinary";
 import { CardState } from "@/lib/card/cardSlide";
+import Loader from "../Loader";
 
 const Header = () => {
   const router = useRouter();
-  const { data: facialTreatmentsData, error: facialTreatmentsError } =
-    useGetTreatmentsFacialNamesQuery("");
-  const { data: corporalTreatments, error: corporalTreatmentsError } =
-    useGetTreatmentsCorporalNamesQuery("");
-  const { data: areasData, error: areasError } = useGetAreasQuery("");
+  const {
+    data: facialTreatmentsData,
+    error: facialTreatmentsError,
+    status: facialTreatmentsStatus,
+  } = useGetTreatmentsFacialNamesQuery("");
+  const {
+    data: corporalTreatments,
+    error: corporalTreatmentsError,
+    status: corporalTreatmentsStatus,
+  } = useGetTreatmentsCorporalNamesQuery("");
+  const {
+    data: areasData,
+    error: areasError,
+    status: areasStatus,
+  } = useGetAreasQuery("");
   const { data: giftCardsData, error: giftCardsError } =
     useGetGiftCardsQuery("");
 
@@ -83,6 +94,13 @@ const Header = () => {
   };
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
+
+  if (
+    facialTreatmentsStatus === "pending" ||
+    corporalTreatmentsStatus === "pending" ||
+    areasStatus === "pending"
+  )
+    return <Loader />;
 
   const CartButton = () => (
     <div className="flex items-center lg:ml-8">

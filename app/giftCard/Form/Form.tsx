@@ -12,10 +12,10 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
 import { addGiftCard, GiftCardForm } from "@/lib/card/cardSlide";
-import { setSnackbarVisibility } from "@/lib/snackbar/snackbarSlide";
 import { scrollToTop } from "@/utils/utils";
 import { AdvancedImage } from "@cloudinary/react";
 import { cld } from "@/utils/cloudinary";
+import Loader from "@/components/Loader";
 
 export interface DataForm {
   selectedGiftCardId: number | null;
@@ -44,18 +44,15 @@ const Form = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const { data: giftCardsData, error: giftCardsError } =
-    useGetGiftCardsQuery("");
+  const {
+    data: giftCardsData,
+    error: giftCardsError,
+    status,
+  } = useGetGiftCardsQuery("");
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
     dispatch(addGiftCard(dataForm as GiftCardForm));
-    /* dispatch(
-      setSnackbarVisibility({
-        visibility: true,
-        message: "Tarjeta de relago añadida :)",
-      })
-    ); */
     setDataForm(initState);
     scrollToTop();
     router.push("/cart");
@@ -68,6 +65,8 @@ const Form = () => {
     const name = target.name;
     setDataForm((prevState) => ({ ...prevState, [name]: value }));
   };
+
+  if (status === "pending") return <Loader />;
 
   return (
     <>

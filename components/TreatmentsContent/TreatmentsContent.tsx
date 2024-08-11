@@ -102,15 +102,13 @@ const TreatmentsContent = ({
                           href={`/treatments/${treatment.type.toLowerCase()}/${
                             treatment.id
                           }`}
-                          aria-label="Enlace a la pagina del tratamientoVer todas las categorías "
+                          onClick={scrollToTop}
+                          aria-label="Enlace a la pagina del tratamiento"
                         >
-                          <a
-                            onClick={scrollToTop}
-                            href={`${pathName}/${treatment.id}`}
-                          >
+                          <div>
                             <span className="absolute inset-0" />
                             {treatment.title}
-                          </a>
+                          </div>
                         </Link>
                       </h3>
                       <p className="mt-2 line-clamp-3 text-sm leading-6 text-gray-600">

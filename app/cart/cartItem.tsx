@@ -11,11 +11,9 @@ import { useDispatch } from "react-redux";
 const CartItem = ({
   giftCard,
   giftCardsData,
-  quantity,
 }: {
   giftCard: GiftCardForm;
   giftCardsData: GiftCard[];
-  quantity: number;
 }) => {
   const dispatch = useDispatch();
 

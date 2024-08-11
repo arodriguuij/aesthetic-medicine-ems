@@ -11,11 +11,16 @@ import { scrollToTop } from "@/utils/utils";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
+import Loader from "@/components/Loader";
 
 export default function HomePage() {
   const dispatch = useDispatch();
 
-  const { data: productsData, error: productsError } = useGetProductsQuery("");
+  const {
+    data: productsData,
+    error: productsError,
+    status,
+  } = useGetProductsQuery("");
 
   useEffect(() => {
     dispatch(resetGiftCardsOrderHistory());
@@ -24,6 +29,8 @@ export default function HomePage() {
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
   const testimonialsNew = isMobile ? testimonials.slice(0, 4) : testimonials;
+
+  if (status === "pending") return <Loader />;
 
   return (
     <div>
@@ -44,14 +51,7 @@ export default function HomePage() {
           />
         </div>
       </div>
-      {/* <div
-        aria-labelledby="collection-heading"
-        className="mx-auto max-w-xl px-4 pt-8 sm:px-6 sm:pt-12 lg:max-w-7xl lg:px-8"
-      >
-        <Sello />
-      </div> */}
-      {/* <script src="https://sello.seme.org/morgado2123-j4m2GL"></script> */}
-      {/* <ExternalScript src="https://sello.seme.org/morgado2123-j4m2GL" /> */}
+
       {/* Title*/}
       <div
         aria-labelledby="collection-heading"

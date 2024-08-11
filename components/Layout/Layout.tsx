@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React from "react";
 import Footer from "../Footer";
 import Header from "../Header";
 import Privacy from "../Privacy";
@@ -33,20 +33,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({
         </div>
       )}
       <Header />
-      <Suspense fallback={<div>Loading...</div>}>
-        {pathname === "/" ||
-        pathname.includes("/treatments/facial/") ||
-        pathname.includes("/treatments/corporal/") ? (
-          <>{children}</>
-        ) : (
-          <div className="isolate mx-auto  px-6 lg:px-8 items-center">
-            <div className="mx-auto py-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
-              <Breadcrumb />
-            </div>
-            {children}
+      {pathname === "/" ||
+      pathname.includes("/treatments/facial/") ||
+      pathname.includes("/treatments/corporal/") ? (
+        <>{children}</>
+      ) : (
+        <div className="isolate mx-auto  px-6 lg:px-8 items-center">
+          <div className="mx-auto py-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
+            <Breadcrumb />
           </div>
-        )}
-      </Suspense>
+          {children}
+        </div>
+      )}
       {isDialogVisible && <DialogComponent />}
       {isPrivacyVisible && <Privacy />}
       {isSnackbarVisible && <SnackBar />}

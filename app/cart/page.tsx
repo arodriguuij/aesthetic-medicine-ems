@@ -13,6 +13,7 @@ import { GiftCard } from "../types/giftCards.types";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutPage from "@/components/CheckoutPage";
 import { loadStripe } from "@stripe/stripe-js";
+import Loader from "@/components/Loader";
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
   throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined");
@@ -23,8 +24,11 @@ const Cart = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const { data: giftCardsData, error: giftCardsError } =
-    useGetGiftCardsQuery("");
+  const {
+    data: giftCardsData,
+    error: giftCardsError,
+    status,
+  } = useGetGiftCardsQuery("");
 
   const { giftCard200, giftCard300, giftCard500 } = useSelector(
     (state: { card: CardState }) => state.card
@@ -44,8 +48,11 @@ const Cart = () => {
   if (!giftCardsData || giftCardsError || giftCards.length === 0)
     router.push("/");
 
+  if (status === "pending") return <Loader />;
+
   return (
     <>
+      {/* Header */}
       <div className="relative mx-auto lg:max-w-7xl lg:px-8 isolate -z-10 overflow-hidden bg-gradient-to-b from-yellow-100/20 pt-4">
         <div
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-yellow-600/10 ring-1 ring-yellow-50 sm:-mr-80 lg:-mr-96"
@@ -63,11 +70,13 @@ const Cart = () => {
           </p>
         </div>
       </div>
+      {/* Content */}
       <div className="mx-auto max-w-2xl pb-8 pt-8 lg:px-8 lg:max-w-7xl">
         <div className="mx-auto grid max-w-lg grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+          {/* Order Summary */}
           <div className="mx-auto w-full max-w-lg">
             <h2 className="sr-only">Order summary</h2>
-
+            {/* Products */}
             <div className="flow-root">
               <ul role="list" className="-my-6 divide-y divide-gray-200">
                 {giftCardsError && (
@@ -80,7 +89,6 @@ const Cart = () => {
                       key={giftCard.selectedGiftCardId + index}
                       giftCardsData={giftCardsData}
                       giftCard={giftCard}
-                      quantity={giftCard200.quantity}
                     />
                   ))}
                 {giftCardsData &&
@@ -90,7 +98,6 @@ const Cart = () => {
                       key={giftCard.selectedGiftCardId + index}
                       giftCardsData={giftCardsData}
                       giftCard={giftCard}
-                      quantity={giftCard300.quantity}
                     />
                   ))}
                 {giftCardsData &&
@@ -100,12 +107,11 @@ const Cart = () => {
                       key={giftCard.selectedGiftCardId + index}
                       giftCardsData={giftCardsData}
                       giftCard={giftCard}
-                      quantity={giftCard500.quantity}
                     />
                   ))}
               </ul>
             </div>
-
+            {/* Money */}
             <dl className="mt-10 space-y-6 text-sm font-medium text-gray-500">
               <div className="flex justify-between">
                 <dt>Subtotal</dt>
@@ -129,7 +135,7 @@ const Cart = () => {
               </div>
             </dl>
           </div>
-
+          {/* Stripe */}
           <div className="mx-auto w-full max-w-lg">
             <Elements
               stripe={stripePromise}

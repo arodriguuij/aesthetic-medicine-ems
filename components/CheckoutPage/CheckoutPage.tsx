@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { convertToSubCurrency, scrollToTop } from "@/utils/utils";
 import { useAddGiftCardOrderMutation } from "@/services/giftCards/giftCards";
-import { resetCard } from "@/lib/card/cardSlide";
 import { addGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import { GiftCardForm, GiftCardFormGet } from "@/app/types/giftCards.types";
 
