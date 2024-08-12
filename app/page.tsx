@@ -17,7 +17,6 @@ import { useGetBranchesHomeQuery } from "@/services/branchesHome/branchesHome";
 /* 
   Contact for booking in the Treatment page
   Schedule and time table in the Contact page
-  Move Calendar to DB
 */
 export default function HomePage() {
   const dispatch = useDispatch();

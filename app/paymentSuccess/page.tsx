@@ -11,28 +11,9 @@ import { GiftCard } from "../types/giftCards.types";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/Loader";
 import Image from "next/image";
-
-const incentives = [
-  {
-    name: "Envío por Email",
-    imageSrc: "https://cdn-icons-png.flaticon.com/512/1997/1997305.png",
-    description:
-      "Gracias al envío por email, has ayudado a reducir el impacto contra el medio ambiente producido por la mensajería.",
-  },
-  {
-    name: "2 años de garantía",
-    imageSrc: "https://cdn-icons-png.flaticon.com/512/4357/4357393.png",
-    description:
-      "La tarjeta de regalo que ha comprado tiene una validez de 2 años. Puede usarse para cualquier tratamiento.",
-  },
-  {
-    name: "Contacto",
-    imageSrc:
-      "https://images.vexels.com/media/users/3/154431/isolated/preview/1b0612bca0cd99911b17c88392db70ca-icono-de-contacto-de-soporte-al-cliente.png",
-    description: "Si tiene cualquier duda. Póngase en contacto con nosotros y le resolveremos cualquier duda. ",
-  },
-];
-const step = 2;
+import { incentives, step } from "./paymentSuccess.constants";
+import { AdvancedImage } from "@cloudinary/react";
+import { cld } from "@/utils/cloudinary";
 
 const PaymentSuccess = () => {
   const router = useRouter();
@@ -206,9 +187,9 @@ const PaymentSuccess = () => {
                       >
                         <div className="sm:flex-shrink-0">
                           <div className="flow-root">
-                            <Image
+                            <AdvancedImage
+                              cldImg={cld.image(incentive.imageSrc)}
                               alt=""
-                              src={incentive.imageSrc}
                               className="mx-auto h-16 w-16"
                             />
                           </div>
