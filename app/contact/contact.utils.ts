@@ -1,5 +1,21 @@
-import { Day } from "@/public/information/calendar";
-import { DayObject, MonthObject } from "./contact.types";
+export interface Day {
+  date: string;
+  clinic?: string;
+  isCurrentMonth?: boolean;
+  isToday?: boolean;
+}
+
+export interface Calendar {
+  id: number;
+  name: string;
+  days: Day[];
+}
+
+export interface DayObject {
+  date: string;
+  isCurrentMonth?: boolean;
+  isToday?: boolean;
+}
 
 export const getTodayString = (): string => {
   const today = new Date();
@@ -26,9 +42,39 @@ export const isCurrentMonthInArray = (
   return date.startsWith(currentMonthString);
 };
 
-export const generateCurrentAndNextSixMonths = (): MonthObject[] => {
+export const getDayStyles = (day: Day, selectedMonthId: number) => {
+  const styles: string[] = [];
+  /* if (selectedDay === day.date) {
+    styles.push("border-double border-4 border-sky-500");
+  } //bg-amber-500 */
+  if (day.clinic === "Navalmoral") {
+    styles.push("bg-amber-200	!important");
+  } else if (day.clinic === "Marbella") {
+    styles.push("bg-amber-200 !important");
+  } else
+    styles.push(
+      isCurrentMonthInArray(day.date, selectedMonthId)
+        ? "bg-white text-gray-900"
+        : "bg-gray-50 text-gray-400"
+    );
+
+  return styles;
+};
+
+export const getFormattedDate = (day: Day): string | undefined => {
+  if (!day.date) {
+    return undefined;
+  }
+
+  const dateParts = day.date.split("-");
+  const lastPart = dateParts.pop();
+
+  return lastPart ? lastPart.replace(/^0/, "") : undefined;
+};
+
+export const generateCurrentAndNextSixMonths = (): Calendar[] => {
   const today = new Date();
-  const months: MonthObject[] = [];
+  const months: Calendar[] = [];
 
   // Nombres de los meses en español
   const monthNames = [
@@ -97,8 +143,9 @@ export const generateCurrentAndNextSixMonths = (): MonthObject[] => {
     }
 
     // Objeto del mes actual
-    const monthObject: MonthObject = {
+    const monthObject: Calendar = {
       name: currentMonthName,
+      id: currentMonth + 1,
       days: daysArray,
     };
 
@@ -106,34 +153,4 @@ export const generateCurrentAndNextSixMonths = (): MonthObject[] => {
   }
 
   return months;
-};
-
-export const getDayStyles = (day: Day, selectedMonthId: number) => {
-  const styles: string[] = [];
-  /* if (selectedDay === day.date) {
-    styles.push("border-double border-4 border-sky-500");
-  } //bg-amber-500 */
-  if (day.clinic === "Navalmoral") {
-    styles.push("bg-amber-200	!important");
-  } else if (day.clinic === "Marbella") {
-    styles.push("bg-amber-200 !important");
-  } else
-    styles.push(
-      isCurrentMonthInArray(day.date, selectedMonthId)
-        ? "bg-white text-gray-900"
-        : "bg-gray-50 text-gray-400"
-    );
-
-  return styles;
-};
-
-export const getFormattedDate = (day: Day): string | undefined => {
-  if (!day.date) {
-    return undefined;
-  }
-
-  const dateParts = day.date.split("-");
-  const lastPart = dateParts.pop();
-
-  return lastPart ? lastPart.replace(/^0/, "") : undefined;
 };

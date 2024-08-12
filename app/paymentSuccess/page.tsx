@@ -10,6 +10,7 @@ import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
 import { GiftCard } from "../types/giftCards.types";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/Loader";
+import Image from "next/image";
 
 const incentives = [
   {
@@ -205,7 +206,7 @@ const PaymentSuccess = () => {
                       >
                         <div className="sm:flex-shrink-0">
                           <div className="flow-root">
-                            <img
+                            <Image
                               alt=""
                               src={incentive.imageSrc}
                               className="mx-auto h-16 w-16"

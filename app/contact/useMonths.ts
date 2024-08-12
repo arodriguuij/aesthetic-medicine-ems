@@ -1,10 +1,33 @@
-"use client"
+"use client";
 
-import { useState } from "react";
-import { getTodayString } from "./contact.utils";
-import { calendar } from "@/public/information/calendar";
+import { useEffect, useState } from "react";
+import {
+  Calendar,
+  generateCurrentAndNextSixMonths,
+  getTodayString,
+} from "./contact.utils";
+import { useGetCalendarQuery } from "@/services/calendar/calendar";
+import { CalendarDB } from "../types/calendar.types";
+
+const addClinicPropertyToCalendar = (
+  data: CalendarDB[],
+  calendar: Calendar[]
+) => {
+  data.forEach((dataItem) => {
+    calendar.forEach((calendarItem) => {
+      calendarItem.days.forEach((calendarItem) => {
+        if (calendarItem.date === dataItem.date) {
+          calendarItem.clinic = dataItem.clinic;
+        }
+      });
+    });
+  });
+  return calendar;
+};
 
 const useMonths = () => {
+  const { data, error, status } = useGetCalendarQuery("");
+  const [calendar, setCalendar] = useState(generateCurrentAndNextSixMonths());
   const [selectedMonth, setSelectedMonth] = useState(calendar[0]);
   const [, setSelectedDay] = useState(getTodayString());
 
@@ -21,7 +44,19 @@ const useMonths = () => {
       setSelectedMonth(calendar[element - 1]);
     }
   };
-  return { selectedMonth, nextMonths, previousMonths, calendar, setSelectedDay };
+
+  useEffect(() => {
+    if (status === "fulfilled" && data && calendar)
+      setCalendar(addClinicPropertyToCalendar(data, calendar));
+  }, [data, status]);
+
+  return {
+    selectedMonth,
+    nextMonths,
+    previousMonths,
+    calendar,
+    setSelectedDay,
+  };
 };
 
 export default useMonths;

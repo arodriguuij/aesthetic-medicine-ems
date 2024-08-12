@@ -95,12 +95,13 @@ const Header = () => {
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
 
+  /* TODO: small Loader
   if (
     facialTreatmentsStatus === "pending" ||
     corporalTreatmentsStatus === "pending" ||
     areasStatus === "pending"
   )
-    return <Loader />;
+    return <Loader />; */
 
   const CartButton = () => (
     <div className="flex items-center lg:ml-8">
