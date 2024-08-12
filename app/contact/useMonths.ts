@@ -27,27 +27,32 @@ const addClinicPropertyToCalendar = (
 
 const useMonths = () => {
   const { data, error, status } = useGetCalendarQuery("");
-  const [calendar, setCalendar] = useState(generateCurrentAndNextSixMonths());
-  const [selectedMonth, setSelectedMonth] = useState(calendar[0]);
+  const [calendar, setCalendar] = useState<Calendar[]>();
+  const [selectedMonth, setSelectedMonth] = useState<Calendar>();
   const [, setSelectedDay] = useState(getTodayString());
 
   const nextMonths = () => {
-    if (selectedMonth.name !== calendar[calendar.length - 2].name) {
-      const element = calendar.indexOf(selectedMonth);
-      setSelectedMonth(calendar[element + 1]);
-    }
+    if (selectedMonth && calendar)
+      if (selectedMonth.name !== calendar[calendar.length - 2].name) {
+        const element = calendar.indexOf(selectedMonth);
+        setSelectedMonth(calendar[element + 1]);
+      }
   };
 
   const previousMonths = () => {
-    if (selectedMonth.name !== calendar[0].name) {
-      const element = calendar.indexOf(selectedMonth);
-      setSelectedMonth(calendar[element - 1]);
-    }
+    if (selectedMonth && calendar)
+      if (selectedMonth.name !== calendar[0].name) {
+        const element = calendar.indexOf(selectedMonth);
+        setSelectedMonth(calendar[element - 1]);
+      }
   };
 
   useEffect(() => {
-    if (status === "fulfilled" && data && calendar)
+    if (status === "fulfilled" && data) {
+      const calendar = generateCurrentAndNextSixMonths();
       setCalendar(addClinicPropertyToCalendar(data, calendar));
+      setSelectedMonth(calendar[0]);
+    }
   }, [data, status]);
 
   return {
