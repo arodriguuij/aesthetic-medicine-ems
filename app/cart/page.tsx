@@ -18,7 +18,7 @@ import Loader from "@/components/Loader";
 let stripe;
 if (process.env.NEXT_PUBLIC_DATA_BASE_ENVIRONMENT === "prod")
   stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_PROD);
-else stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEYƒ);
+else stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const stripePromise = loadStripe(stripe);
 
