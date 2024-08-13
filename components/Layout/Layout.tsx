@@ -28,7 +28,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({
   return (
     <main>
       {isBannerVisible && (
-        <div className="z-8 bg-white sticky bottom-0">
+        <div className="z-10 bg-white sticky bottom-0">
           <Banner />
         </div>
       )}

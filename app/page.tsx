@@ -64,7 +64,7 @@ export default function HomePage() {
           <Image
             alt=""
             src={cloudinaryLoader({
-              src: "EMS/General/NotFoundPage",
+              src: "EMS/General/background",
             })}
             width={1000}
             height={1000}

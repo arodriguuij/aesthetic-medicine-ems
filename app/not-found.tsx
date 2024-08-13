@@ -15,7 +15,7 @@ export default function NotFound() {
       <Image
         alt="Imagen pagina de error"
         src={cloudinaryLoader({
-          src: "EMS/General/NotFoundPage",
+          src: "EMS/General/page4",
         })}
         width={1000}
         height={1000}
