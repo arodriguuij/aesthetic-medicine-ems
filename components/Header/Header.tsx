@@ -159,7 +159,7 @@ const Header = () => {
                     })}
                     width={1000}
                     height={1000}
-                    className="h-16 w-26 flex-none rounded-md border border-gray-200"
+                    className="h-16 w-24 flex-none rounded-md border border-gray-200"
                   />
 
                   <div className="ml-4 flex-auto">
