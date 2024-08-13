@@ -14,6 +14,8 @@ import { useAddGiftCardOrderMutation } from "@/services/giftCards/giftCards";
 import { addGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import { GiftCardForm, GiftCardFormGet } from "@/app/types/giftCards.types";
 
+const temporaryPrice = 1;
+
 const CheckoutPage = ({
   amount,
   giftCards,
@@ -36,7 +38,7 @@ const CheckoutPage = ({
   useEffect(() => {
     if (amount > 0) {
       const fetchDataAsyncFnc = async () =>
-        await paymentMethod({ amount: convertToSubCurrency(amount) });
+        await paymentMethod({ amount: convertToSubCurrency(temporaryPrice) });
 
       fetchDataAsyncFnc()
         .then((res) => {
@@ -68,7 +70,7 @@ const CheckoutPage = ({
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://www.localhost:3000/paymentSuccess?amount=${amount}`,
+        return_url: `http://www.localhost:3000/paymentSuccess?amount=${temporaryPrice}`,
       },
       redirect: "if_required", // Prevent automatic redirect
     });
@@ -115,7 +117,7 @@ const CheckoutPage = ({
         className="flex w-full mt-4 items-center justify-center rounded-md border border-transparent bg-black py-2 text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
       >
         <span className="sr-only">Pay</span>
-        {!loading ? `Pagar ${amount}€` : "Procesando..."}
+        {!loading ? `Pagar ${temporaryPrice}€` : "Procesando..."}
       </button>
     </form>
   );
