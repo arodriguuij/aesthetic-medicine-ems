@@ -14,9 +14,9 @@ import { useRouter } from "next/navigation";
 import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
 import { addGiftCard, GiftCardForm } from "@/lib/card/cardSlide";
 import { scrollToTop } from "@/utils/utils";
-import { AdvancedImage } from "@cloudinary/react";
-import { cld } from "@/utils/cloudinary";
+import { cloudinaryLoader } from "@/utils/cloudinary";
 import Loader from "@/components/Loader";
+import Image from "next/image";
 
 export interface DataForm {
   selectedGiftCardId: number | null;
@@ -73,9 +73,13 @@ const Form = () => {
     <>
       <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
         <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
-          <AdvancedImage
-            cldImg={cld.image("EMS/GiftCard/GiftCard")}
+          <Image
             alt="GiftCardImageAl"
+            src={cloudinaryLoader({
+              src: "EMS/GiftCard/GiftCard",
+            })}
+            width={1000}
+            height={1000}
             className="h-full w-full object-cover object-center"
           />
         </div>

@@ -5,14 +5,15 @@ import Link from "next/link";
 import useIsMobile from "../hooks/useIsMobile";
 import useIsTablet from "../hooks/useIsTablet";
 import { useGetProductsQuery } from "../services/products/products";
-import { AdvancedImage, AdvancedVideo } from "@cloudinary/react";
-import { cld } from "../utils/cloudinary";
+import { AdvancedVideo } from "@cloudinary/react";
+import { cld, cloudinaryLoader } from "../utils/cloudinary";
 import { scrollToTop } from "@/utils/utils";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import Loader from "@/components/Loader";
 import { useGetBranchesHomeQuery } from "@/services/branchesHome/branchesHome";
+import Image from "next/image";
 
 /* 
   Contact for booking in the Treatment page
@@ -94,9 +95,13 @@ export default function HomePage() {
                   aria-hidden="true"
                   className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg"
                 >
-                  <AdvancedImage
-                    cldImg={cld.image(collection.imageSrc)}
+                  <Image
                     alt={collection.imageAlt}
+                    src={cloudinaryLoader({
+                      src: collection.imageSrc,
+                    })}
+                    width={1000}
+                    height={1000}
                     className=" w-full object-cover object-center"
                   />
                 </div>
@@ -118,9 +123,13 @@ export default function HomePage() {
       >
         <div className="relative overflow-hidden rounded-lg lg:h-96">
           <div className="absolute inset-0">
-            <AdvancedImage
-              cldImg={cld.image("EMS/HomePage/VaricesStar")}
-              alt=""
+            <Image
+              alt="Imagen tratamiento destacado"
+              src={cloudinaryLoader({
+                src: "EMS/HomePage/VaricesStar",
+              })}
+              width={1000}
+              height={1000}
               className="h-full w-full object-cover object-center"
             />
           </div>
@@ -210,9 +219,13 @@ export default function HomePage() {
                                 aria-hidden="true"
                                 className="absolute inset-0"
                               >
-                                <AdvancedImage
-                                  cldImg={cld.image(images[0])}
+                                <Image
                                   alt={`Image-${name}`}
+                                  src={cloudinaryLoader({
+                                    src: images[0],
+                                  })}
+                                  width={1000}
+                                  height={1000}
                                   className="h-full w-full object-cover object-center"
                                 />
                               </span>
@@ -270,13 +283,15 @@ export default function HomePage() {
             </div>
             <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-4 gap-y-6 sm:max-w-3xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
               {branchesHomeData.map(({ id, image, name }, index) => (
-                <AdvancedImage
-                  cldImg={cld.image(image)}
+                <Image
                   key={id + index}
-                  className="col-span-2 max-h-8 w-full object-contain lg:col-span-1"
-                  alt={name}
+                  alt={`Image-${name}`}
+                  src={cloudinaryLoader({
+                    src: image,
+                  })}
                   width={158}
                   height={48}
+                  className="col-span-2 max-h-8 w-full object-contain lg:col-span-1"
                 />
               ))}
             </div>
@@ -309,10 +324,14 @@ export default function HomePage() {
                   style={{ height: "39rem" }}
                   className="relative overflow-hidden rounded-3xl px-6 pb-9 pt-64 sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10 h-4/5"
                 >
-                  <AdvancedImage
-                    cldImg={cld.image("EMS/HomePage/Profile")}
+                  <Image
+                    alt={`Imagen Elvira Morgado}`}
+                    src={cloudinaryLoader({
+                      src: "EMS/HomePage/Profile",
+                    })}
+                    width={1000}
+                    height={1000}
                     className="absolute inset-0 h-full w-full object-cover"
-                    alt=""
                   />
                 </div>
               </div>
@@ -494,10 +513,14 @@ export default function HomePage() {
                           className="text-gray-600"
                         >
                           <figcaption className="mt-6 flex items-center gap-x-4">
-                            <AdvancedImage
-                              cldImg={cld.image(testimonial.author.imageUrl)}
+                            <Image
+                              alt={`Imagen Google Review`}
+                              src={cloudinaryLoader({
+                                src: testimonial.author.imageUrl,
+                              })}
+                              width={1000}
+                              height={1000}
                               className="h-10 w-10 rounded-full bg-gray-50"
-                              alt=""
                             />
                             <div>
                               <div className="font-semibold">

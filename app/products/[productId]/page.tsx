@@ -2,12 +2,12 @@
 
 import { useParams } from "next/navigation";
 import { useGetProductQuery } from "../../../services/products/products";
-import { cld } from "../../../utils/cloudinary";
-import { AdvancedImage } from "@cloudinary/react";
+import {  cloudinaryLoader } from "../../../utils/cloudinary";
 import { Fragment } from "react";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import Loader from "@/components/Loader";
+import Image from "next/image";
 
 const Product = () => {
   const { productId } = useParams();
@@ -68,9 +68,13 @@ const Product = () => {
             >
               <div className="mt-6 lg:col-span-5 lg:mt-0">
                 <div className="bg-gray-10">
-                  <AdvancedImage
-                    cldImg={cld.image(data[0].images[0])}
+                  <Image
                     alt="ProductImage"
+                    src={cloudinaryLoader({
+                      src: data[0].images[0],
+                    })}
+                    width={1000}
+                    height={1000}
                     className="h-full w-full object-cover object-center"
                   />
                 </div>
@@ -107,9 +111,13 @@ const Product = () => {
             >
               <div className="mt-6 lg:col-span-5 lg:mt-0">
                 <div className="bg-gray-10">
-                  <AdvancedImage
-                    cldImg={cld.image(data[0].images[0])}
+                  <Image
                     alt="ProductImage"
+                    src={cloudinaryLoader({
+                      src: data[0].images[0],
+                    })}
+                    width={1000}
+                    height={1000}
                     className="h-full w-full object-cover object-center"
                   />
                 </div>
@@ -143,9 +151,13 @@ const Product = () => {
             >
               <div className="mt-6 lg:col-span-5 lg:mt-0">
                 <div className="bg-gray-10">
-                  <AdvancedImage
-                    cldImg={cld.image(data[0].images[0])}
+                  <Image
                     alt="ProductImage"
+                    src={cloudinaryLoader({
+                      src: data[0].images[0],
+                    })}
+                    width={1000}
+                    height={1000}
                     className="h-full w-full object-cover object-center"
                   />
                 </div>

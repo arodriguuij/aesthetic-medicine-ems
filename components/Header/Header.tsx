@@ -49,10 +49,9 @@ import {
   getQuantityByGiftCardId,
 } from "@/app/cart/cart.utils";
 import useIsTablet from "@/hooks/useIsTablet";
-import { AdvancedImage } from "@cloudinary/react";
-import { cld } from "@/utils/cloudinary";
+import {  cloudinaryLoader } from "@/utils/cloudinary";
 import { CardState } from "@/lib/card/cardSlide";
-import Loader from "../Loader";
+import Image from "next/image";
 
 const Header = () => {
   const router = useRouter();
@@ -149,16 +148,20 @@ const Header = () => {
                   key={giftCard200.giftCards[0].selectedGiftCardId}
                   className="flex items-center px-4 py-6"
                 >
-                  <AdvancedImage
-                    cldImg={cld.image(
-                      getImageByGiftCardId(
-                        giftCardsData,
-                        giftCard200.giftCards[0].selectedGiftCardId
-                      ) || ""
-                    )}
+                  <Image
                     alt={giftCard200.giftCards[0].selectedGiftCardId + "Image"}
+                    src={cloudinaryLoader({
+                      src:
+                        getImageByGiftCardId(
+                          giftCardsData,
+                          giftCard200.giftCards[0].selectedGiftCardId
+                        ) || "",
+                    })}
+                    width={1000}
+                    height={1000}
                     className="h-16 w-26 flex-none rounded-md border border-gray-200"
                   />
+
                   <div className="ml-4 flex-auto">
                     <h3 className="font-medium text-gray-900">
                       Tarjeta de regalo
@@ -191,14 +194,17 @@ const Header = () => {
                   key={giftCard300.giftCards[0].selectedGiftCardId}
                   className="flex items-center px-4 py-6"
                 >
-                  <AdvancedImage
-                    cldImg={cld.image(
-                      getImageByGiftCardId(
-                        giftCardsData,
-                        giftCard300.giftCards[0].selectedGiftCardId
-                      ) || ""
-                    )}
+                  <Image
                     alt={giftCard300.giftCards[0].selectedGiftCardId + "Image"}
+                    src={cloudinaryLoader({
+                      src:
+                        getImageByGiftCardId(
+                          giftCardsData,
+                          giftCard300.giftCards[0].selectedGiftCardId
+                        ) || "",
+                    })}
+                    width={1000}
+                    height={1000}
                     className="h-16 w-26 flex-none rounded-md border border-gray-200"
                   />
                   <div className="ml-4 flex-auto">
@@ -233,16 +239,20 @@ const Header = () => {
                   key={giftCard500.giftCards[0].selectedGiftCardId}
                   className="flex items-center px-4 py-6"
                 >
-                  <AdvancedImage
-                    cldImg={cld.image(
-                      getImageByGiftCardId(
-                        giftCardsData,
-                        giftCard500.giftCards[0].selectedGiftCardId
-                      ) || ""
-                    )}
+                  <Image
                     alt={giftCard500.giftCards[0].selectedGiftCardId + "Image"}
+                    src={cloudinaryLoader({
+                      src:
+                        getImageByGiftCardId(
+                          giftCardsData,
+                          giftCard500.giftCards[0].selectedGiftCardId
+                        ) || "",
+                    })}
+                    width={1000}
+                    height={1000}
                     className="h-16 w-26 flex-none rounded-md border border-gray-200"
                   />
+
                   <div className="ml-4 flex-auto">
                     <h3 className="font-medium text-gray-900">
                       Tarjeta de regalo
@@ -324,7 +334,7 @@ const Header = () => {
   return (
     <header className="z-20 bg-white sticky top-0 ">
       {/* Mobile menu */}
-      <Dialog	
+      <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
         className="relative z-50 lg:hidden"
@@ -473,9 +483,13 @@ const Header = () => {
                   <Link href="/" aria-label="Enlace a la pagina home">
                     <div onClick={scrollToTopFnc} className="-m-1.5 p-1.5">
                       <span className="sr-only">Your Company</span>
-                      <AdvancedImage
-                        cldImg={cld.image("EMS/General/EmsLogo")}
+                      <Image
                         alt="logoEMS"
+                        src={cloudinaryLoader({
+                          src: "EMS/General/EmsLogo",
+                        })}
+                        width={1000}
+                        height={1000}
                         className="h-8 w-auto"
                       />
                     </div>
@@ -827,9 +841,13 @@ const Header = () => {
                 <Link href="/" aria-label="Enlace a la pagina home">
                   <div onClick={scrollToTopFnc} className="lg:hidden">
                     <span className="sr-only">Your Company</span>
-                    <AdvancedImage
-                      cldImg={cld.image("EMS/General/EmsLogo")}
-                      alt="EMS logo"
+                    <Image
+                      alt="logoEMS"
+                      src={cloudinaryLoader({
+                        src: "EMS/General/EmsLogo",
+                      })}
+                      width={1000}
+                      height={1000}
                       className="h-8 w-auto"
                     />
                   </div>

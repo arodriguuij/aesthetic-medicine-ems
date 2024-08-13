@@ -3,15 +3,22 @@
 import { scrollToTop } from "@/utils/utils";
 import Link from "next/link";
 
-import { cld } from "@/utils/cloudinary";
-import { AdvancedImage } from "@cloudinary/react";
+import Image from "next/image";
+import { cloudinaryLoader } from "@/utils/cloudinary";
 
 export default function NotFound() {
   return (
-    <div className="content-center align-middle pr-6 pl-6" style={{height: '73vh'}}>
-      <AdvancedImage
-        cldImg={cld.image("EMS/General/404")}
-        alt=""
+    <div
+      className="content-center align-middle pr-6 pl-6"
+      style={{ height: "73vh" }}
+    >
+      <Image
+        alt="Imagen pagina de error"
+        src={cloudinaryLoader({
+          src: "EMS/General/404",
+        })}
+        width={1000}
+        height={1000}
         className="absolute inset-0 -z-10 h-full w-full object-cover object-top"
       />
       <div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">

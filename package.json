@@ -24,6 +24,7 @@
     "anchor-pki": "^0.3.2",
     "cloudinary": "^2.3.0",
     "next": "14.2.5",
+    "next-cloudinary": "^6.10.0",
     "nextjs-cors": "^2.2.0",
     "pg": "^8.12.0",
     "react": "^18",

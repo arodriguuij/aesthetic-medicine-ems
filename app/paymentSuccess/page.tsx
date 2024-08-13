@@ -12,8 +12,7 @@ import { useRouter } from "next/navigation";
 import Loader from "@/components/Loader";
 import Image from "next/image";
 import { incentives, step } from "./paymentSuccess.constants";
-import { AdvancedImage } from "@cloudinary/react";
-import { cld } from "@/utils/cloudinary";
+import { cloudinaryLoader } from "@/utils/cloudinary";
 
 const PaymentSuccess = () => {
   const router = useRouter();
@@ -187,9 +186,13 @@ const PaymentSuccess = () => {
                       >
                         <div className="sm:flex-shrink-0">
                           <div className="flow-root">
-                            <AdvancedImage
-                              cldImg={cld.image(incentive.imageSrc)}
-                              alt=""
+                            <Image
+                              alt="Incentivos imagen"
+                              src={cloudinaryLoader({
+                                src: incentive.imageSrc,
+                              })}
+                              width={1000}
+                              height={1000}
                               className="mx-auto h-16 w-16"
                             />
                           </div>

@@ -2,11 +2,11 @@ import React from "react";
 import { Treatment } from "@/app/types/treatments.types";
 import Link from "next/link";
 import { scrollToTop } from "@/utils/utils";
-import { AdvancedImage } from "@cloudinary/react";
-import { cld } from "@/utils/cloudinary";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import { cloudinaryLoader } from "@/utils/cloudinary";
 
 interface ITreatmentsContent {
   error: FetchBaseQueryError | SerializedError | undefined;
@@ -61,11 +61,16 @@ const TreatmentsContent = ({
                       aria-label="Enlace a la pagina del tratamiento"
                     >
                       <div onClick={scrollToTop}>
-                        <AdvancedImage
-                          cldImg={cld.image(treatment.images.main)}
-                          alt=""
+                        <Image
+                          alt="Imagen Tratamiento"
+                          src={cloudinaryLoader({
+                            src: treatment.images.main,
+                          })}
+                          width={1000}
+                          height={1000}
                           className="aspect-[16/9] w-full rounded-2xl border border-amber-400 bg-white object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                         />
+
                         <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
                       </div>
                     </Link>

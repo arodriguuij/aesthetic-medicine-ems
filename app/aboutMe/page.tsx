@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
 import { CheckIcon } from "@heroicons/react/24/outline";
-import { classNames, scrollToTop } from "../../utils/utils";
+import { classNames } from "../../utils/utils";
 import { people, tiers, timeline } from "./aboutMe.constants";
-import { cld } from "../../utils/cloudinary";
-import { AdvancedImage } from "@cloudinary/react";
+import { cloudinaryLoader } from "../../utils/cloudinary";
+import Image from "next/image";
 
 const AboutMe = () => {
   return (
@@ -74,8 +74,13 @@ const AboutMe = () => {
                   </p>
                 </div>
               </div>
-              <AdvancedImage
-                cldImg={cld.image("EMS/General/ElviraMorgadoPhoto")}
+              <Image
+                alt="Imagen Elvira Morgado"
+                src={cloudinaryLoader({
+                  src: "EMS/General/ElviraMorgadoPhoto",
+                })}
+                width={1000}
+                height={1000}
                 className="mt-10 aspect-[4/5] w-full max-w-lg rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-20"
               />
             </div>
@@ -208,10 +213,14 @@ const AboutMe = () => {
         >
           {people.map((person) => (
             <li key={person.name} className="flex flex-col gap-6 xl:flex-row">
-              <AdvancedImage
-                cldImg={cld.image(person.imageUrl)}
+              <Image
+                alt="Imagen trabajador"
+                src={cloudinaryLoader({
+                  src: person.imageUrl,
+                })}
+                width={1000}
+                height={1000}
                 className="aspect-[4/5] w-52 flex-none rounded-2xl object-cover"
-                alt="WorkerPhoto"
               />
 
               <div className="flex-auto">

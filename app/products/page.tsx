@@ -1,12 +1,12 @@
 "use client";
 
-import { AdvancedImage } from "@cloudinary/react";
 import Link from "next/link";
 import { useGetBranchesQuery } from "../../services/branches/branches";
 import { useGetProductsQuery } from "../../services/products/products";
-import { cld } from "../../utils/cloudinary";
+import { cloudinaryLoader } from "../../utils/cloudinary";
 import { scrollToTop } from "../../utils/utils";
 import Loader from "@/components/Loader";
+import Image from "next/image";
 
 const Products = () => {
   const {
@@ -74,14 +74,21 @@ const Products = () => {
                         .map(({ id, name, images, quantity, branch }) => (
                           <div key={id} className="group relative">
                             <div className="h-56 w-full overflow-hidden rounded-md bg-gray-800 border border-amber-400 group-hover:opacity-75 lg:h-72 xl:h-80">
-                              <AdvancedImage
-                                cldImg={cld.image(images[0])}
+                              <Image
                                 alt={`Image-${name}`}
+                                src={cloudinaryLoader({
+                                  src: images[0],
+                                })}
+                                width={1000}
+                                height={1000}
                                 className="h-full w-full object-cover object-center bg-white "
                               />
                             </div>
                             <h3 className="mt-4">
-                              <Link href={`/products/${id}`} aria-label="Enlace a la pagina del producto">
+                              <Link
+                                href={`/products/${id}`}
+                                aria-label="Enlace a la pagina del producto"
+                              >
                                 <div
                                   onClick={scrollToTop}
                                   className="text-sm font-semibold leading-7 text-white"

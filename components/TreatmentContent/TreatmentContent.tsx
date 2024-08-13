@@ -1,6 +1,4 @@
-import { cld } from "@/utils/cloudinary";
 import { scrollToTop } from "@/utils/utils";
-import { AdvancedImage } from "@cloudinary/react";
 import Link from "next/link";
 import React from "react";
 import Breadcrumb from "../Breadcrumb";
@@ -16,6 +14,7 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { Treatment } from "@/services/treatments/treatments.types";
 import useIsMobile from "@/hooks/useIsMobile";
 import Image from "next/image";
+import { cloudinaryLoader } from "@/utils/cloudinary";
 
 interface ITreatmentContent {
   error: FetchBaseQueryError | SerializedError | undefined;
@@ -57,9 +56,13 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
       ) : (
         <>
           <div aria-hidden="true" className="relative">
-            <AdvancedImage
-              cldImg={cld.image(data[0].images.main)}
-              alt=""
+            <Image
+              alt="Imagen Tratamiento"
+              src={cloudinaryLoader({
+                src: data[0].images.main,
+              })}
+              width={1000}
+              height={1000}
               className="h-96 w-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-white" />
@@ -166,9 +169,13 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                               aria-hidden="true"
                               className="absolute inset-0"
                             >
-                              <AdvancedImage
-                                cldImg={cld.image(image)}
-                                alt={`image-${index}`}
+                              <Image
+                                alt="Imagen antes y depues clientes"
+                                src={cloudinaryLoader({
+                                  src: image,
+                                })}
+                                width={1000}
+                                height={1000}
                                 className="object-cover object-center"
                               />
                             </span>
@@ -271,9 +278,13 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                               aria-hidden="true"
                               className="absolute inset-0"
                             >
-                              <AdvancedImage
-                                cldImg={cld.image(images[0])}
-                                alt={`Image-${name}`}
+                              <Image
+                                alt="Imagen procducto"
+                                src={cloudinaryLoader({
+                                  src: images[0],
+                                })}
+                                width={1000}
+                                height={1000}
                                 className="h-full w-full object-cover object-center"
                               />
                             </span>
