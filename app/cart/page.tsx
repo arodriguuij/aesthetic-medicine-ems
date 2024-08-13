@@ -6,7 +6,7 @@ import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
 import { CardState } from "../../lib/card/cardSlide";
 import { getSubTotal } from "./cart.utils";
 import CartItem from "./cartItem";
-import { convertToSubCurrency, scrollToTop } from "@/utils/utils";
+import { convertToSubCurrency } from "@/utils/utils";
 import { useEffect } from "react";
 import { resetGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import { GiftCard } from "../types/giftCards.types";
@@ -15,10 +15,12 @@ import CheckoutPage from "@/components/CheckoutPage";
 import { loadStripe } from "@stripe/stripe-js";
 import Loader from "@/components/Loader";
 
-if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
-  throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined");
-}
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+let stripe;
+if (process.env.NEXT_PUBLIC_DATA_BASE_ENVIRONMENT === "prod")
+  stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_PROD);
+else stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEYƒ);
+
+const stripePromise = loadStripe(stripe);
 
 const Cart = () => {
   const router = useRouter();

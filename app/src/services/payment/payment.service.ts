@@ -1,6 +1,9 @@
 import { IPayment } from "@/app/src/controllers/payment";
 
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
+let stripe;
+if (process.env.NEXT_PUBLIC_DATA_BASE_ENVIRONMENT === "prod")
+  stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY_PROD);
+else stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 
 export const postPaymentService = async ({ amount }: IPayment) => {
   try {
