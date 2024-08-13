@@ -15,12 +15,14 @@ import CheckoutPage from "@/components/CheckoutPage";
 import { loadStripe } from "@stripe/stripe-js";
 import Loader from "@/components/Loader";
 
-let stripe;
-if (process.env.NEXT_PUBLIC_DATA_BASE_ENVIRONMENT === "prod")
-  stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_PROD);
-else stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+let key;
+if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
+  key = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_PROD;
+} else {
+  key = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY;
+}
 
-const stripePromise = loadStripe(stripe);
+const stripePromise = loadStripe(key || "");
 
 const Cart = () => {
   const router = useRouter();
@@ -80,7 +82,10 @@ const Cart = () => {
             <h2 className="sr-only">Resumen del pedido</h2>
             {/* Products */}
             <div className="flow-root">
-              <ul role="list" className="-my-6 divide-y divide-gray-200 overflow-auto">
+              <ul
+                role="list"
+                className="-my-6 divide-y divide-gray-200 overflow-auto"
+              >
                 {giftCardsError && (
                   <>Error en la carga de las tarjetas de regalo</>
                 )}
