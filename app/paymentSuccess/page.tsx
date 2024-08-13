@@ -13,6 +13,7 @@ import Loader from "@/components/Loader";
 import Image from "next/image";
 import { incentives, step } from "./paymentSuccess.constants";
 import { cloudinaryLoader } from "@/utils/cloudinary";
+import SummaryOrder from "./summaryOrder";
 
 const PaymentSuccess = () => {
   const router = useRouter();
@@ -88,52 +89,26 @@ const PaymentSuccess = () => {
               </h2>
 
               <div className="space-y-8">
-                {giftCard200.map((product) => (
-                  <div
+                {giftCard200.map((product, index) => (
+                  <SummaryOrder
                     key={product.id}
-                    className="border rounded-lg border-gray-200 bg-white shadow-sm sm:rounded-lg sm:border"
-                  >
-                    <div className="px-4 py-6 sm:px-6 lg:grid lg:grid-cols-12 lg:gap-x-8 lg:p-8">
-                      <div className="sm:flex lg:col-span-7">
-                        <div className="sm:ml-6 sm:mt-0">
-                          <div className="flex items-center">
-                            <h3 className="text-lg text-indigo-500">
-                              Tarjeta de regalo:{" "}
-                              {getQuantityByGiftCardId(
-                                giftCardsData as GiftCard[],
-                                product.selectedGiftCardId
-                              )}
-                              €
-                            </h3>
-                          </div>
-                          <div className="flex items-center	">
-                            <p className="text-gray-900">Comprador: </p>
-                            <p className=" text-sm text-gray-500 ml-1">
-                              {product.nameBuyer}
-                            </p>
-                          </div>
-                          <div className="flex items-center	">
-                            <p className="text-gray-900">Destinatario: </p>
-                            <p className=" text-sm text-gray-500 ml-1">
-                              {product.nameReceiver}
-                            </p>
-                          </div>
-                          <div className="flex items-center	">
-                            <p className="text-gray-900">Email destino: </p>
-                            <p className=" text-sm text-gray-500 ml-1">
-                              {product.email}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-gray-900">Mensaje: </p>
-                            <p className=" text-sm text-gray-500">
-                              {product.message}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    product={product}
+                    giftCardsData={giftCardsData as GiftCard[]}
+                  />
+                ))}
+                {giftCard300.map((product, index) => (
+                  <SummaryOrder
+                    key={product.id}
+                    product={product}
+                    giftCardsData={giftCardsData as GiftCard[]}
+                  />
+                ))}
+                {giftCard500.map((product, index) => (
+                  <SummaryOrder
+                    key={product.id}
+                    product={product}
+                    giftCardsData={giftCardsData as GiftCard[]}
+                  />
                 ))}
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6 lg:p-8">
                   <h4 className="sr-only">Status</h4>

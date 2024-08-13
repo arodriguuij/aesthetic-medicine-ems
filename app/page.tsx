@@ -52,7 +52,7 @@ export default function HomePage() {
         style={{ maxHeight: "75vh" }}
       >
         <div className="react-player-wrapper">
-          <AdvancedVideo
+          {/*  <AdvancedVideo
             cldVid={cld.video("EMS/HomePage/video")}
             className="react-player"
             autoPlay
@@ -60,6 +60,15 @@ export default function HomePage() {
             muted
             playsInline
             onError={(e) => console.error("Error playing video:", e)}
+          /> */}
+          <Image
+            alt=""
+            src={cloudinaryLoader({
+              src: "EMS/General/NotFoundPage",
+            })}
+            width={1000}
+            height={1000}
+            className=" w-full object-cover object-center"
           />
         </div>
       </div>
