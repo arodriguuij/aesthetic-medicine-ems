@@ -10,7 +10,6 @@ if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
   webHookKey = process.env.STRIPE_WEBHOOK_SECRET_KEY;
 }
 
-console.log({key, webHookKey})
 const stripe = new Stripe(key!);
 
 export async function POST(req: NextRequest) {
