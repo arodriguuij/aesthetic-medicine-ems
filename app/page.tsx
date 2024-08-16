@@ -63,21 +63,28 @@ export default function HomePage() {
           /> */}
           <Image
             alt=""
-            /* src={cloudinaryLoader({
-              src: "EMS/General/background",
-            })} */
-            src={cloudinaryLoader({
-              src: "EMS/General/Hero",
-            })}
+            src={
+              isMobile || isTablet
+                ? cloudinaryLoader({
+                    src: "EMS/General/Hero",
+                  })
+                : cloudinaryLoader({
+                    src: "EMS/General/background",
+                  })
+            }
             width={1000}
             height={1000}
             className=" w-full object-cover object-center"
-            style={{
-              backgroundImage:
-                "url(https://emsmedicinaestetica.com/assets/img/bg-header.jpeg)",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-            }}
+            style={
+              isMobile || isTablet
+                ? {
+                    backgroundImage:
+                      "url(https://emsmedicinaestetica.com/assets/img/bg-header.jpeg)",
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                  }
+                : {}
+            }
           />
         </div>
       </div>

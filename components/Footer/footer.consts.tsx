@@ -28,7 +28,7 @@ export const navigation: Navigation = {
     },
     {
       name: "L-V: 10-14 y 15-20",
-      href: "/contanct",
+      href: "/contact",
       icon: (props) => <Calendar props={props} />,
       isLink: true,
     },
