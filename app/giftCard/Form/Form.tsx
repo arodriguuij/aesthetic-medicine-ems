@@ -3,6 +3,7 @@
 import { Tooltip } from "react-tooltip";
 import {
   EnvelopeIcon,
+  ExclamationCircleIcon,
   QuestionMarkCircleIcon,
   ShieldCheckIcon,
   UserIcon,
@@ -42,6 +43,7 @@ const isSendButtonEnabled = (dataForm: DataForm) =>
 
 const Form = () => {
   const [dataForm, setDataForm] = useState<DataForm>(initState);
+  const [alreadyOnSubmit, setAlreadyOnSubmit] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -53,10 +55,13 @@ const Form = () => {
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
-    dispatch(addGiftCard(dataForm as GiftCardForm));
-    setDataForm(initState);
-    scrollToTop();
-    router.push("/cart");
+    setAlreadyOnSubmit(true);
+    if (isSendButtonEnabled(dataForm)) {
+      dispatch(addGiftCard(dataForm as GiftCardForm));
+      setDataForm(initState);
+      scrollToTop();
+      router.push("/cart");
+    }
   };
 
   const handleChange = (event: any) => {
@@ -76,7 +81,7 @@ const Form = () => {
           <Image
             alt="GiftCardImageAl"
             src={cloudinaryLoader({
-              src: "EMS/GiftCard/GiftCard",
+              src: "EMS/GiftCard/TarjetaRegalo",
             })}
             width={1000}
             height={1000}
@@ -92,7 +97,7 @@ const Form = () => {
               Product options
             </h2>
 
-            <div className="sm:flex sm:justify-between">
+            <div className=" sm:justify-between">
               {/* Size selector */}
               <fieldset>
                 <legend className="block text-sm font-medium text-gray-700">
@@ -124,9 +129,9 @@ const Form = () => {
                         <p className="text-base font-medium text-gray-900">
                           {quantity}€
                         </p>
-                        <p className="mt-1 text-sm text-gray-500">
-                          {description}
-                        </p>
+                        {/*   <p className="mt-1 text-sm text-gray-500">
+                            {description}
+                          </p> */}
                         <div
                           aria-hidden="true"
                           className="pointer-events-none absolute -inset-px rounded-lg border-2 border-transparent group-data-[focus]:border group-data-[checked]:border-amber-500"
@@ -134,30 +139,46 @@ const Form = () => {
                       </Radio>
                     ))}
                 </RadioGroup>
+                {!dataForm.selectedGiftCardId && alreadyOnSubmit && (
+                    <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
+                      <ExclamationCircleIcon
+                        aria-hidden="true"
+                        className="h-5 w-5 text-red-500"
+                      />
+                    </div>
+                  )}
               </fieldset>
             </div>
-            <div className="mt-4 mb-16">
+            <div className="mt-4 mb-12">
               <div className="group inline-flex text-sm text-gray-500 hover:text-gray-700">
                 <span title="I am the tooltip text">
                   Qué importe recomendamos?
                 </span>
-                <Tooltip id="my-tooltip" />
+                <Tooltip id="my-tooltip-children-multiline">
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <span>Tajeta de 200€:</span>
+                    <span> - Para tratamientos ...</span>
+                    <span>Tajeta de 300€:</span>
+                    <span> - Para tratamientos ...</span>
+                    <span>Tajeta de 500€:</span>
+                    <span> - Para tratamientos ...</span>
+                  </div>
+                </Tooltip>
                 <QuestionMarkCircleIcon
-                  data-tooltip-id="my-tooltip"
-                  data-tooltip-content="TODO"
+                  data-tooltip-id="my-tooltip-children-multiline"
                   aria-hidden="true"
                   className="ml-2 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                 />
               </div>
             </div>
-            <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-2">
+            <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-2 pb-4">
               <label
                 htmlFor="nameBuyer"
                 className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5"
               >
                 Nombre del comprador
               </label>
-              <div className="mt-2 sm:col-span-2 sm:mt-0">
+              <div className="sm:col-span-2 sm:mt-0">
                 <div className="flex bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-amber-400 sm:max-w-md">
                   <div className="pointer-events-none inset-y-0 left-0 flex items-center pl-3">
                     <UserIcon
@@ -175,17 +196,30 @@ const Form = () => {
                     value={dataForm.nameBuyer || ""}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   />
+                  {!dataForm.nameBuyer && alreadyOnSubmit && (
+                    <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
+                      <ExclamationCircleIcon
+                        aria-hidden="true"
+                        className="h-5 w-5 text-red-500"
+                      />
+                    </div>
+                  )}
                 </div>
+                {!dataForm.nameBuyer && alreadyOnSubmit && (
+                  <p id="email-error" className="mt-2 text-sm text-red-600">
+                    Este campo es obligatorio
+                  </p>
+                )}
               </div>
             </div>
-            <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-2">
+            <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-2 pb-4">
               <label
                 htmlFor="username"
                 className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5"
               >
-                Correo electrónico
+                Correo electrónico a enviar
               </label>
-              <div className="mt-2 sm:col-span-2 sm:mt-0">
+              <div className="sm:col-span-2 sm:mt-0">
                 <div className="flex bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-amber-400 sm:max-w-md">
                   <div className="pointer-events-none inset-y-0 left-0 flex items-center pl-3">
                     <EnvelopeIcon
@@ -202,17 +236,30 @@ const Form = () => {
                     onChange={handleChange}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   />
+                  {!dataForm.email && alreadyOnSubmit && (
+                    <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
+                      <ExclamationCircleIcon
+                        aria-hidden="true"
+                        className="h-5 w-5 text-red-500"
+                      />
+                    </div>
+                  )}
                 </div>
+                {!dataForm.nameBuyer && alreadyOnSubmit && (
+                  <p id="email-error" className="mt-2 text-sm text-red-600">
+                    Este campo es obligatorio
+                  </p>
+                )}
               </div>
             </div>
-            <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-2">
+            <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-2 pb-4">
               <label
                 htmlFor="nameReceiver"
                 className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5"
               >
                 Nombre del destinatario
               </label>
-              <div className="mt-2 sm:col-span-2 sm:mt-0">
+              <div className="sm:col-span-2 sm:mt-0">
                 <div className="flex bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-amber-400 sm:max-w-md">
                   <div className="pointer-events-none inset-y-0 left-0 flex items-center pl-3">
                     <UserIcon
@@ -230,17 +277,30 @@ const Form = () => {
                     value={dataForm.nameReceiver || ""}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   />
+                  {!dataForm.nameReceiver && alreadyOnSubmit && (
+                    <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
+                      <ExclamationCircleIcon
+                        aria-hidden="true"
+                        className="h-5 w-5 text-red-500"
+                      />
+                    </div>
+                  )}
                 </div>
+                {!dataForm.nameBuyer && alreadyOnSubmit && (
+                  <p id="email-error" className="mt-2 text-sm text-red-600">
+                    Este campo es obligatorio
+                  </p>
+                )}
               </div>
             </div>
-            <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-2">
+            <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-2 pb-4">
               <label
                 htmlFor="message"
                 className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5"
               >
                 Mensaje
               </label>
-              <div className="mt-2 sm:col-span-2 sm:mt-0">
+              <div className="sm:col-span-2 sm:mt-0">
                 <div className="flex bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-amber-400 sm:max-w-md">
                   <textarea
                     id="message"
@@ -252,13 +312,26 @@ const Form = () => {
                     placeholder="Ejemplo: Hola, me gustaría recibir más información sobre el tratamiento de arruga de labios. Pueden contactar conmigo por email o bien por teléfono. Gracias"
                     className="block w-full max-w-2xl pl-2 bg-white rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-400 sm:text-sm sm:leading-6"
                   />
+                  {!dataForm.message && alreadyOnSubmit && (
+                    <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
+                      <ExclamationCircleIcon
+                        aria-hidden="true"
+                        className="h-5 w-5 text-red-500"
+                      />
+                    </div>
+                  )}
                 </div>
+                {!dataForm.nameBuyer && alreadyOnSubmit && (
+                  <p id="email-error" className="mt-2 text-sm text-red-600">
+                    Este campo es obligatorio
+                  </p>
+                )}
               </div>
             </div>
             <div className="mt-10">
               <button
                 type="submit"
-                disabled={!isSendButtonEnabled(dataForm)}
+                //disabled={!isSendButtonEnabled(dataForm)}
                 className={
                   !isSendButtonEnabled(dataForm)
                     ? "flex w-full items-center justify-center rounded-md border border-transparent bg-gray-400 px-8 py-3 text-base font-medium text-white"
@@ -272,11 +345,9 @@ const Form = () => {
               <div className="group inline-flex text-base font-medium">
                 <ShieldCheckIcon
                   aria-hidden="true"
-                  className="mr-2 h-6 w-6 flex-shrink-0 text-green-600 group-hover:text-gray-500"
+                  className="mr-2 h-6 w-6 flex-shrink-0 text-green-600"
                 />
-                <span className="text-gray-500 hover:text-gray-700">
-                  Garantía de 2 años
-                </span>
+                <span className="text-gray-500">Garantía de 2 años</span>
               </div>
             </div>
           </section>

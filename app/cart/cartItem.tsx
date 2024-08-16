@@ -19,21 +19,23 @@ const CartItem = ({
 
   return (
     <>
-      <li className="flex space-x-6 py-6">
-        <Image
-          alt={giftCard.selectedGiftCardId + "image"}
-          src={cloudinaryLoader({
-            src:
-              getImageByGiftCardId(
-                giftCardsData,
-                giftCard.selectedGiftCardId
-              ) || "",
-          })}
-          width={1000}
-          height={1000}
-          className="h-20 w-28 flex-none rounded-md bg-gray-100 object-cover object-center"
-        />
-        <div className="flex-auto">
+      <li className="space-x-6 py-6">
+        <div className="flex justify-center">
+          <Image
+            alt={giftCard.selectedGiftCardId + "image"}
+            src={cloudinaryLoader({
+              src:
+                getImageByGiftCardId(
+                  giftCardsData,
+                  giftCard.selectedGiftCardId
+                ) || "",
+            })}
+            width={1000}
+            height={1000}
+            className="h-44 w-72 flex-none rounded-md bg-gray-100 object-cover object-center"
+          />
+        </div>
+        <div className="flex-auto ml-0">
           <div className="space-y-1 sm:flex sm:items-start sm:justify-between sm:space-x-6">
             <div className="flex-auto space-y-1 text-sm font-medium">
               <div className="mt-1 text-sm">
@@ -58,7 +60,7 @@ const CartItem = ({
             <button
               type="button"
               onClick={() => dispatch(removeCard(giftCard))}
-              className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+              className="text-sm font-medium text-indigo-600 hover:text-indigo-500 mt-4"
             >
               Eliminar
             </button>

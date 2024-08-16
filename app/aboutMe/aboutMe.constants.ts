@@ -33,14 +33,14 @@ export const people = [
   {
     name: "Elvira Morgado Sánchez",
     role: "Médico Estético",
-    imageUrl: "EMS/HowAmI/ElviraMorgado",
+    imageUrl: "EMS/AboutMe/ElviraMorgado",
     xUrl: "#",
     linkedinUrl: "#",
   },
   {
     name: "Whitney Francis",
     role: "Auxiliar de enfermería",
-    imageUrl: "EMS/HowAmI/Auxiliar",
+    imageUrl: "EMS/AboutMe/Auxiliar",
     xUrl: "#",
     linkedinUrl: "#",
   },
