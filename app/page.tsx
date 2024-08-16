@@ -47,12 +47,12 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero section */}
-      <div
+      {/* <div
         className="relative w-full overflow-hidden"
         style={{ maxHeight: "75vh" }}
       >
         <div className="react-player-wrapper">
-          {/*  <AdvancedVideo
+          <AdvancedVideo
             cldVid={cld.video("EMS/HomePage/video")}
             className="react-player"
             autoPlay
@@ -60,34 +60,50 @@ export default function HomePage() {
             muted
             playsInline
             onError={(e) => console.error("Error playing video:", e)}
-          /> */}
+          />
+        </div>
+      </div> */}
+
+      <div
+        className="relative w-full overflow-hidden"
+        style={{
+          backgroundImage:
+            "url(https://emsmedicinaestetica.com/assets/img/bg-header.jpeg)",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            maxHeight:
+              "75vh" /* Asegura que la imagen no exceda el 75% de la altura de la ventana */,
+            overflow: "hidden",
+            display: "flex",
+            justifyContent: "center" /* Centra la imagen horizontalmente */,
+            alignItems: "center" /* Centra la imagen verticalmente */,
+          }}
+        >
           <Image
             alt=""
-            src={
-              isMobile || isTablet
-                ? cloudinaryLoader({
-                    src: "EMS/General/Hero",
-                  })
-                : cloudinaryLoader({
-                    src: "EMS/General/background",
-                  })
-            }
+            src={cloudinaryLoader({
+              src: "EMS/General/Hero",
+            })}
             width={1000}
             height={1000}
             className=" w-full object-cover object-center"
-            style={
-              isMobile || isTablet
-                ? {
-                    backgroundImage:
-                      "url(https://emsmedicinaestetica.com/assets/img/bg-header.jpeg)",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                  }
-                : {}
-            }
+            style={{
+              maxWidth: "100%",
+              maxHeight: "100%",
+              height: isMobile || isTablet ? "auto" : "70vh",
+              width: "auto",
+              objectFit: "contain",
+            }}
           />
         </div>
       </div>
+
       {/* Title*/}
       <div
         aria-labelledby="collection-heading"
