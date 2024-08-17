@@ -1,10 +1,16 @@
 "use client";
 
-import { CheckIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Form from "./Form/Form";
+import { useSelector } from "react-redux";
+import { CardState } from "@/lib/card/cardSlide";
 
 //TODO: disable 2nd giftCard
 const GiftCard = () => {
+  const giftCard = useSelector(
+    (state: { card: CardState }) => state.card.giftCard
+  );
+
   return (
     <div className="relative mx-auto lg:max-w-7xl lg:px-8 isolate -z-10 overflow-hidden bg-gradient-to-b from-yellow-100/20 pt-4">
       <div
@@ -38,25 +44,38 @@ const GiftCard = () => {
 
             <div className="mt-4 space-y-6">
               <p className="text-base text-gray-500">
-                Se enviará un correo electrónico con la tarjeta de regalo del importe elegido.
-                Puede canjearse para cualquier tratamiento de la página web. Y tiene una duración de 2 años de validez.
+                Se enviará un correo electrónico con la tarjeta de regalo del
+                importe elegido. Puede canjearse para cualquier tratamiento de
+                la página web. Y tiene una duración de 2 años de validez.
               </p>
             </div>
 
-            <div className="mt-6 flex items-center">
-              <CheckIcon
-                aria-hidden="true"
-                className="h-5 w-5 flex-shrink-0 text-green-500"
-              />
-              <p className="ml-2 text-sm text-gray-500">
-                Disponible y listo para enviar
-              </p>
-            </div>
+            {giftCard.selectedGiftCardId ? (
+              <div className="mt-6 flex items-center">
+                <XMarkIcon
+                  aria-hidden="true"
+                  className="h-5 w-5 flex-shrink-0 text-red-500"
+                />
+                <p className="ml-2 text-sm text-red-500">
+                  Sólo se puede comprar una Tarjeta de regalo a la vez
+                </p>
+              </div>
+            ) : (
+              <div className="mt-6 flex items-center">
+                <CheckIcon
+                  aria-hidden="true"
+                  className="h-5 w-5 flex-shrink-0 text-green-500"
+                />
+                <p className="ml-2 text-sm text-gray-500">
+                  Disponible y listo para enviar
+                </p>
+              </div>
+            )}
           </section>
         </div>
 
         {/* Product form */}
-        <Form />
+        <Form disabled={!!giftCard.selectedGiftCardId} />
       </div>
     </div>
   );
