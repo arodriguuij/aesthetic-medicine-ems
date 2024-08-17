@@ -16,10 +16,10 @@ import { GiftCardForm, GiftCardFormGet } from "@/app/types/giftCards.types";
 
 const CheckoutPage = ({
   amount,
-  giftCards,
+  giftCard,
 }: {
   amount: number;
-  giftCards: GiftCardForm[];
+  giftCard: GiftCardForm;
 }) => {
   const stripe = useStripe();
   const dispatch = useDispatch();
@@ -77,13 +77,12 @@ const CheckoutPage = ({
       setErrorMessage(error.message);
       //TODO: send to an error page
     } else {
-      const orderHistory = await addGiftCardOrder(giftCards);
-      console.log({ orderHistory });
+      const orderHistory = await addGiftCardOrder(giftCard);
 
       //TODO: check for error in addGiftCardOrder
       router.push("/paymentSuccess");
       dispatch(
-        addGiftCardsOrderHistory(orderHistory.data as GiftCardFormGet[])
+        addGiftCardsOrderHistory(orderHistory.data as GiftCardFormGet)
       );
       scrollToTop();
     }

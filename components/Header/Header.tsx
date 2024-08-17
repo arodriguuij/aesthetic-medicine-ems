@@ -50,7 +50,7 @@ import {
 } from "@/app/cart/cart.utils";
 import useIsTablet from "@/hooks/useIsTablet";
 import { cloudinaryLoader } from "@/utils/cloudinary";
-import { CardState, resetCard } from "@/lib/card/cardSlide";
+import { CardState, GiftCardForm, removeCard } from "@/lib/card/cardSlide";
 import Image from "next/image";
 
 const Header = () => {
@@ -82,9 +82,7 @@ const Header = () => {
   const [isPopoverGiftCartsVisible, setPopoverGiftCartsVisible] =
     useState(false);
 
-  const { giftCard200, giftCard300, giftCard500 } = useSelector(
-    (state: { card: CardState }) => state.card
-  );
+  const giftCard = useSelector((state: { card: CardState }) => state.card.giftCard);
 
   const scrollToTopFnc = () => {
     scrollToTop();
@@ -121,7 +119,7 @@ const Header = () => {
             className="h-6 w-6 flex-shrink-0 text-gray-400 hover:text-amber-600 data-[open]:text-amber-700"
           />
           <span className="ml-2 text-sm font-medium text-gray-400 hover:text-amber-600 data-[open]:text-amber-700">
-            {giftCard200.quantity + giftCard300.quantity + giftCard500.quantity}
+            {giftCard.selectedGiftCardId ? 1 : 0}
           </span>
           <span className="sr-only">Productos en el carro</span>
         </PopoverButton>
@@ -145,18 +143,15 @@ const Header = () => {
               {giftCardsError && (
                 <>Error en la carga de las tarjetas de regalo</>
               )}
-              {giftCardsData && giftCard200.quantity > 0 && (
-                <li
-                  key={giftCard200.giftCards[0].selectedGiftCardId}
-                  className="flex items-center px-4 py-6"
-                >
+              {giftCardsData && giftCard.selectedGiftCardId && (
+                <li className="flex items-center px-4 py-6">
                   <Image
-                    alt={giftCard200.giftCards[0].selectedGiftCardId + "Image"}
+                    alt={giftCard.selectedGiftCardId + "Image"}
                     src={cloudinaryLoader({
                       src:
                         getImageByGiftCardId(
                           giftCardsData,
-                          giftCard200.giftCards[0].selectedGiftCardId
+                          giftCard.selectedGiftCardId
                         ) || "",
                     })}
                     width={1000}
@@ -171,13 +166,13 @@ const Header = () => {
                     <p className="text-gray-500">
                       {getDescriptionByGiftCardId(
                         giftCardsData,
-                        giftCard200.giftCards[0].selectedGiftCardId
+                        giftCard.selectedGiftCardId
                       )}
                     </p>
                     <p className="text-gray-500">
                       {getQuantityByGiftCardId(
                         giftCardsData,
-                        giftCard200.giftCards[0].selectedGiftCardId
+                        giftCard.selectedGiftCardId
                       )}
                       €
                     </p>
@@ -186,107 +181,13 @@ const Header = () => {
                     aria-hidden="true"
                     className="h-6 w-6 flex-shrink-0 cursor-pointer text-red-400 hover:text-red-600 data-[open]:text-red-700"
                     onClick={() => {
-                      dispatch(resetCard());
-                    }}
-                  />
-                </li>
-              )}
-              {giftCardsData && giftCard300.quantity > 0 && (
-                <li
-                  key={giftCard300.giftCards[0].selectedGiftCardId}
-                  className="flex items-center px-4 py-6"
-                >
-                  <Image
-                    alt={giftCard300.giftCards[0].selectedGiftCardId + "Image"}
-                    src={cloudinaryLoader({
-                      src:
-                        getImageByGiftCardId(
-                          giftCardsData,
-                          giftCard300.giftCards[0].selectedGiftCardId
-                        ) || "",
-                    })}
-                    width={1000}
-                    height={1000}
-                    className="h-16 w-24 flex-none rounded-md border border-gray-200"
-                  />
-                  <div className="ml-4 flex-auto">
-                    <h3 className="font-medium text-gray-900">
-                      Tarjeta de regalo
-                    </h3>
-                    <p className="text-gray-500">
-                      {getDescriptionByGiftCardId(
-                        giftCardsData,
-                        giftCard300.giftCards[0].selectedGiftCardId
-                      )}
-                    </p>
-                    <p className="text-gray-500">
-                      {getQuantityByGiftCardId(
-                        giftCardsData,
-                        giftCard300.giftCards[0].selectedGiftCardId
-                      )}
-                      €
-                    </p>
-                  </div>
-                  <XMarkIcon
-                    aria-hidden="true"
-                    className="h-6 w-6 flex-shrink-0 cursor-pointer text-red-400 hover:text-red-600 data-[open]:text-red-700"
-                    onClick={() => {
-                      dispatch(resetCard());
-                    }}
-                  />
-                </li>
-              )}
-              {giftCardsData && giftCard500.quantity > 0 && (
-                <li
-                  key={giftCard500.giftCards[0].selectedGiftCardId}
-                  className="flex items-center px-4 py-6"
-                >
-                  <Image
-                    alt={giftCard500.giftCards[0].selectedGiftCardId + "Image"}
-                    src={cloudinaryLoader({
-                      src:
-                        getImageByGiftCardId(
-                          giftCardsData,
-                          giftCard500.giftCards[0].selectedGiftCardId
-                        ) || "",
-                    })}
-                    width={1000}
-                    height={1000}
-                    className="h-16 w-24 flex-none rounded-md border border-gray-200"
-                  />
-
-                  <div className="ml-4 flex-auto">
-                    <h3 className="font-medium text-gray-900">
-                      Tarjeta de regalo
-                    </h3>
-                    <p className="text-gray-500">
-                      {getDescriptionByGiftCardId(
-                        giftCardsData,
-                        giftCard500.giftCards[0].selectedGiftCardId
-                      )}
-                    </p>
-                    <p className="text-gray-500">
-                      {getQuantityByGiftCardId(
-                        giftCardsData,
-                        giftCard500.giftCards[0].selectedGiftCardId
-                      )}
-                      €
-                    </p>
-                  </div>
-                  <XMarkIcon
-                    aria-hidden="true"
-                    className="h-6 w-6 flex-shrink-0 cursor-pointer text-red-400 hover:text-red-600 data-[open]:text-red-700"
-                    onClick={() => {
-                      dispatch(resetCard());
+                      dispatch(removeCard());
                     }}
                   />
                 </li>
               )}
             </ul>
-            {giftCard200.quantity +
-              giftCard300.quantity +
-              giftCard500.quantity ===
-            0 ? (
+            {!giftCard.selectedGiftCardId ? (
               <p className="mt-6 text-center">
                 <p className="text-center">El carrito está vacío</p>
                 <button
@@ -307,19 +208,9 @@ const Header = () => {
                   router.push("/cart");
                   scrollToTopFnc();
                 }}
-                disabled={
-                  !giftCardsData ||
-                  giftCard200.quantity +
-                    giftCard300.quantity +
-                    giftCard500.quantity ===
-                    0
-                }
+                disabled={!giftCardsData || !giftCard.selectedGiftCardId}
                 className={
-                  giftCardsData &&
-                  giftCard200.quantity +
-                    giftCard300.quantity +
-                    giftCard500.quantity >
-                    0
+                  giftCardsData && giftCard.selectedGiftCardId
                     ? "w-full mt-6 text-center rounded-md border border-transparent bg-amber-400 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                     : "w-full mt-6 text-center rounded-md border border-transparent bg-gray-400 px-4 py-2 text-sm font-medium text-white shadow-sm"
                 }

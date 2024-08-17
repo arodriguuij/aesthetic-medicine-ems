@@ -1,11 +1,9 @@
 "use client";
 
-import { resetCard } from "@/lib/card/cardSlide";
-import { CardOrderState } from "@/lib/orderHistory/orderHistorySlide";
+import { removeCard } from "@/lib/card/cardSlide";
 import { classNames } from "@/utils/utils";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuantityByGiftCardId } from "../cart/cart.utils";
 import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
 import { GiftCard } from "../types/giftCards.types";
 import { useRouter } from "next/navigation";
@@ -14,22 +12,22 @@ import Image from "next/image";
 import { incentives, step } from "./paymentSuccess.constants";
 import { cloudinaryLoader } from "@/utils/cloudinary";
 import SummaryOrder from "./summaryOrder";
+import { GiftCardFormOrder, OrderHistoryState } from "@/lib/orderHistory/orderHistorySlide";
 
 const PaymentSuccess = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(resetCard());
+    dispatch(removeCard());
     return () => {
       console.log("[PaymentSuccess] out");
     };
   }, [dispatch]);
 
-  const { giftCard200, giftCard300, giftCard500 } = useSelector(
-    (state: { orderHistory: CardOrderState }) => state.orderHistory
+  const giftCardOrder = useSelector(
+    (state: { orderHistory: OrderHistoryState }) => state.orderHistory.orderHistory
   );
-  const giftCards = [...giftCard200, ...giftCard300, ...giftCard500];
 
   const {
     data: giftCardsData,
@@ -37,8 +35,7 @@ const PaymentSuccess = () => {
     status,
   } = useGetGiftCardsQuery("");
 
-  if (!giftCardsData || giftCardsError || giftCards.length === 0)
-    router.push("/");
+  if (!giftCardOrder.id) router.push("/");
 
   if (status === "pending") return <Loader />;
 
@@ -52,7 +49,7 @@ const PaymentSuccess = () => {
         className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-yellow-600/10 ring-1 ring-yellow-50 sm:-mr-80 lg:-mr-96"
         aria-hidden="true"
       />
-      {giftCard200.length + giftCard300.length + giftCard500.length > 0 ? (
+      {giftCardOrder.id ? (
         <>
           {/* Header */}
           <div className="mx-auto sm:px-6  mb-8 lg:max-w-7xl lg:px-8">
@@ -75,7 +72,7 @@ const PaymentSuccess = () => {
             <div className="flex">
               <p className="text-sm text-gray-600 ">Número(s) del pedido:</p>
               <p className="ml-1 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                {giftCards.map(({ id }) => `#${id}`).join(", ")}
+                {`#${giftCardOrder.id}`}
               </p>
             </div>
           </div>
@@ -88,27 +85,10 @@ const PaymentSuccess = () => {
               </h2>
 
               <div className="space-y-8">
-                {giftCard200.map((product, index) => (
-                  <SummaryOrder
-                    key={product.id}
-                    product={product}
-                    giftCardsData={giftCardsData as GiftCard[]}
-                  />
-                ))}
-                {giftCard300.map((product, index) => (
-                  <SummaryOrder
-                    key={product.id}
-                    product={product}
-                    giftCardsData={giftCardsData as GiftCard[]}
-                  />
-                ))}
-                {giftCard500.map((product, index) => (
-                  <SummaryOrder
-                    key={product.id}
-                    product={product}
-                    giftCardsData={giftCardsData as GiftCard[]}
-                  />
-                ))}
+                <SummaryOrder
+                  product={giftCardOrder}
+                  giftCardsData={giftCardsData as GiftCard[]}
+                />
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6 lg:p-8">
                   <h4 className="sr-only">Status</h4>
                   <div aria-hidden="true" className="mt-6">

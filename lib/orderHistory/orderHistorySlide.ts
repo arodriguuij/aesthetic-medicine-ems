@@ -6,16 +6,12 @@ export interface GiftCardFormOrder extends GiftCardForm {
   id: number;
 }
 
-export interface CardOrderState {
-  giftCard200: GiftCardFormOrder[];
-  giftCard300: GiftCardFormOrder[];
-  giftCard500: GiftCardFormOrder[];
+export interface OrderHistoryState {
+  orderHistory: GiftCardFormOrder;
 }
 
-const initialState: CardOrderState = {
-  giftCard200: [],
-  giftCard300: [],
-  giftCard500: [],
+const initialState: OrderHistoryState = {
+  orderHistory: {} as GiftCardFormOrder,
 };
 
 export const orderHistorySlide = createSlice({
@@ -24,16 +20,9 @@ export const orderHistorySlide = createSlice({
   reducers: {
     addGiftCardsOrderHistory: (
       state,
-      action: PayloadAction<GiftCardFormOrder[]>
+      action: PayloadAction<GiftCardFormOrder>
     ) => {
-      action.payload.map((giftCardOrder) => {
-        if (giftCardOrder.selectedGiftCardId === 1)
-          state.giftCard200.push(giftCardOrder);
-        if (giftCardOrder.selectedGiftCardId === 2)
-          state.giftCard300.push(giftCardOrder);
-        if (giftCardOrder.selectedGiftCardId === 3)
-          state.giftCard500.push(giftCardOrder);
-      });
+      state.orderHistory = action.payload;
     },
     resetGiftCardsOrderHistory: (state) => {
       return { ...initialState }; // Create a new copy of initialState

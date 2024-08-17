@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
-import { CardState } from "../../lib/card/cardSlide";
+import { CardState, GiftCardForm } from "../../lib/card/cardSlide";
 import { getSubTotal } from "./cart.utils";
 import CartItem from "./cartItem";
 import { convertToSubCurrency } from "@/utils/utils";
@@ -34,22 +34,15 @@ const Cart = () => {
     status,
   } = useGetGiftCardsQuery("");
 
-  const { giftCard200, giftCard300, giftCard500 } = useSelector(
-    (state: { card: CardState }) => state.card
-  );
+  const giftCard = useSelector((state: { card: CardState }) => state.card.giftCard);
 
-  const giftCards = [
-    ...giftCard200.giftCards,
-    ...giftCard300.giftCards,
-    ...giftCard500.giftCards,
-  ];
-  const amount = getSubTotal(giftCardsData as GiftCard[], giftCards);
+  const amount = getSubTotal(giftCardsData as GiftCard[], giftCard);
 
   useEffect(() => {
     dispatch(resetGiftCardsOrderHistory());
   }, [dispatch]);
 
-  if (!giftCardsData || giftCardsError || giftCards.length === 0)
+  if (!giftCardsData || giftCardsError || !giftCard.selectedGiftCardId)
     router.push("/");
 
   if (status === "pending") return <Loader />;
@@ -89,33 +82,13 @@ const Cart = () => {
                 {giftCardsError && (
                   <>Error en la carga de las tarjetas de regalo</>
                 )}
-                {giftCardsData &&
-                  giftCard200.quantity > 0 &&
-                  giftCard200.giftCards.map((giftCard, index) => (
-                    <CartItem
-                      key={giftCard.selectedGiftCardId + index}
-                      giftCardsData={giftCardsData}
-                      giftCard={giftCard}
-                    />
-                  ))}
-                {giftCardsData &&
-                  giftCard300.quantity > 0 &&
-                  giftCard300.giftCards.map((giftCard, index) => (
-                    <CartItem
-                      key={giftCard.selectedGiftCardId + index}
-                      giftCardsData={giftCardsData}
-                      giftCard={giftCard}
-                    />
-                  ))}
-                {giftCardsData &&
-                  giftCard500.quantity > 0 &&
-                  giftCard500.giftCards.map((giftCard, index) => (
-                    <CartItem
-                      key={giftCard.selectedGiftCardId + index}
-                      giftCardsData={giftCardsData}
-                      giftCard={giftCard}
-                    />
-                  ))}
+                {giftCardsData && giftCard.selectedGiftCardId && (
+                  <CartItem
+                    key={giftCard.selectedGiftCardId}
+                    giftCardsData={giftCardsData}
+                    giftCard={giftCard}
+                  />
+                )}
               </ul>
             </div>
             {/* Money */}
@@ -123,7 +96,7 @@ const Cart = () => {
               <div className="flex justify-between">
                 <dt>Subtotal</dt>
                 <dd className="text-gray-900">
-                  {giftCardsData && getSubTotal(giftCardsData, giftCards)}€
+                  {giftCardsData && getSubTotal(giftCardsData, giftCard)}€
                 </dd>
               </div>
               <div className="flex justify-between">
@@ -137,7 +110,7 @@ const Cart = () => {
               <div className="flex justify-between border-t border-gray-200 pt-6 text-gray-900">
                 <dt className="text-base">Total del pedido</dt>
                 <dd className="text-base">
-                  {giftCardsData && getSubTotal(giftCardsData, giftCards)}€
+                  {giftCardsData && getSubTotal(giftCardsData, giftCard)}€
                 </dd>
               </div>
             </dl>
@@ -153,7 +126,7 @@ const Cart = () => {
                 locale: "es",
               }}
             >
-              <CheckoutPage amount={amount} giftCards={giftCards} />
+              <CheckoutPage amount={amount} giftCard={giftCard} />
             </Elements>
           </div>
         </div>

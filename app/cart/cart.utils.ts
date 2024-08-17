@@ -16,11 +16,7 @@ export const getQuantityByGiftCardId = (
   giftCardId: number
 ) => giftCardsData.find(({ id }) => id === giftCardId)?.quantity;
 
-export const getSubTotal = (giftCardsData: GiftCard[], gifCards: GiftCardForm[]) => {
-  let subTotal = 0;
-  gifCards.forEach((gifCard) => {
-    subTotal +=
-      getQuantityByGiftCardId(giftCardsData, gifCard.selectedGiftCardId) || 0;
-  });
-  return subTotal;
-};
+export const getSubTotal = (
+  giftCardsData: GiftCard[],
+  giftCard: GiftCardForm
+) => getQuantityByGiftCardId(giftCardsData, giftCard.selectedGiftCardId) || 0;

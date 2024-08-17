@@ -22,14 +22,12 @@ export async function POST(req: NextRequest) {
   await corsMiddleware(req, res);
 
   try {
-    const body = (await req.json()) as GiftCardForm[];
-    const newGiftCards = await addGiftCards(body);
-    for (const giftCard of newGiftCards) {
-      const emailResponse = await sendMailReceipt(giftCard);
-      console.log({ emailResponse });
-    }
+    const body = (await req.json()) as GiftCardForm;
+    const newGiftCard = await addGiftCards(body);
+    const emailResponse = await sendMailReceipt(newGiftCard);
+    console.log({ newGiftCard, emailResponse });
 
-    return NextResponse.json(newGiftCards, { status: 201 });
+    return NextResponse.json(newGiftCard, { status: 201 });
   } catch (error) {
     console.error("Error adding gift card:", error);
     return NextResponse.error();

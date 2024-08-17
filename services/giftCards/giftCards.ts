@@ -15,7 +15,7 @@ export const giftCardsApi = createApi({
     getGiftCardById: builder.query<GiftCard, string>({
       query: (id) => `giftCards/${id}`,
     }),
-    addGiftCardOrder: builder.mutation<GiftCardFormGet[], GiftCardForm[]>({
+    addGiftCardOrder: builder.mutation<GiftCardFormGet, GiftCardForm>({
       query: (data) => ({
         url: "giftCards",
         method: "POST",

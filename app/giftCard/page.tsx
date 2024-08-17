@@ -3,6 +3,7 @@
 import { CheckIcon } from "@heroicons/react/24/outline";
 import Form from "./Form/Form";
 
+//TODO: disable 2nd giftCard
 const GiftCard = () => {
   return (
     <div className="relative mx-auto lg:max-w-7xl lg:px-8 isolate -z-10 overflow-hidden bg-gradient-to-b from-yellow-100/20 pt-4">
