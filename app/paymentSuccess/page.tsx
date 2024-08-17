@@ -17,7 +17,6 @@ import SummaryOrder from "./summaryOrder";
 
 const PaymentSuccess = () => {
   const router = useRouter();
-
   const dispatch = useDispatch();
 
   useEffect(() => {

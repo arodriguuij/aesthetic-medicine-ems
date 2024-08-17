@@ -87,6 +87,7 @@ export default function HomePage() {
         >
           <Image
             alt=""
+            onClick={scrollToTop}
             src={cloudinaryLoader({
               src: "EMS/General/Hero",
             })}

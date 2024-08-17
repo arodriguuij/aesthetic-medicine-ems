@@ -36,7 +36,7 @@ import {
   useGetTreatmentsFacialNamesQuery,
 } from "../../services/treatments/treatments";
 import { useGetAreasQuery } from "../../services/areas/areas";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
 import ArrowDown from "../Icons/ArrowDown";
@@ -49,12 +49,14 @@ import {
   getQuantityByGiftCardId,
 } from "@/app/cart/cart.utils";
 import useIsTablet from "@/hooks/useIsTablet";
-import {  cloudinaryLoader } from "@/utils/cloudinary";
-import { CardState } from "@/lib/card/cardSlide";
+import { cloudinaryLoader } from "@/utils/cloudinary";
+import { CardState, resetCard } from "@/lib/card/cardSlide";
 import Image from "next/image";
 
 const Header = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+
   const {
     data: facialTreatmentsData,
     error: facialTreatmentsError,
@@ -180,13 +182,13 @@ const Header = () => {
                       €
                     </p>
                   </div>
-                  <p className="flex space-x-2 text-sm text-gray-700">
-                    <HashtagIcon
-                      aria-hidden="true"
-                      className="h-5 w-5 flex-shrink-0 text-green-500"
-                    />
-                    <span>{giftCard200.quantity}</span>
-                  </p>
+                  <XMarkIcon
+                    aria-hidden="true"
+                    className="h-6 w-6 flex-shrink-0 cursor-pointer text-red-400 hover:text-red-600 data-[open]:text-red-700"
+                    onClick={() => {
+                      dispatch(resetCard());
+                    }}
+                  />
                 </li>
               )}
               {giftCardsData && giftCard300.quantity > 0 && (
@@ -205,7 +207,7 @@ const Header = () => {
                     })}
                     width={1000}
                     height={1000}
-                    className="h-16 w-26 flex-none rounded-md border border-gray-200"
+                    className="h-16 w-24 flex-none rounded-md border border-gray-200"
                   />
                   <div className="ml-4 flex-auto">
                     <h3 className="font-medium text-gray-900">
@@ -225,13 +227,13 @@ const Header = () => {
                       €
                     </p>
                   </div>
-                  <p className="flex space-x-2 text-sm text-gray-700">
-                    <HashtagIcon
-                      aria-hidden="true"
-                      className="h-5 w-5 flex-shrink-0 text-green-500"
-                    />
-                    <span>{giftCard300.quantity}</span>
-                  </p>
+                  <XMarkIcon
+                    aria-hidden="true"
+                    className="h-6 w-6 flex-shrink-0 cursor-pointer text-red-400 hover:text-red-600 data-[open]:text-red-700"
+                    onClick={() => {
+                      dispatch(resetCard());
+                    }}
+                  />
                 </li>
               )}
               {giftCardsData && giftCard500.quantity > 0 && (
@@ -250,7 +252,7 @@ const Header = () => {
                     })}
                     width={1000}
                     height={1000}
-                    className="h-16 w-26 flex-none rounded-md border border-gray-200"
+                    className="h-16 w-24 flex-none rounded-md border border-gray-200"
                   />
 
                   <div className="ml-4 flex-auto">
@@ -271,13 +273,13 @@ const Header = () => {
                       €
                     </p>
                   </div>
-                  <p className="flex space-x-2 text-sm text-gray-700">
-                    <HashtagIcon
-                      aria-hidden="true"
-                      className="h-5 w-5 flex-shrink-0 text-green-500"
-                    />
-                    <span>{giftCard500.quantity}</span>
-                  </p>
+                  <XMarkIcon
+                    aria-hidden="true"
+                    className="h-6 w-6 flex-shrink-0 cursor-pointer text-red-400 hover:text-red-600 data-[open]:text-red-700"
+                    onClick={() => {
+                      dispatch(resetCard());
+                    }}
+                  />
                 </li>
               )}
             </ul>

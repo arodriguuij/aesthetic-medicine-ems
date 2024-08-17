@@ -217,7 +217,7 @@ const Form = () => {
                 htmlFor="username"
                 className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5"
               >
-                Correo electrónico a enviar
+                Correo electrónico
               </label>
               <div className="sm:col-span-2 sm:mt-0">
                 <div className="flex bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-amber-400 sm:max-w-md">

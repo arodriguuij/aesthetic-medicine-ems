@@ -78,6 +78,8 @@ const CheckoutPage = ({
       //TODO: send to an error page
     } else {
       const orderHistory = await addGiftCardOrder(giftCards);
+      console.log({ orderHistory });
+
       //TODO: check for error in addGiftCardOrder
       router.push("/paymentSuccess");
       dispatch(

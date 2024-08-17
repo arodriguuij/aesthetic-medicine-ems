@@ -8,6 +8,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
+    console.log({body})
 
     // Check if the required fields are present
     if (!body.message || !body.email) {
