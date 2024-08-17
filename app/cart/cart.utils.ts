@@ -4,17 +4,17 @@ import { GiftCardForm } from "@/lib/card/cardSlide";
 export const getImageByGiftCardId = (
   giftCardsData: GiftCard[],
   giftCardId: number
-) => giftCardsData.find(({ id }) => id === giftCardId)?.image;
+) => giftCardsData?.find(({ id }) => id === giftCardId)?.image;
 
 export const getDescriptionByGiftCardId = (
   giftCardsData: GiftCard[],
   giftCardId: number
-) => giftCardsData.find(({ id }) => id === giftCardId)?.description;
+) => giftCardsData?.find(({ id }) => id === giftCardId)?.description;
 
 export const getQuantityByGiftCardId = (
   giftCardsData: GiftCard[],
   giftCardId: number
-) => giftCardsData.find(({ id }) => id === giftCardId)?.quantity;
+) => giftCardsData?.find(({ id }) => id === giftCardId)?.quantity;
 
 export const getSubTotal = (
   giftCardsData: GiftCard[],
