@@ -46,7 +46,7 @@ const giftCard = {
   selectedGiftCardId: 1,
 };
 
-const RecipeMail = () => (
+const RecipeMail = (giftCard: GiftCardFormGet) => (
   <Html>
     <Head />
     <Preview>Obtenga el resumen de su pedido</Preview>
