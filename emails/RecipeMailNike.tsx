@@ -36,7 +36,7 @@ if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
   baseUrl = "http://localhost:3000/";
 }
 
-const giftCardMock = {
+const giftCard = {
   email: "socorrista92re@gmail.com",
   id: 84,
   message:
@@ -46,40 +46,26 @@ const giftCardMock = {
   selectedGiftCardId: 1,
 };
 
-const RecipeMail = (giftCard: GiftCardFormGet) => (
+const RecipeMail = () => (
   <Html>
     <Head />
     <Preview>Obtenga el resumen de su pedido</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Section style={track.container}>
-          <Text style={globalMail.paragraphWithBold}>Número de rastreo</Text>
-          <Text style={track.number}>1ZV218970300071628</Text>
-        </Section>
-        <Hr style={globalMail.hr} />
         <Section style={messageMail}>
           <Img
             src={`${baseUrl}Images/logo.png`}
             width="66"
             height="50"
-            alt="Nike"
+            alt="EMS logo"
             style={{ margin: "auto" }}
           />
 
-          <Heading style={globalMail.heading}>
-            Tu Tarjeta de Regalo está Lista.
-          </Heading>
-          <Text style={globalMail.text}>Hola [Nombre del Cliente],</Text>
-          <Text style={{ ...globalMail.text, marginTop: 24 }}>
+          <Heading style={globalMail.heading}>Tarjeta de Regalo EMS</Heading>
+          <Text style={globalMail.text}>Hola {giftCard.nameBuyer},</Text>
+          <Text style={{ ...globalMail.text, marginTop: 4 }}>
             ¡Felicitaciones! Tu tarjeta de regalo de Medicina Estética EMS ya
             está disponible.
-          </Text>
-        </Section>
-        <Hr style={globalMail.hr} />
-        <Section style={globalMail.defaultPadding}>
-          <Text style={adressTitle}>Shipping to: Alan Turing</Text>
-          <Text style={{ ...globalMail.text, fontSize: 14 }}>
-            2125 Chestnut St, San Francisco, CA 94123
           </Text>
         </Section>
         <Hr style={globalMail.hr} />
@@ -89,17 +75,27 @@ const RecipeMail = (giftCard: GiftCardFormGet) => (
           <Row>
             <Column>
               <Img
-                src={`${baseUrl}/static/nike-product.png`}
-                alt="Brazil 2022/23 Stadium Away Women's Nike Dri-FIT Soccer Jersey"
+                src={`${baseUrl}${
+                  giftCard.selectedGiftCardId === 1
+                    ? "Images/GiftCard200.png"
+                    : giftCard.selectedGiftCardId === 2
+                    ? "Images/GiftCard300.png"
+                    : "Images/GiftCard500.png"
+                }`}
+                alt="Imagen Tarjeta de regalo"
                 style={{ float: "left" }}
                 width="260px"
               />
             </Column>
             <Column style={{ verticalAlign: "top", paddingLeft: "12px" }}>
               <Text style={{ ...paragraph, fontWeight: "500" }}>
-                Brazil 2022/23 Stadium Away Women Nike Dri-FIT Soccer Jersey
+                Comprador: {giftCard.nameBuyer}
               </Text>
-              <Text style={globalMail.text}>Size L (12–14)</Text>
+              <Text style={{ ...paragraph, fontWeight: "500" }}>
+                Destinatario: {giftCard.nameReceiver}
+              </Text>
+              <Text style={globalMail.text}>Mensaje:</Text>
+              <Text style={globalMail.text}>{giftCard.message}</Text>
             </Column>
           </Row>
         </Section>
@@ -107,17 +103,14 @@ const RecipeMail = (giftCard: GiftCardFormGet) => (
         <Section style={globalMail.defaultPadding}>
           <Row style={{ display: "inline-flex", marginBottom: 40 }}>
             <Column style={{ width: "170px" }}>
-              <Text style={globalMail.paragraphWithBold}>Order Number</Text>
-              <Text style={track.number}>C0106373851</Text>
+              <Text style={globalMail.paragraphWithBold}>Número de Orden</Text>
+              <Text style={track.number}>#{giftCard.id}</Text>
             </Column>
             <Column>
-              <Text style={globalMail.paragraphWithBold}>Order Date</Text>
-              <Text style={track.number}>Sep 22, 2022</Text>
-            </Column>
-          </Row>
-          <Row>
-            <Column align="center">
-              <Link style={globalMail.button}>Order Status</Link>
+              <Text style={globalMail.paragraphWithBold}>Fecha</Text>
+              <Text style={track.number}>
+                {new Date().toLocaleDateString()}
+              </Text>
             </Column>
           </Row>
         </Section>
