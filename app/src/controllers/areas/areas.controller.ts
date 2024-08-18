@@ -2,7 +2,6 @@ import { getAreaByIdService, getAreasService } from "../../services/areas";
 import { getTreatmentsByAreaId } from "../../services/treatments/treatments.service";
 import { getPopulatedAreas } from "../treatments/treatments.utils";
 
-
 export const getAreas = async () => {
   return await getAreasService();
 };

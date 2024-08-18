@@ -3,8 +3,9 @@ import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import RecipeMail from "@/emails";
 import { GiftCardFormGet } from "@/app/types/giftCards.types";
+import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
 
-export const sendMailReceipt = async (giftCard: GiftCardFormGet) => {
+export const sendMailReceipt = async (giftCard: GiftCardFormWithDiscountAppliedGet) => {
   // resend declaration with API key as parameter
   const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 

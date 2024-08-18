@@ -26,7 +26,7 @@ import {
   paragraph,
   track,
 } from "./recipeMail.styles";
-import { GiftCardFormGet } from "@/app/types/giftCards.types";
+import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
 
 let baseUrl;
 if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
@@ -35,7 +35,7 @@ if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
   baseUrl = "http://localhost:3000/";
 }
 
-const RecipeMail = (giftCard: GiftCardFormGet) => (
+const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
   <Html>
     <Head />
     <Preview>Obtenga el resumen de su pedido</Preview>
@@ -88,9 +88,30 @@ const RecipeMail = (giftCard: GiftCardFormGet) => (
             </Column>
           </Row>
         </Section>
+        {giftCard.discount > 0 && (
+          <>
+            <Hr style={globalMail.hr} />
+            <Section style={globalMail.defaultPadding}>
+              <Row style={{ display: "inline-flex" }}>
+                <Column style={{ width: "170px" }}>
+                  <Text style={globalMail.paragraphWithBold}>
+                    Descuento aplicado
+                  </Text>
+                  <Text style={track.number}>{giftCard.discount}%</Text>
+                </Column>
+                <Column>
+                  <Text style={globalMail.paragraphWithBold}>
+                    Precio pagado
+                  </Text>
+                  <Text style={track.number}>{giftCard.finalPrice}€</Text>
+                </Column>
+              </Row>
+            </Section>
+          </>
+        )}
         <Hr style={globalMail.hr} />
         <Section style={globalMail.defaultPadding}>
-          <Row style={{ display: "inline-flex", marginBottom: 40 }}>
+          <Row style={{ display: "inline-flex" }}>
             <Column style={{ width: "170px" }}>
               <Text style={globalMail.paragraphWithBold}>Número de Orden</Text>
               <Text style={track.number}>#{giftCard.id}</Text>

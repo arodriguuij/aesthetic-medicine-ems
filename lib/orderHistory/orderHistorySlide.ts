@@ -1,17 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { GiftCardForm } from "../card/cardSlide";
+import { GiftCardForm, GiftCardFormWithDiscountAppliedGet } from "../card/cardSlide";
 
-export interface GiftCardFormOrder extends GiftCardForm {
-  id: number;
-}
 
 export interface OrderHistoryState {
-  orderHistory: GiftCardFormOrder;
+  orderHistory: GiftCardFormWithDiscountAppliedGet;
 }
 
 const initialState: OrderHistoryState = {
-  orderHistory: {} as GiftCardFormOrder,
+  orderHistory: {} as GiftCardFormWithDiscountAppliedGet,
 };
 
 export const orderHistorySlide = createSlice({
@@ -20,7 +17,7 @@ export const orderHistorySlide = createSlice({
   reducers: {
     addGiftCardsOrderHistory: (
       state,
-      action: PayloadAction<GiftCardFormOrder>
+      action: PayloadAction<GiftCardFormWithDiscountAppliedGet>
     ) => {
       state.orderHistory = action.payload;
     },

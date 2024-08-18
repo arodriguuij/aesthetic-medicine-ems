@@ -1,6 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+export interface GiftCardFormWithDiscountAppliedGet
+  extends GiftCardFormWithDiscountApplied {
+  id: number;
+}
+
+export interface GiftCardFormWithDiscountApplied extends GiftCardForm {
+  finalPrice: number;
+  discount: number;
+}
+
 export interface GiftCardForm {
   selectedGiftCardId: number;
   nameBuyer: string;

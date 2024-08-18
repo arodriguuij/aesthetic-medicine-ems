@@ -12,13 +12,16 @@ import { useDispatch } from "react-redux";
 import { convertToSubCurrency, scrollToTop } from "@/utils/utils";
 import { useAddGiftCardOrderMutation } from "@/services/giftCards/giftCards";
 import { addGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
-import { GiftCardForm, GiftCardFormGet } from "@/app/types/giftCards.types";
+import { GiftCardForm } from "@/app/types/giftCards.types";
+import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
 
 const CheckoutPage = ({
   amount,
+  discount,
   giftCard,
 }: {
   amount: number;
+  discount: number;
   giftCard: GiftCardForm;
 }) => {
   const stripe = useStripe();
@@ -77,13 +80,15 @@ const CheckoutPage = ({
       setErrorMessage(error.message);
       //TODO: send to an error page
     } else {
-      const orderHistory = await addGiftCardOrder(giftCard);
+      const orderHistory = await addGiftCardOrder({
+        ...giftCard,
+        discount,
+        finalPrice: amount,
+      });
 
       //TODO: check for error in addGiftCardOrder
       router.push("/paymentSuccess");
-      dispatch(
-        addGiftCardsOrderHistory(orderHistory.data as GiftCardFormGet)
-      );
+      dispatch(addGiftCardsOrderHistory(orderHistory.data as GiftCardFormWithDiscountAppliedGet));
       scrollToTop();
     }
 

@@ -3,13 +3,13 @@ import {
   getGiftCardsService,
   postGiftCardsService,
 } from "../../services/giftCards";
-import { GiftCardForm, GiftCardFormGet } from "../../../types/giftCards.types";
+import { GiftCardFormWithDiscountApplied, GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
 
 export const getGiftCardsById = async (thisId: number) =>
   await getGiftCardByIdService(thisId);
 
-export const addGiftCards = async (giftCard: GiftCardForm) => {
-  let id: GiftCardFormGet = {} as GiftCardFormGet;
+export const addGiftCards = async (giftCard: GiftCardFormWithDiscountApplied) => {
+  let id: GiftCardFormWithDiscountAppliedGet = {} as GiftCardFormWithDiscountAppliedGet;
   const response = await postGiftCardsService(giftCard);
   id = { id: Object.values(response[0])[0], ...giftCard };
 

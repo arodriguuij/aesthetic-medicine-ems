@@ -1,7 +1,7 @@
 import { addGiftCards, getGetGiftCards } from "@/app/src/controllers/giftCards";
 import { sendMailReceipt } from "@/app/src/controllers/mail";
 import { corsMiddleware } from "@/app/src/middleware/cors";
-import { GiftCardForm } from "@/app/types/giftCards.types";
+import { GiftCardFormWithDiscountApplied } from "@/lib/card/cardSlide";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -22,11 +22,10 @@ export async function POST(req: NextRequest) {
   await corsMiddleware(req, res);
 
   try {
-    const body = (await req.json()) as GiftCardForm;
+    const body = (await req.json()) as GiftCardFormWithDiscountApplied;
     const newGiftCard = await addGiftCards(body);
-    const emailResponse = await sendMailReceipt(newGiftCard);
-    const emailResponseEms = await sendMailReceipt({...newGiftCard, email: "clinicamedicoesteticaems@gmail.com"});
-    console.log({ newGiftCard, emailResponse, emailResponseEms });
+    await sendMailReceipt(newGiftCard);
+    await sendMailReceipt({...newGiftCard, email: "clinicamedicoesteticaems@gmail.com"});
 
     return NextResponse.json(newGiftCard, { status: 201 });
   } catch (error) {

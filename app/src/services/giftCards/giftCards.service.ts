@@ -2,6 +2,10 @@ import { QueryResult } from "pg";
 import { executeFunction } from "../../database/database.utils";
 import { GiftCardsServiceFunctions } from "./giftCards.constants";
 import { GiftCard, GiftCardForm } from "../../../types/giftCards.types";
+import {
+  GiftCardFormWithDiscountApplied,
+  GiftCardFormWithDiscountAppliedGet,
+} from "@/lib/card/cardSlide";
 
 export const getGiftCardsService = async () => {
   const { rows }: QueryResult<GiftCard[]> = await executeFunction(
@@ -12,14 +16,29 @@ export const getGiftCardsService = async () => {
   return rows;
 };
 
-export const postGiftCardsService = async (giftCard: GiftCardForm) => {
-  const { nameBuyer, email, nameReceiver, message, selectedGiftCardId } =
-    giftCard;
+export const postGiftCardsService = async (
+  giftCard: GiftCardFormWithDiscountApplied
+) => {
+  const {
+    nameBuyer,
+    email,
+    nameReceiver,
+    message,
+    selectedGiftCardId,
+    finalPrice,
+    discount,
+  } = giftCard;
 
-  const { rows }: QueryResult<GiftCardForm> = await executeFunction(
-    GiftCardsServiceFunctions.POST_GIFT_CARD_ADD,
-    [nameBuyer, email, nameReceiver, message, selectedGiftCardId]
-  );
+  const { rows }: QueryResult<GiftCardFormWithDiscountAppliedGet> =
+    await executeFunction(GiftCardsServiceFunctions.POST_GIFT_CARD_ADD, [
+      nameBuyer,
+      email,
+      nameReceiver,
+      message,
+      selectedGiftCardId,
+      finalPrice,
+      discount,
+    ]);
   return rows;
 };
 

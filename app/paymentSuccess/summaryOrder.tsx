@@ -1,13 +1,13 @@
-import { GiftCardFormOrder } from "@/lib/orderHistory/orderHistorySlide";
 import React from "react";
 import { getQuantityByGiftCardId } from "../cart/cart.utils";
 import { GiftCard } from "../types/giftCards.types";
+import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
 
 const SummaryOrder = ({
   product,
   giftCardsData,
 }: {
-  product: GiftCardFormOrder;
+  product: GiftCardFormWithDiscountAppliedGet;
   giftCardsData: GiftCard[];
 }) => {
   return (
@@ -28,6 +28,22 @@ const SummaryOrder = ({
                 €
               </h3>
             </div>
+            {product.discount > 0 && (
+              <>
+                <div className="flex items-center	">
+                  <p className="text-gray-900">Descuento: </p>
+                  <p className=" text-sm text-gray-500 ml-1">
+                    {product.discount}%
+                  </p>
+                </div>
+                <div className="flex items-center	">
+                  <p className="text-gray-900">Precio pagado: </p>
+                  <p className=" text-sm text-gray-500 ml-1">
+                    {product.finalPrice}€
+                  </p>
+                </div>
+              </>
+            )}
             <div className="flex items-center	">
               <p className="text-gray-900">Comprador: </p>
               <p className=" text-sm text-gray-500 ml-1">{product.nameBuyer}</p>

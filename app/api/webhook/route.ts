@@ -24,11 +24,6 @@ export async function POST(req: NextRequest) {
   try {
     let event = stripe.webhooks.constructEvent(payload, sig!, webHookKey!);
 
-    console.log("Event", event?.type);
-    // charge.succeeded
-    // payment_intent.succeeded
-    // payment_intent.created
-
     console.log(
       res?.data?.object?.billing_details?.email, // email
       res?.data?.object?.amount, // amount

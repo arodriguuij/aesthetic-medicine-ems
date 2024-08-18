@@ -8,9 +8,9 @@ export async function POST(req: NextRequest) {
 
   try {
     const { voucher } = (await req.json()) as { voucher: string };
-    const isValid = await checkVoucher(voucher);
+    const response = await checkVoucher(voucher);
 
-    return NextResponse.json(isValid, { status: 200 });
+    return NextResponse.json(response, { status: 200 });
   } catch (error) {
     console.error("Error checking the voucher:", error);
     return NextResponse.error();

@@ -13,7 +13,6 @@ import { incentives, step } from "./paymentSuccess.constants";
 import { cloudinaryLoader } from "@/utils/cloudinary";
 import SummaryOrder from "./summaryOrder";
 import {
-  GiftCardFormOrder,
   OrderHistoryState,
 } from "@/lib/orderHistory/orderHistorySlide";
 
@@ -131,7 +130,7 @@ const PaymentSuccess = () => {
 
           <div>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="rounded-2xl px-6 py-8 sm:p-16">
+              <div className="rounded-2xl px-6">
                 <div className="mx-auto max-w-xl lg:max-w-none">
                   <div className="text-center">
                     <h2 className="text-2xl font-bold tracking-tight text-gray-900"></h2>

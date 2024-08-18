@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
 import { CardState, GiftCardForm } from "../../lib/card/cardSlide";
-import { getSubTotal } from "./cart.utils";
+import { calculateDiscount, getSubTotal } from "./cart.utils";
 import CartItem from "./cartItem";
 import { convertToSubCurrency } from "@/utils/utils";
 import { useEffect, useState } from "react";
@@ -30,7 +30,10 @@ const Cart = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [voucherInput, setVoucherInput] = useState("");
-  const [isVoucherValid, setIsVoucherValid] = useState<boolean | null>(null);
+  const [voucher, setVoucher] = useState<{
+    existsVoucher: boolean;
+    discount: number;
+  } | null>(null);
   const [checkVoucher] = useCheckVoucherMutation();
 
   const {
@@ -50,13 +53,11 @@ const Cart = () => {
     (state: { card: CardState }) => state.card.giftCard
   );
 
-  const amount = getSubTotal(giftCardsData as GiftCard[], giftCard);
-
   useEffect(() => {
     dispatch(resetGiftCardsOrderHistory());
     return () => {
       setVoucherInput("");
-      setIsVoucherValid(null);
+      setVoucher(null);
     };
   }, [dispatch]);
 
@@ -69,6 +70,12 @@ const Cart = () => {
     router.push("/");
 
   if (status === "pending") return <Loader />;
+
+  const priceAfterDiscount = calculateDiscount(
+    getSubTotal(giftCardsData as GiftCard[], giftCard),
+    voucher?.discount || 0
+  );
+  const existVoucher = voucher && voucher.discount > 0 && voucher.existsVoucher;
 
   return (
     <>
@@ -134,16 +141,26 @@ const Cart = () => {
                 />
               </div>
               <button
+                disabled={voucherInput.length === 0}
                 onClick={async () => {
-                  const isValid = await checkVoucher(voucherInput);
-                  setIsVoucherValid(isValid.data || false);
+                  const { data } = await checkVoucher(voucherInput);
+                  setVoucher(
+                    data as {
+                      existsVoucher: boolean;
+                      discount: number;
+                    }
+                  );
                 }}
-                className="w-full mt-6 text-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                className={
+                  voucherInput.length === 0
+                    ? "w-full mt-6 text-center rounded-md border border-transparent bg-gray-400 px-4 py-2 text-sm font-medium text-white shadow-sm"
+                    : "w-full mt-6 text-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                }
               >
                 Aplicar código
               </button>
-              {isVoucherValid !== null ? (
-                !isVoucherValid ? (
+              {voucher !== null ? (
+                !existVoucher ? (
                   <div className="mt-6 flex items-center">
                     <XMarkIcon
                       aria-hidden="true"
@@ -160,7 +177,8 @@ const Cart = () => {
                       className="h-5 w-5 flex-shrink-0 text-green-500"
                     />
                     <p className="ml-2 text-sm text-gray-500">
-                      El código de descuento es válido
+                      El código de descuento es válido ({voucher.discount}%
+                      descuento)
                     </p>
                   </div>
                 )
@@ -170,12 +188,7 @@ const Cart = () => {
             <dl className="mt-10 space-y-6 text-sm font-medium text-gray-500">
               <div className="flex justify-between">
                 <dt>Subtotal</dt>
-                <dd className="text-gray-900">
-                  {isVoucherValid
-                    ? 1
-                    : getSubTotal(giftCardsData as GiftCard[], giftCard)}
-                  €
-                </dd>
+                <dd className="text-gray-900">{priceAfterDiscount}€</dd>
               </div>
               <div className="flex justify-between">
                 <dt>Costes de envío</dt>
@@ -187,12 +200,7 @@ const Cart = () => {
               </div>
               <div className="flex justify-between border-t border-gray-200 pt-6 text-gray-900">
                 <dt className="text-base">Total del pedido</dt>
-                <dd className="text-base">
-                  {isVoucherValid
-                    ? 1
-                    : getSubTotal(giftCardsData as GiftCard[], giftCard)}
-                  €
-                </dd>
+                <dd className="text-base">{priceAfterDiscount}€</dd>
               </div>
             </dl>
           </div>
@@ -202,13 +210,14 @@ const Cart = () => {
               stripe={stripePromise}
               options={{
                 mode: "payment",
-                amount: convertToSubCurrency(isVoucherValid ? 1 : amount),
+                amount: priceAfterDiscount,
                 currency: "eur",
                 locale: "es",
               }}
             >
               <CheckoutPage
-                amount={isVoucherValid ? 1 : amount}
+                amount={priceAfterDiscount}
+                discount={voucher?.discount || 0}
                 giftCard={giftCard}
               />
             </Elements>

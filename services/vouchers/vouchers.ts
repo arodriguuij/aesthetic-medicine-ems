@@ -6,11 +6,14 @@ export const vouchersApi = createApi({
   reducerPath: "vouchersApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/" }),
   endpoints: (builder) => ({
-    checkVoucher: builder.mutation<boolean, string>({
+    checkVoucher: builder.mutation<
+      { existsVoucher: boolean; discount: number },
+      string
+    >({
       query: (voucher) => ({
         url: "vouchers",
         method: "POST",
-        body: {voucher},
+        body: { voucher },
       }),
     }),
   }),
