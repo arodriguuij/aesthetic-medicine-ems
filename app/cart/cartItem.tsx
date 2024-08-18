@@ -4,9 +4,9 @@ import React from "react";
 import { getImageByGiftCardId } from "./cart.utils";
 import { cloudinaryLoader } from "@/utils/cloudinary";
 import { GiftCardForm, removeCard } from "@/lib/card/cardSlide";
-import { GiftCard } from "@/services/giftCards/giftCards.types";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
+import { GiftCard } from "../types/giftCards.types";
 
 const CartItem = ({
   giftCard,

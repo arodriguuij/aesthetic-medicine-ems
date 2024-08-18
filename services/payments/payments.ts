@@ -1,6 +1,6 @@
 // Need to use the React-specific entry point to import createApi
+import { Payment } from "@/app/types/payments.types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Payment } from "./payments.types";
 
 // Define a service using a base URL and expected endpoints
 export const paymentApi = createApi({

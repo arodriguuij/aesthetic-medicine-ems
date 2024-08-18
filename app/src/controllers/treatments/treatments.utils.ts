@@ -1,11 +1,11 @@
-import { Area, Treatment } from "../../../types/treatments.types";
+import { AreaTreatment, Treatment } from "../../../types/treatments.types";
 import { getTreatmentByIdService } from "../../services/treatments/treatments.service";
 import { Product } from "../../../types/products.types";
 import { getProductByIdService } from "../../services/products";
 import { getAreaByIdService } from "../../services/areas";
 
 export const getPopulatedAreas = async (areas: number[]) => {
-  const populateAreas: { id: Area["id"]; name: Area["name"] }[] = [];
+  const populateAreas: { id: AreaTreatment["id"]; name: AreaTreatment["name"] }[] = [];
   for (const areaId of areas) {
     const populateArea = await getAreaByIdService(areaId);
     populateAreas.push({

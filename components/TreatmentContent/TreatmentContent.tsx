@@ -11,10 +11,10 @@ import { MinusSmallIcon } from "@heroicons/react/20/solid";
 import { PlusSmallIcon } from "@heroicons/react/20/solid";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { Treatment } from "@/services/treatments/treatments.types";
 import useIsMobile from "@/hooks/useIsMobile";
 import Image from "next/image";
 import { cloudinaryLoader } from "@/utils/cloudinary";
+import { Treatment } from "@/app/types/treatments.types";
 
 interface ITreatmentContent {
   error: FetchBaseQueryError | SerializedError | undefined;

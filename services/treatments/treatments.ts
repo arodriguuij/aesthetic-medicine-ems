@@ -1,6 +1,6 @@
 // Need to use the React-specific entry point to import createApi
+import { Treatment } from "@/app/types/treatments.types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Treatment } from "./treatments.types";
 
 // Define a service using a base URL and expected endpoints
 export const treatmentsApi = createApi({

@@ -1,5 +1,5 @@
-import { GiftCard } from "@/services/giftCards/giftCards.types";
 import { GiftCardForm } from "@/lib/card/cardSlide";
+import { GiftCard } from "../types/giftCards.types";
 
 export const getImageByGiftCardId = (
   giftCardsData: GiftCard[],

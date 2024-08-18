@@ -1,9 +1,9 @@
-import { Email } from "@/services/mails/mails.types";
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import RecipeMail from "@/emails";
 import { GiftCardFormGet } from "@/app/types/giftCards.types";
 import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
+import { Email } from "@/app/types/emails.types";
 
 export const sendMailReceipt = async (giftCard: GiftCardFormWithDiscountAppliedGet) => {
   // resend declaration with API key as parameter

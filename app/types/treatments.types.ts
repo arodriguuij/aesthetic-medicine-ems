@@ -3,7 +3,7 @@ import { Product } from "./products.types";
 export type TreatmentType = "Facial" | "Corporal";
 type TreatmentStatus = "Active" | "Disabled";
 
-export interface Area {
+export interface AreaTreatment {
   id: number;
   name: string;
   description: string;
@@ -12,7 +12,7 @@ export interface TreatmentProperties {
   time: string;
   anesthesia: boolean;
   areas: number[];
-  populatedAreas?: { id: Area["id"]; name: Area["name"] }[];
+  populatedAreas?: { id: AreaTreatment["id"]; name: AreaTreatment["name"] }[];
   duration: string;
   resultsTime: string;
 }

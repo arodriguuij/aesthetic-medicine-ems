@@ -1,6 +1,6 @@
 // Need to use the React-specific entry point to import createApi
+import { Email } from "@/app/types/emails.types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Email } from "./mails.types";
 
 // Define a service using a base URL and expected endpoints
 export const mailApi = createApi({

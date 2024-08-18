@@ -1,4 +1,4 @@
-import { IPayment } from "@/app/src/controllers/payment";
+import { Payment } from "@/app/types/payments.types";
 
 let key;
 if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
@@ -9,7 +9,7 @@ if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
 
 const stripe = require("stripe")(key);
 
-export const postPaymentService = async ({ amount }: IPayment) => {
+export const postPaymentService = async ({ amount }: Payment) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
