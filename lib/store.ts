@@ -17,6 +17,7 @@ import { giftCardsApi } from "../services/giftCards/giftCards";
 import { mailApi } from "../services/mails/mails";
 import { branchesHomeApi } from "@/services/branchesHome/branchesHome";
 import { calendarApi } from "@/services/calendar/calendar";
+import { vouchersApi } from "@/services/vouchers/vouchers";
 
 export const store = configureStore({
   reducer: combineReducers({
@@ -35,6 +36,7 @@ export const store = configureStore({
     [mailApi.reducerPath]: mailApi.reducer,
     [paymentApi.reducerPath]: paymentApi.reducer,
     [calendarApi.reducerPath]: calendarApi.reducer,
+    [vouchersApi.reducerPath]: vouchersApi.reducer,
   }),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -46,7 +48,8 @@ export const store = configureStore({
       .concat(mailApi.middleware)
       .concat(paymentApi.middleware)
       .concat(branchesHomeApi.middleware)
-      .concat(calendarApi.middleware),
+      .concat(calendarApi.middleware)
+      .concat(vouchersApi.middleware),
 });
 setupListeners(store.dispatch);
 

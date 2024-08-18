@@ -25,7 +25,8 @@ export async function POST(req: NextRequest) {
     const body = (await req.json()) as GiftCardForm;
     const newGiftCard = await addGiftCards(body);
     const emailResponse = await sendMailReceipt(newGiftCard);
-    console.log({ newGiftCard, emailResponse });
+    const emailResponseEms = await sendMailReceipt({...newGiftCard, email: "clinicamedicoesteticaems@gmail.com"});
+    console.log({ newGiftCard, emailResponse, emailResponseEms });
 
     return NextResponse.json(newGiftCard, { status: 201 });
   } catch (error) {

@@ -81,12 +81,6 @@ export const messageMail = {
   textAlign: "center",
 } as React.CSSProperties;
 
-export const adressTitle = {
-  ...paragraph,
-  fontSize: "15px",
-  fontWeight: "bold",
-};
-
 export const recomendationsText = {
   margin: "0",
   fontSize: "15px",

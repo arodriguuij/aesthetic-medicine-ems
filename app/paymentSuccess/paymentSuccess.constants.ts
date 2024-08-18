@@ -18,4 +18,4 @@ export const incentives = [
       "Si tiene cualquier duda. Póngase en contacto con nosotros y le resolveremos cualquier duda. ",
   },
 ];
-export const step = 2;
+export const step = 3;

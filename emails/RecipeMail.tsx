@@ -15,7 +15,6 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 import {
-  adressTitle,
   container,
   footer,
   globalMail,
@@ -26,7 +25,7 @@ import {
   paddingY,
   paragraph,
   track,
-} from "./recipeMailNike.styles";
+} from "./recipeMail.styles";
 import { GiftCardFormGet } from "@/app/types/giftCards.types";
 
 let baseUrl;
@@ -35,16 +34,6 @@ if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
 } else {
   baseUrl = "http://localhost:3000/";
 }
-
-const giftCard = {
-  email: "socorrista92re@gmail.com",
-  id: 84,
-  message:
-    "socorrista92re@gmail.com socorrista92re@gmail.com socorrista92re@gmail.com socorrista92re@gmail.com socorrista92re@gmail.com",
-  nameBuyer: "Elvira",
-  nameReceiver: "alejandro",
-  selectedGiftCardId: 1,
-};
 
 const RecipeMail = (giftCard: GiftCardFormGet) => (
   <Html>
@@ -117,34 +106,32 @@ const RecipeMail = (giftCard: GiftCardFormGet) => (
         <Hr style={globalMail.hr} />
         <Section style={menu.container}>
           <Row>
-            <Text style={menu.title}>Get Help</Text>
+            <Text style={menu.title}>Obtén Ayuda</Text>
           </Row>
-          <Row style={menu.content}>
-            <Column style={{ width: "33%" }} colSpan={1}>
-              <Link href="/" style={menu.text}>
-                Shipping Status
-              </Link>
-            </Column>
-            <Column style={{ width: "33%" }} colSpan={1}>
-              <Link href="/" style={menu.text}>
-                Shipping & Delivery
-              </Link>
-            </Column>
-            <Column style={{ width: "33%" }} colSpan={1}>
-              <Link href="/" style={menu.text}>
-                Returns & Exchanges
-              </Link>
-            </Column>
-          </Row>
+
           <Row style={{ ...menu.content, paddingTop: "0" }}>
             <Column style={{ width: "33%" }} colSpan={1}>
-              <Link href="/" style={menu.text}>
-                How to Return
+              <Link
+                href="https://www.medicinaesteticaems.com/"
+                style={menu.text}
+              >
+                Devoluciones e Intercambios
               </Link>
             </Column>
-            <Column style={{ width: "66%" }} colSpan={2}>
-              <Link href="/" style={menu.text}>
-                Contact Options
+            <Column style={{ width: "33%" }} colSpan={2}>
+              <Link
+                href="https://www.medicinaesteticaems.com/"
+                style={menu.text}
+              >
+                Cómo Devolver
+              </Link>
+            </Column>
+            <Column style={{ width: "33%" }} colSpan={3}>
+              <Link
+                href="https://www.medicinaesteticaems.com/"
+                style={menu.text}
+              >
+                Opciones de Contacto
               </Link>
             </Column>
           </Row>
@@ -154,7 +141,7 @@ const RecipeMail = (giftCard: GiftCardFormGet) => (
               <Row>
                 <Column style={{ width: "16px" }}>
                   <Img
-                    src={`${baseUrl}/static/nike-phone.png`}
+                    src={`${baseUrl}Images/phone.png`}
                     width="16px"
                     height="26px"
                     style={{ paddingRight: "14px" }}
@@ -162,7 +149,7 @@ const RecipeMail = (giftCard: GiftCardFormGet) => (
                 </Column>
                 <Column>
                   <Text style={{ ...menu.text, marginBottom: "0" }}>
-                    1-800-806-6453
+                    +34 611 88 21 39
                   </Text>
                 </Column>
               </Row>
@@ -174,7 +161,7 @@ const RecipeMail = (giftCard: GiftCardFormGet) => (
                   marginBottom: "0",
                 }}
               >
-                4 am - 11 pm PT
+                Lunes a Viernes: 9:00 - 20:00
               </Text>
             </Column>
           </Row>
@@ -183,26 +170,28 @@ const RecipeMail = (giftCard: GiftCardFormGet) => (
         <Section style={paddingY}>
           <Row style={footer.policy}>
             <Column>
-              <Text style={footer.text}>Web Version</Text>
+              <Text style={footer.text}>Version Web</Text>
             </Column>
             <Column>
-              <Text style={footer.text}>Privacy Policy</Text>
+              <Text style={footer.text}>Política de Privacidad</Text>
             </Column>
           </Row>
           <Row>
             <Text style={{ ...footer.text, paddingTop: 30, paddingBottom: 30 }}>
-              Please contact us if you have any questions. (If you reply to this
-              email, we wil not be able to see it.)
+              Si tienes alguna pregunta o inquietud, no dudes en contactarnos.
+              (Recuerda que si respondes a este correo, no podremos visualizar
+              tu mensaje).
             </Text>
           </Row>
           <Row>
             <Text style={footer.text}>
-              © 2022 Nike, Inc. All Rights Reserved.
+              © 2024 Medicina Estética EMS. Todos los Derechos Reservados.
             </Text>
           </Row>
           <Row>
             <Text style={footer.text}>
-              NIKE, INC. One Bowerman Drive, Beaverton, Oregon 97005, USA.
+              Medicina Estética EMS. C. Pablo Luengo, 23. 10300 Navalmoral de la
+              Mata, Cáceres. España.
             </Text>
           </Row>
         </Section>

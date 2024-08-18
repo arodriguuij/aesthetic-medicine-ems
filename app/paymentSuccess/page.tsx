@@ -12,7 +12,10 @@ import Image from "next/image";
 import { incentives, step } from "./paymentSuccess.constants";
 import { cloudinaryLoader } from "@/utils/cloudinary";
 import SummaryOrder from "./summaryOrder";
-import { GiftCardFormOrder, OrderHistoryState } from "@/lib/orderHistory/orderHistorySlide";
+import {
+  GiftCardFormOrder,
+  OrderHistoryState,
+} from "@/lib/orderHistory/orderHistorySlide";
 
 const PaymentSuccess = () => {
   const router = useRouter();
@@ -26,7 +29,8 @@ const PaymentSuccess = () => {
   }, [dispatch]);
 
   const giftCardOrder = useSelector(
-    (state: { orderHistory: OrderHistoryState }) => state.orderHistory.orderHistory
+    (state: { orderHistory: OrderHistoryState }) =>
+      state.orderHistory.orderHistory
   );
 
   const {
@@ -58,9 +62,9 @@ const PaymentSuccess = () => {
                 Confirmación de pago
               </h2>
               <p className="mt-2 text-base text-gray-500">
-                Agradecemos tu pedido, actualmente lo estamos procesando. ¡Así
-                que espera un momento y te enviaremos un mail con la tarjeta de
-                regalo muy pronto!
+                Agradecemos tu pedido. ¡Tu tarjeta de regalo ha sido enviada por
+                correo electrónico! Revisa tu bandeja de entrada para acceder a
+                ella de inmediato.
               </p>
             </div>
             <p className="text-sm text-gray-600 mt-4">
@@ -95,7 +99,7 @@ const PaymentSuccess = () => {
                     <div className="overflow-hidden rounded-full bg-gray-200">
                       <div
                         style={{
-                          width: `50%`,
+                          width: `100%`,
                         }}
                         className="h-2 rounded-full bg-indigo-600"
                       />

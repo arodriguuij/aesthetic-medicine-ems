@@ -1,3 +1,3 @@
-import RecipeMail  from "./RecipeMailNike";
+import RecipeMail  from "./RecipeMail";
 
 export default RecipeMail;

@@ -7,13 +7,15 @@ import { CardState, GiftCardForm } from "../../lib/card/cardSlide";
 import { getSubTotal } from "./cart.utils";
 import CartItem from "./cartItem";
 import { convertToSubCurrency } from "@/utils/utils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { resetGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import { GiftCard } from "../types/giftCards.types";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutPage from "@/components/CheckoutPage";
 import { loadStripe } from "@stripe/stripe-js";
 import Loader from "@/components/Loader";
+import { useCheckVoucherMutation } from "@/services/vouchers/vouchers";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 let key;
 if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
@@ -27,6 +29,9 @@ const stripePromise = loadStripe(key || "");
 const Cart = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const [voucherInput, setVoucherInput] = useState("");
+  const [isVoucherValid, setIsVoucherValid] = useState<boolean | null>(null);
+  const [checkVoucher] = useCheckVoucherMutation();
 
   const {
     data: giftCardsData,
@@ -34,15 +39,33 @@ const Cart = () => {
     status,
   } = useGetGiftCardsQuery("");
 
-  const giftCard = useSelector((state: { card: CardState }) => state.card.giftCard);
+  const handleChange = (event: any) => {
+    event.preventDefault();
+    const target = event.target;
+    const value = target.value;
+    setVoucherInput(value);
+  };
+
+  const giftCard = useSelector(
+    (state: { card: CardState }) => state.card.giftCard
+  );
 
   const amount = getSubTotal(giftCardsData as GiftCard[], giftCard);
 
   useEffect(() => {
     dispatch(resetGiftCardsOrderHistory());
+    return () => {
+      setVoucherInput("");
+      setIsVoucherValid(null);
+    };
   }, [dispatch]);
 
-  if (!giftCardsData || giftCardsError || !giftCard.selectedGiftCardId)
+  if (
+    !giftCardsData ||
+    giftCardsData.length === 0 ||
+    giftCardsError ||
+    !giftCard.selectedGiftCardId
+  )
     router.push("/");
 
   if (status === "pending") return <Loader />;
@@ -91,12 +114,67 @@ const Cart = () => {
                 )}
               </ul>
             </div>
+            {/* Voucher */}
+            <div className="space-y-4 mt-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+              <div>
+                <label
+                  //for="voucher"
+                  className="mb-2 block text-sm font-medium text-gray-900"
+                >
+                  ¿Tienes un código de descuento?
+                </label>
+                <input
+                  type="text"
+                  id="voucher"
+                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500  placeholder:text-gray-400 focus:border-primary-500 focus:ring-primary-500"
+                  placeholder=""
+                  required
+                  onChange={handleChange}
+                  value={voucherInput}
+                />
+              </div>
+              <button
+                onClick={async () => {
+                  const isValid = await checkVoucher(voucherInput);
+                  setIsVoucherValid(isValid.data || false);
+                }}
+                className="w-full mt-6 text-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              >
+                Aplicar código
+              </button>
+              {isVoucherValid !== null ? (
+                !isVoucherValid ? (
+                  <div className="mt-6 flex items-center">
+                    <XMarkIcon
+                      aria-hidden="true"
+                      className="h-5 w-5 flex-shrink-0 text-red-500"
+                    />
+                    <p className="ml-2 text-sm text-red-500">
+                      El código de descuento no es válido
+                    </p>
+                  </div>
+                ) : (
+                  <div className="mt-6 flex items-center">
+                    <CheckIcon
+                      aria-hidden="true"
+                      className="h-5 w-5 flex-shrink-0 text-green-500"
+                    />
+                    <p className="ml-2 text-sm text-gray-500">
+                      El código de descuento es válido
+                    </p>
+                  </div>
+                )
+              ) : null}
+            </div>
             {/* Money */}
             <dl className="mt-10 space-y-6 text-sm font-medium text-gray-500">
               <div className="flex justify-between">
                 <dt>Subtotal</dt>
                 <dd className="text-gray-900">
-                  {giftCardsData && getSubTotal(giftCardsData, giftCard)}€
+                  {isVoucherValid
+                    ? 1
+                    : getSubTotal(giftCardsData as GiftCard[], giftCard)}
+                  €
                 </dd>
               </div>
               <div className="flex justify-between">
@@ -110,7 +188,10 @@ const Cart = () => {
               <div className="flex justify-between border-t border-gray-200 pt-6 text-gray-900">
                 <dt className="text-base">Total del pedido</dt>
                 <dd className="text-base">
-                  {giftCardsData && getSubTotal(giftCardsData, giftCard)}€
+                  {isVoucherValid
+                    ? 1
+                    : getSubTotal(giftCardsData as GiftCard[], giftCard)}
+                  €
                 </dd>
               </div>
             </dl>
@@ -121,12 +202,15 @@ const Cart = () => {
               stripe={stripePromise}
               options={{
                 mode: "payment",
-                amount: convertToSubCurrency(amount) || 100,
+                amount: convertToSubCurrency(isVoucherValid ? 1 : amount),
                 currency: "eur",
                 locale: "es",
               }}
             >
-              <CheckoutPage amount={amount} giftCard={giftCard} />
+              <CheckoutPage
+                amount={isVoucherValid ? 1 : amount}
+                giftCard={giftCard}
+              />
             </Elements>
           </div>
         </div>
