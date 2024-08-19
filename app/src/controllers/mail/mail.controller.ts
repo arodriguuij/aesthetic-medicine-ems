@@ -10,12 +10,15 @@ export const sendMailReceipt = async (
 ) => {
   // resend declaration with API key as parameter
   const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+  const isProd = process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod";
 
   try {
     // resend function handler for executing email sending
     // returning data and error state to indicate success and failure respecfully
     const { data, error } = await resend.emails.send({
-      from: `EMS Medicina Estética <noreply@medicinaesteticaems.com>`, //Title of our Email, here, our email will indicate Imam - Portfolio and the <info@eimaam.dev> will be the sending address. NB: `eimaam.dev` replace with your registered domain
+      from: `${
+        !isProd ? "[TESTING]" : ""
+      } EMS Medicina Estética <noreply@medicinaesteticaems.com>`, //Title of our Email, here, our email will indicate Imam - Portfolio and the <info@eimaam.dev> will be the sending address. NB: `eimaam.dev` replace with your registered domain
       to: giftCard.email, // email receiver, // in case where you are sending onboarding emails, this field will be dynamic, it will be the email of the User
       subject: "Recibo tarjeta de regalo EMS",
       react: RecipeMail(giftCard), //using our custom react component to render email content/body
@@ -49,10 +52,13 @@ export const sendMail = async ({
   message,
 }: DataFormContact) => {
   const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+  const isProd = process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod";
 
   try {
     const { data, error } = await resend.emails.send({
-      from: `EMS Medicina Estética <noreply@medicinaesteticaems.com>`, //Title of our Email, here, our email will indicate Imam - Portfolio and the <info@eimaam.dev> will be the sending address. NB: `eimaam.dev` replace with your registered domain
+      from: `${
+        !isProd ? "[TESTING]" : ""
+      } EMS Medicina Estética <noreply@medicinaesteticaems.com>`, //Title of our Email, here, our email will indicate Imam - Portfolio and the <info@eimaam.dev> will be the sending address. NB: `eimaam.dev` replace with your registered domain
       to: "clinicamedicoesteticaems@gmail.com", // email receiver, // in case where you are sending onboarding emails, this field will be dynamic, it will be the email of the User
       //to: "socorrista92re@gmail.com", // email receiver, // in case where you are sending onboarding emails, this field will be dynamic, it will be the email of the User
       subject: "Consulta médica web",
