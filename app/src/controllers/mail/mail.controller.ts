@@ -1,11 +1,13 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import RecipeMail from "@/emails";
-import { GiftCardFormGet } from "@/app/types/giftCards.types";
 import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
-import { Email } from "@/app/types/emails.types";
+import { DataFormContact } from "@/app/types/emails.types";
+import ContactMail from "@/emails/ContactMail";
 
-export const sendMailReceipt = async (giftCard: GiftCardFormWithDiscountAppliedGet) => {
+export const sendMailReceipt = async (
+  giftCard: GiftCardFormWithDiscountAppliedGet
+) => {
   // resend declaration with API key as parameter
   const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
@@ -39,18 +41,28 @@ export const sendMailReceipt = async (giftCard: GiftCardFormWithDiscountAppliedG
   }
 };
 
-export const sendMail = async ({ email, message }: Email) => {
-  // resend declaration with API key as parameter
-  /* const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+export const sendMail = async ({
+  userName,
+  phoneNumber,
+  email,
+  awareness,
+  message,
+}: DataFormContact) => {
+  const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
   try {
-    // resend function handler for executing email sending
-    // returning data and error state to indicate success and failure respecfully
     const { data, error } = await resend.emails.send({
-      from: `EMS Medicina Estetica <noreply@medicinaesteticaems.com>`, //Title of our Email, here, our email will indicate Imam - Portfolio and the <info@eimaam.dev> will be the sending address. NB: `eimaam.dev` replace with your registered domain
-      to: "socorrista92re@gmail.com", // email receiver, // in case where you are sending onboarding emails, this field will be dynamic, it will be the email of the User
-      subject: "Message from Portfolio",
-      react: RecipeMail({ email, message }), //using our custom react component to render email content/body
+      from: `EMS Medicina Estética <noreply@medicinaesteticaems.com>`, //Title of our Email, here, our email will indicate Imam - Portfolio and the <info@eimaam.dev> will be the sending address. NB: `eimaam.dev` replace with your registered domain
+      to: "clinicamedicoesteticaems@gmail.com", // email receiver, // in case where you are sending onboarding emails, this field will be dynamic, it will be the email of the User
+      //to: "socorrista92re@gmail.com", // email receiver, // in case where you are sending onboarding emails, this field will be dynamic, it will be the email of the User
+      subject: "Consulta médica web",
+      react: ContactMail({
+        userName,
+        phoneNumber,
+        email,
+        awareness,
+        message,
+      }),
     });
 
     if (error) {
@@ -70,5 +82,5 @@ export const sendMail = async ({ email, message }: Email) => {
       { message: "Failed to send email", error },
       { status: 500 }
     );
-  } */
+  }
 };

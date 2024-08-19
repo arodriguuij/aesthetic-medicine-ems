@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   EnvelopeIcon,
@@ -6,66 +6,69 @@ import {
   PhoneIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSnackbarVisibility } from "../../lib/snackbar/snackbarSlide";
 import { scrollToTop } from "../../utils/utils";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useSendMailMutation } from "@/services/mails/mails";
+import { DataFormContact } from "@/app/types/emails.types";
 
-interface DataForm {
-  userName: string | null;
-  phoneNumber: number | null;
-  email: string | null;
-  message: string | null;
-  awareness: string;
-}
-const initState: DataForm = {
-  userName: null,
+const initState: DataFormContact = {
+  userName: "",
   phoneNumber: null,
-  email: null,
-  message: null,
+  email: "",
+  message: "",
   awareness: "",
 };
-const isSendButtonEnabled = (dataForm: DataForm) =>
-  dataForm.awareness &&
-  dataForm.email &&
-  dataForm.message &&
-  dataForm.phoneNumber &&
-  dataForm.userName;
 
 const Form = () => {
-  const [dataForm, setDataForm] = useState(initState);
-  const [alreadyOnSubmit, setAlreadyOnSubmit] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm<DataFormContact>({
+    defaultValues: initState,
+    //resolver: yupResolver(schema)
+  });
   const dispatch = useDispatch();
-
-  const handleChange = (event: any) => {
-    event.preventDefault();
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    setDataForm((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const handleOnSubmit = (event: any) => {
-    event.preventDefault();
-    setAlreadyOnSubmit(true);
-    if (isSendButtonEnabled(dataForm)) {
-      setDataForm(initState);
-      dispatch(setSnackbarVisibility({ visibility: true, message: "" }));
-      setAlreadyOnSubmit(false);
-      scrollToTop();
-    }
-  };
+  const [sendEmail] = useSendMailMutation();
 
   const handleOnCancel = () => {
-    setDataForm(initState);
-    setAlreadyOnSubmit(false);
+    reset();
+    setValue("awareness", "");
+  };
+
+  const onSubmit: SubmitHandler<DataFormContact> = async (data) => {
+    try {
+      await sendEmail(data);
+      dispatch(
+        setSnackbarVisibility({
+          visibility: true,
+          message: "Mensaje enviado. Le contestaremos lo más pronto posible.",
+        })
+      );
+    } catch (error) {
+      dispatch(
+        setSnackbarVisibility({
+          visibility: true,
+          message: "Error al enviar el mensaje.",
+          type: "error",
+        })
+      );
+    } finally {
+      reset();
+      setValue("awareness", "");
+      scrollToTop();
+    }
   };
 
   return (
     <div className="space-y-10 divide-y divide-gray-900/10 pb-16">
       <form
         className="bg-gradient-to-b from-amber-100/10 shadow-sm ring-1 ring-amber-500 rounded-xl md:col-span-2 p-4"
-        onSubmit={handleOnSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="space-y-12 sm:space-y-16">
           <div>
@@ -94,15 +97,22 @@ const Form = () => {
                     </div>
                     <input
                       type="text"
-                      name="userName"
                       id="userName"
                       placeholder="Elvira Morgado Sánchez"
-                      onChange={handleChange}
-                      minLength={3}
-                      value={dataForm.userName || ""}
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      {...register("userName", {
+                        required: "Este campo es requerido",
+                        minLength: {
+                          value: 3,
+                          message: "Mínimo 3 caracteres",
+                        },
+                        maxLength: {
+                          value: 50,
+                          message: "Máximo 50 caracteres", // JS only: <p>error message</p> TS only support string
+                        },
+                      })}
                     />
-                    {!dataForm.userName && alreadyOnSubmit && (
+                    {errors.userName?.message && (
                       <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
                         <ExclamationCircleIcon
                           aria-hidden="true"
@@ -111,9 +121,9 @@ const Form = () => {
                       </div>
                     )}
                   </div>
-                  {!dataForm.userName && alreadyOnSubmit && (
+                  {errors.userName?.message && (
                     <p id="email-error" className="mt-2 text-sm text-red-600">
-                      Este campo es obligatorio
+                      {errors.userName?.message}
                     </p>
                   )}
                 </div>
@@ -135,16 +145,22 @@ const Form = () => {
                     </div>
                     <input
                       type="tel"
-                      name="phoneNumber"
                       id="phoneNumber"
                       placeholder="666123456"
-                      onChange={handleChange}
-                      minLength={9}
-                      maxLength={9}
-                      value={dataForm.phoneNumber || ""}
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      {...register("phoneNumber", {
+                        required: "Este campo es requerido",
+                        minLength: {
+                          value: 9,
+                          message: "Mínimo 9 caracteres",
+                        },
+                        maxLength: {
+                          value: 9,
+                          message: "Máximo 9 caracteres",
+                        },
+                      })}
                     />
-                    {!dataForm.phoneNumber && alreadyOnSubmit && (
+                    {errors.phoneNumber?.message && (
                       <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
                         <ExclamationCircleIcon
                           aria-hidden="true"
@@ -153,9 +169,9 @@ const Form = () => {
                       </div>
                     )}
                   </div>
-                  {!dataForm.phoneNumber && alreadyOnSubmit && (
+                  {errors.phoneNumber?.message && (
                     <p id="email-error" className="mt-2 text-sm text-red-600">
-                      Este campo es obligatorio
+                      {errors.phoneNumber?.message}
                     </p>
                   )}
                 </div>
@@ -177,14 +193,22 @@ const Form = () => {
                     </div>
                     <input
                       type="email"
-                      name="email"
                       id="email"
-                      placeholder="ems@gmail.com"
-                      value={dataForm.email || ""}
-                      onChange={handleChange}
+                      placeholder="clinicamedicoesteticaems@gmail.com"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      {...register("email", {
+                        required: "Este campo es requerido",
+                        minLength: {
+                          value: 3,
+                          message: "Mínimo 3 caracteres",
+                        },
+                        maxLength: {
+                          value: 50,
+                          message: "Máximo 50 caracteres",
+                        },
+                      })}
                     />
-                    {!dataForm.email && alreadyOnSubmit && (
+                    {errors.email?.message && (
                       <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
                         <ExclamationCircleIcon
                           aria-hidden="true"
@@ -193,9 +217,9 @@ const Form = () => {
                       </div>
                     )}
                   </div>
-                  {!dataForm.email && alreadyOnSubmit && (
+                  {errors.email?.message && (
                     <p id="email-error" className="mt-2 text-sm text-red-600">
-                      Este campo es obligatorio
+                      {errors.email?.message}
                     </p>
                   )}
                 </div>
@@ -211,23 +235,29 @@ const Form = () => {
                 <div className="mt-2 sm:col-span-2 sm:mt-0">
                   <select
                     id="awareness"
-                    name="awareness"
-                    value={dataForm.awareness}
-                    onChange={handleChange}
                     className="mt-2 block w-full bg-white rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-amber-400 sm:text-sm sm:leading-6 sm:max-w-md"
+                    {...register("awareness", {
+                      required: "Este campo es requerido",
+                    })}
                   >
-                    <option></option>
-                    <option>Anuncios de Google</option>
-                    <option>Instagram</option>
-                    <option>Recomendación</option>
-                    <option>Búsqueda en la web</option>
+                    <option value="" disabled>
+                      Selecciona una opción
+                    </option>
+                    <option value="Anuncios de Google">
+                      Anuncios de Google
+                    </option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="Recomendación">Recomendación</option>
+                    <option value="Búsqueda en la web">
+                      Búsqueda en la web
+                    </option>
                   </select>
-                  {!dataForm.email && alreadyOnSubmit && (
-                    <p id="email-error" className="mt-2 text-sm text-red-600">
-                      Este campo es obligatorio
-                    </p>
-                  )}
                 </div>
+                {errors.awareness?.message && (
+                  <p id="email-error" className="mt-2 text-sm text-red-600">
+                    {errors.awareness?.message}
+                  </p>
+                )}
               </div>
 
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
@@ -241,18 +271,33 @@ const Form = () => {
                   <div className="flex bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-amber-400 sm:max-w-md">
                     <textarea
                       id="message"
-                      name="message"
                       rows={3}
-                      minLength={3}
-                      onChange={handleChange}
-                      value={dataForm.message || ""}
                       placeholder="Ejemplo: Hola, me gustaría recibir más información sobre el tratamiento de arruga de labios. Pueden contactar conmigo por email o bien por teléfono. Gracias"
                       className="block w-full max-w-2xl pl-2 bg-white rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-400 sm:text-sm sm:leading-6"
+                      {...register("message", {
+                        required: "Este campo es requerido",
+                        minLength: {
+                          value: 3,
+                          message: "Mínimo 3 caracteres",
+                        },
+                        maxLength: {
+                          value: 300,
+                          message: "Máximo 300 caracteres",
+                        },
+                      })}
                     />
+                    {errors.message?.message && (
+                      <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
+                        <ExclamationCircleIcon
+                          aria-hidden="true"
+                          className="h-5 w-5 text-red-500"
+                        />
+                      </div>
+                    )}
                   </div>
-                  {!dataForm.message && alreadyOnSubmit && (
+                  {errors.message?.message && (
                     <p id="email-error" className="mt-2 text-sm text-red-600">
-                      Este campo es obligatorio
+                      {errors.message?.message}
                     </p>
                   )}
                 </div>

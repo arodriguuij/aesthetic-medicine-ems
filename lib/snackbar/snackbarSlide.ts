@@ -4,11 +4,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 export interface SnackbarState {
   isVisible: boolean;
   message: string;
+  type: "success" | "error";
 }
 
 const initialState: SnackbarState = {
   isVisible: false,
   message: "",
+  type: "success",
 };
 
 export const snackbarSlice = createSlice({
@@ -17,10 +19,15 @@ export const snackbarSlice = createSlice({
   reducers: {
     setSnackbarVisibility: (
       state,
-      action: PayloadAction<{ visibility: boolean; message: string }>
+      action: PayloadAction<{
+        visibility: boolean;
+        message: string;
+        type?: "success" | "error";
+      }>
     ) => {
       state.isVisible = action.payload.visibility;
       state.message = action.payload.message;
+      state.type = action.payload.type ? action.payload.type : "success";
     },
   },
 });

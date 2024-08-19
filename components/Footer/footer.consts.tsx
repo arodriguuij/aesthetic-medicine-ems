@@ -15,7 +15,7 @@ export const navigation: Navigation = {
       icon: (props) => <Phone props={props} />,
     },
     {
-      name: "ems@gmail.com",
+      name: "clinicamedicoesteticaems@gmail.com",
       href: "mailto:clinicamedicoesteticaems@gmail.com?utm_source=mail",
       icon: (props) => <Email props={props} />,
     },
