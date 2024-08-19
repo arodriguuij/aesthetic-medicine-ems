@@ -3,10 +3,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
-import { CardState, GiftCardForm } from "../../lib/card/cardSlide";
+import { CardState } from "../../lib/card/cardSlide";
 import { calculateDiscount, getSubTotal } from "./cart.utils";
 import CartItem from "./cartItem";
-import { convertToSubCurrency } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import { resetGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import { GiftCard } from "../types/giftCards.types";

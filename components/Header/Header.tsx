@@ -50,7 +50,7 @@ import {
 } from "@/app/cart/cart.utils";
 import useIsTablet from "@/hooks/useIsTablet";
 import { cloudinaryLoader } from "@/utils/cloudinary";
-import { CardState, GiftCardForm, removeCard } from "@/lib/card/cardSlide";
+import { CardState, removeCard } from "@/lib/card/cardSlide";
 import Image from "next/image";
 
 const Header = () => {

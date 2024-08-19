@@ -1,4 +1,4 @@
-import { GiftCardForm } from "@/lib/card/cardSlide";
+import { DataFormGiftCard } from "../giftCard/Form/form.types";
 import { GiftCard } from "../types/giftCards.types";
 
 export const getImageByGiftCardId = (
@@ -18,8 +18,9 @@ export const getQuantityByGiftCardId = (
 
 export const getSubTotal = (
   giftCardsData: GiftCard[],
-  giftCard: GiftCardForm
-) => getQuantityByGiftCardId(giftCardsData, giftCard.selectedGiftCardId) || 0;
+  giftCard: DataFormGiftCard
+) =>
+  getQuantityByGiftCardId(giftCardsData, giftCard.selectedGiftCardId || 0) || 0;
 
 export const calculateDiscount = (price: number, discount: number): number => {
   if (discount < 0 || discount > 99) {

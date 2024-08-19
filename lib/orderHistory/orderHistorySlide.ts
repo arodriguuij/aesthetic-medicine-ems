@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { GiftCardForm, GiftCardFormWithDiscountAppliedGet } from "../card/cardSlide";
-
+import { GiftCardFormWithDiscountAppliedGet } from "../card/cardSlide";
 
 export interface OrderHistoryState {
   orderHistory: GiftCardFormWithDiscountAppliedGet;

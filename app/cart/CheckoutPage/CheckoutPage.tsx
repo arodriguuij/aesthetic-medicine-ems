@@ -12,8 +12,8 @@ import { useDispatch } from "react-redux";
 import { convertToSubCurrency, scrollToTop } from "@/utils/utils";
 import { useAddGiftCardOrderMutation } from "@/services/giftCards/giftCards";
 import { addGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
-import { GiftCardForm } from "@/app/types/giftCards.types";
 import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
+import { DataFormGiftCard } from "@/app/giftCard/Form/form.types";
 
 const CheckoutPage = ({
   amount,
@@ -22,7 +22,7 @@ const CheckoutPage = ({
 }: {
   amount: number;
   discount: number;
-  giftCard: GiftCardForm;
+  giftCard: DataFormGiftCard;
 }) => {
   const stripe = useStripe();
   const dispatch = useDispatch();

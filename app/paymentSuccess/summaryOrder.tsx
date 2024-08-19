@@ -23,7 +23,7 @@ const SummaryOrder = ({
                 Tarjeta de regalo:{" "}
                 {getQuantityByGiftCardId(
                   giftCardsData as GiftCard[],
-                  product.selectedGiftCardId
+                  product.selectedGiftCardId || 0
                 )}
                 €
               </h3>

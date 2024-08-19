@@ -3,16 +3,17 @@
 import React from "react";
 import { getImageByGiftCardId } from "./cart.utils";
 import { cloudinaryLoader } from "@/utils/cloudinary";
-import { GiftCardForm, removeCard } from "@/lib/card/cardSlide";
+import { removeCard } from "@/lib/card/cardSlide";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
 import { GiftCard } from "../types/giftCards.types";
+import { DataFormGiftCard } from "../giftCard/Form/form.types";
 
 const CartItem = ({
   giftCard,
   giftCardsData,
 }: {
-  giftCard: GiftCardForm;
+  giftCard: DataFormGiftCard;
   giftCardsData: GiftCard[];
 }) => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const CartItem = ({
               src:
                 getImageByGiftCardId(
                   giftCardsData,
-                  giftCard.selectedGiftCardId
+                  giftCard.selectedGiftCardId || 0
                 ) || "",
             })}
             width={1000}
