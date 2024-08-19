@@ -146,7 +146,7 @@ const Form = () => {
                     <input
                       type="tel"
                       id="phoneNumber"
-                      placeholder="666123456"
+                      placeholder="611882139"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       {...register("phoneNumber", {
                         required: "Este campo es requerido",
@@ -243,9 +243,9 @@ const Form = () => {
                     <option value="" disabled>
                       Selecciona una opción
                     </option>
-                    <option value="Anuncios de Google">
+                    {/* <option value="Anuncios de Google">
                       Anuncios de Google
-                    </option>
+                    </option> */}
                     <option value="Instagram">Instagram</option>
                     <option value="Recomendación">Recomendación</option>
                     <option value="Búsqueda en la web">

@@ -9,6 +9,7 @@ import privacyReducer from "./privacy/privacySlide";
 import bannerReducer from "./banner/bannerSlide";
 import snackbarReducer from "./snackbar/snackbarSlide";
 import orderHistoryReducer from "./orderHistory/orderHistorySlide";
+import discountReducer from "./discount/discountSlide";
 import { treatmentsApi } from "../services/treatments/treatments";
 import { areasApi } from "../services/areas/areas";
 import { productsApi } from "../services/products/products";
@@ -27,6 +28,7 @@ export const store = configureStore({
     card: cardReducer,
     dialog: dialogReducer,
     orderHistory: orderHistoryReducer,
+    discount: discountReducer,
     [treatmentsApi.reducerPath]: treatmentsApi.reducer,
     [areasApi.reducerPath]: areasApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,

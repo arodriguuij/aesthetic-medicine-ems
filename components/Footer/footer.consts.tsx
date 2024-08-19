@@ -15,7 +15,7 @@ export const navigation: Navigation = {
       icon: (props) => <Phone props={props} />,
     },
     {
-      name: "clinicamedicoesteticaems@gmail.com",
+      name: "clinicamedicoesteticaems @gmail.com",
       href: "mailto:clinicamedicoesteticaems@gmail.com?utm_source=mail",
       icon: (props) => <Email props={props} />,
     },
@@ -27,9 +27,27 @@ export const navigation: Navigation = {
       icon: (props) => <Address props={props} />,
     },
     {
-      name: "L-V: 10-14 y 15-20",
+      name: "Lunes: 15:00-20:00",
       href: "/contact",
       icon: (props) => <Calendar props={props} />,
+      isLink: true,
+    },
+    {
+      name: "Martes: 9:00-13:00 y 16:00-20:00",
+      href: "/contact",
+      icon: () => <div className="mr-3 ml-3"></div>,
+      isLink: true,
+    },
+    {
+      name: "Jueves: 10:00-14:00 y 16:00-20:00",
+      href: "/contact",
+      icon: () => <div className="mr-3 ml-3"></div>,
+      isLink: true,
+    },
+    {
+      name: " Viernes: 9:00-15:00",
+      href: "/contact",
+      icon: () => <div className="mr-3 ml-3"></div>,
       isLink: true,
     },
   ],

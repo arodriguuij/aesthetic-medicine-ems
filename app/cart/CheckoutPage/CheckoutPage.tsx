@@ -80,7 +80,6 @@ const CheckoutPage = ({
       setErrorMessage(result.error.message);
       //TODO: send to an error page
     } else {
-      console.log({ result });
       const {
         id,
         client_secret,

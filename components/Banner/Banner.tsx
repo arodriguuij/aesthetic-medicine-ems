@@ -39,7 +39,7 @@ const Banner = () => {
           Whatsapp <Whatsapp />
         </a>
         <a
-          href="https://wa.me/+34611882139"
+          href="tel:+34611882139"
           className="flex rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
           target="_blank"
           rel="noopener noreferrer"

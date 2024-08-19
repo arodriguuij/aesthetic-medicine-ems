@@ -155,10 +155,6 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                     {data[0].properties.resultsTime}
                   </dd>
                 </div>
-                <div className="border-t border-gray-200 pt-4">
-                  <dt className="font-medium text-gray-900">Otra propiedad</dt>
-                  <dd className="mt-2 text-sm text-gray-500">Otra propiedad</dd>
-                </div>
               </dl>
             </div>
 
