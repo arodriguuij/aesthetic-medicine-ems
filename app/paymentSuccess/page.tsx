@@ -73,7 +73,7 @@ const PaymentSuccess = () => {
               </time>
             </p>
             <div className="flex">
-              <p className="text-sm text-gray-600 ">Número(s) del pedido:</p>
+              <p className="text-sm text-gray-600 ">Identificador:</p>
               <p className="ml-1 text-sm font-medium text-indigo-600 hover:text-indigo-500">
                 {`#${giftCardOrder.id}`}
               </p>

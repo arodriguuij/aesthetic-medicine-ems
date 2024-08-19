@@ -27,6 +27,12 @@ export const postGiftCardsService = async (
     selectedGiftCardId,
     finalPrice,
     discount,
+    idPaymentStripe,
+    clientId,
+    created,
+    currency,
+    paymentMethod,
+    status,
   } = giftCard;
 
   const { rows }: QueryResult<GiftCardFormWithDiscountAppliedGet> =
@@ -38,6 +44,12 @@ export const postGiftCardsService = async (
       selectedGiftCardId,
       finalPrice,
       discount,
+      idPaymentStripe,
+      clientId,
+      created,
+      currency,
+      paymentMethod,
+      status,
     ]);
   return rows;
 };

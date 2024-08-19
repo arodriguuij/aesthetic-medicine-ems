@@ -10,6 +10,12 @@ export interface GiftCardFormWithDiscountAppliedGet
 export interface GiftCardFormWithDiscountApplied extends DataFormGiftCard {
   finalPrice: number;
   discount: number;
+  idPaymentStripe: string;
+  clientId: string;
+  created: number;
+  currency: string;
+  paymentMethod: string;
+  status: string;
 }
 
 export interface CardState {

@@ -67,7 +67,7 @@ const CheckoutPage = ({
       return;
     }
 
-    const { error } = await stripe.confirmPayment({
+    const result = await stripe.confirmPayment({
       elements,
       clientSecret,
       confirmParams: {
@@ -76,19 +76,38 @@ const CheckoutPage = ({
       redirect: "if_required", // Prevent automatic redirect
     });
 
-    if (error) {
-      setErrorMessage(error.message);
+    if (result.error) {
+      setErrorMessage(result.error.message);
       //TODO: send to an error page
     } else {
+      console.log({ result });
+      const {
+        id,
+        client_secret,
+        created,
+        currency,
+        payment_method_types,
+        status,
+      } = result.paymentIntent;
       const orderHistory = await addGiftCardOrder({
         ...giftCard,
         discount,
         finalPrice: amount,
+        idPaymentStripe: id,
+        clientId: client_secret || "",
+        created,
+        currency,
+        paymentMethod: payment_method_types[0],
+        status,
       });
 
       //TODO: check for error in addGiftCardOrder
       router.push("/paymentSuccess");
-      dispatch(addGiftCardsOrderHistory(orderHistory.data as GiftCardFormWithDiscountAppliedGet));
+      dispatch(
+        addGiftCardsOrderHistory(
+          orderHistory.data as GiftCardFormWithDiscountAppliedGet
+        )
+      );
       scrollToTop();
     }
 

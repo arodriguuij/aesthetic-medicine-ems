@@ -9,11 +9,11 @@ export const getGiftCardsById = async (thisId: number) =>
   await getGiftCardByIdService(thisId);
 
 export const addGiftCards = async (giftCard: GiftCardFormWithDiscountApplied) => {
-  let id: GiftCardFormWithDiscountAppliedGet = {} as GiftCardFormWithDiscountAppliedGet;
+  let newGiftCardOrder: GiftCardFormWithDiscountAppliedGet = {} as GiftCardFormWithDiscountAppliedGet;
   const response = await postGiftCardsService(giftCard);
-  id = { id: Object.values(response[0])[0], ...giftCard };
+  newGiftCardOrder = { id: Object.values(response[0])[0], ...giftCard };
 
-  return id;
+  return newGiftCardOrder;
 };
 
 export const getGetGiftCards = async () => await getGiftCardsService();
