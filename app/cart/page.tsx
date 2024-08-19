@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { resetGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import { GiftCard } from "../types/giftCards.types";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutPage from "@/components/CheckoutPage";
+import CheckoutPage from "@/app/cart/CheckoutPage";
 import { loadStripe } from "@stripe/stripe-js";
 import Loader from "@/components/Loader";
 import { useCheckVoucherMutation } from "@/services/vouchers/vouchers";

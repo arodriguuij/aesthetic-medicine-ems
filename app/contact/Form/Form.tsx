@@ -7,8 +7,8 @@ import {
   UserIcon,
 } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
-import { setSnackbarVisibility } from "../../lib/snackbar/snackbarSlide";
-import { scrollToTop } from "../../utils/utils";
+import { setSnackbarVisibility } from "../../../lib/snackbar/snackbarSlide";
+import { scrollToTop } from "../../../utils/utils";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSendMailMutation } from "@/services/mails/mails";
 import { DataFormContact } from "@/app/types/emails.types";
@@ -108,7 +108,7 @@ const Form = () => {
                         },
                         maxLength: {
                           value: 50,
-                          message: "Máximo 50 caracteres", // JS only: <p>error message</p> TS only support string
+                          message: "Máximo 50 caracteres",
                         },
                       })}
                     />

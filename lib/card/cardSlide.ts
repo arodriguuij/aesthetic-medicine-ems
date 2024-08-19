@@ -1,3 +1,4 @@
+import { DataFormGiftCard } from "@/app/giftCard/Form/form.types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -6,31 +7,24 @@ export interface GiftCardFormWithDiscountAppliedGet
   id: number;
 }
 
-export interface GiftCardFormWithDiscountApplied extends GiftCardForm {
+export interface GiftCardFormWithDiscountApplied extends DataFormGiftCard {
   finalPrice: number;
   discount: number;
 }
 
-export interface GiftCardForm {
-  selectedGiftCardId: number;
-  nameBuyer: string;
-  email: string;
-  nameReceiver: string;
-  message: string;
-}
 export interface CardState {
-  giftCard: GiftCardForm;
+  giftCard: DataFormGiftCard;
 }
 
 const initialState: CardState = {
-  giftCard: {} as GiftCardForm,
+  giftCard: {} as DataFormGiftCard,
 };
 
 export const cardSlice = createSlice({
   name: "card",
   initialState,
   reducers: {
-    addGiftCard: (state, action: PayloadAction<GiftCardForm>) => {
+    addGiftCard: (state, action: PayloadAction<DataFormGiftCard>) => {
       state.giftCard = action.payload;
     },
     removeCard: (state) => {

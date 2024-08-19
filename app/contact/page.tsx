@@ -7,10 +7,10 @@ import {
   isTodayInArray,
 } from "./contact.utils";
 import { classNames } from "../../utils/utils";
-import Form from "../../components/Form";
+import Form from "./Form";
 import useMonths from "./useMonths";
-import Map from "../../components/Map/Map";
-import ContactSummary from "../../components/ContactSummary";
+import Map from "./Map/Map";
+import ContactSummary from "./ContactSummary";
 
 const Contact = () => {
   const {

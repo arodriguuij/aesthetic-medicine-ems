@@ -9,43 +9,40 @@ import {
   UserIcon,
 } from "@heroicons/react/24/outline";
 import { Radio, RadioGroup } from "@headlessui/react";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
-import { addGiftCard, GiftCardForm } from "@/lib/card/cardSlide";
+import { addGiftCard } from "@/lib/card/cardSlide";
 import { scrollToTop } from "@/utils/utils";
 import { cloudinaryLoader } from "@/utils/cloudinary";
 import Loader from "@/components/Loader";
 import Image from "next/image";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { DataFormGiftCard } from "./form.types";
 
-export interface DataForm {
-  selectedGiftCardId: number | null;
-  nameBuyer: string | null;
-  email: string | null;
-  nameReceiver: string | null;
-  message: string | null;
-}
-
-const initState: DataForm = {
+const initState: DataFormGiftCard = {
   selectedGiftCardId: null,
-  nameBuyer: null,
-  email: null,
-  nameReceiver: null,
-  message: null,
+  nameBuyer: "",
+  email: "",
+  nameReceiver: "",
+  message: "",
 };
-const isSendButtonEnabled = (dataForm: DataForm) =>
-  dataForm.selectedGiftCardId &&
-  dataForm.nameBuyer &&
-  dataForm.email &&
-  dataForm.nameReceiver &&
-  dataForm.message;
 
 const Form = ({ disabled }: { disabled: boolean }) => {
-  const [dataForm, setDataForm] = useState<DataForm>(initState);
-  const [alreadyOnSubmit, setAlreadyOnSubmit] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<DataFormGiftCard>({
+    defaultValues: initState,
+    //resolver: yupResolver(schema)
+  });
 
   const {
     data: giftCardsData,
@@ -53,23 +50,11 @@ const Form = ({ disabled }: { disabled: boolean }) => {
     status,
   } = useGetGiftCardsQuery("");
 
-  const handleOnSubmit = (event: any) => {
-    event.preventDefault();
-    setAlreadyOnSubmit(true);
-    if (isSendButtonEnabled(dataForm)) {
-      dispatch(addGiftCard(dataForm as GiftCardForm));
-      setDataForm(initState);
-      scrollToTop();
-      router.push("/cart");
-    }
-  };
-
-  const handleChange = (event: any) => {
-    event.preventDefault();
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    setDataForm((prevState) => ({ ...prevState, [name]: value }));
+  const onSubmit: SubmitHandler<DataFormGiftCard> = async (data) => {
+    dispatch(addGiftCard(data));
+    scrollToTop();
+    reset();
+    router.push("/cart");
   };
 
   if (status === "pending") return <Loader />;
@@ -91,7 +76,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
       </div>
 
       <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
-        <form onSubmit={handleOnSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <section aria-labelledby="options-heading">
             <h2 id="options-heading" className="sr-only">
               Product options
@@ -104,15 +89,12 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                   Importe
                 </legend>
                 <RadioGroup
-                  value={dataForm.selectedGiftCardId}
-                  onChange={(selectedGiftCardIdForm) =>
-                    setDataForm((prevState) => ({
-                      ...prevState,
-                      selectedGiftCardId: selectedGiftCardIdForm,
-                    }))
-                  }
                   disabled={disabled}
                   className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2"
+                  {...register("selectedGiftCardId", {
+                    required: "Este campo es requerido",
+                  })}
+                  onChange={(value) => setValue("selectedGiftCardId", +value)}
                 >
                   {giftCardsError && (
                     <>Error en la carga de las tarjetas de regalo</>
@@ -142,13 +124,10 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                       </Radio>
                     ))}
                 </RadioGroup>
-                {!dataForm.selectedGiftCardId && alreadyOnSubmit && (
-                  <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
-                    <ExclamationCircleIcon
-                      aria-hidden="true"
-                      className="h-5 w-5 text-red-500"
-                    />
-                  </div>
+                {errors.selectedGiftCardId?.message && (
+                  <p id="email-error" className="mt-2 text-sm text-red-600">
+                    {errors.message?.message}
+                  </p>
                 )}
               </fieldset>
             </div>
@@ -191,16 +170,23 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                   </div>
                   <input
                     type="text"
-                    name="nameBuyer"
-                    id="nameBuyer"
                     placeholder="Elvira Morgado Sánchez"
-                    onChange={handleChange}
                     minLength={3}
-                    value={dataForm.nameBuyer || ""}
                     disabled={disabled}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    {...register("nameBuyer", {
+                      required: "Este campo es requerido",
+                      minLength: {
+                        value: 3,
+                        message: "Mínimo 3 caracteres",
+                      },
+                      maxLength: {
+                        value: 50,
+                        message: "Máximo 50 caracteres",
+                      },
+                    })}
                   />
-                  {!dataForm.nameBuyer && alreadyOnSubmit && (
+                  {errors.nameBuyer?.message && (
                     <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
                       <ExclamationCircleIcon
                         aria-hidden="true"
@@ -209,7 +195,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                     </div>
                   )}
                 </div>
-                {!dataForm.nameBuyer && alreadyOnSubmit && (
+                {errors.nameBuyer?.message && (
                   <p id="email-error" className="mt-2 text-sm text-red-600">
                     Este campo es obligatorio
                   </p>
@@ -233,15 +219,23 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                   </div>
                   <input
                     type="email"
-                    name="email"
                     id="email"
                     placeholder="clinicamedicoesteticaems@gmail.com"
-                    value={dataForm.email || ""}
-                    onChange={handleChange}
                     disabled={disabled}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    {...register("email", {
+                      required: "Este campo es requerido",
+                      minLength: {
+                        value: 3,
+                        message: "Mínimo 3 caracteres",
+                      },
+                      maxLength: {
+                        value: 50,
+                        message: "Máximo 50 caracteres",
+                      },
+                    })}
                   />
-                  {!dataForm.email && alreadyOnSubmit && (
+                  {errors.email?.message && (
                     <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
                       <ExclamationCircleIcon
                         aria-hidden="true"
@@ -250,7 +244,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                     </div>
                   )}
                 </div>
-                {!dataForm.nameBuyer && alreadyOnSubmit && (
+                {errors.email?.message && (
                   <p id="email-error" className="mt-2 text-sm text-red-600">
                     Este campo es obligatorio
                   </p>
@@ -274,16 +268,24 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                   </div>
                   <input
                     type="text"
-                    name="nameReceiver"
                     id="nameReceiver"
                     placeholder="Elvira Morgado Sánchez"
-                    onChange={handleChange}
                     minLength={3}
-                    value={dataForm.nameReceiver || ""}
                     disabled={disabled}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    {...register("nameReceiver", {
+                      required: "Este campo es requerido",
+                      minLength: {
+                        value: 3,
+                        message: "Mínimo 3 caracteres",
+                      },
+                      maxLength: {
+                        value: 50,
+                        message: "Máximo 50 caracteres",
+                      },
+                    })}
                   />
-                  {!dataForm.nameReceiver && alreadyOnSubmit && (
+                  {errors.nameReceiver?.message && (
                     <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
                       <ExclamationCircleIcon
                         aria-hidden="true"
@@ -292,7 +294,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                     </div>
                   )}
                 </div>
-                {!dataForm.nameBuyer && alreadyOnSubmit && (
+                {errors.nameReceiver?.message && (
                   <p id="email-error" className="mt-2 text-sm text-red-600">
                     Este campo es obligatorio
                   </p>
@@ -310,16 +312,23 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                 <div className="flex bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-amber-400 sm:max-w-md">
                   <textarea
                     id="message"
-                    name="message"
                     rows={3}
-                    minLength={3}
-                    onChange={handleChange}
-                    value={dataForm.message || ""}
                     disabled={disabled}
                     placeholder="Ejemplo: Hola, me gustaría recibir más información sobre el tratamiento de arruga de labios. Pueden contactar conmigo por email o bien por teléfono. Gracias"
                     className="block w-full max-w-2xl pl-2 bg-white rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-400 sm:text-sm sm:leading-6"
+                    {...register("message", {
+                      required: "Este campo es requerido",
+                      minLength: {
+                        value: 3,
+                        message: "Mínimo 3 caracteres",
+                      },
+                      maxLength: {
+                        value: 300,
+                        message: "Máximo 300 caracteres",
+                      },
+                    })}
                   />
-                  {!dataForm.message && alreadyOnSubmit && (
+                  {errors.message?.message && (
                     <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
                       <ExclamationCircleIcon
                         aria-hidden="true"
@@ -328,7 +337,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                     </div>
                   )}
                 </div>
-                {!dataForm.nameBuyer && alreadyOnSubmit && (
+                {errors.message?.message && (
                   <p id="email-error" className="mt-2 text-sm text-red-600">
                     Este campo es obligatorio
                   </p>
@@ -338,12 +347,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
             <div className="mt-10">
               <button
                 type="submit"
-                //disabled={!isSendButtonEnabled(dataForm)}
-                className={
-                  !isSendButtonEnabled(dataForm)
-                    ? "flex w-full items-center justify-center rounded-md border border-transparent bg-gray-400 px-8 py-3 text-base font-medium text-white"
-                    : "flex w-full items-center justify-center rounded-md border border-transparent bg-amber-400 px-8 py-3 text-base font-medium text-white hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-                }
+                className="flex w-full items-center justify-center rounded-md border border-transparent bg-amber-400 px-8 py-3 text-base font-medium text-white hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                 disabled={disabled}
               >
                 Añadir a la cesta

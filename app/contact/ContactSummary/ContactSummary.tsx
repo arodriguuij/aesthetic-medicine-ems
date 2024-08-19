@@ -28,7 +28,7 @@ const ContactSummary = () => {
           </h3>
           <a className="font-semibold text-amber-400" href="tel:+34627088047">
             <address className="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
-              <p>+34 660 660 660</p>
+              <p>+34 611 88 21 39</p>
             </address>
           </a>
         </div>

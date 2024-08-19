@@ -10,8 +10,8 @@ import { Navigation } from "./footer.types";
 export const navigation: Navigation = {
   contact: [
     {
-      name: "+34 660 660 660",
-      href: "tel:+34627088047",
+      name: "+34 611 88 21 39",
+      href: "tel:+34611882139",
       icon: (props) => <Phone props={props} />,
     },
     {
