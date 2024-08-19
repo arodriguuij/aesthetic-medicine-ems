@@ -71,7 +71,7 @@ const Products = () => {
                       productsData
                         .filter(({ branch }) => branch === name)
                         .sort((a, b) => a.priority - b.priority)
-                        .map(({ id, name, images, quantity, branch }) => (
+                        .map(({ id, name, images, quantity, branch, price }) => (
                           <div key={id} className="group relative">
                             <div className="h-56 w-full overflow-hidden rounded-md bg-gray-800 border border-amber-400 group-hover:opacity-75 lg:h-72 xl:h-80">
                               <Image
@@ -104,7 +104,7 @@ const Products = () => {
                               {branch}
                             </p>
                             <p className="mt-1 text-sm font-medium text-gray-700">
-                              {quantity}ml
+                              {quantity}ml - {price}€
                             </p>
                           </div>
                         ))}

@@ -10,7 +10,7 @@ const ContactSummary = () => {
           teléfono y mapa para visitar nuestra clínica de medicina estética
         </p>
       </div>
-      <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
         <div>
           <h3 className="border-l border-amber-600 pl-6 font-semibold text-gray-900">
             Dirección
@@ -19,6 +19,20 @@ const ContactSummary = () => {
             <address className="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
               <p>Policlínica Navalmoral de la Mata</p>
               <p>C. Pablo Luengo, 23. 10300 Navalmoral de la Mata, Cáceres</p>
+            </address>
+          </a>
+        </div>
+        <div>
+          <h3 className="border-l border-amber-600 pl-6 font-semibold text-gray-900">
+            Horario
+          </h3>
+          <a href="mailto:info@clinicarobega.com?utm_source=mail">
+            <address className="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
+            <p>Lunes: 15:00-20:00</p>
+            <p>Martes: 9:00-13:00 y 16:00-20:00</p>
+            <p>Miércoles: 9:00-13:00</p>
+            <p>Jueves: 10:00-14:00 y 16:00-20:00</p>
+            <p>Viernes: 9:00-15:00</p>
             </address>
           </a>
         </div>

@@ -39,13 +39,19 @@ export const navigation: Navigation = {
       isLink: true,
     },
     {
+      name: "Miércoles: 9:00-13:00",
+      href: "/contact",
+      icon: () => <div className="mr-3 ml-3"></div>,
+      isLink: true,
+    },
+    {
       name: "Jueves: 10:00-14:00 y 16:00-20:00",
       href: "/contact",
       icon: () => <div className="mr-3 ml-3"></div>,
       isLink: true,
     },
     {
-      name: " Viernes: 9:00-15:00",
+      name: "Viernes: 9:00-15:00",
       href: "/contact",
       icon: () => <div className="mr-3 ml-3"></div>,
       isLink: true,

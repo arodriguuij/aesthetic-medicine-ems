@@ -77,12 +77,11 @@ export default function HomePage() {
           style={{
             position: "relative",
             width: "100%",
-            maxHeight:
-              "75vh" /* Asegura que la imagen no exceda el 75% de la altura de la ventana */,
+            maxHeight: "75vh",
             overflow: "hidden",
             display: "flex",
-            justifyContent: "center" /* Centra la imagen horizontalmente */,
-            alignItems: "center" /* Centra la imagen verticalmente */,
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <Image

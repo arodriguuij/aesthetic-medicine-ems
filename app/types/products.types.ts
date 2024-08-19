@@ -13,4 +13,5 @@ export interface Product {
   howToUse: string[];
   ingredients: string[];
   priority: number
+  price: number
 }

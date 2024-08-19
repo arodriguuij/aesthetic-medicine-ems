@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useGetProductQuery } from "../../../services/products/products";
-import {  cloudinaryLoader } from "../../../utils/cloudinary";
+import { cloudinaryLoader } from "../../../utils/cloudinary";
 import { Fragment } from "react";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
@@ -28,7 +28,9 @@ const Product = () => {
             {data[0].name}
           </h2>
         </div>
-        <p className="mt-2 text-sm leading-6 text-gray-600">{data[0].branch}</p>
+        <p className="mt-2 text-sm leading-6 text-gray-600">
+          {data[0].branch} ({data[0].quantity}ml - {data[0].price}€)
+        </p>
       </div>
 
       <TabGroup className="sm:px-6 lg:px-0">
@@ -83,7 +85,7 @@ const Product = () => {
                 <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                   Indicaciones y uso
                 </h2>
-                <div className="flex">
+                {/* <div className="flex">
                   <CheckIcon
                     className={"text-yellow-600 h-6 w-5 flex-none mr-2"}
                     aria-hidden="true"
@@ -91,16 +93,14 @@ const Product = () => {
                   <p className="mt-2 text-sm text-gray-500">
                     {data[0].description}
                   </p>
-                </div>
-                <div className="flex">
+                </div> */}
+                {/* <div className="flex">
                   <CheckIcon
                     className={"text-yellow-600 h-6 w-5 flex-none mr-2"}
                     aria-hidden="true"
-                  />
-                  <p className="mt-2 text-sm text-gray-500">
-                    {data[0].howToUse}
-                  </p>
-                </div>
+                  /> */}
+                <p className="mt-2 text-sm text-gray-500">{data[0].howToUse}</p>
+                {/* </div> */}
               </div>
             </div>
           </TabPanel>
@@ -131,11 +131,13 @@ const Product = () => {
                     className="mt-2 text-sm text-gray-500 flex"
                     key={benefit + index}
                   >
-                    <CheckIcon
+                    {/* <CheckIcon
                       className={"text-yellow-600 h-6 w-5 flex-none mr-2"}
                       aria-hidden="true"
-                    />
-                    <p>{benefit}</p>
+                    /> */}
+                    {/* <p> */}
+                    {benefit}
+                    {/* </p> */}
                   </p>
                 ))}
               </div>

@@ -29,6 +29,23 @@ export const isTodayInArray = (date: string): boolean => {
   return date === todayString;
 };
 
+export const getScheduleOfToday = (): string | undefined => {
+  const dayOfTheWeek = new Date().getDay();
+
+  switch (dayOfTheWeek) {
+    case 1: // Monday
+      return "15:00-20:00";
+    case 2: // Martes
+      return "9:00-13:00 y 16:00-20:00";
+    case 4: // Jueves
+      return "10:00-14:00 y 16:00-20:00";
+    case 5: // Viernes
+      return "9:00-15:00";
+    default:
+      return undefined;
+  }
+};
+
 export const isCurrentMonthInArray = (
   date: string,
   monthId: number

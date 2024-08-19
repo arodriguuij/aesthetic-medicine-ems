@@ -4,6 +4,8 @@ import Form from "./Form";
 import Map from "./Map/Map";
 import ContactSummary from "./ContactSummary";
 import Calendar from "./Calendar";
+import { getScheduleOfToday } from "./contact.utils";
+import ScheduleOfToday from "./ScheduleOfToday";
 
 const Contact = () => {
   return (
@@ -26,6 +28,7 @@ const Contact = () => {
         </div>
 
         <Calendar />
+        <ScheduleOfToday />
       </div>
 
       {/* Form */}

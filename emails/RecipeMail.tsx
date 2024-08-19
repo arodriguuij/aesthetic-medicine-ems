@@ -182,7 +182,8 @@ const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
                   marginBottom: "0",
                 }}
               >
-                Lunes a Viernes: 9:00 - 20:00
+                Lunes: 15:00-20:00 Martes: 9:00-13:00 y 16:00-20:00 Miércoles:
+                9:00-13:00 Jueves: 10:00-14:00 y 16:00-20:00 Viernes: 9:00-15:00
               </Text>
             </Column>
           </Row>

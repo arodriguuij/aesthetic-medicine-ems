@@ -2,7 +2,12 @@ import React from "react";
 import useMonths from "../useMonths";
 import { classNames } from "@/utils/utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { getDayStyles, getFormattedDate, isTodayInArray } from "../contact.utils";
+import {
+  getDayStyles,
+  getFormattedDate,
+  getScheduleOfToday,
+  isTodayInArray,
+} from "../contact.utils";
 
 const Calendar = () => {
   const {
