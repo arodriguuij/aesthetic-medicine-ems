@@ -1,6 +1,6 @@
 import React from "react";
-import { getQuantityByGiftCardId } from "../cart/cart.utils";
-import { GiftCard } from "../types/giftCards.types";
+import { getQuantityByGiftCardId } from "../../cart/cart.utils";
+import { GiftCard } from "../../types/giftCards.types";
 import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
 
 const SummaryOrder = ({
