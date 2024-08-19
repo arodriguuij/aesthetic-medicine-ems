@@ -16,10 +16,10 @@ export const sendMailReceipt = async (
     // resend function handler for executing email sending
     // returning data and error state to indicate success and failure respecfully
     const { data, error } = await resend.emails.send({
-      from: `${
-        !isProd ? "[TESTING]" : ""
-      } EMS Medicina Estética <noreply@medicinaesteticaems.com>`, //Title of our Email, here, our email will indicate Imam - Portfolio and the <info@eimaam.dev> will be the sending address. NB: `eimaam.dev` replace with your registered domain
-      to: giftCard.email, // email receiver, // in case where you are sending onboarding emails, this field will be dynamic, it will be the email of the User
+      from: !isProd
+        ? "[TESTING] EMS Medicina Estética <noreply@medicinaesteticaems.com>"
+        : "EMS Medicina Estética <noreply@medicinaesteticaems.com>", //Title of our Email, here, our email will indicate Imam - Portfolio and the <info@eimaam.dev> will be the sending address. NB: `eimaam.dev` replace with your registered domain
+      to: !isProd ? "socorrista92re@gmail.com" : giftCard.email, // email receiver, // in case where you are sending onboarding emails, this field will be dynamic, it will be the email of the User
       subject: "Recibo tarjeta de regalo EMS",
       react: RecipeMail(giftCard), //using our custom react component to render email content/body
     });
@@ -56,11 +56,12 @@ export const sendMail = async ({
 
   try {
     const { data, error } = await resend.emails.send({
-      from: `${
-        !isProd ? "[TESTING]" : ""
-      } EMS Medicina Estética <noreply@medicinaesteticaems.com>`, //Title of our Email, here, our email will indicate Imam - Portfolio and the <info@eimaam.dev> will be the sending address. NB: `eimaam.dev` replace with your registered domain
-      to: "clinicamedicoesteticaems@gmail.com", // email receiver, // in case where you are sending onboarding emails, this field will be dynamic, it will be the email of the User
-      //to: "socorrista92re@gmail.com", // email receiver, // in case where you are sending onboarding emails, this field will be dynamic, it will be the email of the User
+      from: !isProd
+        ? "[TESTING] EMS Medicina Estética <noreply@medicinaesteticaems.com>"
+        : "EMS Medicina Estética <noreply@medicinaesteticaems.com>", //Title of our Email, here, our email will indicate Imam - Portfolio and the <info@eimaam.dev> will be the sending address. NB: `eimaam.dev` replace with your registered domain
+      to: !isProd
+        ? "socorrista92re@gmail.com"
+        : "clinicamedicoesteticaems@gmail.com", // email receiver, // in case where you are sending onboarding emails, this field will be dynamic, it will be the email of the User
       subject: "Consulta médica web",
       react: ContactMail({
         userName,
