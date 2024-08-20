@@ -1,13 +1,13 @@
 import React from "react";
 import useMonths from "../useMonths";
-import { classNames } from "@/utils/utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import {
   getDayStyles,
   getFormattedDate,
   isTodayInArray,
 } from "../contact.utils";
-import Skeleton from "@/components/Skeleton";
+import { classNames } from "@/utils/utilsServer";
+import Skeleton from "@/app/components/Skeleton";
 
 const Calendar = () => {
   const {

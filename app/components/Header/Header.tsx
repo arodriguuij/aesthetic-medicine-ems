@@ -30,19 +30,12 @@ import {
 } from "./header.consts";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { classNames, scrollToTop } from "../../utils/utils";
-import {
-  useGetTreatmentsCorporalNamesQuery,
-  useGetTreatmentsFacialNamesQuery,
-} from "../../services/treatments/treatments";
-import { useGetAreasQuery } from "../../services/areas/areas";
+
 import { useDispatch, useSelector } from "react-redux";
 
-import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
 import ArrowDown from "../Icons/ArrowDown";
 import ArrowUp from "../Icons/ArrowUp";
 import ArrowRight from "../Icons/ArrowRight";
-import useIsMobile from "../../hooks/useIsMobile";
 import {
   getDescriptionByGiftCardId,
   getImageByGiftCardId,
@@ -52,6 +45,12 @@ import useIsTablet from "@/hooks/useIsTablet";
 import { cloudinaryLoader } from "@/utils/cloudinary";
 import { CardState, removeCard } from "@/lib/card/cardSlide";
 import Image from "next/image";
+import { classNames } from "@/utils/utilsServer";
+import { useGetTreatmentsCorporalNamesQuery, useGetTreatmentsFacialNamesQuery } from "@/services/treatments/treatments";
+import { useGetAreasQuery } from "@/services/areas/areas";
+import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
+import useIsMobile from "@/hooks/useIsMobile";
+import { scrollToTop } from "@/utils/utils";
 
 const Header = () => {
   const router = useRouter();

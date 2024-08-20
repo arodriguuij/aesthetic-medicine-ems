@@ -1,10 +1,10 @@
 "use client";
 
-import Loader from "@/components/Loader";
+import TreatmentsContent from "@/app/components/TreatmentsContent";
 import { useGetTreatmentsFacialQuery } from "../../../services/treatments/treatments";
 
 import { subTitleFacial, titleFacial } from "../treatments.const";
-import TreatmentsContent from "@/components/TreatmentsContent";
+import Loader from "@/app/components/Loader";
 
 const Treatments = () => {
   const { data, error, status } = useGetTreatmentsFacialQuery("");

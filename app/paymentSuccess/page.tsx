@@ -1,17 +1,17 @@
 "use client";
 
 import { removeCard } from "@/lib/card/cardSlide";
-import { classNames } from "@/utils/utils";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
 import { GiftCard } from "../types/giftCards.types";
 import { useRouter } from "next/navigation";
-import Loader from "@/components/Loader";
 import { step } from "./paymentSuccess.constants";
 import SummaryOrder from "./SummaryOrder";
 import { OrderHistoryState } from "@/lib/orderHistory/orderHistorySlide";
 import Incentives from "./Incentives";
+import { classNames } from "@/utils/utilsServer";
+import Loader from "../components/Loader";
 
 const PaymentSuccess = () => {
   const router = useRouter();

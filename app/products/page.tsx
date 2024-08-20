@@ -5,8 +5,8 @@ import { useGetBranchesQuery } from "../../services/branches/branches";
 import { useGetProductsQuery } from "../../services/products/products";
 import { cloudinaryLoader } from "../../utils/cloudinary";
 import { scrollToTop } from "../../utils/utils";
-import Loader from "@/components/Loader";
 import Image from "next/image";
+import Loader from "../components/Loader";
 
 const Products = () => {
   const {

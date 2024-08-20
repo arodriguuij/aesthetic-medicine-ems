@@ -1,8 +1,8 @@
 "use client";
 
+import { scrollToTop } from "@/utils/utils";
 import { ChevronRightIcon, HomeIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { scrollToTop } from "../../utils/utils";
 import { usePathname } from "next/navigation";
 
 const Breadcrumb = () => {

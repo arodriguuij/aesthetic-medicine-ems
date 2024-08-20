@@ -3,8 +3,8 @@
 import { useParams } from "next/navigation";
 import { useGetTreatmentsAreaQuery } from "@/services/areas/areas";
 import { titleArea } from "../../treatments.const";
-import TreatmentContent from "@/components/TreatmentsContent";
-import Loader from "@/components/Loader";
+import Loader from "@/app/components/Loader";
+import TreatmentsContent from "@/app/components/TreatmentsContent";
 
 const Treatments = () => {
   const { id } = useParams();
@@ -14,7 +14,7 @@ const Treatments = () => {
   if (status === "pending") return <Loader />;
 
   return data ? (
-    <TreatmentContent
+    <TreatmentsContent
       title={`${titleArea} ${data?.areaName} (${data?.treatments.length})`}
       subTitle={data?.description || ""}
       error={error}

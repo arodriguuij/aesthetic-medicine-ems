@@ -12,9 +12,9 @@ import { GiftCard } from "../types/giftCards.types";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutPage from "@/app/cart/CheckoutPage";
 import { loadStripe } from "@stripe/stripe-js";
-import Loader from "@/components/Loader";
 import VoucherForm from "./VoucherForm";
 import { DiscountState } from "@/lib/discount/discountSlide";
+import Loader from "../components/Loader";
 
 const isProd = process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod";
 

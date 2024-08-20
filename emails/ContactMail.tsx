@@ -17,7 +17,7 @@ import {
   main,
   paragraph,
 } from "./contactMail.styles";
-import { publicUrl } from "@/utils/utils";
+import { publicUrl } from "@/utils/utilsServer";
 
 /* const dataMock = {
   userName: "alejandro",

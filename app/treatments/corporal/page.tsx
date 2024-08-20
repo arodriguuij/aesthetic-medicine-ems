@@ -1,10 +1,10 @@
 "use client";
 
-import TreatmentsContent from "@/components/TreatmentsContent";
+import TreatmentsContent from "@/app/components/TreatmentsContent";
 import { useGetTreatmentsCorporalQuery } from "../../../services/treatments/treatments";
 
 import { subTitleCorporal, titleCorporal } from "../treatments.const";
-import Loader from "@/components/Loader";
+import Loader from "@/app/components/Loader";
 
 const Treatments = () => {
   const { data, error, status } = useGetTreatmentsCorporalQuery("");

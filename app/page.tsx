@@ -11,9 +11,9 @@ import { scrollToTop } from "@/utils/utils";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
-import Loader from "@/components/Loader";
 import { useGetBranchesHomeQuery } from "@/services/branchesHome/branchesHome";
 import Image from "next/image";
+import Loader from "./components/Loader";
 
 /* 
   Contact for booking in the Treatment page

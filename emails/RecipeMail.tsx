@@ -27,7 +27,7 @@ import {
   track,
 } from "./recipeMail.styles";
 import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
-import { publicUrl } from "@/utils/utils";
+import { publicUrl } from "@/utils/utilsServer";
 
 const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
   <Html>

@@ -8,9 +8,9 @@ import {
 } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { DialogState, resetDialog } from "../../lib/dialog/dialogSlide";
 import { useRouter } from 'next/navigation';
-import { scrollToTop } from "../../utils/utils";
+import { DialogState, resetDialog } from "@/lib/dialog/dialogSlide";
+import { scrollToTop } from "@/utils/utils";
 
 const DialogComponent = () => {
   const router = useRouter();

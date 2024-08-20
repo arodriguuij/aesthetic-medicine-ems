@@ -2,8 +2,8 @@
 
 import { useParams } from "next/navigation";
 import { useGetTreatmentQuery } from "../../../../services/treatments/treatments";
-import TreatmentContent from "@/components/TreatmentContent";
-import Loader from "@/components/Loader";
+import TreatmentContent from "@/app/components/TreatmentContent";
+import Loader from "@/app/components/Loader";
 
 const Treatment = () => {
   const { id } = useParams();

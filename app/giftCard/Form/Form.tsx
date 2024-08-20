@@ -15,13 +15,13 @@ import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
 import { addGiftCard } from "@/lib/card/cardSlide";
 import { scrollToTop } from "@/utils/utils";
 import { cloudinaryLoader } from "@/utils/cloudinary";
-import Loader from "@/components/Loader";
 import Image from "next/image";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { DataFormGiftCard } from "./form.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./validations";
 import { initState } from "./form.constants";
+import Loader from "@/app/components/Loader";
 
 const Form = ({ disabled }: { disabled: boolean }) => {
   const dispatch = useDispatch();

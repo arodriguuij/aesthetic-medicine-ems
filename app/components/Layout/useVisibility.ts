@@ -1,10 +1,11 @@
 "use client";
 
-import { PrivacyState } from "../../lib/privacy/privacySlide";
+import { BannerState } from "@/lib/banner/bannerSlide";
+import { DialogState } from "@/lib/dialog/dialogSlide";
+import { PrivacyState } from "@/lib/privacy/privacySlide";
+import { SnackbarState } from "@/lib/snackbar/snackbarSlide";
 import { useSelector } from "react-redux";
-import { BannerState } from "../../lib/banner/bannerSlide";
-import { SnackbarState } from "../../lib/snackbar/snackbarSlide";
-import { DialogState } from "../../lib/dialog/dialogSlide";
+
 
 const useVisibility = () => {
   const { isVisible: isPrivacyVisible } = useSelector(

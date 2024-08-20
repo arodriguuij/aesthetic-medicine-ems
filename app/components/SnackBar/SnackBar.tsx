@@ -1,12 +1,10 @@
 "use client";
 
+import { setSnackbarVisibility, SnackbarState } from "@/lib/snackbar/snackbarSlide";
 import { CheckCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setSnackbarVisibility,
-  SnackbarState,
-} from "../../lib/snackbar/snackbarSlide";
+
 
 const SnackBar = () => {
   const dispatch = useDispatch();

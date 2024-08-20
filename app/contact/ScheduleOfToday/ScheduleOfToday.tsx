@@ -1,7 +1,7 @@
 import React from "react";
 import { getScheduleOfToday } from "../contact.utils";
-import Warning from "@/components/Icons/Warning";
-import Rocket from "@/components/Icons/Rocket";
+import Rocket from "@/app/components/Icons/Rocket";
+import Warning from "@/app/components/Icons/Warning";
 
 const ScheduleOfToday = () => {
   const schedule = getScheduleOfToday();

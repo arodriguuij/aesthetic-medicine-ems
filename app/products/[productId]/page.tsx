@@ -6,8 +6,8 @@ import { cloudinaryLoader } from "../../../utils/cloudinary";
 import { Fragment } from "react";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
-import Loader from "@/components/Loader";
 import Image from "next/image";
+import Loader from "@/app/components/Loader";
 
 const Product = () => {
   const { productId } = useParams();

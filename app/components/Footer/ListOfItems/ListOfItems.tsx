@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NavigationItem } from "../footer.types";
-import { scrollToTop } from "../../../utils/utils";
+import { scrollToTop } from "@/utils/utils";
 
 const ListOfItems = ({ item }: { item: NavigationItem }) => (
   <li key={item.name} className="flex">

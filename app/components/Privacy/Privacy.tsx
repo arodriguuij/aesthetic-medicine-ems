@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import Link from "next/link";
-import { setPrivacyVisibility } from "../../lib/privacy/privacySlide";
-import { scrollToTop } from "../../utils/utils";
+import { scrollToTop } from "@/utils/utils";
+import { setPrivacyVisibility } from "@/lib/privacy/privacySlide";
+
 
 const Privacy = () => {
   const dispatch = useDispatch();
