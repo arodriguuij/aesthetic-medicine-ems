@@ -84,6 +84,14 @@ const Product = () => {
                 <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                   Indicaciones y uso
                 </h2>
+                {data[0].howToUse.map((indication, index) => (
+                  <p
+                    className="mt-2 text-sm text-gray-500"
+                    key={indication + index}
+                  >
+                    {indication}
+                  </p>
+                ))}
                 {/* <div className="flex">
                   <CheckIcon
                     className={"text-yellow-600 h-6 w-5 flex-none mr-2"}
@@ -98,7 +106,7 @@ const Product = () => {
                     className={"text-yellow-600 h-6 w-5 flex-none mr-2"}
                     aria-hidden="true"
                   /> */}
-                <p className="mt-2 text-sm text-gray-500">{data[0].howToUse}</p>
+
                 {/* </div> */}
               </div>
             </div>
@@ -130,13 +138,11 @@ const Product = () => {
                     className="mt-2 text-sm text-gray-500 flex"
                     key={benefit + index}
                   >
-                    {/* <CheckIcon
+                    <CheckIcon
                       className={"text-yellow-600 h-6 w-5 flex-none mr-2"}
                       aria-hidden="true"
-                    /> */}
-                    {/* <p> */}
+                    />
                     {benefit}
-                    {/* </p> */}
                   </p>
                 ))}
               </div>
