@@ -1,10 +1,6 @@
-"use client";
-
-import { scrollToTop } from "@/utils/utils";
-import Link from "next/link";
-
 import Image from "next/image";
 import { cloudinaryLoader } from "@/utils/cloudinary";
+import NotFoundLinkHome from "./components/NotFoundLinkHome";
 
 export default function NotFound() {
   return (
@@ -30,15 +26,7 @@ export default function NotFound() {
           Lo siento, no pudimos encontrar la página que estás buscando.
         </p>
         <div className="mt-10 flex justify-center">
-          <Link href="/" aria-label="Enlace a la pagina Home">
-            <div
-              onClick={scrollToTop}
-              className="text-sm font-semibold leading-7 text-gray-900"
-            >
-              <span aria-hidden="true">&larr;</span> Vuelta a la página
-              principal
-            </div>
-          </Link>
+          <NotFoundLinkHome />
         </div>
       </div>
     </div>
