@@ -72,7 +72,7 @@ export const getDayStyles = (day: Day, selectedMonthId: number) => {
     styles.push(
       isCurrentMonthInArray(day.date, selectedMonthId)
         ? "bg-white text-gray-900"
-        : "bg-gray-50 text-gray-400"
+        : "bg-gray-50 text-gray-800"
     );
 
   return styles;
