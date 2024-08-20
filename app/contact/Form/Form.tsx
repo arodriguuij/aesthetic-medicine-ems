@@ -199,7 +199,7 @@ const Form = () => {
                 </label>
                 <div className="mt-2 sm:col-span-2 sm:mt-0">
                   <select
-                    ria-label="Awareness select"
+                    aria-label="Awareness select"
                     id="awareness"
                     className="mt-2 block w-full bg-white rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-amber-400 sm:text-sm sm:leading-6 sm:max-w-md"
                     {...register("awareness")}
