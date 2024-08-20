@@ -1,6 +1,15 @@
 import Stripe from "stripe";
 import { NextResponse, NextRequest } from "next/server";
-import { stripePrivateKey, stripeWebhookKey } from "@/utils/utils";
+
+const isProd = process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod";
+
+const stripePrivateKey = isProd
+  ? process.env.STRIPE_PRIVATE_KEY_PROD
+  : process.env.STRIPE_PRIVATE_KEY;
+
+const stripeWebhookKey = isProd
+  ? process.env.STRIPE_WEBHOOK_SECRET_KEY_PROD
+  : process.env.STRIPE_WEBHOOK_SECRET_KEY;
 
 const stripe = new Stripe(stripePrivateKey!);
 

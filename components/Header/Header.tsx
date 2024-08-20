@@ -384,6 +384,7 @@ const Header = () => {
                         width={269}
                         height={195}
                         className="h-8 w-auto"
+                        priority={true}
                       />
                     </div>
                   </Link>
@@ -742,6 +743,7 @@ const Header = () => {
                       width={269}
                       height={195}
                       className="h-8 w-auto"
+                      priority={true}
                     />
                   </div>
                 </Link>

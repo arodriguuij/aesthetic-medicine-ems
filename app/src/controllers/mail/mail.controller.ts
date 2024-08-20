@@ -4,13 +4,13 @@ import RecipeMail from "@/emails";
 import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
 import { DataFormContact } from "@/app/types/emails.types";
 import ContactMail from "@/emails/ContactMail";
-import { isProd } from "@/utils/utils";
 
 export const sendMailReceipt = async (
   giftCard: GiftCardFormWithDiscountAppliedGet
 ) => {
   // resend declaration with API key as parameter
   const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+  const isProd = process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod";
 
   try {
     // resend function handler for executing email sending
@@ -52,6 +52,7 @@ export const sendMail = async ({
   message,
 }: DataFormContact) => {
   const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+  const isProd = process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod";
 
   try {
     const { data, error } = await resend.emails.send({

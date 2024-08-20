@@ -110,9 +110,9 @@ export default function HomePage() {
         className="mx-auto max-w-xl px-4 pt-8 sm:px-6 sm:pt-12 lg:max-w-7xl lg:px-8"
       >
         <div className="mx-auto sm:px lg:max-w-7xl">
-          <p className="mt-2 text-xl font-bold tracking-tight text-gray-900 ">
+          <h1 className="mt-2 text-xl font-bold tracking-tight text-gray-900 ">
             Tratamientos Medicina Estética y Antiedad
-          </p>
+          </h1>
         </div>
         <p className="mt-2 text-md leading-6 text-gray-600">
           Descubre nuestra amplia gama de tratamientos de medicina estética
@@ -144,6 +144,7 @@ export default function HomePage() {
                     width={1000}
                     height={1000}
                     className=" w-full object-cover object-center"
+                    priority={true}
                   />
                 </div>
                 <h3 className="mt-4 text-base font-semibold text-gray-900">
@@ -246,9 +247,9 @@ export default function HomePage() {
                     {productsData &&
                       productsData
                         .filter(({ featured }) => featured)
-                        .map(({ name, id, images }) => (
+                        .map(({ name, id, images }, index) => (
                           <Link
-                            key={name}
+                            key={name+index}
                             href={`products/${id}`}
                             aria-label="Enlace a la pagina del producto"
                           >
@@ -325,7 +326,7 @@ export default function HomePage() {
             <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-4 gap-y-6 sm:max-w-3xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
               {branchesHomeData.map(({ id, image, name }, index) => (
                 <Image
-                  key={id + index}
+                  key={id + index + name}
                   alt={`Image-${name}`}
                   src={cloudinaryLoader({
                     src: image,
@@ -538,9 +539,9 @@ export default function HomePage() {
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto mt-8 flow-root sm:mt-8 lg:mx-0 lg:max-w-none">
                 <div className="-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3">
-                  {testimonialsNew.map((testimonial) => (
+                  {testimonialsNew.map((testimonial, index) => (
                     <div
-                      key={testimonial.author.handle}
+                      key={testimonial.author.handle+index}
                       className="pt-8 sm:inline-block sm:w-full sm:px-4"
                     >
                       <figure className="rounded-2xl border border-amber-400 p-8 text-sm leading-6">

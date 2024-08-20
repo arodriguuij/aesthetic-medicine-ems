@@ -68,6 +68,7 @@ const TreatmentsContent = ({
                           })}
                           width={1000}
                           height={1000}
+                          priority={true}
                           className="aspect-[16/9] w-full rounded-2xl border border-amber-400 bg-white object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                         />
 

@@ -23,11 +23,9 @@ const Product = () => {
   ) : (
     <div className="relative mx-auto lg:max-w-7xl lg:px-8 isolate -z-10 overflow-hidden pt-4">
       <div className="mx-auto sm:px-6 mb-2 lg:max-w-7xl lg:px-0">
-        <div className="flex">
-          <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-            {data[0].name}
-          </h2>
-        </div>
+        <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+          {data[0].name}
+        </h2>
         <p className="mt-2 text-sm leading-6 text-gray-600">
           {data[0].branch} ({data[0].quantity}ml - {data[0].price}€)
         </p>
@@ -78,6 +76,7 @@ const Product = () => {
                     width={1000}
                     height={1000}
                     className="h-full w-full object-cover object-center"
+                    priority={true}
                   />
                 </div>
               </div>

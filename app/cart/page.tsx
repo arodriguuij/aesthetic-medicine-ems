@@ -15,7 +15,12 @@ import { loadStripe } from "@stripe/stripe-js";
 import Loader from "@/components/Loader";
 import VoucherForm from "./VoucherForm";
 import { DiscountState } from "@/lib/discount/discountSlide";
-import { stripePublicKey } from "@/utils/utils";
+
+const isProd = process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod";
+
+const stripePublicKey = isProd
+  ? process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_PROD
+  : process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY;
 
 const stripePromise = loadStripe(stripePublicKey || "");
 
@@ -65,11 +70,9 @@ const Cart = () => {
           aria-hidden="true"
         />
         <div className="mx-auto sm:px-6 mb-8 lg:max-w-7xl lg:px-0">
-          <div className="flex">
-            <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-              Carrito de compra
-            </h2>
-          </div>
+          <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+            Carrito de compra
+          </h2>
           <p className="mt-2 text-sm leading-6 text-gray-600">
             Regala belleza y bienestar con nuestras tarjetas regalo, el presente
             perfecto para cualquier ocasión.

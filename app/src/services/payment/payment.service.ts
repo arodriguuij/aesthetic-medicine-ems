@@ -1,5 +1,10 @@
 import { Payment } from "@/app/types/payments.types";
-import { stripePrivateKey } from "@/utils/utils";
+
+const isProd = process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod";
+
+const stripePrivateKey = isProd
+  ? process.env.STRIPE_PRIVATE_KEY_PROD
+  : process.env.STRIPE_PRIVATE_KEY;
 
 const stripe = require("stripe")(stripePrivateKey);
 
