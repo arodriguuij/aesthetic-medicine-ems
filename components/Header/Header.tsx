@@ -381,8 +381,8 @@ const Header = () => {
                         src={cloudinaryLoader({
                           src: "EMS/General/EmsLogo",
                         })}
-                        width={1000}
-                        height={1000}
+                        width={269}
+                        height={195}
                         className="h-8 w-auto"
                       />
                     </div>
@@ -739,8 +739,8 @@ const Header = () => {
                       src={cloudinaryLoader({
                         src: "EMS/General/EmsLogo",
                       })}
-                      width={1000}
-                      height={1000}
+                      width={269}
+                      height={195}
                       className="h-8 w-auto"
                     />
                   </div>
