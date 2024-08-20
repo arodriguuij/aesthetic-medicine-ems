@@ -10,7 +10,8 @@ const MapApp = () => {
         margin: "20px 0 0",
         height: "40vh",
         width: "100%",
-        borderRadius: "6px",
+        borderRadius: "8px",
+        overflow: 'hidden'
       }}
       mapId="Policlínica Navalmoral"
       defaultCenter={center}

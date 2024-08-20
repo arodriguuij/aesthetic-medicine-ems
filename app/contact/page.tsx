@@ -52,7 +52,7 @@ const Contact = () => {
       <ContactSummary />
 
       {/* Map */}
-      <div className="mx-auto max-w-7xl text-center sm:px-6 lg:px-8 justify-center ">
+      <div className="mx-auto max-w-7xl text-center sm:px-6 lg:px-8 justify-center mt-12 ">
         <Map />
       </div>
     </>

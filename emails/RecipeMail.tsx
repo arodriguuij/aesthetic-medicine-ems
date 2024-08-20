@@ -120,12 +120,8 @@ const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
         </Section>
         <Hr style={globalMail.hr} />
         <Section style={menu.container}>
-          <Row>
-            <Text style={menu.title}>Obtén Ayuda</Text>
-          </Row>
-
           <Row style={{ ...menu.content, paddingTop: "0" }}>
-            <Column style={{ width: "33%" }} colSpan={1}>
+            <Column style={{ width: "50%" }} colSpan={1}>
               <Link
                 href="https://www.medicinaesteticaems.com/"
                 style={menu.text}
@@ -133,20 +129,12 @@ const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
                 Devoluciones e Intercambios
               </Link>
             </Column>
-            <Column style={{ width: "33%" }} colSpan={2}>
+            <Column style={{ width: "50%" }} colSpan={2}>
               <Link
                 href="https://www.medicinaesteticaems.com/"
                 style={menu.text}
               >
                 Cómo Devolver
-              </Link>
-            </Column>
-            <Column style={{ width: "33%" }} colSpan={3}>
-              <Link
-                href="https://www.medicinaesteticaems.com/"
-                style={menu.text}
-              >
-                Opciones de Contacto
               </Link>
             </Column>
           </Row>
@@ -176,22 +164,45 @@ const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
                   marginBottom: "0",
                 }}
               >
-                Lunes: 15:00-20:00 Martes: 9:00-13:00 y 16:00-20:00 Miércoles:
-                9:00-13:00 Jueves: 10:00-14:00 y 16:00-20:00 Viernes: 9:00-15:00
+                Lunes: 15:00-20:00
+              </Text>
+              <Text
+                style={{
+                  ...menu.text,
+                  marginBottom: "0",
+                }}
+              >
+                Martes: 9:00-13:00 y 16:00-20:00
+              </Text>
+              <Text
+                style={{
+                  ...menu.text,
+                  marginBottom: "0",
+                }}
+              >
+                Miércoles: 9:00-13:00
+              </Text>
+              <Text
+                style={{
+                  ...menu.text,
+                  marginBottom: "0",
+                }}
+              >
+                Jueves: 10:00-14:00 y 16:00-20:00
+              </Text>
+              <Text
+                style={{
+                  ...menu.text,
+                  marginBottom: "0",
+                }}
+              >
+                Viernes: 9:00-15:00
               </Text>
             </Column>
           </Row>
         </Section>
         <Hr style={{ ...globalMail.hr, marginTop: "12px" }} />
         <Section style={paddingY}>
-          <Row style={footer.policy}>
-            <Column>
-              <Text style={footer.text}>Version Web</Text>
-            </Column>
-            <Column>
-              <Text style={footer.text}>Política de Privacidad</Text>
-            </Column>
-          </Row>
           <Row>
             <Text style={{ ...footer.text, paddingTop: 30, paddingBottom: 30 }}>
               Si tienes alguna pregunta o inquietud, no dudes en contactarnos.

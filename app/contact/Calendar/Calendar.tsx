@@ -5,9 +5,9 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import {
   getDayStyles,
   getFormattedDate,
-  getScheduleOfToday,
   isTodayInArray,
 } from "../contact.utils";
+import Skeleton from "@/components/Skeleton";
 
 const Calendar = () => {
   const {
@@ -18,7 +18,11 @@ const Calendar = () => {
     setSelectedDay,
   } = useMonths();
 
-  return (
+  return calendar === undefined ? (
+    <div className="mx-auto max-w-7xl text-center mt-8 lg:px-8 sm:px-6 ">
+      <Skeleton />
+    </div>
+  ) : (
     <div className="mx-auto max-w-7xl text-center mt-8 lg:px-8 sm:px-6 flex">
       {calendar &&
         selectedMonth &&
