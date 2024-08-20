@@ -46,7 +46,7 @@ const GiftCard = () => {
               <p className="text-base text-gray-500">
                 Se enviará un correo electrónico con la tarjeta de regalo del
                 importe elegido. Puede canjearse para cualquier tratamiento de
-                la página web. Y tiene una duración de 2 años de validez.
+                la página web. Y tiene una duración de 3 meses de validez.
               </p>
             </div>
 

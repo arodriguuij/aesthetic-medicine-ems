@@ -1,5 +1,5 @@
 export interface DataFormGiftCard {
-  selectedGiftCardId: number | null;
+  selectedGiftCardId: number;
   nameBuyer: string;
   email: string;
   nameReceiver: string;

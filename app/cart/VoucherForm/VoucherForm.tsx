@@ -12,11 +12,10 @@ import {
 import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-
-interface VoucherForm {
-  voucher: string;
-}
-const initState = { voucher: "" };
+import { yupResolver } from "@hookform/resolvers/yup";
+import { IVoucherForm } from "./voucher.types";
+import { initState } from "./voucher.constants";
+import { schema } from "./validations";
 
 const VoucherForm = () => {
   const dispatch = useDispatch();
@@ -31,12 +30,12 @@ const VoucherForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<VoucherForm>({
+  } = useForm<IVoucherForm>({
     defaultValues: initState,
-    //resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<VoucherForm> = async (dataForm) => {
+  const onSubmit: SubmitHandler<IVoucherForm> = async (dataForm) => {
     try {
       const { data } = await checkVoucher(dataForm.voucher);
       dispatch(
@@ -71,16 +70,7 @@ const VoucherForm = () => {
             id="voucher"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500  placeholder:text-gray-400 focus:border-primary-500 focus:ring-primary-500"
             placeholder=""
-            {...register("voucher", {
-              minLength: {
-                value: 3,
-                message: "Mínimo 3 caracteres",
-              },
-              maxLength: {
-                value: 50,
-                message: "Máximo 50 caracteres",
-              },
-            })}
+            {...register("voucher")}
           />
           {errors.voucher?.message && (
             <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">

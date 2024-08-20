@@ -1,16 +1,8 @@
 import Stripe from "stripe";
 import { NextResponse, NextRequest } from "next/server";
+import { stripePrivateKey, stripeWebhookKey } from "@/utils/utils";
 
-let key, webHookKey;
-if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
-  key = process.env.STRIPE_PRIVATE_KEY_PROD;
-  webHookKey = process.env.STRIPE_WEBHOOK_SECRET_KEY_PROD;
-} else {
-  key = process.env.STRIPE_PRIVATE_KEY;
-  webHookKey = process.env.STRIPE_WEBHOOK_SECRET_KEY;
-}
-
-const stripe = new Stripe(key!);
+const stripe = new Stripe(stripePrivateKey!);
 
 export async function POST(req: NextRequest) {
   const payload = await req.text();
@@ -22,7 +14,11 @@ export async function POST(req: NextRequest) {
   const timeString = new Date(res?.created * 1000).toLocaleDateString();
 
   try {
-    let event = stripe.webhooks.constructEvent(payload, sig!, webHookKey!);
+    let event = stripe.webhooks.constructEvent(
+      payload,
+      sig!,
+      stripeWebhookKey!
+    );
 
     console.log(
       res?.data?.object?.billing_details?.email, // email

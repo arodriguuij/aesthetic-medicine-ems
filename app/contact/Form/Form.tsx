@@ -12,14 +12,9 @@ import { scrollToTop } from "../../../utils/utils";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSendMailMutation } from "@/services/mails/mails";
 import { DataFormContact } from "@/app/types/emails.types";
-
-const initState: DataFormContact = {
-  userName: "",
-  phoneNumber: null,
-  email: "",
-  message: "",
-  awareness: "",
-};
+import { initState } from "./form.constants";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "./validations";
 
 const Form = () => {
   const {
@@ -30,7 +25,7 @@ const Form = () => {
     formState: { errors },
   } = useForm<DataFormContact>({
     defaultValues: initState,
-    //resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
   });
   const dispatch = useDispatch();
   const [sendEmail] = useSendMailMutation();
@@ -100,17 +95,7 @@ const Form = () => {
                       id="userName"
                       placeholder="Elvira Morgado Sánchez"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      {...register("userName", {
-                        required: "Este campo es requerido",
-                        minLength: {
-                          value: 3,
-                          message: "Mínimo 3 caracteres",
-                        },
-                        maxLength: {
-                          value: 50,
-                          message: "Máximo 50 caracteres",
-                        },
-                      })}
+                      {...register("userName")}
                     />
                     {errors.userName?.message && (
                       <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
@@ -148,17 +133,7 @@ const Form = () => {
                       id="phoneNumber"
                       placeholder="611882139"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      {...register("phoneNumber", {
-                        required: "Este campo es requerido",
-                        minLength: {
-                          value: 9,
-                          message: "Mínimo 9 caracteres",
-                        },
-                        maxLength: {
-                          value: 9,
-                          message: "Máximo 9 caracteres",
-                        },
-                      })}
+                      {...register("phoneNumber")}
                     />
                     {errors.phoneNumber?.message && (
                       <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
@@ -196,17 +171,7 @@ const Form = () => {
                       id="email"
                       placeholder="clinicamedicoesteticaems@gmail.com"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      {...register("email", {
-                        required: "Este campo es requerido",
-                        minLength: {
-                          value: 3,
-                          message: "Mínimo 3 caracteres",
-                        },
-                        maxLength: {
-                          value: 50,
-                          message: "Máximo 50 caracteres",
-                        },
-                      })}
+                      {...register("email")}
                     />
                     {errors.email?.message && (
                       <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
@@ -236,9 +201,7 @@ const Form = () => {
                   <select
                     id="awareness"
                     className="mt-2 block w-full bg-white rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-amber-400 sm:text-sm sm:leading-6 sm:max-w-md"
-                    {...register("awareness", {
-                      required: "Este campo es requerido",
-                    })}
+                    {...register("awareness")}
                   >
                     <option value="" disabled>
                       Selecciona una opción

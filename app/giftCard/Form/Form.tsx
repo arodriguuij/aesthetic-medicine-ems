@@ -19,14 +19,9 @@ import Loader from "@/components/Loader";
 import Image from "next/image";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { DataFormGiftCard } from "./form.types";
-
-const initState: DataFormGiftCard = {
-  selectedGiftCardId: null,
-  nameBuyer: "",
-  email: "",
-  nameReceiver: "",
-  message: "",
-};
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "./validations";
+import { initState } from "./form.constants";
 
 const Form = ({ disabled }: { disabled: boolean }) => {
   const dispatch = useDispatch();
@@ -36,12 +31,11 @@ const Form = ({ disabled }: { disabled: boolean }) => {
     register,
     handleSubmit,
     reset,
-    watch,
     setValue,
     formState: { errors },
   } = useForm<DataFormGiftCard>({
     defaultValues: initState,
-    //resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
   });
 
   const {
@@ -126,7 +120,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                 </RadioGroup>
                 {errors.selectedGiftCardId?.message && (
                   <p id="email-error" className="mt-2 text-sm text-red-600">
-                    {errors.message?.message}
+                    {errors.selectedGiftCardId?.message}
                   </p>
                 )}
               </fieldset>
@@ -174,17 +168,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                     minLength={3}
                     disabled={disabled}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    {...register("nameBuyer", {
-                      required: "Este campo es requerido",
-                      minLength: {
-                        value: 3,
-                        message: "Mínimo 3 caracteres",
-                      },
-                      maxLength: {
-                        value: 50,
-                        message: "Máximo 50 caracteres",
-                      },
-                    })}
+                    {...register("nameBuyer")}
                   />
                   {errors.nameBuyer?.message && (
                     <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
@@ -197,7 +181,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                 </div>
                 {errors.nameBuyer?.message && (
                   <p id="email-error" className="mt-2 text-sm text-red-600">
-                    Este campo es obligatorio
+                    {errors.nameBuyer?.message}
                   </p>
                 )}
               </div>
@@ -223,17 +207,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                     placeholder="clinicamedicoesteticaems@gmail.com"
                     disabled={disabled}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    {...register("email", {
-                      required: "Este campo es requerido",
-                      minLength: {
-                        value: 3,
-                        message: "Mínimo 3 caracteres",
-                      },
-                      maxLength: {
-                        value: 50,
-                        message: "Máximo 50 caracteres",
-                      },
-                    })}
+                    {...register("email")}
                   />
                   {errors.email?.message && (
                     <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
@@ -246,7 +220,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                 </div>
                 {errors.email?.message && (
                   <p id="email-error" className="mt-2 text-sm text-red-600">
-                    Este campo es obligatorio
+                    {errors.email?.message}
                   </p>
                 )}
               </div>
@@ -273,17 +247,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                     minLength={3}
                     disabled={disabled}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    {...register("nameReceiver", {
-                      required: "Este campo es requerido",
-                      minLength: {
-                        value: 3,
-                        message: "Mínimo 3 caracteres",
-                      },
-                      maxLength: {
-                        value: 50,
-                        message: "Máximo 50 caracteres",
-                      },
-                    })}
+                    {...register("nameReceiver")}
                   />
                   {errors.nameReceiver?.message && (
                     <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
@@ -296,7 +260,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                 </div>
                 {errors.nameReceiver?.message && (
                   <p id="email-error" className="mt-2 text-sm text-red-600">
-                    Este campo es obligatorio
+                    {errors.nameReceiver?.message}
                   </p>
                 )}
               </div>
@@ -316,17 +280,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                     disabled={disabled}
                     placeholder="Ejemplo: Hola, me gustaría recibir más información sobre el tratamiento de arruga de labios. Pueden contactar conmigo por email o bien por teléfono. Gracias"
                     className="block w-full max-w-2xl pl-2 bg-white rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-400 sm:text-sm sm:leading-6"
-                    {...register("message", {
-                      required: "Este campo es requerido",
-                      minLength: {
-                        value: 3,
-                        message: "Mínimo 3 caracteres",
-                      },
-                      maxLength: {
-                        value: 300,
-                        message: "Máximo 300 caracteres",
-                      },
-                    })}
+                    {...register("message")}
                   />
                   {errors.message?.message && (
                     <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
@@ -339,7 +293,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                 </div>
                 {errors.message?.message && (
                   <p id="email-error" className="mt-2 text-sm text-red-600">
-                    Este campo es obligatorio
+                    {errors.message?.message}
                   </p>
                 )}
               </div>
@@ -359,7 +313,7 @@ const Form = ({ disabled }: { disabled: boolean }) => {
                   aria-hidden="true"
                   className="mr-2 h-6 w-6 flex-shrink-0 text-green-600"
                 />
-                <span className="text-gray-500">Garantía de 2 años</span>
+                <span className="text-gray-500">Validez de 3 meses</span>
               </div>
             </div>
           </section>

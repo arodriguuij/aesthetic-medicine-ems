@@ -1,6 +1,6 @@
 export interface DataFormContact {
   userName: string;
-  phoneNumber: number | null;
+  phoneNumber: string;
   email: string;
   message: string;
   awareness: string;

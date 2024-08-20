@@ -17,6 +17,7 @@ import {
   main,
   paragraph,
 } from "./contactMail.styles";
+import { isProd, publicUrl } from "@/utils/utils";
 
 /* const dataMock = {
   userName: "alejandro",
@@ -25,13 +26,6 @@ import {
   awareness: "Búsqueda en la web",
   message: "Hola, esto es una consulta médica",
 }; */
-
-let baseUrl;
-if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
-  baseUrl = process.env.NEXT_PUBLIC_URL;
-} else {
-  baseUrl = "http://localhost:3000/";
-}
 
 const ContactMail = ({
   userName,
@@ -48,7 +42,7 @@ const ContactMail = ({
     <Body style={main}>
       <Container style={container}>
         <Img
-          src={`${baseUrl}Images/logo.png`}
+          src={`${publicUrl}Images/logo.png`}
           width="170"
           height="90"
           alt="Koala"

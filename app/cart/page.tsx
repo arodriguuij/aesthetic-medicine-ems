@@ -15,15 +15,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import Loader from "@/components/Loader";
 import VoucherForm from "./VoucherForm";
 import { DiscountState } from "@/lib/discount/discountSlide";
+import { stripePublicKey } from "@/utils/utils";
 
-let key;
-if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
-  key = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_PROD;
-} else {
-  key = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY;
-}
-
-const stripePromise = loadStripe(key || "");
+const stripePromise = loadStripe(stripePublicKey || "");
 
 const Cart = () => {
   const router = useRouter();

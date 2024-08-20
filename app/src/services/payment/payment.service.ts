@@ -1,13 +1,7 @@
 import { Payment } from "@/app/types/payments.types";
+import { stripePrivateKey } from "@/utils/utils";
 
-let key;
-if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
-  key = process.env.STRIPE_PRIVATE_KEY_PROD;
-} else {
-  key = process.env.STRIPE_PRIVATE_KEY;
-}
-
-const stripe = require("stripe")(key);
+const stripe = require("stripe")(stripePrivateKey);
 
 export const postPaymentService = async ({ amount }: Payment) => {
   try {

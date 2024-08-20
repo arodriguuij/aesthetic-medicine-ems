@@ -27,13 +27,7 @@ import {
   track,
 } from "./recipeMail.styles";
 import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
-
-let baseUrl;
-if (process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod") {
-  baseUrl = process.env.NEXT_PUBLIC_URL;
-} else {
-  baseUrl = "http://localhost:3000/";
-}
+import { publicUrl } from "@/utils/utils";
 
 const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
   <Html>
@@ -43,7 +37,7 @@ const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
       <Container style={container}>
         <Section style={messageMail}>
           <Img
-            src={`${baseUrl}Images/logo.png`}
+            src={`${publicUrl}Images/logo.png`}
             width="66"
             height="50"
             alt="EMS logo"
@@ -64,7 +58,7 @@ const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
           <Row>
             <Column>
               <Img
-                src={`${baseUrl}${
+                src={`${publicUrl}${
                   giftCard.selectedGiftCardId === 1
                     ? "Images/GiftCard200.png"
                     : giftCard.selectedGiftCardId === 2
@@ -162,7 +156,7 @@ const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
               <Row>
                 <Column style={{ width: "16px" }}>
                   <Img
-                    src={`${baseUrl}Images/phone.png`}
+                    src={`${publicUrl}Images/phone.png`}
                     width="16px"
                     height="26px"
                     style={{ paddingRight: "14px" }}
