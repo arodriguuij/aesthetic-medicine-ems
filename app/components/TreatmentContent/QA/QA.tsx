@@ -1,3 +1,5 @@
+"use client"
+
 import { Treatment } from "@/app/types/treatments.types";
 import {
   Disclosure,
