@@ -9,10 +9,10 @@ import {
   UserIcon,
 } from "@heroicons/react/24/outline";
 import { Radio, RadioGroup } from "@headlessui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
-import { addGiftCard } from "@/lib/card/cardSlide";
+import { addGiftCard, CardState } from "@/lib/card/cardSlide";
 import { scrollToTop } from "@/utils/utils";
 import { cloudinaryLoader } from "@/utils/cloudinary";
 import Image from "next/image";
@@ -23,10 +23,16 @@ import { schema } from "./validations";
 import { initState } from "./form.constants";
 import Loader from "@/app/components/Loader";
 
-const Form = ({ disabled }: { disabled: boolean }) => {
+const Form = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const giftCard = useSelector(
+    (state: { card: CardState }) => state.card.giftCard
+  );
+
+  const disabled = !!giftCard.selectedGiftCardId;
+  
   const {
     register,
     handleSubmit,
