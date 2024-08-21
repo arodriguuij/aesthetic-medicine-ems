@@ -118,9 +118,9 @@ const HomePage = async () => {
                     priority={true}
                   />
                 </div>
-                <h3 className="mt-4 text-base font-semibold text-gray-900">
+                <h2 className="mt-4 text-base font-semibold text-gray-900">
                   {collection.name}
-                </h3>
+                </h2>
                 <p className="mt-2 text-sm text-gray-500">
                   {collection.description}
                 </p>
