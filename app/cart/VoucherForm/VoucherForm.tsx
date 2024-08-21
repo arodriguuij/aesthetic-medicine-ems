@@ -64,7 +64,7 @@ const VoucherForm = () => {
         >
           ¿Tienes un código de descuento?
         </label>
-        <div className="flex bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-amber-400 sm:max-w-md">
+        <div className="flex bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-amber-400 sm:max-w-3xl">
           <input
             type="text"
             id="voucher"

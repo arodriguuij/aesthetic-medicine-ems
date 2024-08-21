@@ -78,7 +78,7 @@ const HomePage = async () => {
       {/* Title*/}
       <div
         aria-labelledby="collection-heading"
-        className="mx-auto max-w-xl px-4 pt-8 sm:px-6 sm:pt-12 lg:max-w-7xl lg:px-8"
+        className="mx-auto max-3w-xl px-4 pt-8 sm:px-6 sm:pt-12 lg:max-w-7xl lg:px-8"
       >
         <div className="mx-auto sm:px lg:max-w-7xl">
           <h1 className="mt-2 text-xl font-bold tracking-tight text-gray-900 ">
@@ -292,7 +292,7 @@ const HomePage = async () => {
       {/* Sobre Mi */}
       <div
         aria-labelledby="collection-heading"
-        className="mx-auto max-w-3xl px-4 pb-12 sm:px-6 sm:pt-10 lg:max-w-7xl lg:px-8"
+        className="mx-auto max-w-3xl px-4 pb-12 sm:px-6 sm:pt-10 lg:max-w-7xl lg:px-8 hidden lg:block"
       >
         <div className="sm:py-8 xl:mx-auto xl:max-w-7xl">
           <div>
@@ -308,7 +308,7 @@ const HomePage = async () => {
           </div>
         </div>
         <div className="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-          <div className="lg:pr-4 pt-4">
+          <div className="lg:pr-4 pt-4 ">
             <div
               style={{ height: "39rem" }}
               className="relative overflow-hidden rounded-3xl px-6 pb-9 pt-64 sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10 h-4/5"

@@ -78,7 +78,7 @@ const PaymentSuccess = () => {
           </div>
 
           {/* Products */}
-          <div className="mx-auto max-w-2xl pb-4 sm:px-6 lg:max-w-7xl lg:px-8">
+          <div className="mx-auto max-w-3xl pb-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <section aria-labelledby="products-heading" className="mt-6">
               <h2 id="products-heading" className="sr-only">
                 Products purchased

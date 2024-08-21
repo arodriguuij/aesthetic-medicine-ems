@@ -80,10 +80,10 @@ const Cart = () => {
         </div>
       </div>
       {/* Content */}
-      <div className="mx-auto max-w-2xl pb-8 pt-8 lg:px-8 lg:max-w-7xl">
-        <div className="mx-auto grid max-w-lg grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+      <div className="mx-auto max-w-3xl pb-8 pt-8 lg:px-8 lg:max-w-7xl sm:px-6">
+        <div className="mx-auto grid max-w-3xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           {/* Order Summary */}
-          <div className="mx-auto w-full max-w-lg">
+          <div className="mx-auto w-full max-w-3xl">
             <h2 className="sr-only">Resumen del pedido</h2>
             {/* Products */}
             <div className="flow-root">
@@ -126,7 +126,7 @@ const Cart = () => {
             </dl>
           </div>
           {/* Stripe */}
-          <div className="mx-auto w-full max-w-lg">
+          <div className="mx-auto w-full max-w-3xl">
             <Elements
               stripe={stripePromise}
               options={{

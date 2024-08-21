@@ -36,7 +36,10 @@ const CartItem = ({
             className="h-44 w-72 flex-none rounded-md bg-gray-100 object-cover object-center"
           />
         </div>
-        <div className="flex-auto ml-0">
+        <div
+          className=" rounded-lg border border-gray-200 bg-white p-4 shadow-sm  py-2 px-4 mt-4"
+          style={{ marginLeft: 0 }}
+        >
           <div className="space-y-1 sm:flex sm:items-start sm:justify-between sm:space-x-6">
             <div className="flex-auto space-y-1 text-sm font-medium">
               <div className="mt-1 text-sm">

@@ -57,7 +57,7 @@ const TreatmentsContent = ({ title, subTitle, data }: ITreatmentsContent) => {
                     <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
                   </Link>
                 </div>
-                <div className="max-w-xl">
+                <div className="max-3w-xl">
                   <div className="mt-4 flex items-center gap-x-1 text-xs justify-between">
                     <div>
                       <p className="text-gray-500">Duración:</p>
