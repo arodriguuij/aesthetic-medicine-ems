@@ -129,7 +129,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                         href={`/treatments/areas/${area.id}`}
                         aria-label="Enlace a la pagina del area"
                       >
-                        <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-indigo-600 ring-1 ring-inset ring-amber-500/10">
+                        <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
                           {area.name}
                         </span>
                       </Link>
@@ -317,7 +317,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                     href="/products"
                     aria-label="Enlace a la pagina de los productos"
                   >
-                    <div className="block text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500">
+                    <div className="block text-sm font-medium leading-7 text-amber-600 hover:text-amber-500">
                       Ver todos los productos
                       <span aria-hidden="true"> &rarr;</span>
                     </div>

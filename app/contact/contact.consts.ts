@@ -15,6 +15,6 @@ export const meetings = [
     id: 2,
     name: "Hoy",
     description: "",
-    color: "bg-indigo-600",
+    color: "bg-amber-600",
   },
 ];

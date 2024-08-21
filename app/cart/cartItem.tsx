@@ -61,7 +61,7 @@ const CartItem = ({
             <button
               type="button"
               onClick={() => dispatch(removeCard())}
-              className="text-sm font-medium text-indigo-600 hover:text-indigo-500 mt-4"
+              className="text-sm font-medium text-amber-600 hover:text-amber-500 mt-4"
             >
               Eliminar
             </button>

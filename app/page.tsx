@@ -185,7 +185,7 @@ const HomePage = async () => {
                 Productos y cremas
               </h2>
               <Link href="/products" aria-label="Enlace a la pagina productos">
-                <div className="hidden text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500 sm:block">
+                <div className="hidden text-sm font-medium leading-7 text-amber-600 hover:text-amber-500 sm:block">
                   Ver todos los productos
                   <span aria-hidden="true"> &rarr;</span>
                 </div>
@@ -243,7 +243,7 @@ const HomePage = async () => {
           </div>
           <div className="mt-6 sm:hidden">
             <Link href="/products" aria-label="Enlace a la pagina de productos">
-              <div className="block text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500">
+              <div className="block text-sm font-medium leading-7 text-amber-600 hover:text-amber-500">
                 Ver todos las productos
                 <span aria-hidden="true"> &rarr;</span>
               </div>
@@ -326,7 +326,7 @@ const HomePage = async () => {
           </div>
           <div>
             <div className="text-base leading-7 text-gray-700 lg:max-w-lg">
-              <p className="text-base font-medium leading-7 text-indigo-600">
+              <p className="text-base font-medium leading-7 text-amber-600">
                 Doctora en Medicina
               </p>
               <h1 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
@@ -368,7 +368,7 @@ const HomePage = async () => {
 
             <div className="mt-10 flex">
               <Link href="/aboutMe" aria-label="Enlace a la pagina sobre mi">
-                <div className="text-base font-medium leading-7 text-indigo-600 hover:text-indigo-500">
+                <div className="text-base font-medium leading-7 text-amber-600 hover:text-amber-500">
                   Saber más sobre Elvira
                   <span aria-hidden="true">&rarr;</span>
                 </div>

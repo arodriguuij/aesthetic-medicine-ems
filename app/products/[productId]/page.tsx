@@ -37,19 +37,19 @@ const Product = () => {
             <TabList className="-mb-px flex space-x-8">
               <Tab
                 key="IndicationTab"
-                className="whitespace-nowrap border-b-2 border-transparent py-6 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[selected]:border-amber-500 data-[selected]:text-indigo-600"
+                className="whitespace-nowrap border-b-2 border-transparent py-6 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[selected]:border-amber-500 data-[selected]:text-amber-600"
               >
                 Indicación
               </Tab>
               <Tab
                 key="BenefitsTab"
-                className="whitespace-nowrap border-b-2 border-transparent py-6 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[selected]:border-amber-500 data-[selected]:text-indigo-600"
+                className="whitespace-nowrap border-b-2 border-transparent py-6 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[selected]:border-amber-500 data-[selected]:text-amber-600"
               >
                 Beneficios
               </Tab>
               <Tab
                 key="IngredientsTab"
-                className="whitespace-nowrap border-b-2 border-transparent py-6 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[selected]:border-amber-500 data-[selected]:text-indigo-600"
+                className="whitespace-nowrap border-b-2 border-transparent py-6 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[selected]:border-amber-500 data-[selected]:text-amber-600"
               >
                 Ingredientes
               </Tab>

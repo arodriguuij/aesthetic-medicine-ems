@@ -92,7 +92,7 @@ const AboutMe = () => (
           <div key={item.name + index}>
             <time
               dateTime={item.dateTime}
-              className="flex items-center text-sm font-semibold leading-6 text-yellow-600"
+              className="flex items-center text-sm font-semibold leading-6 text-amber-600"
             >
               <svg
                 viewBox="0 0 4 4"
@@ -137,7 +137,7 @@ const AboutMe = () => (
             key={tier.id + tierIdx}
             className={classNames(
               tier.featured
-                ? "relative bg-yellow-500 shadow-2xl opacity-80"
+                ? "relative bg-amber-500 shadow-2xl opacity-80"
                 : "bg-white/60 sm:mx-8 lg:mx-0",
               tier.featured
                 ? ""
@@ -150,7 +150,7 @@ const AboutMe = () => (
             <h3
               id={tier.id}
               className={classNames(
-                tier.featured ? "text-white" : "text-yellow-600",
+                tier.featured ? "text-white" : "text-amber-600",
                 "text-base font-semibold leading-7"
               )}
             >

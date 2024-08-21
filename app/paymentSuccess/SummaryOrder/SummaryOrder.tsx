@@ -19,7 +19,7 @@ const SummaryOrder = ({
         <div className="sm:flex lg:col-span-7">
           <div className="sm:ml-6 sm:mt-0">
             <div className="flex items-center">
-              <h3 className="text-lg text-indigo-500">
+              <h3 className="text-lg text-amber-500">
                 Tarjeta de regalo:{" "}
                 {getQuantityByGiftCardId(
                   giftCardsData as GiftCard[],

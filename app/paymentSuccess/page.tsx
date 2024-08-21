@@ -71,7 +71,7 @@ const PaymentSuccess = () => {
             </p>
             <div className="flex">
               <p className="text-sm text-gray-600 ">Identificador:</p>
-              <p className="ml-1 text-sm font-medium text-indigo-600 hover:text-indigo-500">
+              <p className="ml-1 text-sm font-medium text-amber-600 hover:text-amber-500">
                 {`#${giftCardOrder.id}`}
               </p>
             </div>
@@ -97,14 +97,14 @@ const PaymentSuccess = () => {
                         style={{
                           width: `100%`,
                         }}
-                        className="h-2 rounded-full bg-indigo-600"
+                        className="h-2 rounded-full bg-amber-600"
                       />
                     </div>
                     <div className="mt-6 grid-cols-3 text-sm font-medium text-gray-600 sm:grid">
-                      <div className="text-indigo-600">Orden procesada</div>
+                      <div className="text-amber-600">Orden procesada</div>
                       <div
                         className={classNames(
-                          step > 1 ? "text-indigo-600" : "",
+                          step > 1 ? "text-amber-600" : "",
                           "text-center"
                         )}
                       >
@@ -112,7 +112,7 @@ const PaymentSuccess = () => {
                       </div>
                       <div
                         className={classNames(
-                          step > 2 ? "text-indigo-600" : "",
+                          step > 2 ? "text-amber-600" : "",
                           "text-right"
                         )}
                       >
