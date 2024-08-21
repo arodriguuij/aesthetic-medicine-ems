@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { NavigationItem } from "../footer.types";
-import { scrollToTop } from "@/utils/utils";
 
 const ListOfItems = ({ item }: { item: NavigationItem }) => (
   <li key={item.name} className="flex">
@@ -13,7 +12,6 @@ const ListOfItems = ({ item }: { item: NavigationItem }) => (
     {item.isLink ? (
       <Link href={item.href || "/"} aria-label="Enlace a la pagina home">
         <div
-          onClick={scrollToTop}
           className="text-sm leading-6 text-gray-600 hover:text-gray-900"
         >
           {item.name}

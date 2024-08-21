@@ -1,48 +1,17 @@
-"use client";
-
 import { collections, testimonials } from "./home.consts";
 import Link from "next/link";
-import useIsMobile from "../hooks/useIsMobile";
-import useIsTablet from "../hooks/useIsTablet";
-import { useGetProductsQuery } from "../services/products/products";
 import { AdvancedVideo } from "@cloudinary/react";
 import { cld, cloudinaryLoader } from "../utils/cloudinary";
-import { scrollToTop } from "@/utils/utils";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { resetGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
-import { useGetBranchesHomeQuery } from "@/services/branchesHome/branchesHome";
 import Image from "next/image";
-import Loader from "./components/Loader";
+import homeFetch from "./homeFetch";
 
-/* 
-  Contact for booking in the Treatment page
-  Schedule and time table in the Contact page
-*/
-export default function HomePage() {
-  const dispatch = useDispatch();
+const HomePage = async () => {
+  const { products: productsData, branches: branchesHomeData } =
+    await homeFetch();
 
-  const {
-    data: productsData,
-    error: productsError,
-    status: productsStatus,
-  } = useGetProductsQuery("");
-  const {
-    data: branchesHomeData,
-    error: branchesHomeError,
-    status: branchesHomeStatus,
-  } = useGetBranchesHomeQuery("");
-
-  useEffect(() => {
+  /* useEffect(() => {
     dispatch(resetGiftCardsOrderHistory());
-  }, [dispatch]);
-
-  const isMobile = useIsMobile();
-  const isTablet = useIsTablet();
-  const testimonialsNew = isMobile ? testimonials.slice(0, 4) : testimonials;
-
-  if (productsStatus === "pending" || branchesHomeStatus === "pending")
-    return <Loader />;
+  }, [dispatch]); */
 
   return (
     <div>
@@ -67,8 +36,9 @@ export default function HomePage() {
       <div
         className="relative w-full overflow-hidden"
         style={{
-          backgroundImage:
-            "url(https://emsmedicinaestetica.com/assets/img/bg-header.jpeg)",
+          backgroundImage: `url(${cloudinaryLoader({
+            src: "EMS/General/background",
+          })})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
@@ -86,7 +56,6 @@ export default function HomePage() {
         >
           <Image
             alt=""
-            onClick={scrollToTop}
             src={cloudinaryLoader({
               src: "EMS/General/Hero",
             })}
@@ -96,7 +65,8 @@ export default function HomePage() {
             style={{
               maxWidth: "100%",
               maxHeight: "100%",
-              height: isMobile || isTablet ? "auto" : "70vh",
+              //height: isMobile || isTablet ? "auto" : "70vh",
+              height: "auto",
               width: "auto",
               objectFit: "contain",
             }}
@@ -131,7 +101,7 @@ export default function HomePage() {
               key={collection.name}
               aria-label={`Enlace a la pagina ${collection.href}`}
             >
-              <div onClick={scrollToTop} className="group block">
+              <div className="group block">
                 <div
                   aria-hidden="true"
                   className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg"
@@ -195,10 +165,7 @@ export default function HomePage() {
               href="/treatments/corporal/19"
               aria-label="Enlace al tratamiento de Eslerosis de varices"
             >
-              <div
-                onClick={scrollToTop}
-                className="mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 px-4 py-3 text-base font-medium text-white hover:bg-opacity-10 sm:ml-8 sm:mt-0 lg:ml-0 lg:w-full"
-              >
+              <div className="mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 px-4 py-3 text-base font-medium text-white hover:bg-opacity-10 sm:ml-8 sm:mt-0 lg:ml-0 lg:w-full">
                 Ver más información
               </div>
             </Link>
@@ -210,100 +177,81 @@ export default function HomePage() {
         aria-labelledby="collection-heading"
         className="mx-auto max-w-3xl px-4 pt-14 sm:px-6 sm:pt-14 lg:max-w-7xl lg:px-8"
       >
-        {productsError ? (
-          <>Error en la carga de los productos</>
-        ) : (
-          <div className="sm:py-8 xl:mx-auto xl:max-w-7xl">
-            <div>
-              <div className=" sm:flex sm:items-center sm:justify-between  xl:px-0">
-                <h2 className="text-xl font-bold tracking-tight text-gray-900">
-                  Productos y cremas
-                </h2>
-                <Link
-                  href="/products"
-                  aria-label="Enlace a la pagina productos"
-                >
-                  <div
-                    onClick={scrollToTop}
-                    className="hidden text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500 sm:block"
-                  >
-                    Ver todos los productos
-                    <span aria-hidden="true"> &rarr;</span>
-                  </div>
-                </Link>
-              </div>
-              <p className="mt-2 text-sm text-gray-500">
-                Descubre nuestra selección de productos y cremas de alta calidad
-                que utilizamos en nuestra clínica de medicina estética. A
-                continuación, encontrarás imágenes de los productos que nos
-                ayudan a ofrecerte los mejores resultados en el cuidado de tu
-                piel, garantizando efectividad y seguridad en cada tratamiento.
-              </p>
-            </div>
-            <div className="mt-4 flow-root">
-              <div className="-my-2">
-                <div className="relative box-content h-80 overflow-x-auto py-2 xl:overflow-visible">
-                  <div className="absolute flex space-x-8 xl:relative xl:grid xl:grid-cols-5 xl:gap-x-8 xl:space-x-0 xl:px-0">
-                    {productsData &&
-                      productsData
-                        .filter(({ featured }) => featured)
-                        .map(({ name, id, images }, index) => (
-                          <Link
-                            key={name+index}
-                            href={`products/${id}`}
-                            aria-label="Enlace a la pagina del producto"
-                          >
-                            <div
-                              onClick={scrollToTop}
-                              className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
-                            >
-                              <span
-                                aria-hidden="true"
-                                className="absolute inset-0"
-                              >
-                                <Image
-                                  alt={`Image-${name}`}
-                                  src={cloudinaryLoader({
-                                    src: images[0],
-                                  })}
-                                  width={1000}
-                                  height={1000}
-                                  className="h-full w-full object-cover object-center"
-                                />
-                              </span>
-                              <span
-                                aria-hidden="true"
-                                className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
-                              />
-                              <span className="relative mt-auto text-center text-xl font-medium text-white">
-                                {name}
-                              </span>
-                            </div>
-                          </Link>
-                        ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-6 sm:hidden">
-              <Link
-                href="/products"
-                aria-label="Enlace a la pagina de productos"
-              >
-                <div
-                  onClick={scrollToTop}
-                  className="block text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500"
-                >
-                  Ver todos las productos
+        <div className="sm:py-8 xl:mx-auto xl:max-w-7xl">
+          <div>
+            <div className=" sm:flex sm:items-center sm:justify-between  xl:px-0">
+              <h2 className="text-xl font-bold tracking-tight text-gray-900">
+                Productos y cremas
+              </h2>
+              <Link href="/products" aria-label="Enlace a la pagina productos">
+                <div className="hidden text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500 sm:block">
+                  Ver todos los productos
                   <span aria-hidden="true"> &rarr;</span>
                 </div>
               </Link>
             </div>
+            <p className="mt-2 text-sm text-gray-500">
+              Descubre nuestra selección de productos y cremas de alta calidad
+              que utilizamos en nuestra clínica de medicina estética. A
+              continuación, encontrarás imágenes de los productos que nos ayudan
+              a ofrecerte los mejores resultados en el cuidado de tu piel,
+              garantizando efectividad y seguridad en cada tratamiento.
+            </p>
           </div>
-        )}
+          <div className="mt-4 flow-root">
+            <div className="-my-2">
+              <div className="relative box-content h-80 overflow-x-auto py-2 xl:overflow-visible">
+                <div className="absolute flex space-x-8 xl:relative xl:grid xl:grid-cols-5 xl:gap-x-8 xl:space-x-0 xl:px-0">
+                  {productsData &&
+                    productsData
+                      .filter(({ featured }) => featured)
+                      .map(({ name, id, images }, index) => (
+                        <Link
+                          key={name + index}
+                          href={`products/${id}`}
+                          aria-label="Enlace a la pagina del producto"
+                        >
+                          <div className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto">
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-0"
+                            >
+                              <Image
+                                alt={`Image-${name}`}
+                                src={cloudinaryLoader({
+                                  src: images[0],
+                                })}
+                                width={1000}
+                                height={1000}
+                                className="h-full w-full object-cover object-center"
+                              />
+                            </span>
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
+                            />
+                            <span className="relative mt-auto text-center text-xl font-medium text-white">
+                              {name}
+                            </span>
+                          </div>
+                        </Link>
+                      ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-6 sm:hidden">
+            <Link href="/products" aria-label="Enlace a la pagina de productos">
+              <div className="block text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500">
+                Ver todos las productos
+                <span aria-hidden="true"> &rarr;</span>
+              </div>
+            </Link>
+          </div>
+        </div>
       </div>
       {/* Branches */}
-      {!branchesHomeError && branchesHomeData && (
+      {branchesHomeData && (
         <div
           aria-labelledby="collection-heading"
           className="mx-auto max-w-3xl px-4 pt-14 sm:px-6 sm:pt-8 lg:max-w-7xl lg:px-8"
@@ -341,100 +289,93 @@ export default function HomePage() {
         </div>
       )}
       {/* Sobre Mi */}
-      {!isMobile && (
-        <div
-          aria-labelledby="collection-heading"
-          className="mx-auto max-w-3xl px-4 pb-12 sm:px-6 sm:pt-10 lg:max-w-7xl lg:px-8"
-        >
-          <div className="sm:py-8 xl:mx-auto xl:max-w-7xl">
-            <div>
-              <div className=" sm:flex sm:items-center sm:justify-between  xl:px-0">
-                <h2 className="text-xl font-bold tracking-tight text-gray-900">
-                  Sobre Mi
-                </h2>
-              </div>
-              <p className="mt-2 text-sm text-gray-500">
-                Conoce a la Dra. Elvira Morgado Sánchez, especialista en
-                medicina estética, y descubre su dedicación y experiencia.
-              </p>
+      <div
+        aria-labelledby="collection-heading"
+        className="mx-auto max-w-3xl px-4 pb-12 sm:px-6 sm:pt-10 lg:max-w-7xl lg:px-8"
+      >
+        <div className="sm:py-8 xl:mx-auto xl:max-w-7xl">
+          <div>
+            <div className=" sm:flex sm:items-center sm:justify-between  xl:px-0">
+              <h2 className="text-xl font-bold tracking-tight text-gray-900">
+                Sobre Mi
+              </h2>
+            </div>
+            <p className="mt-2 text-sm text-gray-500">
+              Conoce a la Dra. Elvira Morgado Sánchez, especialista en medicina
+              estética, y descubre su dedicación y experiencia.
+            </p>
+          </div>
+        </div>
+        <div className="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="lg:pr-4 pt-4">
+            <div
+              style={{ height: "39rem" }}
+              className="relative overflow-hidden rounded-3xl px-6 pb-9 pt-64 sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10 h-4/5"
+            >
+              <Image
+                alt={`Imagen Elvira Morgado}`}
+                src={cloudinaryLoader({
+                  src: "EMS/HomePage/Profile",
+                })}
+                width={1000}
+                height={1000}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
             </div>
           </div>
-          <div className="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-            {!isTablet && (
-              <div className="lg:pr-4 pt-4">
-                <div
-                  style={{ height: "39rem" }}
-                  className="relative overflow-hidden rounded-3xl px-6 pb-9 pt-64 sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10 h-4/5"
-                >
-                  <Image
-                    alt={`Imagen Elvira Morgado}`}
-                    src={cloudinaryLoader({
-                      src: "EMS/HomePage/Profile",
-                    })}
-                    width={1000}
-                    height={1000}
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                </div>
-              </div>
-            )}
-            <div>
-              <div className="text-base leading-7 text-gray-700 lg:max-w-lg">
-                <p className="text-base font-medium leading-7 text-indigo-600">
-                  Doctora en Medicina
+          <div>
+            <div className="text-base leading-7 text-gray-700 lg:max-w-lg">
+              <p className="text-base font-medium leading-7 text-indigo-600">
+                Doctora en Medicina
+              </p>
+              <h1 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                Elvira Morgado Sánchez
+              </h1>
+              <div className="max-w-xl">
+                <p className="mt-6">
+                  Graduada en medicina por la Universidad Complutense de Madrid.
+                  Master en medicina estetica 2018. Lleva más de 6 años
+                  ejerciendo medicina estetica en exclusiva para ofrecer los
+                  mejores tratamientos y servicio a sus pacientes.
                 </p>
-                <h1 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                  Elvira Morgado Sánchez
-                </h1>
-                <div className="max-w-xl">
-                  <p className="mt-6">
-                    Graduada en medicina por la Universidad Complutense de
-                    Madrid. Master en medicina estetica 2018. Lleva más de 6
-                    años ejerciendo medicina estetica en exclusiva para ofrecer
-                    los mejores tratamientos y servicio a sus pacientes.
-                  </p>
-                  <p>
-                    En su experiencia profersional cabe destacar su trabajo y
-                    formación en centros de referencia de Madrid, Ciudad real,
-                    Barcelona, Palma de Mallorca y Marbella.
-                  </p>
-                  <dl className="mt-8 border-t border-gray-900/10 " />
-                  <p
-                    className="mt-6"
-                    style={{
-                      fontStyle: "italic",
-                      lineHeight: ".9em",
-                      fontSize: "25px",
-                      fontWeight: "400",
-                    }}
-                  >
-                    Mi pasión es ayudar a las personas a sentirse mejor y que
-                    todo tratamiento se convierta en una experiencia única.
-                  </p>
-                  <dl className="mt-8 border-t border-gray-900/10 " />
-                  <p className="mt-8">
-                    Especialista en tratamientos faciales antiedad y
-                    armonización simple y sutil del rostro. Experta en
-                    flebologia y tratamiento de varices.
-                  </p>
-                </div>
+                <p>
+                  En su experiencia profersional cabe destacar su trabajo y
+                  formación en centros de referencia de Madrid, Ciudad real,
+                  Barcelona, Palma de Mallorca y Marbella.
+                </p>
+                <dl className="mt-8 border-t border-gray-900/10 " />
+                <p
+                  className="mt-6"
+                  style={{
+                    fontStyle: "italic",
+                    lineHeight: ".9em",
+                    fontSize: "25px",
+                    fontWeight: "400",
+                  }}
+                >
+                  Mi pasión es ayudar a las personas a sentirse mejor y que todo
+                  tratamiento se convierta en una experiencia única.
+                </p>
+                <dl className="mt-8 border-t border-gray-900/10 " />
+                <p className="mt-8">
+                  Especialista en tratamientos faciales antiedad y armonización
+                  simple y sutil del rostro. Experta en flebologia y tratamiento
+                  de varices.
+                </p>
               </div>
+            </div>
 
-              <div className="mt-10 flex">
-                <Link href="/aboutMe" aria-label="Enlace a la pagina sobre mi">
-                  <div
-                    onClick={scrollToTop}
-                    className="text-base font-medium leading-7 text-indigo-600 hover:text-indigo-500"
-                  >
-                    Saber más sobre Elvira
-                    <span aria-hidden="true">&rarr;</span>
-                  </div>
-                </Link>
-              </div>
+            <div className="mt-10 flex">
+              <Link href="/aboutMe" aria-label="Enlace a la pagina sobre mi">
+                <div className="text-base font-medium leading-7 text-indigo-600 hover:text-indigo-500">
+                  Saber más sobre Elvira
+                  <span aria-hidden="true">&rarr;</span>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
-      )}
+      </div>
       {/* Social Media */}
       <div
         aria-labelledby="collection-heading"
@@ -539,9 +480,9 @@ export default function HomePage() {
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto mt-8 flow-root sm:mt-8 lg:mx-0 lg:max-w-none">
                 <div className="-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3">
-                  {testimonialsNew.map((testimonial, index) => (
+                  {testimonials.map((testimonial, index) => (
                     <div
-                      key={testimonial.author.handle+index}
+                      key={testimonial.author.handle + index}
                       className="pt-8 sm:inline-block sm:w-full sm:px-4"
                     >
                       <figure className="rounded-2xl border border-amber-400 p-8 text-sm leading-6">
@@ -628,4 +569,6 @@ export default function HomePage() {
       </div>
     </div>
   );
-}
+};
+
+export default HomePage;

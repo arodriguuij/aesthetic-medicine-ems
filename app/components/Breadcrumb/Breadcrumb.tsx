@@ -1,6 +1,3 @@
-"use client";
-
-import { scrollToTop } from "@/utils/utils";
 import { ChevronRightIcon, HomeIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -26,10 +23,7 @@ const Breadcrumb = () => {
         <li>
           <div>
             <Link href="/" aria-label="Enlace a la pagina home">
-              <div
-                onClick={scrollToTop}
-                className="text-amber-500 hover:text-amber-600"
-              >
+              <div className="text-amber-500 hover:text-amber-600">
                 <HomeIcon
                   className="h-5 w-5 flex-shrink-0"
                   aria-hidden="true"
@@ -59,10 +53,7 @@ const Breadcrumb = () => {
                   aria-current={page.current ? "page" : undefined}
                   aria-label={`Enlace a la pagina ${page.name}`}
                 >
-                  <div
-                    onClick={scrollToTop}
-                    className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
-                  >
+                  <div className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
                     {page.name}
                   </div>
                 </Link>

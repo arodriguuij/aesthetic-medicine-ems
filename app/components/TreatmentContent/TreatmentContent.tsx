@@ -1,4 +1,3 @@
-import { scrollToTop } from "@/utils/utils";
 import Link from "next/link";
 import React from "react";
 import Breadcrumb from "../Breadcrumb";
@@ -130,11 +129,9 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                         href={`/treatments/areas/${area.id}`}
                         aria-label="Enlace a la pagina del area"
                       >
-                        <div onClick={scrollToTop}>
-                          <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
-                            {area.name}
-                          </span>
-                        </div>
+                        <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
+                          {area.name}
+                        </span>
                       </Link>
                     ))}
                   </dd>
@@ -286,10 +283,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                             replace
                             aria-label="Enlace a la pagina del producto"
                           >
-                            <div
-                              onClick={scrollToTop}
-                              className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
-                            >
+                            <div className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto">
                               <span
                                 aria-hidden="true"
                                 className="absolute inset-0"
@@ -323,10 +317,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                     href="/products"
                     aria-label="Enlace a la pagina de los productos"
                   >
-                    <div
-                      onClick={scrollToTop}
-                      className="block text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500"
-                    >
+                    <div className="block text-sm font-medium leading-7 text-indigo-600 hover:text-indigo-500">
                       Ver todos los productos
                       <span aria-hidden="true"> &rarr;</span>
                     </div>
@@ -334,60 +325,6 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                 </div>
               </div>
             )}
-
-            {/* {data[0].relatedTreatments && (
-            <div className="mx-auto mt-8 max-w-7xl sm:mt-16 lg:px-6">
-              <div className="flex items-center justify-between space-x-4">
-                <div>
-                  <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-                    Otros clientes vieron
-                  </h2>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Explora otros tratamientos de medicina estética recomendados
-                    para ti.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:px-4 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
-                {data[0].relatedTreatments.map(
-                  ({ id, images, title, type }, index) => (
-                    <div key={id + title + index} className="group relative">
-                      <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
-                        <AdvancedImage
-                          cldImg={cld.image(images?.main)}
-                          alt={`imageAlt${id + title}`}
-                          className="object-cover object-center"
-                        />
-                        <div
-                          className="flex items-end p-4 opacity-0 group-hover:opacity-100"
-                          aria-hidden="true"
-                        >
-                          <div className="w-full rounded-md bg-white bg-opacity-75 px-4 py-2 text-center text-sm font-medium text-gray-900 backdrop-blur backdrop-filter">
-                            Ver Tratamiento
-                          </div>
-                        </div>
-                      </div>
-                      <div className="mt-4 flex items-center justify-between space-x-8 text-base font-medium text-gray-900">
-                        <h3>
-                          <Link
-                            href={`/treatments/${type.toLowerCase()}/${id}`}
-                            onClick={scrollToTop}
-                          >
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0"
-                            />
-                            {title}
-                          </Link>
-                        </h3>
-                      </div>
-                      <p className="mt-1 text-sm text-gray-500">{type}</p>
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          )} */}
           </>
         )}
       </div>

@@ -17,7 +17,6 @@ const Treatments = () => {
     <TreatmentsContent
       title={`${titleArea} ${data?.areaName} (${data?.treatments.length})`}
       subTitle={data?.description || ""}
-      error={error}
       data={data?.treatments}
     />
   ) : null;

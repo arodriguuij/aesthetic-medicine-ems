@@ -22,7 +22,6 @@ import {
   ChevronDownIcon,
   ShoppingBagIcon,
   XMarkIcon,
-  HashtagIcon,
 } from "@heroicons/react/24/outline";
 import {
   navigationMobilePersonal,
@@ -46,7 +45,10 @@ import { cloudinaryLoader } from "@/utils/cloudinary";
 import { CardState, removeCard } from "@/lib/card/cardSlide";
 import Image from "next/image";
 import { classNames } from "@/utils/utilsServer";
-import { useGetTreatmentsCorporalNamesQuery, useGetTreatmentsFacialNamesQuery } from "@/services/treatments/treatments";
+import {
+  useGetTreatmentsCorporalNamesQuery,
+  useGetTreatmentsFacialNamesQuery,
+} from "@/services/treatments/treatments";
 import { useGetAreasQuery } from "@/services/areas/areas";
 import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
 import useIsMobile from "@/hooks/useIsMobile";
@@ -81,7 +83,9 @@ const Header = () => {
   const [isPopoverGiftCartsVisible, setPopoverGiftCartsVisible] =
     useState(false);
 
-  const giftCard = useSelector((state: { card: CardState }) => state.card.giftCard);
+  const giftCard = useSelector(
+    (state: { card: CardState }) => state.card.giftCard
+  );
 
   const scrollToTopFnc = () => {
     scrollToTop();
@@ -90,6 +94,13 @@ const Header = () => {
     setPopoverAreasVisible(false);
     setPopoverGiftCartsVisible(false);
   };
+  const scrollToTopFncNoScroll = () => {
+    setPopoverFacialVisible(false);
+    setPopoverCorporalVisible(false);
+    setPopoverAreasVisible(false);
+    setPopoverGiftCartsVisible(false);
+  };
+
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
 
@@ -297,7 +308,7 @@ const Header = () => {
                                         >
                                           <div
                                             onClick={() => {
-                                              scrollToTopFnc();
+                                              scrollToTopFncNoScroll();
                                               setMobileMenuOpen(false);
                                             }}
                                             className="-mx-3 block rounded-lg px-3 py-2 text-sm font-semibold leading-7 text-gray-200 hover:bg-gray-800"
@@ -324,7 +335,7 @@ const Header = () => {
                                 <div
                                   onClick={() => {
                                     setMobileMenuOpen(false);
-                                    scrollToTopFnc();
+                                    scrollToTopFncNoScroll();
                                   }}
                                   className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-gray-800"
                                 >
@@ -350,7 +361,7 @@ const Header = () => {
                     <div
                       onClick={() => {
                         setMobileMenuOpen(false);
-                        scrollToTopFnc();
+                        scrollToTopFncNoScroll();
                       }}
                       className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-amber-50"
                     >
@@ -373,7 +384,10 @@ const Header = () => {
                 {/* Logo (lg+) */}
                 <div className="hidden lg:flex lg:flex-1 lg:items-center">
                   <Link href="/" aria-label="Enlace a la pagina home">
-                    <div onClick={scrollToTopFnc} className="-m-1.5 p-1.5">
+                    <div
+                      onClick={scrollToTopFncNoScroll}
+                      className="-m-1.5 p-1.5"
+                    >
                       <span className="sr-only">Your Company</span>
                       <Image
                         alt="logoEMS"
@@ -467,7 +481,7 @@ const Header = () => {
                                               aria-label="Enlace a la pagina del tratamiento facial"
                                             >
                                               <div
-                                                onClick={scrollToTopFnc}
+                                                onClick={scrollToTopFncNoScroll}
                                                 className="block text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                                               >
                                                 {title}
@@ -484,7 +498,7 @@ const Header = () => {
                                       aria-label="Enlace a la pagina de tratamientos faciales"
                                     >
                                       <div
-                                        onClick={scrollToTopFnc}
+                                        onClick={scrollToTopFncNoScroll}
                                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
                                       >
                                         Todos los tratamientos faciales
@@ -573,7 +587,7 @@ const Header = () => {
                                               aria-label="Enlace a la pagina del tratamiento corporal"
                                             >
                                               <div
-                                                onClick={scrollToTopFnc}
+                                                onClick={scrollToTopFncNoScroll}
                                                 className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
                                               >
                                                 {title}
@@ -590,7 +604,7 @@ const Header = () => {
                                       aria-label="Enlace a la pagina de tratamientos corporales"
                                     >
                                       <div
-                                        onClick={scrollToTopFnc}
+                                        onClick={scrollToTopFncNoScroll}
                                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm leading-6 text-amber-600  hover:text-amber-700 data-[open]:text-amber-700"
                                       >
                                         Todos los tratamientos corporales
@@ -673,7 +687,7 @@ const Header = () => {
                                             aria-label="Enlace a la pagina del area"
                                           >
                                             <div
-                                              onClick={scrollToTopFnc}
+                                              onClick={scrollToTopFncNoScroll}
                                               className="block text-gray-700  hover:text-amber-600 data-[open]:text-amber-700"
                                             >
                                               {name}
@@ -695,7 +709,7 @@ const Header = () => {
                         aria-label="Enlace a la pagina de productos"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
-                        <div onClick={scrollToTopFnc}>Productos</div>
+                        <div onClick={scrollToTopFncNoScroll}>Productos</div>
                       </Link>
 
                       <Link
@@ -703,7 +717,9 @@ const Header = () => {
                         aria-label="Enlace a la pagina de tarjeta de regalo"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
-                        <div onClick={scrollToTopFnc}>Tarjeta Regalo</div>
+                        <div onClick={scrollToTopFncNoScroll}>
+                          Tarjeta Regalo
+                        </div>
                       </Link>
 
                       <Link
@@ -711,7 +727,7 @@ const Header = () => {
                         aria-label="Enlace a la pagina sobre mi"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
-                        <div onClick={scrollToTopFnc}>Sobre mi</div>
+                        <div onClick={scrollToTopFncNoScroll}>Sobre mi</div>
                       </Link>
 
                       <Link
@@ -719,7 +735,7 @@ const Header = () => {
                         aria-label="Enlace a la pagina de contacto"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-600"
                       >
-                        <div onClick={scrollToTopFnc}>Contacto</div>
+                        <div onClick={scrollToTopFncNoScroll}>Contacto</div>
                       </Link>
                     </div>
                   </PopoverGroup>
@@ -732,7 +748,7 @@ const Header = () => {
 
                 {/* Logo (lg-) */}
                 <Link href="/" aria-label="Enlace a la pagina home">
-                  <div onClick={scrollToTopFnc} className="lg:hidden">
+                  <div onClick={scrollToTopFncNoScroll} className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <Image
                       alt="logoEMS"

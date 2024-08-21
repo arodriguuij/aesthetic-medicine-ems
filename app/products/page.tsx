@@ -1,33 +1,11 @@
 import Link from "next/link";
-import { useGetBranchesQuery } from "../../services/branches/branches";
-import { useGetProductsQuery } from "../../services/products/products";
 import { cloudinaryLoader } from "../../utils/cloudinary";
-import { scrollToTop } from "../../utils/utils";
 import Image from "next/image";
-import Loader from "../components/Loader";
-import { GetServerSideProps } from "next";
-import { Product } from "../types/products.types";
-import { FetchBaseQueryError, QueryStatus } from "@reduxjs/toolkit/query";
-import { SerializedError } from "@reduxjs/toolkit";
-import { Branch } from "../types/branches.types";
 import productsFetch from "./productsFetch";
 
 const Products = async () => {
-  /* const {
-    data: productsData,
-    error: productsError,
-    status: productsStatus,
-  } = useGetProductsQuery(""); */
-  const { products:productsData, branches:branchesData } = await productsFetch();
-
-  /* const {
-    data: branchesData,
-    error: branchesError,
-    status: branchesStatus,
-  } = useGetBranchesQuery(""); */
-
-  /* if (productsStatus === "pending" || branchesStatus === "pending")
-    return <Loader />; */
+  const { products: productsData, branches: branchesData } =
+    await productsFetch();
 
   return (
     <div
@@ -39,11 +17,7 @@ const Products = async () => {
         className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-yellow-600/10 ring-1 ring-yellow-50 sm:-mr-80 lg:-mr-96"
         aria-hidden="true"
       />
-      {/* productsError || branchesError ? (
-        <div className="mx-auto pb-2 sm:px-6 sm:pb-4 lg:max-w-7xl lg:px-8">
-          Error en la carga de los productos
-        </div>
-      ) :  */(
+      {
         <>
           <div className="mx-auto sm:px-6  mb-8 lg:max-w-7xl lg:px-8">
             <div className="flex">
@@ -97,7 +71,6 @@ const Products = async () => {
                                   aria-label="Enlace a la pagina del producto"
                                 >
                                   <div
-                                    onClick={scrollToTop}
                                     className="text-sm font-semibold leading-7 text-white"
                                   >
                                     <span className="absolute inset-0 " />
@@ -121,7 +94,7 @@ const Products = async () => {
               ))}
           </div>
         </>
-      )}
+      }
     </div>
   );
 };

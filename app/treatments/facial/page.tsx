@@ -1,22 +1,15 @@
-"use client";
-
 import TreatmentsContent from "@/app/components/TreatmentsContent";
-import { useGetTreatmentsFacialQuery } from "../../../services/treatments/treatments";
-
 import { subTitleFacial, titleFacial } from "../treatments.const";
-import Loader from "@/app/components/Loader";
+import treatmentsFacialFetch from "./treatmentFacialFetch";
 
-const Treatments = () => {
-  const { data, error, status } = useGetTreatmentsFacialQuery("");
-
-  if (status === "pending") return <Loader />;
+const Treatments = async () => {
+  const { treatments } = await treatmentsFacialFetch();
 
   return (
     <TreatmentsContent
       title={titleFacial}
       subTitle={subTitleFacial}
-      error={error}
-      data={data}
+      data={treatments}
     />
   );
 };
