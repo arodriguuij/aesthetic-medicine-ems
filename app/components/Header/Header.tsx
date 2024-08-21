@@ -40,7 +40,6 @@ import {
   getImageByGiftCardId,
   getQuantityByGiftCardId,
 } from "@/app/cart/cart.utils";
-import useIsTablet from "@/hooks/useIsTablet";
 import { cloudinaryLoader } from "@/utils/cloudinary";
 import { CardState, removeCard } from "@/lib/card/cardSlide";
 import Image from "next/image";
@@ -51,7 +50,6 @@ import {
 } from "@/services/treatments/treatments";
 import { useGetAreasQuery } from "@/services/areas/areas";
 import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
-import useIsMobile from "@/hooks/useIsMobile";
 import { scrollToTop } from "@/utils/utils";
 
 const Header = () => {
@@ -100,9 +98,6 @@ const Header = () => {
     setPopoverAreasVisible(false);
     setPopoverGiftCartsVisible(false);
   };
-
-  const isMobile = useIsMobile();
-  const isTablet = useIsTablet();
 
   /* TODO: small Loader
   if (
@@ -765,18 +760,15 @@ const Header = () => {
 
                 {/* Cart */}
                 <div className="flex flex-1 items-center justify-end">
-                  {isMobile || isTablet ? (
-                    <button
-                      type="button"
-                      onClick={() => setMobileMenuOpen(true)}
-                      className="-ml-2 rounded-md bg-white p-2 text-gray-400"
-                    >
-                      <span className="sr-only">Open menu</span>
-                      <Bars3Icon aria-hidden="true" className="h-6 w-6" />
-                    </button>
-                  ) : (
-                    CartButton()
-                  )}
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuOpen(true)}
+                    className="-ml-2 rounded-md bg-white p-2 text-gray-400 block lg:hidden"
+                  >
+                    <span className="sr-only">Open menu</span>
+                    <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+                  </button>
+                  <div className="lg:block hidden">{CartButton()}</div>
                 </div>
               </div>
             </div>
