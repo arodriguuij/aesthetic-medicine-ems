@@ -1,12 +1,19 @@
 import { publicUrl } from "@/utils/utilsServer";
-import { Area } from "@/app/types/areas.types";
+import { Treatment } from "@/app/types/treatments.types";
 
-const areasFetch = async () => {
-  const areas: Area[] = await fetch(publicUrl + "api/areas").then((res) =>
-    res.json()
-  );
+const areasFetch = async (id: string) => {
+  const {
+    treatments,
+    areaName,
+    description,
+  }: { treatments: Treatment[]; areaName: string; description: string } =
+    await fetch(publicUrl + "api/areas/" + id).then((res) => res.json());
 
-  return { areas };
+  return {
+    treatments,
+    areaName,
+    description,
+  };
 };
 
 export default areasFetch;

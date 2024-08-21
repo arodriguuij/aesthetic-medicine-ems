@@ -1,25 +1,22 @@
-"use client";
-
-import { useParams } from "next/navigation";
-import { useGetTreatmentsAreaQuery } from "@/services/areas/areas";
 import { titleArea } from "../../treatments.const";
-import Loader from "@/app/components/Loader";
 import TreatmentsContent from "@/app/components/TreatmentsContent";
+import areasFetch from "./areasFetch";
 
-const Treatments = () => {
-  const { id } = useParams();
+interface TreatmentsProps {
+  params: {
+    id: string;
+  };
+}
+const Treatments = async ({ params }: TreatmentsProps) => {
+  const data = await areasFetch(params.id);
 
-  const { data, error, status } = useGetTreatmentsAreaQuery(id + "");
-
-  if (status === "pending") return <Loader />;
-
-  return data ? (
+  return (
     <TreatmentsContent
       title={`${titleArea} ${data?.areaName} (${data?.treatments.length})`}
       subTitle={data?.description || ""}
       data={data?.treatments}
     />
-  ) : null;
+  );
 };
 
 export default Treatments;

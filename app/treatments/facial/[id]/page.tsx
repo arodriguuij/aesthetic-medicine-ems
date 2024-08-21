@@ -1,17 +1,16 @@
-"use client";
-
-import { useParams } from "next/navigation";
-import Loader from "@/app/components/Loader";
 import TreatmentContent from "@/app/components/TreatmentContent";
-import { useGetTreatmentQuery } from "@/services/treatments/treatments";
+import facialFetch from "./facialFetch";
 
-const Treatment = () => {
-  const { id } = useParams();
-  const { data, error, status } = useGetTreatmentQuery(id + "");
+interface TreatmentsProps {
+  params: {
+    id: string;
+  };
+}
 
-  if (status === "pending") return <Loader />;
+const Treatment = async ({ params }: TreatmentsProps) => {
+  const { treatments: data } = await facialFetch(params.id);
 
-  return <TreatmentContent data={data} error={error} />;
+  return <TreatmentContent data={data} />;
 };
 
 export default Treatment;

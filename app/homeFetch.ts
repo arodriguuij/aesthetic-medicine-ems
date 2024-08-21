@@ -1,7 +1,6 @@
 import { publicUrl } from "@/utils/utilsServer";
 import { Product } from "./types/products.types";
 import { BranchHome } from "./types/branchesHome.types";
-import { Treatment } from "./types/treatments.types";
 
 const homeFetch = async () => {
   const products: Product[] = await fetch(publicUrl + "api/products").then(

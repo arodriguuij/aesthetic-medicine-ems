@@ -1,3 +1,5 @@
+"use client"
+
 import { useGetAreasQuery } from "@/services/areas/areas";
 import { useGetProductQuery } from "@/services/products/products";
 import { useGetTreatmentsQuery } from "@/services/treatments/treatments";
@@ -6,6 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getPages } from "./breadcrumb.helper";
 
+//TODO: move to SSR
 const Breadcrumb = () => {
   const pathName = usePathname();
 

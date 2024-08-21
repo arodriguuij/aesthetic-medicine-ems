@@ -1,28 +1,19 @@
 import Link from "next/link";
 import React from "react";
 import Breadcrumb from "../Breadcrumb";
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from "@headlessui/react";
-import { MinusSmallIcon } from "@heroicons/react/20/solid";
-import { PlusSmallIcon } from "@heroicons/react/20/solid";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import useIsMobile from "@/hooks/useIsMobile";
 import Image from "next/image";
 import { cloudinaryLoader } from "@/utils/cloudinary";
 import { Treatment } from "@/app/types/treatments.types";
+import QA from "./QA";
 
 interface ITreatmentContent {
-  error: FetchBaseQueryError | SerializedError | undefined;
+  error?: FetchBaseQueryError | SerializedError | undefined;
   data?: Treatment[];
 }
 
 const TreatmentContent = ({ data, error }: ITreatmentContent) => {
-  const isMobile = useIsMobile();
-
   return (
     <>
       {error || !data ? (
@@ -35,12 +26,8 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
             <div
               className={
                 error || !data
-                  ? `mx-auto max-w-7xl ${
-                      isMobile ? "py-2" : "py-4"
-                    } sm:px-6  lg:max-w-7xl lg:px-8`
-                  : `mx-auto max-w-7xl ${
-                      isMobile ? "py-2" : "py-4"
-                    } sm:px-6 lg:max-w-7xl lg:px-16 xl:px-8 absolute `
+                  ? `mx-auto max-w-7xl py-2 md-4 lg-4 sm:px-6 lg:max-w-7xl lg:px-8 bg-white`
+                  : `mx-auto max-w-7xl py-2 md-4 lg-4 sm:px-6 lg:max-w-7xl lg:px-16 bg-white xl:px-8 absolute `
               }
               style={
                 error || !data
@@ -48,7 +35,6 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
                   : {
                       zIndex: 2,
                       opacity: 0.8,
-                      backgroundColor: isMobile ? "white" : "",
                       borderBottomRightRadius: "1rem",
                       paddingRight: "1rem",
                     }
@@ -206,61 +192,7 @@ const TreatmentContent = ({ data, error }: ITreatmentContent) => {
               </div>
             )}
 
-            <div className="mx-auto max-w-7xl pt-16 pb-12 sm:px-6 sm:pb-12">
-              <div className="mx-auto max-w-7xl divide-y divide-gray-900/10">
-                <div className=" sm:flex sm:items-center sm:justify-between  xl:px-0">
-                  <div>
-                    <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-                      Preguntas más frecuentes
-                    </h2>
-                    <p className="mt-2 text-sm text-gray-500">
-                      Encuentra respuestas a las preguntas más comunes sobre
-                      nuestros servicios y tratamientos.
-                    </p>
-                  </div>
-                </div>
-                <dl className="mt-6 space-y-4 divide-y divide-gray-900/10">
-                  {data[0].questions &&
-                    data[0].questions?.map((faq, index) => (
-                      <Disclosure
-                        as="div"
-                        key={faq.question + index}
-                        className="pt-4"
-                      >
-                        {({ open }) => (
-                          <>
-                            <dt>
-                              <DisclosureButton className="flex w-full items-start justify-between text-left text-gray-900">
-                                <span className="text-base font-semibold leading-7">
-                                  {faq.question}
-                                </span>
-                                <span className="ml-6 flex h-7 items-center">
-                                  {open ? (
-                                    <MinusSmallIcon
-                                      className="h-6 w-6"
-                                      aria-hidden="true"
-                                    />
-                                  ) : (
-                                    <PlusSmallIcon
-                                      className="h-6 w-6"
-                                      aria-hidden="true"
-                                    />
-                                  )}
-                                </span>
-                              </DisclosureButton>
-                            </dt>
-                            <DisclosurePanel as="dd" className="mt-2 pr-12">
-                              <p className="text-base leading-7 text-gray-600">
-                                {faq.answer}
-                              </p>
-                            </DisclosurePanel>
-                          </>
-                        )}
-                      </Disclosure>
-                    ))}
-                </dl>
-              </div>
-            </div>
+            <QA questions={data[0].questions} />
 
             {data[0].relatedProducts && data[0].relatedProducts?.length > 0 && (
               <div className="mx-auto mt-8 max-w-7xl sm:mt-16 pb-8 lg:px-6">
