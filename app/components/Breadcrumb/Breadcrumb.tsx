@@ -34,7 +34,7 @@ const Breadcrumb = () => {
           </div>
         </li>
         {pages.map((page, index) => (
-          <li key={page.name}>
+          <li key={page.name} style={{ marginLeft: 2 }}>
             <div className="flex items-center">
               <ChevronRightIcon
                 className="h-5 w-5 flex-shrink-0 text-gray-400"
@@ -43,7 +43,8 @@ const Breadcrumb = () => {
               {page.name === "areas" || index === pages.length - 1 ? (
                 <p
                   aria-hidden="true"
-                  className="h-5 text-gray-500 mr-4 ml-4 font-medium text-sm flex-shrink-0 "
+                  className="h-5 text-gray-500 mr-4 font-medium text-sm flex-shrink-0"
+                  style={{ marginLeft: 2 }}
                 >
                   {page.name}
                 </p>
@@ -53,7 +54,7 @@ const Breadcrumb = () => {
                   aria-current={page.current ? "page" : undefined}
                   aria-label={`Enlace a la pagina ${page.name}`}
                 >
-                  <div className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
+                  <div className="text-sm ml-1 font-medium text-gray-500 hover:text-gray-700">
                     {page.name}
                   </div>
                 </Link>
