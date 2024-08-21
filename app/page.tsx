@@ -70,6 +70,7 @@ const HomePage = async () => {
               width: "auto",
               objectFit: "contain",
             }}
+            priority={true}
           />
         </div>
       </div>
