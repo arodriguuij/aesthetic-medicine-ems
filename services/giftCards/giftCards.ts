@@ -1,6 +1,9 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { GiftCardFormWithDiscountApplied, GiftCardFormWithDiscountAppliedGet } from "../../lib/card/cardSlide";
+import {
+  GiftCardFormWithDiscountApplied,
+  GiftCardFormWithDiscountAppliedGet,
+} from "../../lib/card/cardSlide";
 import { GiftCard } from "@/app/types/giftCards.types";
 
 // Define a service using a base URL and expected endpoints
@@ -11,10 +14,10 @@ export const giftCardsApi = createApi({
     getGiftCards: builder.query<GiftCard[], string>({
       query: () => "giftCards",
     }),
-    getGiftCardById: builder.query<GiftCard, string>({
-      query: (id) => `giftCards/${id}`,
-    }),
-    addGiftCardOrder: builder.mutation<GiftCardFormWithDiscountAppliedGet, GiftCardFormWithDiscountApplied>({
+    addGiftCardOrder: builder.mutation<
+      GiftCardFormWithDiscountAppliedGet,
+      GiftCardFormWithDiscountApplied
+    >({
       query: (data) => ({
         url: "giftCards",
         method: "POST",
@@ -24,7 +27,5 @@ export const giftCardsApi = createApi({
   }),
 });
 
-export const {
-  useGetGiftCardsQuery,
-  useAddGiftCardOrderMutation,
-} = giftCardsApi;
+export const { useGetGiftCardsQuery, useAddGiftCardOrderMutation } =
+  giftCardsApi;

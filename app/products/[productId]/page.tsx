@@ -1,26 +1,20 @@
-"use client";
-
-import { useParams } from "next/navigation";
-import { useGetProductQuery } from "../../../services/products/products";
 import { cloudinaryLoader } from "../../../utils/cloudinary";
 import { Fragment } from "react";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import Loader from "@/app/components/Loader";
+import productFetch from "./productFetch";
 
-const Product = () => {
-  const { productId } = useParams();
+interface TreatmentsProps {
+  params: {
+    productId: string;
+  };
+}
 
-  const { data, error, status } = useGetProductQuery(productId + "");
+const Product = async ({ params }: TreatmentsProps) => {
+  const { product: data } = await productFetch(params.productId);
 
-  if (status === "pending") return <Loader />;
-
-  return error || !data ? (
-    <div className="relative mx-auto lg:max-w-7xl lg:px-8 isolate -z-10 overflow-hidden pt-4">
-      Error en la carga del producto
-    </div>
-  ) : (
+  return (
     <div className="relative mx-auto lg:max-w-7xl lg:px-8 isolate -z-10 overflow-hidden pt-4">
       <div className="mx-auto sm:px-6 mb-2 lg:max-w-7xl lg:px-0">
         <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">

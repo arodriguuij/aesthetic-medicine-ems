@@ -11,16 +11,7 @@ export const areasApi = createApi({
     getAreas: builder.query<Area[], string>({
       query: () => "areas",
     }),
-    getTreatmentsArea: builder.query<
-      { treatments: Treatment[]; areaName: string; description: string },
-      string
-    >({
-      query: (id) => `areas/${id}`,
-    }),
   }),
 });
 
-export const {
-  useGetTreatmentsAreaQuery,
-  useGetAreasQuery,
-} = areasApi;
+export const { useGetAreasQuery } = areasApi;

@@ -19,17 +19,8 @@ export const treatmentsApi = createApi({
     >({
       query: () => "treatments/corporal/names",
     }),
-    getTreatmentsFacial: builder.query<Treatment[], string>({
-      query: () => "treatments/facial",
-    }),
-    getTreatmentsCorporal: builder.query<Treatment[], string>({
-      query: () => "treatments/corporal",
-    }),
     getTreatments: builder.query<Treatment[], string>({
       query: () => "treatments",
-    }),
-    getTreatment: builder.query<Treatment[], string>({
-      query: (id) => `treatments/${id}`,
     }),
   }),
 });
@@ -38,7 +29,4 @@ export const {
   useGetTreatmentsFacialNamesQuery,
   useGetTreatmentsCorporalNamesQuery,
   useGetTreatmentsQuery,
-  useGetTreatmentsCorporalQuery,
-  useGetTreatmentsFacialQuery,
-  useGetTreatmentQuery,
 } = treatmentsApi;
