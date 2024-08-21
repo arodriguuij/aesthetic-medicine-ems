@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { cloudinaryLoader } from "../../utils/cloudinary";
 import Image from "next/image";
-import productsFetch from "./productsFetch";
+import { getProducts } from "../src/controllers/products";
+import { getBranches } from "../src/controllers/branches";
 
 const Products = async () => {
-  const { products: productsData, branches: branchesData } =
-    await productsFetch();
+  const productsData = await getProducts();
+  const branchesData = await getBranches();
 
   return (
     <div
@@ -71,9 +72,7 @@ const Products = async () => {
                                   href={`/products/${id}`}
                                   aria-label="Enlace a la pagina del producto"
                                 >
-                                  <div
-                                    className="text-sm font-semibold leading-7 text-white"
-                                  >
+                                  <div className="text-sm font-semibold leading-7 text-white">
                                     <span className="absolute inset-0 " />
                                     <p className="text-base text-gray-900">
                                       {name}

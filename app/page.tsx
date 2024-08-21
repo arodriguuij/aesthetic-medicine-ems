@@ -3,11 +3,12 @@ import Link from "next/link";
 import { AdvancedVideo } from "@cloudinary/react";
 import { cld, cloudinaryLoader } from "../utils/cloudinary";
 import Image from "next/image";
-import homeFetch from "./homeFetch";
+import { getProducts } from "./src/controllers/products";
+import { getBranchesHome } from "./src/controllers/branchesHome";
 
 const HomePage = async () => {
-  const { products: productsData, branches: branchesHomeData } =
-    await homeFetch();
+  const productsData = await getProducts();
+  const branchesHomeData = await getBranchesHome();
 
   /* useEffect(() => {
     dispatch(resetGiftCardsOrderHistory());

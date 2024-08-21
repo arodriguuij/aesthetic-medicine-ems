@@ -1,20 +1,16 @@
 import { titleArea } from "../../treatments.const";
 import TreatmentsContent from "@/app/components/TreatmentsContent";
-import areasFetch from "./areasFetch";
+import { getAreasById } from "@/app/src/controllers/areas";
+import { PageProps } from "@/app/types/global.types";
 
-interface TreatmentsProps {
-  params: {
-    id: string;
-  };
-}
-const Treatments = async ({ params }: TreatmentsProps) => {
-  const data = await areasFetch(params.id);
+const Treatments = async ({ params }: PageProps) => {
+  const { treatments, areaName, description } = await getAreasById(+params.id);
 
   return (
     <TreatmentsContent
-      title={`${titleArea} ${data?.areaName} (${data?.treatments.length})`}
-      subTitle={data?.description || ""}
-      data={data?.treatments}
+      title={`${titleArea} ${areaName} (${treatments.length})`}
+      subTitle={description || ""}
+      data={treatments}
     />
   );
 };

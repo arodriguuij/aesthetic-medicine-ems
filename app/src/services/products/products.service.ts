@@ -4,7 +4,7 @@ import { ProductsServiceFunctions } from "./products.constants";
 import { Product } from "../../../types/products.types";
 
 export const getProductService = async () => {
-  const { rows }: QueryResult<Product[]> = await executeFunction(
+  const { rows }: QueryResult<Product> = await executeFunction(
     ProductsServiceFunctions.GET_PRODUCTS,
     []
   );

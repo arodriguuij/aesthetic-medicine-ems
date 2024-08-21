@@ -1,16 +1,11 @@
 import TreatmentContent from "@/app/components/TreatmentContent";
-import corporalFetch from "./corporalFetch";
+import { PageProps } from "@/app/types/global.types";
+import { getTreatmentById } from "@/app/src/controllers/treatments";
 
-interface TreatmentsProps {
-  params: {
-    id: string;
-  };
-}
+const Treatment = async ({ params }: PageProps) => {
+  const treatments = await getTreatmentById(+params.id);
 
-const Treatment = async ({ params }: TreatmentsProps) => {
-  const { treatments: data } = await corporalFetch(params.id);
-
-  return <TreatmentContent data={data} />;
+  return <TreatmentContent data={treatments} />;
 };
 
 export default Treatment;

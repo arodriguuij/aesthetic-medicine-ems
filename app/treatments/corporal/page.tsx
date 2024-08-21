@@ -1,9 +1,9 @@
 import TreatmentsContent from "@/app/components/TreatmentsContent";
 import { subTitleCorporal, titleCorporal } from "../treatments.const";
-import treatmentsCorporalFetch from "./treatmentsCorporalFetch";
+import { getTreatmentsCorporal } from "@/app/src/controllers/treatments";
 
 const Treatments = async () => {
-  const { treatments } = await treatmentsCorporalFetch();
+  const treatments = await getTreatmentsCorporal();
 
   return (
     <TreatmentsContent

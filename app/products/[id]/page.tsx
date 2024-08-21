@@ -1,18 +1,13 @@
-import { cloudinaryLoader } from "../../../utils/cloudinary";
 import { Fragment } from "react";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import productFetch from "./productFetch";
+import { getProductsById } from "@/app/src/controllers/products";
+import { PageProps } from "@/app/types/global.types";
+import { cloudinaryLoader } from "@/utils/cloudinary";
 
-interface TreatmentsProps {
-  params: {
-    productId: string;
-  };
-}
-
-const Product = async ({ params }: TreatmentsProps) => {
-  const { product: data } = await productFetch(params.productId);
+const Product = async ({ params }: PageProps) => {
+  const data = await getProductsById(+params.id);
 
   return (
     <div className="relative mx-auto lg:max-w-7xl lg:px-8 isolate -z-10 overflow-hidden pt-4">
