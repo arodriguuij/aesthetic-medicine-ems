@@ -1,21 +1,21 @@
+import { useGetAreasQuery } from "@/services/areas/areas";
+import { useGetProductQuery } from "@/services/products/products";
+import { useGetTreatmentsQuery } from "@/services/treatments/treatments";
 import { ChevronRightIcon, HomeIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getPages } from "./breadcrumb.helper";
 
 const Breadcrumb = () => {
   const pathName = usePathname();
+
+  const { data: products } = useGetProductQuery("");
+  const { data: treatments } = useGetTreatmentsQuery("");
+  const { data: areas } = useGetAreasQuery("");
+
   const splitString = pathName.split("/").filter((part) => part !== "");
 
-  const pages = splitString.map((part, index) => {
-    const isLast = index === splitString.length - 1;
-    const href = "/" + splitString.slice(0, index + 1).join("/");
-
-    return {
-      name: part,
-      href: href,
-      current: isLast,
-    };
-  });
+  const pages = getPages(splitString, products, treatments, areas);
 
   return (
     <nav className="flex" aria-label="Breadcrumb">
@@ -33,17 +33,17 @@ const Breadcrumb = () => {
             </Link>
           </div>
         </li>
-        {pages.map((page) => (
+        {pages.map((page, index) => (
           <li key={page.name}>
             <div className="flex items-center">
               <ChevronRightIcon
                 className="h-5 w-5 flex-shrink-0 text-gray-400"
                 aria-hidden="true"
               />
-              {page.name === "areas" ? (
+              {page.name === "areas" || index === pages.length - 1 ? (
                 <p
                   aria-hidden="true"
-                  className="h-5 w-5 text-gray-500 mr-4 ml-4 font-medium text-sm flex-shrink-0 "
+                  className="h-5 text-gray-500 mr-4 ml-4 font-medium text-sm flex-shrink-0 "
                 >
                   {page.name}
                 </p>

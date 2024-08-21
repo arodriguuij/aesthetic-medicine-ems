@@ -54,7 +54,7 @@ const Products = async () => {
                         .map(
                           ({ id, name, images, quantity, branch, price }) => (
                             <div key={id} className="group relative">
-                              <div className="h-56 w-full overflow-hidden rounded-md bg-gray-800 border border-amber-400 group-hover:opacity-75 lg:h-72 xl:h-80">
+                              <div className="h-56 w-full overflow-hidden rounded-md bg-gray-800 border group-hover:opacity-75 lg:h-72 xl:h-80">
                                 <Image
                                   alt={`Image-${name}`}
                                   src={cloudinaryLoader({

@@ -51,7 +51,7 @@ const TreatmentsContent = ({ title, subTitle, data }: ITreatmentsContent) => {
                       width={1000}
                       height={1000}
                       priority={true}
-                      className="aspect-[16/9] w-full rounded-2xl border border-amber-400 bg-white object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                      className="aspect-[16/9] w-full rounded-2xl bg-white object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                     />
 
                     <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
