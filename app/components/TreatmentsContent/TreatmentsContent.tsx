@@ -37,7 +37,7 @@ const TreatmentsContent = ({ title, subTitle, data }: ITreatmentsContent) => (
                   aria-label="Enlace a la pagina del tratamiento"
                 >
                   <Image
-                    alt="Imagen Tratamiento"
+                    alt={"Imagen del tratamiento " + treatment.title}
                     src={cloudinaryLoader({
                       src: treatment.images.main,
                     })}

@@ -151,7 +151,10 @@ const Header = () => {
               {giftCardsData && giftCard.selectedGiftCardId && (
                 <li className="flex items-center px-4 py-6">
                   <Image
-                    alt={giftCard.selectedGiftCardId + "Image"}
+                    alt={
+                      "Imagen de la tarjeta de regalo " +
+                      giftCard.selectedGiftCardId
+                    }
                     src={cloudinaryLoader({
                       src:
                         getImageByGiftCardId(
@@ -385,7 +388,7 @@ const Header = () => {
                     >
                       <span className="sr-only">Your Company</span>
                       <Image
-                        alt="logoEMS"
+                        alt="Logo de la empresa EMS"
                         src={cloudinaryLoader({
                           src: "EMS/General/EmsLogo",
                         })}
@@ -746,7 +749,7 @@ const Header = () => {
                   <div onClick={scrollToTopFncNoScroll} className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <Image
-                      alt="logoEMS"
+                      alt="Logo de la empresa EMS"
                       src={cloudinaryLoader({
                         src: "EMS/General/EmsLogo",
                       })}

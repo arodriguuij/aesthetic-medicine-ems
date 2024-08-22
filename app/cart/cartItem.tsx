@@ -23,7 +23,7 @@ const CartItem = ({
       <li className="space-x-6 py-6">
         <div className="flex justify-center">
           <Image
-            alt={giftCard.selectedGiftCardId + "image"}
+            alt={"Imagen tarjeta de regalo " + giftCard.selectedGiftCardId}
             src={cloudinaryLoader({
               src:
                 getImageByGiftCardId(

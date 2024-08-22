@@ -35,7 +35,7 @@ const TreatmentContent = ({ data }: ITreatmentContent) => (
       <div className="isolate mx-auto items-center">
         <div aria-hidden="true" className="relative">
           <Image
-            alt="Imagen Tratamiento"
+            alt={"Imagen principal del tratamiento" + data[0].id}
             src={cloudinaryLoader({
               src: data[0].images.main,
             })}
@@ -191,7 +191,7 @@ const TreatmentContent = ({ data }: ITreatmentContent) => (
                         <div className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto">
                           <span aria-hidden="true" className="absolute inset-0">
                             <Image
-                              alt="Imagen procducto"
+                              alt={"Imagen del producto " + name}
                               src={cloudinaryLoader({
                                 src: images[0],
                               })}

@@ -19,7 +19,7 @@ const Incentives = () => (
               <div className="sm:flex-shrink-0">
                 <div className="flow-root">
                   <Image
-                    alt="Incentivos imagen"
+                    alt={"Imagen de " + incentive.name}
                     src={cloudinaryLoader({
                       src: incentive.imageSrc,
                     })}

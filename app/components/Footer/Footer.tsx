@@ -19,7 +19,7 @@ const Footer = () => (
           <div className="space-y-5 pb-12 lg:pb-12">
             <span className="sr-only">Your Company</span>
             <Image
-              alt="Company logo"
+              alt="Logo de la empresa EMS"
               src={cloudinaryLoader({
                 src: "EMS/General/EmsLogo",
               })}

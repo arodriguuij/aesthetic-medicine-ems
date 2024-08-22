@@ -60,7 +60,7 @@ const Product = async ({ params }: PageProps) => {
                 <div className="mt-6 lg:col-span-5 lg:mt-0">
                   <div className="bg-gray-10">
                     <Image
-                      alt="ProductImage"
+                      alt={"Imagen del producto " + data[0].name}
                       src={cloudinaryLoader({
                         src: data[0].images[0],
                       })}
@@ -113,7 +113,7 @@ const Product = async ({ params }: PageProps) => {
                 <div className="mt-6 lg:col-span-5 lg:mt-0">
                   <div className="bg-gray-10">
                     <Image
-                      alt="ProductImage"
+                      alt={"Imagen del producto " + data[0].name}
                       src={cloudinaryLoader({
                         src: data[0].images[0],
                       })}
@@ -153,7 +153,7 @@ const Product = async ({ params }: PageProps) => {
                 <div className="mt-6 lg:col-span-5 lg:mt-0">
                   <div className="bg-gray-10">
                     <Image
-                      alt="ProductImage"
+                      alt={"Imagen del producto " + data[0].name}
                       src={cloudinaryLoader({
                         src: data[0].images[0],
                       })}

@@ -9,7 +9,7 @@ export default function NotFound() {
       style={{ height: "73vh" }}
     >
       <Image
-        alt="Imagen pagina de error"
+        alt="Imagen página de error"
         src={cloudinaryLoader({
           src: "EMS/General/404page",
         })}

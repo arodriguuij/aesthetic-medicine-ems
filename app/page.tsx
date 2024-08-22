@@ -56,7 +56,7 @@ const HomePage = async () => {
           }}
         >
           <Image
-            alt=""
+            alt="Imagen principal de la portada"
             src={cloudinaryLoader({
               src: "EMS/General/Hero",
             })}
@@ -110,7 +110,7 @@ const HomePage = async () => {
                   className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg"
                 >
                   <Image
-                    alt={collection.imageAlt}
+                    alt={"Imagen " + collection.imageAlt}
                     src={cloudinaryLoader({
                       src: collection.imageSrc,
                     })}
@@ -220,7 +220,7 @@ const HomePage = async () => {
                               className="absolute inset-0"
                             >
                               <Image
-                                alt={`Image-${name}`}
+                                alt={`Imagen producto ${name}`}
                                 src={cloudinaryLoader({
                                   src: images[0],
                                 })}
@@ -278,7 +278,7 @@ const HomePage = async () => {
               {branchesHomeData.map(({ id, image, name }, index) => (
                 <Image
                   key={id + index + name}
-                  alt={`Image-${name}`}
+                  alt={`Imagen marca ${name}`}
                   src={cloudinaryLoader({
                     src: image,
                   })}

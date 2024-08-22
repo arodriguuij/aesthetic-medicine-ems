@@ -32,7 +32,7 @@ const Form = () => {
   );
 
   const disabled = !!giftCard.selectedGiftCardId;
-  
+
   const {
     register,
     handleSubmit,
@@ -64,7 +64,7 @@ const Form = () => {
       <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
         <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
           <Image
-            alt="GiftCardImageAl"
+            alt="Imagen de tarjeta de regalo"
             src={cloudinaryLoader({
               src: "EMS/GiftCard/TarjetaRegalo",
             })}
