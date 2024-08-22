@@ -206,10 +206,14 @@ const AboutMe = () => (
       <div>
         {/* Image section */}
         <div>
-          <img
-            alt="Imagen entrada de la clínica" //TODO: move image to Cloudinary
-            src="https://puntodeencuentronavalmoral.es/wp-content/uploads/2020/11/PoliclinicaFachada.jpg"
-            className="aspect-[5/2] w-full object-cover xl:rounded-xl rounded-md"
+          <Image
+            src={cloudinaryLoader({
+              src: "EMS/General/Clinic",
+            })}
+            width={1000}
+            height={1000}
+            alt="Imagen entrada de la clínica"
+            className="aspect-[5/2] w-full object-cover xl:rounded-3xl rounded-md"
           />
         </div>
       </div>

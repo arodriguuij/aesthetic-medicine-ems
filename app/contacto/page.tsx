@@ -5,6 +5,8 @@ import Map from "./Map/Map";
 import ContactSummary from "./ContactSummary";
 import Calendar from "./Calendar";
 import ScheduleOfToday from "./ScheduleOfToday";
+import Image from "next/image";
+import { cloudinaryLoader } from "@/utils/cloudinary";
 
 //TODO: Review SSR
 //TODO: When open?
@@ -68,9 +70,13 @@ const Contact = () => {
         <div>
           {/* Image section */}
           <div>
-            <img
-              alt="Imagen entrada de la clínica" //TODO: move image to Cloudinary
-              src="https://puntodeencuentronavalmoral.es/wp-content/uploads/2020/11/PoliclinicaFachada.jpg"
+            <Image
+              src={cloudinaryLoader({
+                src: "EMS/General/Clinic",
+              })}
+              width={1000}
+              height={1000}
+              alt="Imagen entrada de la clínica"
               className="aspect-[5/2] w-full object-cover xl:rounded-3xl rounded-md"
             />
           </div>
