@@ -7,10 +7,13 @@ const inter = Inter({ subsets: ["latin"] });
 import "react-tooltip/dist/react-tooltip.css";
 import Providers from "./components/Providers/Providers";
 import Layout from "./components/Layout/Layout";
+import { Suspense } from "react";
+import Loader from "./components/Loader";
 
 export const metadata: Metadata = {
-  title: "EMS Clinica Estetica",
-  description: "Medicina Estetica Dra. Elvira Morgado EMS",
+  title: "Medicina Estética Elvira Morgado",
+  description:
+    "Clínica de Medicina Estetica Dra. Elvira Morgado EMS. Navalmoral de la mata (Extremadura). Tratamientos sin cirugía.",
 };
 
 export default function RootLayout({
@@ -22,7 +25,9 @@ export default function RootLayout({
     <html lang="en" className={inter.className}>
       <Providers>
         <body>
-          <Layout>{children}</Layout>
+          <Layout>
+            <Suspense fallback={<Loader />}>{children}</Suspense>
+          </Layout>
         </body>
         {/* <SpeedInsights />
         <Analytics /> */}

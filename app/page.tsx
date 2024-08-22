@@ -88,7 +88,8 @@ const HomePage = async () => {
         </div>
         <p className="mt-2 text-md leading-6 text-gray-600">
           Descubre nuestra amplia gama de tratamientos de medicina estética
-          indicada para tu tipo de piel y edad
+          indicada para tu tipo de piel y edad, en Navalmoral de la Mata
+          (Extremadura).
         </p>
       </div>
       {/* Tratamientos */}
@@ -151,12 +152,12 @@ const HomePage = async () => {
           <div aria-hidden="true" className="relative h-32 w-full lg:hidden" />
           <div className="absolute inset-x-0 bottom-0 rounded-bl-lg rounded-br-lg bg-gray-900 bg-opacity-75 p-6 backdrop-blur backdrop-filter sm:flex sm:items-center sm:justify-between lg:inset-x-auto lg:inset-y-0 lg:w-96 lg:flex-col lg:items-start lg:rounded-br-none lg:rounded-tl-lg">
             <div>
-              <h1 className="text-base font-semibold leading-7 text-amber-400">
+              <h2 className="text-base font-semibold leading-7 text-amber-400">
                 Tratamiento destacado
-              </h1>
-              <h2 className="text-xl font-bold text-white">
-                Esclerosis de varices
               </h2>
+              <h4 className="text-xl font-bold text-white">
+                Esclerosis de varices
+              </h4>
               <p className="mt-1 text-sm text-gray-300">
                 El tratamiento de varices incluye técnicas como la
                 escleroterapia, láser y microcirugía, para eliminar o reducir la
@@ -293,11 +294,11 @@ const HomePage = async () => {
       {/* Sobre Mi */}
       <div
         aria-labelledby="collection-heading"
-        className="mx-auto max-w-3xl px-4 pb-12 sm:px-6 sm:pt-10 lg:max-w-7xl lg:px-8 hidden lg:block"
+        className="mx-auto max-w-3xl px-4 pb-4 pt-64sm:pb-12 sm:px-6 pt-10 lg:max-w-7xl lg:px-8 "
       >
         <div className="sm:py-8 xl:mx-auto xl:max-w-7xl">
           <div>
-            <div className=" sm:flex sm:items-center sm:justify-between  xl:px-0">
+            <div className=" sm:flex sm:items-center sm:justify-between xl:px-0">
               <h2 className="text-xl font-bold tracking-tight text-gray-900">
                 Sobre Mi
               </h2>
@@ -308,12 +309,9 @@ const HomePage = async () => {
             </p>
           </div>
         </div>
-        <div className="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2 ">
+        <div className="mx-auto grid max-w-3xl grid-cols-1 items-start gap-x-8 lg:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2 ">
           <div className="lg:pr-4 pt-4">
-            <div
-              style={{ height: "39rem" }}
-              className="relative overflow-hidden rounded-3xl px-6 pb-9 pt-64 sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10 h-4/5"
-            >
+            <div className="relative h-[20rem] md:h-[39rem] lg:h-[39rem] overflow-hidden rounded-3xl px-6 pb-9 pt-96 md:pt-64 sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10 ">
               <Image
                 alt={`Imagen Elvira Morgado}`}
                 src={cloudinaryLoader({
@@ -321,7 +319,7 @@ const HomePage = async () => {
                 })}
                 width={1000}
                 height={1000}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-auto object-cover"
               />
             </div>
           </div>
@@ -330,10 +328,10 @@ const HomePage = async () => {
               <p className="text-base font-medium leading-7 text-amber-600">
                 Doctora en Medicina
               </p>
-              <h1 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+              <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                 Elvira Morgado Sánchez
               </h1>
-              <div className="max-w-xl">
+              <div className="max-3w-xl">
                 <p className="mt-6">
                   Graduada en medicina por la Universidad Complutense de Madrid.
                   Master en medicina estetica 2018. Lleva más de 6 años
