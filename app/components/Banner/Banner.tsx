@@ -3,7 +3,7 @@ import Phone from "../Icons/Phone";
 import CloseButton from "./CloseButton";
 
 const Banner = () => (
-  <div className="relative isolate flex items-center sm:justify-center gap-x-6 overflow-hidden bg-gray-900 px-6 py-2 sm:px-3.5 sm:before:flex-1">
+  <div className="relative isolate flex items-center justify-center gap-x-6 overflow-hidden bg-gray-900 px-6 py-2 sm:px-3.5 sm:before:flex-1">
     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 ">
       <p className="text-sm leading-6 text-white hidden sm:block">
         <strong className="font-semibold">EMS</strong>

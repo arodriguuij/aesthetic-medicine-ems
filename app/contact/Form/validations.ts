@@ -33,7 +33,7 @@ export const schema = yup
       )
       .min(3, "Mínimo 3 letras")
       .max(50, "Máximo 50 letras"),
-    awareness: yup //TODO:
+    awareness: yup
       .string()
       .required("Este campo es requerido")
       .matches(
