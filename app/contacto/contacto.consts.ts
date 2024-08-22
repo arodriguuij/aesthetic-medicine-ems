@@ -18,3 +18,18 @@ export const meetings = [
     color: "bg-amber-600",
   },
 ];
+
+export const clinic = {
+  name: "Policlínica Navalmoral",
+  id: "tier-enterprise",
+  href: "#",
+  priceMonthly: "Navalmoral de la mata (Extremadura)",
+  features: [
+    "C. Pablo Luengo, 23, 10300 Navalmoral de la Mata, Cáceres",
+    "Teléfono: +34 611 88 21 39 / 927 53 00 44",
+    "Mail: clinicamedicoesteticaems@gmail.com",
+    "Instagram: dra.elviramorgado",
+    "Facebook: dr. Elvira Morgado",
+  ],
+  featured: true,
+};

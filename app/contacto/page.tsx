@@ -52,6 +52,31 @@ const Contact = () => {
 
       <ContactSummary />
 
+      <div className="mx-auto pt-16 sm:px-8 lg:max-w-7xl">
+        <div className="mx-auto mb-8 lg:max-w-7xl">
+          <div className="flex">
+            <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+              Policínica Navalmoral de la Mata
+            </h2>
+          </div>
+          <p className="mt-2 text-sm leading-6 text-gray-600">
+            Acualmente, me encuentro trabajando en la policlínica de Navalmoral
+            de la Mata. Consulta el calendario para conocer los días en los que
+            estoy disponible.
+          </p>
+        </div>
+        <div>
+          {/* Image section */}
+          <div>
+            <img
+              alt="Imagen entrada de la clínica" //TODO: move image to Cloudinary
+              src="https://puntodeencuentronavalmoral.es/wp-content/uploads/2020/11/PoliclinicaFachada.jpg"
+              className="aspect-[5/2] w-full object-cover xl:rounded-3xl rounded-md"
+            />
+          </div>
+        </div>
+      </div>
+
       {/* Map */}
       <div className="mx-auto max-w-7xl text-center sm:px-6 lg:px-8 justify-center mt-12 ">
         <Map />

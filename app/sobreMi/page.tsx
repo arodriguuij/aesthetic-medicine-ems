@@ -1,6 +1,4 @@
-import { CheckIcon } from "@heroicons/react/24/outline";
-import { people, tiers, timeline } from "./sobreMi.constants";
-import { classNames } from "@/utils/utilsServer";
+import { people, timeline } from "./sobreMi.constants";
 import { cloudinaryLoader } from "../../utils/cloudinary";
 import Image from "next/image";
 
@@ -12,7 +10,7 @@ const AboutMe = () => (
         className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-yellow-600/10 ring-1 ring-yellow-50 sm:-mr-80 lg:-mr-96"
         aria-hidden="true"
       />
-      <div className="mx-auto sm:px-6  mb-8 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto sm:px-8  mb-8 lg:max-w-7xl lg:px-8">
         <div className="flex">
           <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
             Sobre mi
@@ -86,7 +84,7 @@ const AboutMe = () => (
     </div>
 
     {/* Timeline section */}
-    <div className="mx-auto py-2 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
+    <div className="mx-auto py-2 sm:px-8 sm:py-4 lg:max-w-7xl lg:px-8">
       <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 overflow-hidden lg:mx-0 lg:max-w-none lg:grid-cols-4">
         {timeline.map((item, index) => (
           <div key={item.name + index}>
@@ -119,7 +117,7 @@ const AboutMe = () => (
     </div>
 
     {/* Tiers section */}
-    <div className="relative isolate bg-white pb-14 pt-20 sm:py-28 lg:px-8">
+    {/* <div className="relative isolate bg-white pb-14 pt-20 sm:py-28 lg:px-8">
       <div className="mx-auto sm:px-6  mb-8 lg:max-w-7xl lg:px-8">
         <div className="flex">
           <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
@@ -189,11 +187,37 @@ const AboutMe = () => (
           </div>
         ))}
       </div>
+    </div> */}
+
+    {/* Tiers section */}
+    <div className="mx-auto pb-16 pt-16 sm:px-8 lg:max-w-7xl">
+      <div className="mx-auto mb-8 lg:max-w-7xl">
+        <div className="flex">
+          <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+            Policínica Navalmoral de la Mata
+          </h2>
+        </div>
+        <p className="mt-2 text-sm leading-6 text-gray-600">
+          Acualmente, me encuentro trabajando en la policlínica de Navalmoral de
+          la Mata. Consulta el calendario para conocer los días en los que estoy
+          disponible.
+        </p>
+      </div>
+      <div>
+        {/* Image section */}
+        <div>
+          <img
+            alt="Imagen entrada de la clínica" //TODO: move image to Cloudinary
+            src="https://puntodeencuentronavalmoral.es/wp-content/uploads/2020/11/PoliclinicaFachada.jpg"
+            className="aspect-[5/2] w-full object-cover xl:rounded-xl rounded-md"
+          />
+        </div>
+      </div>
     </div>
 
     {/* Team section */}
-    <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-4">
-      <div className="mx-auto sm:px-6  mb-8 lg:max-w-7xl lg:px-8">
+    <div className="mx-auto max-w-7xl sm:px-8 pb-4">
+      <div className="mx-auto mb-8 lg:max-w-7xl">
         <div className="flex">
           <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
             Nuestro equipo
@@ -206,7 +230,7 @@ const AboutMe = () => (
       </div>
       <ul
         role="list"
-        className="mx-auto mt-14 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:max-w-4xl lg:gap-x-8 xl:max-w-none"
+        className="mt-10 grid max-w-3xl grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:max-w-4xl lg:gap-x-8 xl:max-w-none"
       >
         {people.map((person) => (
           <li key={person.name} className="flex flex-col gap-6 xl:flex-row">
@@ -217,7 +241,7 @@ const AboutMe = () => (
               })}
               width={1000}
               height={1000}
-              className="aspect-[4/5] w-52 flex-none rounded-2xl object-cover"
+              className="aspect-[4/5] w-52 flex-none  xl:rounded-xl rounded-md object-cover"
             />
 
             <div className="flex-auto">

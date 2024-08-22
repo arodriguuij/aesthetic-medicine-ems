@@ -38,52 +38,10 @@ export const people = [
     linkedinUrl: "#",
   },
   {
-    name: "Whitney Francis",
+    name: "Gloria",
     role: "Auxiliar de enfermería",
     imageUrl: "EMS/AboutMe/Auxiliar",
     xUrl: "#",
     linkedinUrl: "#",
-  },
-];
-
-export const tiers = [
-  {
-    name: "Clínica DPL",
-    id: "tier-hobby",
-    href: "#",
-    priceMonthly: "Marbella",
-    features: [
-      "Av. Playas del Duque, Nueva Andalucía, 29660 Marbella, Málaga",
-      "Teléfono: +34 662 814 622 / 952 81 46 22",
-      "Mail: info@clinicadralarisa.com",
-      "Instagram: clinicadlp",
-    ],
-    featured: false,
-  },
-  {
-    name: "Policlínica Navalmoral",
-    id: "tier-enterprise",
-    href: "#",
-    priceMonthly: "Navalmoral de la mata",
-    features: [
-      "C. Pablo Luengo, 23, 10300 Navalmoral de la Mata, Cáceres",
-      "Teléfono: +34 611 88 21 39 / 927 53 00 44",
-      "Mail: clinicamedicoesteticaems@gmail.com",
-      "Instagram: dra.elviramorgado",
-      "Facebook: dr. Elvira Morgado",
-    ],
-    featured: true,
-  },
-  {
-    name: "Clínica Esmeralda Gallego",
-    id: "tier-hobby",
-    href: "#",
-    priceMonthly: "Málaga",
-    features: [
-      "Av. de la Constitución, 1, 29120 Alhaurín el Grande, Málaga",
-      "Teléfono: +34 685 44 82 03",
-      "Instagram: eg_clinica",
-    ],
-    featured: false,
   },
 ];

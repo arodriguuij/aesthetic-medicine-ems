@@ -170,7 +170,6 @@ const Form = () => {
                   </div>
                   <input
                     type="text"
-                    placeholder="Elvira Morgado Sánchez"
                     minLength={3}
                     disabled={disabled}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
@@ -210,7 +209,6 @@ const Form = () => {
                   <input
                     type="email"
                     id="email"
-                    placeholder="clinicamedicoesteticaems@gmail.com"
                     disabled={disabled}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     {...register("email")}
@@ -249,7 +247,6 @@ const Form = () => {
                   <input
                     type="text"
                     id="nameReceiver"
-                    placeholder="Elvira Morgado Sánchez"
                     minLength={3}
                     disabled={disabled}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
@@ -284,7 +281,6 @@ const Form = () => {
                     id="message"
                     rows={3}
                     disabled={disabled}
-                    placeholder="Ejemplo: Hola, me gustaría recibir más información sobre el tratamiento de arruga de labios. Pueden contactar conmigo por email o bien por teléfono. Gracias"
                     className="block w-full max-w-2xl pl-2 bg-white rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-400 sm:text-sm sm:leading-6"
                     {...register("message")}
                   />
