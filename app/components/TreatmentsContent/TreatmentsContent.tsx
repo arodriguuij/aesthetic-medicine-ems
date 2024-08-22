@@ -31,7 +31,7 @@ const TreatmentsContent = ({ title, subTitle, data }: ITreatmentsContent) => (
             >
               <div className="relative w-full hover:opacity-75">
                 <Link
-                  href={`/treatments/${treatment.type.toLowerCase()}/${
+                  href={`/tratamientos/${treatment.type.toLowerCase()}/${
                     treatment.id
                   }`}
                   aria-label="Enlace a la pagina del tratamiento"
@@ -64,7 +64,7 @@ const TreatmentsContent = ({ title, subTitle, data }: ITreatmentsContent) => (
                       ?.map((area, index) => (
                         <Link
                           key={area.id + index + area.name}
-                          href={`/treatments/areas/${area.id}`}
+                          href={`/tratamientos/areas/${area.id}`}
                           aria-label="Enlace a la pagina del area"
                         >
                           <span className="inline-flex items-center rounded-md bg-amber-50 px-1.5 py-0.5 text-xs mx-1 font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
@@ -77,7 +77,7 @@ const TreatmentsContent = ({ title, subTitle, data }: ITreatmentsContent) => (
                 <div className="group relative">
                   <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                     <Link
-                      href={`/treatments/${treatment.type.toLowerCase()}/${
+                      href={`/tratamientos/${treatment.type.toLowerCase()}/${
                         treatment.id
                       }`}
                       aria-label="Enlace a la pagina del tratamiento"

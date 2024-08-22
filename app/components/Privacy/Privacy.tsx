@@ -9,7 +9,7 @@ const Privacy = () => (
         Este sitio web utiliza cookies. Aceptar nuestras cookies es opcional,
         pero recomendado, ¡son deliciosas! Consulta nuestra{" "}
         <Link
-          href="/policy"
+          href="/cookies"
           aria-label="Enlace a la pagina de politicas de cookies"
         >
           <div className="font-semibold text-amber-400">

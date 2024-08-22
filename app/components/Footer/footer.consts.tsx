@@ -28,31 +28,31 @@ export const navigation: Navigation = {
     },
     {
       name: "Lunes: 15:00-20:00",
-      href: "/contact",
+      href: "/contacto",
       icon: (props) => <Calendar props={props} />,
       isLink: true,
     },
     {
       name: "Martes: 9:00-13:00 y 16:00-20:00",
-      href: "/contact",
+      href: "/contacto",
       icon: () => <div className="mr-3 ml-3"></div>,
       isLink: true,
     },
     {
       name: "Miércoles: 9:00-13:00",
-      href: "/contact",
+      href: "/contacto",
       icon: () => <div className="mr-3 ml-3"></div>,
       isLink: true,
     },
     {
       name: "Jueves: 10:00-14:00 y 16:00-20:00",
-      href: "/contact",
+      href: "/contacto",
       icon: () => <div className="mr-3 ml-3"></div>,
       isLink: true,
     },
     {
       name: "Viernes: 9:00-15:00",
-      href: "/contact",
+      href: "/contacto",
       icon: () => <div className="mr-3 ml-3"></div>,
       isLink: true,
     },
@@ -60,13 +60,13 @@ export const navigation: Navigation = {
   legal: [
     {
       name: "Privacidad",
-      href: "/privacy",
+      href: "/privacidad",
       icon: (props) => <Document props={props} />,
       isLink: true,
     },
     {
       name: "Cookies",
-      href: "/policy",
+      href: "/cookies",
       icon: (props) => <Document props={props} />,
       isLink: true,
     },

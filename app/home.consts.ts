@@ -1,7 +1,7 @@
 export const collections = [
   {
     name: "Tratamientos Faciales",
-    href: "/treatments/facial",
+    href: "/tratamientos/facial",
     imageSrc: "EMS/HomePage/TratamientosFaciales",
     imageAlt: "Tratamientos Faciales",
     description:
@@ -9,7 +9,7 @@ export const collections = [
   },
   {
     name: "Tratamientos Corporales",
-    href: "/treatments/corporal",
+    href: "/tratamientos/corporal",
     imageSrc: "EMS/HomePage/TratamientosCorporales2",
     imageAlt: "Tratamientos Corporales",
     description:

@@ -1,4 +1,4 @@
-import { DataFormGiftCard } from "@/app/giftCard/Form/form.types";
+import { DataFormGiftCard } from "@/app/tarjetaRegalo/Form/form.types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 

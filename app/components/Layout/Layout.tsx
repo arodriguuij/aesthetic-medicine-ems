@@ -34,8 +34,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({
       )}
       <Header />
       {pathname === "/" ||
-      pathname.includes("/treatments/facial/") ||
-      pathname.includes("/treatments/corporal/") ? (
+      pathname.includes("/tratamientos/facial/") ||
+      pathname.includes("/tratamientos/corporal/") ? (
         <>{children}</>
       ) : (
         <div className="isolate mx-auto  px-6 lg:px-8 items-center">

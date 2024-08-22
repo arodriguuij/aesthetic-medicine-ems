@@ -39,7 +39,7 @@ import {
   getDescriptionByGiftCardId,
   getImageByGiftCardId,
   getQuantityByGiftCardId,
-} from "@/app/cart/cart.utils";
+} from "@/app/carrito/carrito.utils";
 import { cloudinaryLoader } from "@/utils/cloudinary";
 import { CardState, removeCard } from "@/lib/card/cardSlide";
 import Image from "next/image";
@@ -201,7 +201,7 @@ const Header = () => {
                 <button
                   onClick={() => {
                     setPopoverGiftCartsVisible(false);
-                    router.push("/giftCard");
+                    router.push("/tarjetaRegalo");
                     scrollToTopFnc();
                   }}
                   className="w-full mt-6 text-center rounded-md border border-transparent bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
@@ -213,7 +213,7 @@ const Header = () => {
               <button
                 onClick={() => {
                   setPopoverGiftCartsVisible(false);
-                  router.push("/cart");
+                  router.push("/carrito");
                   scrollToTopFnc();
                 }}
                 disabled={!giftCardsData || !giftCard.selectedGiftCardId}
@@ -300,7 +300,7 @@ const Header = () => {
                                       {areasData?.map((item, index) => (
                                         <Link
                                           key={item.name + index}
-                                          href={`/treatments/areas/${item.id}`}
+                                          href={`/tratamientos/areas/${item.id}`}
                                           style={{ textAlign: "center" }}
                                           aria-label="Enlace a la pagina del area"
                                         >
@@ -475,7 +475,7 @@ const Header = () => {
                                             className="group relative rounded-lg p-2 text-sm leading-"
                                           >
                                             <Link
-                                              href={`/treatments/facial/${id}`}
+                                              href={`/tratamientos/facial/${id}`}
                                               aria-label="Enlace a la pagina del tratamiento facial"
                                             >
                                               <div
@@ -492,7 +492,7 @@ const Header = () => {
                                   </div>
                                   <div className="mx-auto max-w-7xl px-6 lg:px-8">
                                     <Link
-                                      href={"/treatments/facial"}
+                                      href={"/tratamientos/facial"}
                                       aria-label="Enlace a la pagina de tratamientos faciales"
                                     >
                                       <div
@@ -581,7 +581,7 @@ const Header = () => {
                                             className="group relative rounded-lg p-2 text-sm leading-6"
                                           >
                                             <Link
-                                              href={`/treatments/corporal/${id}`}
+                                              href={`/tratamientos/corporal/${id}`}
                                               aria-label="Enlace a la pagina del tratamiento corporal"
                                             >
                                               <div
@@ -598,7 +598,7 @@ const Header = () => {
                                   </div>
                                   <div className="mx-auto max-w-7xl px-6 lg:px-8">
                                     <Link
-                                      href={"/treatments/corporal"}
+                                      href={"/tratamientos/corporal"}
                                       aria-label="Enlace a la pagina de tratamientos corporales"
                                     >
                                       <div
@@ -681,7 +681,7 @@ const Header = () => {
                                           className="group relative rounded-lg p-2 text-sm leading-6"
                                         >
                                           <Link
-                                            href={`/treatments/areas/${id}`}
+                                            href={`/tratamientos/areas/${id}`}
                                             aria-label="Enlace a la pagina del area"
                                           >
                                             <div
@@ -703,7 +703,7 @@ const Header = () => {
                       </Popover>
 
                       <Link
-                        href="/products"
+                        href="/productos"
                         aria-label="Enlace a la pagina de productos"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
@@ -711,7 +711,7 @@ const Header = () => {
                       </Link>
 
                       <Link
-                        href="/giftCard"
+                        href="/tarjetaRegalo"
                         aria-label="Enlace a la pagina de tarjeta de regalo"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
@@ -721,7 +721,7 @@ const Header = () => {
                       </Link>
 
                       <Link
-                        href="/aboutMe"
+                        href="/sobreMi"
                         aria-label="Enlace a la pagina sobre mi"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
@@ -729,7 +729,7 @@ const Header = () => {
                       </Link>
 
                       <Link
-                        href="/contact"
+                        href="/contacto"
                         aria-label="Enlace a la pagina de contacto"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-600"
                       >

@@ -164,8 +164,8 @@ const HomePage = async () => {
                 apariencia de las venas varicosas en las piernas.
               </p>
             </div>
-            <Link
-              href="/treatments/corporal/19"
+            <Link //TODO: dynamic
+              href="/tratamientos/corporal/19"
               aria-label="Enlace al tratamiento de Eslerosis de varices"
             >
               <div className="mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 px-4 py-3 text-base font-medium text-white hover:bg-opacity-10 sm:ml-8 sm:mt-0 lg:ml-0 lg:w-full">
@@ -186,7 +186,7 @@ const HomePage = async () => {
               <h2 className="text-xl font-bold tracking-tight text-gray-900">
                 Productos y cremas
               </h2>
-              <Link href="/products" aria-label="Enlace a la pagina productos">
+              <Link href="/productos" aria-label="Enlace a la pagina productos">
                 <div className="hidden text-sm font-medium leading-7 text-amber-600 hover:text-amber-500 sm:block">
                   Ver todos los productos
                   <span aria-hidden="true"> &rarr;</span>
@@ -211,7 +211,7 @@ const HomePage = async () => {
                       .map(({ name, id, images }, index) => (
                         <Link
                           key={name + index}
-                          href={`products/${id}`}
+                          href={`productos/${id}`}
                           aria-label="Enlace a la pagina del producto"
                         >
                           <div className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto">
@@ -244,7 +244,7 @@ const HomePage = async () => {
             </div>
           </div>
           <div className="mt-6 sm:hidden">
-            <Link href="/products" aria-label="Enlace a la pagina de productos">
+            <Link href="/productos" aria-label="Enlace a la pagina de productos">
               <div className="block text-sm font-medium leading-7 text-amber-600 hover:text-amber-500">
                 Ver todos las productos
                 <span aria-hidden="true"> &rarr;</span>
@@ -366,7 +366,7 @@ const HomePage = async () => {
             </div>
 
             <div className="mt-10 flex">
-              <Link href="/aboutMe" aria-label="Enlace a la pagina sobre mi">
+              <Link href="/sobreMi" aria-label="Enlace a la pagina sobre mi">
                 <div className="text-base font-medium leading-7 text-amber-600 hover:text-amber-500">
                   Saber más sobre Elvira
                   <span aria-hidden="true">&rarr;</span>

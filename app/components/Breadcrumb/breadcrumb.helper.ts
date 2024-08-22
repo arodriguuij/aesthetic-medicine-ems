@@ -12,21 +12,22 @@ export const getPages = (
     const isLast = index === splitString.length - 1;
 
     let readableTitle = part;
-    if (part === "treatments") {
+    if (part === "tratamientos") {
       if (splitString.length === 3) readableTitle = "Ttos.";
       else readableTitle = "Tratamientos";
     }
-    if (part === "products") readableTitle = "Productos";
-    if (part === "giftCard") readableTitle = "Tarjeta regalo";
-    if (part === "aboutMe") readableTitle = "Sobre mi";
-    if (part === "contact") readableTitle = "Contacto";
-    if (part === "cart") readableTitle = "Carrito";
-    if (part === "paymentSuccess") readableTitle = "Confirmacion pago";
+    if (part === "productos") readableTitle = "Productos";
+    if (part === "tarjetaRegalo") readableTitle = "Tarjeta regalo";
+    if (part === "sobreMi") readableTitle = "Sobre mi";
+    if (part === "contacto") readableTitle = "Contacto";
+    if (part === "carrito") readableTitle = "Carrito";
+    if (part === "confirmacionPago") readableTitle = "Confirmacion pago";
     if (part === "facial") readableTitle = "Faciales";
+    if (part === "areas") readableTitle = "Areas";
     if (part === "corporal") readableTitle = "Corporales";
 
     if (typeof +part === "number" && +part > 0) {
-      if (splitString[index - 1] === "products" && products)
+      if (splitString[index - 1] === "productos" && products)
         readableTitle = products.find(({ id }) => id === +part)?.name || part;
 
       if (
