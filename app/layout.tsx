@@ -9,6 +9,7 @@ import Providers from "./components/Providers/Providers";
 import Layout from "./components/Layout/Layout";
 import { Suspense } from "react";
 import Loader from "./components/Loader";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Medicina Estética Elvira Morgado",
@@ -23,6 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.className}>
+      <Head>
+        <link rel="canonical" href="https://www.medicinaesteticaems.com`" />
+      </Head>
       <Providers>
         <body>
           <Layout>
