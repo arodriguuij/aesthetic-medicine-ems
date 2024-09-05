@@ -4,6 +4,12 @@ import { cloudinaryLoader } from "../utils/cloudinary";
 import Image from "next/image";
 import { getProducts } from "./src/controllers/products";
 import { getBranchesHome } from "./src/controllers/branchesHome";
+import { publicUrl } from "@/utils/utilsServer";
+import background from "../public/Images/background.avif";
+import hero from "../public/Images/Hero.avif";
+import CorporalTreatments from "../public/Images/TratamientosCorporales2.avif";
+import FacialTreatments from "../public/Images/TratamientosFaciales.avif";
+import Varices from "../public/Images/VaricesStar.avif";
 
 const HomePage = async () => {
   const productsData = await getProducts();
@@ -36,9 +42,10 @@ const HomePage = async () => {
       <div
         className="relative w-full overflow-hidden"
         style={{
-          backgroundImage: `url(${cloudinaryLoader({
+          backgroundImage: `url(${background.src})` /* `url(${cloudinaryLoader({
             src: "EMS/General/background",
-          })})`,
+          })})`, */,
+
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
@@ -56,9 +63,7 @@ const HomePage = async () => {
         >
           <Image
             alt="Imagen principal de la portada"
-            src={cloudinaryLoader({
-              src: "EMS/General/Hero",
-            })}
+            src={hero}
             width={618}
             height={469}
             className=" w-full object-cover object-center"
@@ -109,9 +114,11 @@ const HomePage = async () => {
                 >
                   <Image
                     alt={"Imagen " + collection.imageAlt}
-                    src={cloudinaryLoader({
-                      src: collection.imageSrc,
-                    })}
+                    src={
+                      collection.name === "Tratamientos Corporales"
+                        ? CorporalTreatments
+                        : FacialTreatments
+                    }
                     width={382}
                     height={255}
                     className=" w-full object-cover object-center"
@@ -138,9 +145,7 @@ const HomePage = async () => {
           <div className="absolute inset-0">
             <Image
               alt="Imagen tratamiento destacado"
-              src={cloudinaryLoader({
-                src: "EMS/HomePage/VaricesStar",
-              })}
+              src={Varices}
               width={382}
               height={512}
               className="h-full w-full object-cover object-center"
