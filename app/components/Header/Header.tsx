@@ -27,7 +27,7 @@ import {
   navigationMobilePersonal,
   navigationMobileProducts,
 } from "./header.consts";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -53,7 +53,6 @@ import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
 import { scrollToTop } from "@/utils/utils";
 
 const Header = () => {
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const {
@@ -98,14 +97,6 @@ const Header = () => {
     setPopoverAreasVisible(false);
     setPopoverGiftCartsVisible(false);
   };
-
-  /* TODO: small Loader
-  if (
-    facialTreatmentsStatus === "pending" ||
-    corporalTreatmentsStatus === "pending" ||
-    areasStatus === "pending"
-  )
-    return <Loader />; */
 
   const CartButton = () => (
     <div className="flex items-center lg:ml-8">
@@ -201,8 +192,8 @@ const Header = () => {
                 <button
                   onClick={() => {
                     setPopoverGiftCartsVisible(false);
-                    router.push("/tarjetaRegalo");
                     scrollToTopFnc();
+                    redirect("/tarjetaRegalo");
                   }}
                   className="w-full mt-6 text-center rounded-md border border-transparent bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                 >
@@ -213,8 +204,8 @@ const Header = () => {
               <button
                 onClick={() => {
                   setPopoverGiftCartsVisible(false);
-                  router.push("/carrito");
                   scrollToTopFnc();
+                  redirect("/carrito");
                 }}
                 disabled={!giftCardsData || !giftCard.selectedGiftCardId}
                 className={

@@ -7,9 +7,9 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import { usePaymentMutation } from "@/services/payments/payments";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { convertToSubCurrency, scrollToTop } from "@/utils/utils";
+import { convertToSubCurrency } from "@/utils/utils";
 import { useAddGiftCardOrderMutation } from "@/services/giftCards/giftCards";
 import { addGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
@@ -30,8 +30,6 @@ const CheckoutPage = ({
   const [errorMessage, setErrorMessage] = useState<string>();
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const router = useRouter();
 
   const [paymentMethod] = usePaymentMutation();
   const [addGiftCardOrder] = useAddGiftCardOrderMutation();
@@ -101,13 +99,13 @@ const CheckoutPage = ({
       });
 
       //TODO: check for error in addGiftCardOrder
-      router.push("/confirmacionPago");
       dispatch(
         addGiftCardsOrderHistory(
           orderHistory.data as GiftCardFormWithDiscountAppliedGet
         )
       );
-      scrollToTop();
+      //scrollToTop();
+      redirect("/confirmacionPago")
     }
 
     setLoading(false);

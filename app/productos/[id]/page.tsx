@@ -7,7 +7,7 @@ import { PageProps } from "@/app/types/global.types";
 import { cloudinaryLoader } from "@/utils/cloudinary";
 import Loader from "@/app/components/Loader";
 
-const Product = async ({ params }: PageProps) => {
+const Product = async ({ params, searchParams }: PageProps) => {
   const data = await getProductsById(+params.id);
 
   return (

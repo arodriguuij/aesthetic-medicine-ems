@@ -13,9 +13,10 @@ export default function NotFound() {
         src={cloudinaryLoader({
           src: "EMS/General/404page",
         })}
-        width={1000}
-        height={1000}
-        className="absolute inset-0 -z-10 h-full w-full object-cover object-top"
+        quality={100}
+        fill
+        sizes="100vh"
+        className="inset-0 -z-10 object-cover object-top"
         priority={true}
       />
       <div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">

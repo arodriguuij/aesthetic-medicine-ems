@@ -35,28 +35,43 @@ const AboutMe = () => (
                 Master en medicina estetica 2018.
               </p>
               <p className="text-md sm:leading-8 text-gray-600 mb-3">
-                Lleva más de 6 años ejerciendo medicina estetica en exclusiva
-                para ofrecer los mejores tratamientos y servicio a sus
-                pacientes.
+                Lleva desde el 2018, ejerciendo medicina estética en exclusiva
+                ofreciendo el mejor servicio a sus pacientes junto a los
+                tratamientos de vanguardia.
               </p>
               <p className="text-md sm:leading-8 text-gray-600 mb-3">
-                En su experiencia profersional cabe destacar su trabajo y
-                formación en centros de referencia de Madrid, Ciudad real,
-                Barcelona, Palma de Mallorca y Marbella.
+                En su experiencia profesional cabe destacar su trabajo y
+                formación en los centros de referencia en el sector, como son
+                Policlinic (Barcelona), Medisans (Palma de Mallorca) y Larisa
+                pastuchenco (Marbella), entre otros centros y su formación
+                continua en congresos y formaciones a nivel nacional e
+                internacional.
               </p>
-
-              <p className="text-md sm:leading-8 text-gray-600 mb-3">
-                Especialista en tratamientos faciales antiedad y armonización
-                simple y sutil del rostro.
+              <dl className="mt-8 border-t border-gray-900/10 " />
+              <p
+                className="mt-6"
+                style={{
+                  fontStyle: "italic",
+                  lineHeight: ".9em",
+                  fontSize: "25px",
+                  fontWeight: "400",
+                }}
+              >
+                Mi auténtica pasión es devolver la confianza y autoestima a
+                quienes acuden a mí, con la mayor humildad y honestidad en mi
+                trabajo.
               </p>
-              <p className="text-md sm:leading-8 text-gray-600 mb-8">
-                Experta en flebologia y tratamiento de varices.
+              <dl className="mt-8 border-t border-gray-900/10 " />
+              <p className="text-md sm:leading-8 text-gray-600 mb-3 mt-6">
+                Especialista en tratamientos antiedad y armonización facial,
+                para quienes buscan un rasultado natural. Experta en flebologia
+                y tratamiento de varices.
               </p>
               <div style={{ display: "flex", alignItems: "baseline" }}>
                 <p className="text-md font-medium text-gray-900 mr-2">
                   Nº Colegiado
                 </p>
-                <p className="text-md font-medium text-yellow-500 hover:text-yellow-600">
+                <p className="text-md font-medium text-amber-400">
                   07/2874636
                 </p>
               </div>
@@ -64,7 +79,7 @@ const AboutMe = () => (
                 <p className="text-md font-medium text-gray-900 mr-2">
                   Nº SEME
                 </p>
-                <p className="text-md font-medium text-yellow-500 hover:text-yellow-600">
+                <p className="text-md font-medium text-amber-400">
                   2123
                 </p>
               </div>
@@ -85,12 +100,12 @@ const AboutMe = () => (
 
     {/* Timeline section */}
     <div className="mx-auto py-2 sm:px-8 sm:py-4 lg:max-w-7xl lg:px-8">
-      <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 overflow-hidden lg:mx-0 lg:max-w-none lg:grid-cols-4">
+      <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 overflow-hidden lg:mx-0 lg:max-w-none lg:grid-cols-5">
         {timeline.map((item, index) => (
           <div key={item.name + index}>
             <time
               dateTime={item.dateTime}
-              className="flex items-center text-sm font-semibold leading-6 text-amber-600"
+              className="flex items-center text-sm font-semibold leading-6 text-amber-400"
             >
               <svg
                 viewBox="0 0 4 4"
@@ -254,10 +269,7 @@ const AboutMe = () => (
               </h3>
               <p className="text-base leading-7 text-gray-600">{person.role}</p>
               <p className="mt-6 text-base leading-7 text-gray-600">
-                Quia illum aut in beatae. Possimus dolores aliquid accusantium
-                aut in ut non assumenda. Enim iusto molestias aut deleniti eos
-                aliquid magnam molestiae. At et non possimus ab. Magni labore
-                molestiae nulla qui.
+                {person.content}
               </p>
             </div>
           </li>

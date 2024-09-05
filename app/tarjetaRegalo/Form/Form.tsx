@@ -10,7 +10,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { Radio, RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
 import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
 import { addGiftCard, CardState } from "@/lib/card/cardSlide";
 import { scrollToTop } from "@/utils/utils";
@@ -22,10 +21,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./validations";
 import { initState } from "./form.constants";
 import Loader from "@/app/components/Loader";
+import { redirect } from "next/navigation";
 
 const Form = () => {
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const giftCard = useSelector(
     (state: { card: CardState }) => state.card.giftCard
@@ -54,7 +53,7 @@ const Form = () => {
     dispatch(addGiftCard(data));
     scrollToTop();
     reset();
-    router.push("/carrito");
+    redirect("/carrito");
   };
 
   if (status === "pending") return <Loader />;

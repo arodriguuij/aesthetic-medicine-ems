@@ -1,7 +1,6 @@
 import { collections, testimonials } from "./home.consts";
 import Link from "next/link";
-import { AdvancedVideo } from "@cloudinary/react";
-import { cld, cloudinaryLoader } from "../utils/cloudinary";
+import { cloudinaryLoader } from "../utils/cloudinary";
 import Image from "next/image";
 import { getProducts } from "./src/controllers/products";
 import { getBranchesHome } from "./src/controllers/branchesHome";
@@ -60,13 +59,12 @@ const HomePage = async () => {
             src={cloudinaryLoader({
               src: "EMS/General/Hero",
             })}
-            width={1000}
-            height={1000}
+            width={618}
+            height={469}
             className=" w-full object-cover object-center"
             style={{
               maxWidth: "100%",
               maxHeight: "100%",
-              //height: isMobile || isTablet ? "auto" : "70vh",
               height: "auto",
               width: "auto",
               objectFit: "contain",
@@ -114,8 +112,8 @@ const HomePage = async () => {
                     src={cloudinaryLoader({
                       src: collection.imageSrc,
                     })}
-                    width={1000}
-                    height={1000}
+                    width={382}
+                    height={255}
                     className=" w-full object-cover object-center"
                     priority={true}
                   />
@@ -143,9 +141,10 @@ const HomePage = async () => {
               src={cloudinaryLoader({
                 src: "EMS/HomePage/VaricesStar",
               })}
-              width={1000}
-              height={1000}
+              width={382}
+              height={512}
               className="h-full w-full object-cover object-center"
+              loading="lazy"
             />
           </div>
           <div aria-hidden="true" className="relative h-96 w-full lg:hidden" />
@@ -164,7 +163,7 @@ const HomePage = async () => {
                 apariencia de las venas varicosas en las piernas.
               </p>
             </div>
-            <Link //TODO: dynamic
+            <Link
               href="/tratamientos/corporal/19"
               aria-label="Enlace al tratamiento de Eslerosis de varices"
             >
@@ -224,9 +223,10 @@ const HomePage = async () => {
                                 src={cloudinaryLoader({
                                   src: images[0],
                                 })}
-                                width={1000}
-                                height={1000}
+                                width={224}
+                                height={320}
                                 className="h-full w-full object-cover object-center"
+                                loading="lazy"
                               />
                             </span>
                             <span
@@ -244,7 +244,10 @@ const HomePage = async () => {
             </div>
           </div>
           <div className="mt-6 sm:hidden">
-            <Link href="/productos" aria-label="Enlace a la pagina de productos">
+            <Link
+              href="/productos"
+              aria-label="Enlace a la pagina de productos"
+            >
               <div className="block text-sm font-medium leading-7 text-amber-600 hover:text-amber-500">
                 Ver todos las productos
                 <span aria-hidden="true"> &rarr;</span>
@@ -282,9 +285,10 @@ const HomePage = async () => {
                   src={cloudinaryLoader({
                     src: image,
                   })}
-                  width={158}
-                  height={48}
+                  width={183}
+                  height={32}
                   className="col-span-2 max-h-8 w-full object-contain lg:col-span-1"
+                  loading="lazy"
                 />
               ))}
             </div>
@@ -292,7 +296,7 @@ const HomePage = async () => {
         </div>
       )}
       {/* Sobre Mi */}
-      <div
+      <div //TODO: Consider adding a section with awards or certifications of the doctor to build trust and credibility.
         aria-labelledby="collection-heading"
         className="mx-auto max-w-3xl px-4 pb-4 pt-64sm:pb-12 sm:px-6 pt-10 lg:max-w-7xl lg:px-8 "
       >
@@ -317,9 +321,10 @@ const HomePage = async () => {
                 src={cloudinaryLoader({
                   src: "EMS/HomePage/Profile",
                 })}
-                width={1000}
-                height={1000}
+                width={315}
+                height={420}
                 className="absolute inset-0 h-full w-auto object-cover"
+                loading="lazy"
               />
             </div>
           </div>
@@ -332,16 +337,22 @@ const HomePage = async () => {
                 Elvira Morgado Sánchez
               </h1>
               <div className="max-3w-xl">
-                <p className="mt-6">
+                <p className="mt-4">
                   Graduada en medicina por la Universidad Complutense de Madrid.
-                  Master en medicina estetica 2018. Lleva más de 6 años
-                  ejerciendo medicina estetica en exclusiva para ofrecer los
-                  mejores tratamientos y servicio a sus pacientes.
                 </p>
-                <p>
-                  En su experiencia profersional cabe destacar su trabajo y
-                  formación en centros de referencia de Madrid, Ciudad real,
-                  Barcelona, Palma de Mallorca y Marbella.
+                <p className="mt-4">Master en medicina estética 2018.</p>
+                <p className="mt-4">
+                  Lleva desde el 2018, ejerciendo medicina estética en exclusiva
+                  ofreciendo el mejor servicio a sus pacientes junto a los
+                  tratamientos de vanguardia.
+                </p>
+                <p className="mt-4">
+                  En su experiencia profesional cabe destacar su trabajo y
+                  formación en los centros de referencia en el sector, como son
+                  Policlinic (Barcelona), Medisans (Palma de Mallorca) y Larisa
+                  pastuchenco (Marbella), entre otros centros y su formación
+                  continua en congresos y formaciones a nivel nacional e
+                  internacional.
                 </p>
                 <dl className="mt-8 border-t border-gray-900/10 " />
                 <p
@@ -353,19 +364,20 @@ const HomePage = async () => {
                     fontWeight: "400",
                   }}
                 >
-                  Mi pasión es ayudar a las personas a sentirse mejor y que todo
-                  tratamiento se convierta en una experiencia única.
+                  Mi auténtica pasión es devolver la confianza y autoestima a
+                  quienes acuden a mí, con la mayor humildad y honestidad en mi
+                  trabajo.
                 </p>
                 <dl className="mt-8 border-t border-gray-900/10 " />
                 <p className="mt-8">
-                  Especialista en tratamientos faciales antiedad y armonización
-                  simple y sutil del rostro. Experta en flebologia y tratamiento
-                  de varices.
+                  Especialista en tratamientos antiedad y armonización facial,
+                  para quienes buscan un rasultado natural. Experta en
+                  flebologia y tratamiento de varices.
                 </p>
               </div>
             </div>
 
-            <div className="mt-10 flex">
+            <div className="mt-6 flex">
               <Link href="/sobreMi" aria-label="Enlace a la pagina sobre mi">
                 <div className="text-base font-medium leading-7 text-amber-600 hover:text-amber-500">
                   Saber más sobre Elvira
@@ -501,9 +513,10 @@ const HomePage = async () => {
                               src={cloudinaryLoader({
                                 src: testimonial.author.imageUrl,
                               })}
-                              width={1000}
-                              height={1000}
+                              width={40}
+                              height={40}
                               className="h-10 w-10 rounded-full bg-gray-50"
+                              loading="lazy"
                             />
                             <div>
                               <div className="font-semibold">

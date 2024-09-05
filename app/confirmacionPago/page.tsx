@@ -5,16 +5,15 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetGiftCardsQuery } from "@/services/giftCards/giftCards";
 import { GiftCard } from "../types/giftCards.types";
-import { useRouter } from "next/navigation";
 import { step } from "./confirmacionPago.constants";
 import SummaryOrder from "./SummaryOrder";
 import { OrderHistoryState } from "@/lib/orderHistory/orderHistorySlide";
 import Incentives from "./Incentives";
 import { classNames } from "@/utils/utilsServer";
 import Loader from "../components/Loader";
+import { redirect } from "next/navigation";
 
 const PaymentSuccess = () => {
-  const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,7 +34,7 @@ const PaymentSuccess = () => {
     status,
   } = useGetGiftCardsQuery("");
 
-  if (!giftCardOrder.id) router.push("/");
+  if (!giftCardOrder.id) redirect("/");
 
   if (status === "pending") return <Loader />;
 
