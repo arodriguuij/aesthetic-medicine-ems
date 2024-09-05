@@ -4,10 +4,9 @@ import { cloudinaryLoader } from "../utils/cloudinary";
 import Image from "next/image";
 import { getProducts } from "./src/controllers/products";
 import { getBranchesHome } from "./src/controllers/branchesHome";
-import { publicUrl } from "@/utils/utilsServer";
 import background from "../public/Images/background.avif";
 import hero from "../public/Images/Hero.avif";
-import CorporalTreatments from "../public/Images/TratamientosCorporales2.avif";
+import CorporalTreatments from "../public/Images/TratamientosCorporales.avif";
 import FacialTreatments from "../public/Images/TratamientosFaciales.avif";
 import Varices from "../public/Images/VaricesStar.avif";
 
@@ -119,8 +118,8 @@ const HomePage = async () => {
                         ? CorporalTreatments
                         : FacialTreatments
                     }
-                    width={382}
-                    height={255}
+                    width={720}
+                    height={480}
                     className=" w-full object-cover object-center"
                     priority={true}
                   />
@@ -146,8 +145,8 @@ const HomePage = async () => {
             <Image
               alt="Imagen tratamiento destacado"
               src={Varices}
-              width={382}
-              height={512}
+              width={1216}
+              height={384}
               className="h-full w-full object-cover object-center"
               loading="lazy"
             />
@@ -326,8 +325,8 @@ const HomePage = async () => {
                 src={cloudinaryLoader({
                   src: "EMS/HomePage/Profile",
                 })}
-                width={315}
-                height={420}
+                width={468}
+                height={624}
                 className="absolute inset-0 h-full w-auto object-cover"
                 loading="lazy"
               />

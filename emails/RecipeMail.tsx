@@ -37,7 +37,7 @@ const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
       <Container style={container}>
         <Section style={messageMail}>
           <Img
-            src={`${publicUrl}Images/logo.png`}
+            src={`${publicUrl}Images/logo.avif`}
             width="66"
             height="50"
             alt="EMS logo"
@@ -60,10 +60,10 @@ const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
               <Img
                 src={`${publicUrl}${
                   giftCard.selectedGiftCardId === 1
-                    ? "Images/GiftCard200.png"
+                    ? "Images/GiftCard200.avif"
                     : giftCard.selectedGiftCardId === 2
-                    ? "Images/GiftCard300.png"
-                    : "Images/GiftCard500.png"
+                    ? "Images/GiftCard300.avif"
+                    : "Images/GiftCard500.avif"
                 }`}
                 alt="Imagen Tarjeta de regalo"
                 style={{ float: "left" }}
@@ -144,7 +144,7 @@ const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
               <Row>
                 <Column style={{ width: "16px" }}>
                   <Img
-                    src={`${publicUrl}Images/phone.png`}
+                    src={`${publicUrl}Images/phone.avif`}
                     width="16px"
                     height="26px"
                     style={{ paddingRight: "14px" }}

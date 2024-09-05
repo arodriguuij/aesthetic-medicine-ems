@@ -42,7 +42,7 @@ const ContactMail = ({
     <Body style={main}>
       <Container style={container}>
         <Img
-          src={`${publicUrl}Images/logo.png`}
+          src={`${publicUrl}Images/logo.avif`}
           width="170"
           height="90"
           alt="Koala"
