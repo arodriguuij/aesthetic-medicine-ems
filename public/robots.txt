@@ -1,4 +1,9 @@
-User-Agent: *
+# *
+User-agent: *
 Allow: /
-Disallow: /private/
+
+# Host
+Host: https://www.medicinaesteticaems.com
+
+# Sitemaps
 Sitemap: https://www.medicinaesteticaems.com/sitemap.xml
