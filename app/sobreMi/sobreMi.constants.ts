@@ -1,3 +1,5 @@
+import GloriaImage from "../../public/Images/Gloria.avif";
+
 export const timeline = [
   {
     name: "Ciudad Real, Castilla la Mancha",
@@ -40,8 +42,10 @@ export const people = [
   {
     name: "Gloria Gonzalez Sánchez",
     role: "Auxilar en medicina estética y cosmetologia",
-    imageUrl: "EMS/AboutMe/Auxiliar",
-    content:
-      "'Estoy aquí para hacer de tu experiencia en consulta inolvidable y orientarte en las necesidades en tus cuidados cosméticos'. GRADUADA EN TECNICAS AUXILIARES DE MEDICINA ESTETICA por la escuela superior de auxiliares y expertos en Madrid. Master en aparatología y asistencia al médico 2023. Especialista en cosmetología estética.",
+    imageUrl: GloriaImage,
+    content1:
+      "Estoy aquí para hacer de tu experiencia en consulta inolvidable y orientarte en las necesidades en tus cuidados cosméticos",
+    content2:
+      "GRADUADA EN TECNICAS AUXILIARES DE MEDICINA ESTETICA por la escuela superior de auxiliares y expertos en Madrid. Master en aparatología y asistencia al médico 2023. Especialista en cosmetología estética.",
   },
 ];
