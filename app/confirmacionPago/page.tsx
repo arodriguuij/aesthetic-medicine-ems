@@ -11,10 +11,11 @@ import { OrderHistoryState } from "@/lib/orderHistory/orderHistorySlide";
 import Incentives from "./Incentives";
 import { classNames } from "@/utils/utilsServer";
 import Loader from "../components/Loader";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const PaymentSuccess = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     dispatch(removeCard());
@@ -34,7 +35,7 @@ const PaymentSuccess = () => {
     status,
   } = useGetGiftCardsQuery("");
 
-  if (!giftCardOrder.id) redirect("/");
+  if (!giftCardOrder.id) router.push("/");
 
   if (status === "pending") return <Loader />;
 

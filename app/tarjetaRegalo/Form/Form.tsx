@@ -21,10 +21,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./validations";
 import { initState } from "./form.constants";
 import Loader from "@/app/components/Loader";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Form = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const giftCard = useSelector(
     (state: { card: CardState }) => state.card.giftCard
@@ -53,7 +54,7 @@ const Form = () => {
     dispatch(addGiftCard(data));
     scrollToTop();
     reset();
-    redirect("/carrito");
+    router.push("/carrito");
   };
 
   if (status === "pending") return <Loader />;
@@ -282,6 +283,7 @@ const Form = () => {
                     disabled={disabled}
                     className="block w-full max-w-2xl pl-2 bg-white rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-400 sm:text-sm sm:leading-6"
                     {...register("message")}
+                    placeholder="Espero que disfrutes de la esperciencia."
                   />
                   {errors.message?.message && (
                     <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">

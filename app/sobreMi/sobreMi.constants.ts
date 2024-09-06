@@ -2,7 +2,7 @@ export const timeline = [
   {
     name: "Ciudad Real, Castilla la Mancha",
     description:
-      "Clínicas Da Vincy By Merlo. Médico responsable de los centros de Ciudad Real, Tomelloso, Alcalá de Henares, Puertollano y Albacete. SEME 2018",
+      "Clínicas Da Vincy By Merlo. Médico responsable de los centros de Ciudad Real, Tomelloso, Alcalá de Henares, Puertollano y Albacete. Participación en el congreso SEME 2018",
     date: "2018/19",
     dateTime: "2021-12",
   },
@@ -38,15 +38,10 @@ export const timeline = [
 
 export const people = [
   {
-    name: "Elvira Morgado Sánchez",
-    role: "Médico Estético",
-    imageUrl: "EMS/AboutMe/ElviraMorgado",
-    content: ""
-  },
-  {
-    name: "Gloria",
+    name: "Gloria Gonzalez Sánchez",
     role: "Auxilar en medicina estética y cosmetologia",
     imageUrl: "EMS/AboutMe/Auxiliar",
-    content: "'Estoy aquí para hacer de tu experiencia en consulta inolvidable y orientarte en las necesidades en tus cuidados cosméticos'. GRADUADA EN TECNICAS AUXILIARES DE MEDICINA ESTETICA por la escuela superior de auxiliares y expertos en Madrid. Master en aparatología y asistencia al médico 2023. Especialista en cosmetología estética."
+    content:
+      "'Estoy aquí para hacer de tu experiencia en consulta inolvidable y orientarte en las necesidades en tus cuidados cosméticos'. GRADUADA EN TECNICAS AUXILIARES DE MEDICINA ESTETICA por la escuela superior de auxiliares y expertos en Madrid. Master en aparatología y asistencia al médico 2023. Especialista en cosmetología estética.",
   },
 ];

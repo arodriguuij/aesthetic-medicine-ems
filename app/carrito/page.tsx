@@ -1,7 +1,6 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { redirect } from "next/navigation";
 import { useGetGiftCardsQuery } from "../../services/giftCards/giftCards";
 import { CardState } from "../../lib/card/cardSlide";
 import { calculateDiscount, getSubTotal } from "./carrito.utils";
@@ -15,6 +14,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import VoucherForm from "./VoucherForm";
 import { DiscountState } from "@/lib/discount/discountSlide";
 import Loader from "../components/Loader";
+import { useRouter } from "next/navigation";
 
 const isProd = process.env.NEXT_PUBLIC_STRIPE_ENVIRONMENT === "prod";
 
@@ -26,6 +26,7 @@ const stripePromise = loadStripe(stripePublicKey || "");
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const router = useRouter()
 
   const { discount } = useSelector(
     (state: { discount: DiscountState }) => state.discount
@@ -51,7 +52,7 @@ const Cart = () => {
     giftCardsError ||
     !giftCard.selectedGiftCardId
   )
-    redirect("/confirmacionPago");
+  router.push("/confirmacionPago");
 
   if (status === "pending") return <Loader />;
 

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Dialog,
@@ -8,11 +8,12 @@ import {
 } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { redirect } from 'next/navigation';
 import { DialogState, resetDialog } from "@/lib/dialog/dialogSlide";
+import { useRouter } from "next/navigation";
 
 const DialogComponent = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const { title, content, goBackText, goBackUrl } = useSelector(
     (state: { dialog: DialogState }) => state.dialog
@@ -59,7 +60,7 @@ const DialogComponent = () => {
                 type="button"
                 onClick={() => {
                   dispatch(resetDialog());
-                  redirect(goBackUrl);
+                  router.push(goBackUrl);
                 }}
                 className="inline-flex w-full justify-center rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
               >

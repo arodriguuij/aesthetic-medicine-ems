@@ -7,13 +7,13 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import { usePaymentMutation } from "@/services/payments/payments";
-import { redirect } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { convertToSubCurrency } from "@/utils/utils";
 import { useAddGiftCardOrderMutation } from "@/services/giftCards/giftCards";
 import { addGiftCardsOrderHistory } from "@/lib/orderHistory/orderHistorySlide";
 import { GiftCardFormWithDiscountAppliedGet } from "@/lib/card/cardSlide";
 import { DataFormGiftCard } from "@/app/tarjetaRegalo/Form/form.types";
+import { useRouter } from "next/navigation";
 
 const CheckoutPage = ({
   amount,
@@ -26,6 +26,7 @@ const CheckoutPage = ({
 }) => {
   const stripe = useStripe();
   const dispatch = useDispatch();
+  const router = useRouter();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState<string>();
   const [clientSecret, setClientSecret] = useState("");
@@ -105,7 +106,7 @@ const CheckoutPage = ({
         )
       );
       //scrollToTop();
-      redirect("/confirmacionPago")
+      router.push("/confirmacionPago");
     }
 
     setLoading(false);

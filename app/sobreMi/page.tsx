@@ -13,7 +13,7 @@ const AboutMe = () => (
       <div className="mx-auto sm:px-8  mb-8 lg:max-w-7xl lg:px-8">
         <div className="flex">
           <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-            Sobre mi
+            Equipo médico
           </h2>
         </div>
         <p className="mt-2 text-sm leading-6 text-gray-600">
@@ -71,17 +71,13 @@ const AboutMe = () => (
                 <p className="text-md font-medium text-gray-900 mr-2">
                   Nº Colegiado
                 </p>
-                <p className="text-md font-medium text-amber-400">
-                  07/2874636
-                </p>
+                <p className="text-md font-medium text-amber-400">07/2874636</p>
               </div>
               <div style={{ display: "flex", alignItems: "baseline" }}>
                 <p className="text-md font-medium text-gray-900 mr-2">
                   Nº SEME
                 </p>
-                <p className="text-md font-medium text-amber-400">
-                  2123
-                </p>
+                <p className="text-md font-medium text-amber-400">2123</p>
               </div>
             </div>
             <Image
@@ -203,36 +199,6 @@ const AboutMe = () => (
         ))}
       </div>
     </div> */}
-
-    {/* Tiers section */}
-    <div className="mx-auto pb-16 pt-16 sm:px-8 lg:max-w-7xl">
-      <div className="mx-auto mb-8 lg:max-w-7xl">
-        <div className="flex">
-          <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-            Policínica Navalmoral de la Mata
-          </h2>
-        </div>
-        <p className="mt-2 text-sm leading-6 text-gray-600">
-          Acualmente, me encuentro trabajando en la policlínica de Navalmoral de
-          la Mata. Consulta el calendario para conocer los días en los que estoy
-          disponible.
-        </p>
-      </div>
-      <div>
-        {/* Image section */}
-        <div>
-          <Image
-            src={cloudinaryLoader({
-              src: "EMS/General/Clinic",
-            })}
-            width={1000}
-            height={1000}
-            alt="Imagen entrada de la clínica"
-            className="aspect-[5/2] w-full object-cover xl:rounded-3xl rounded-md"
-          />
-        </div>
-      </div>
-    </div>
 
     {/* Team section */}
     <div className="mx-auto max-w-7xl sm:px-8 pb-4">

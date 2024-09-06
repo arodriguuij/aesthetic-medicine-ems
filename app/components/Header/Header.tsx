@@ -27,7 +27,7 @@ import {
   navigationMobilePersonal,
   navigationMobileProducts,
 } from "./header.consts";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -54,6 +54,7 @@ import { scrollToTop } from "@/utils/utils";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const {
     data: facialTreatmentsData,
@@ -193,7 +194,7 @@ const Header = () => {
                   onClick={() => {
                     setPopoverGiftCartsVisible(false);
                     scrollToTopFnc();
-                    redirect("/tarjetaRegalo");
+                    router.push("/tarjetaRegalo");
                   }}
                   className="w-full mt-6 text-center rounded-md border border-transparent bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                 >
@@ -205,7 +206,7 @@ const Header = () => {
                 onClick={() => {
                   setPopoverGiftCartsVisible(false);
                   scrollToTopFnc();
-                  redirect("/carrito");
+                  router.push("/carrito");
                 }}
                 disabled={!giftCardsData || !giftCard.selectedGiftCardId}
                 className={
