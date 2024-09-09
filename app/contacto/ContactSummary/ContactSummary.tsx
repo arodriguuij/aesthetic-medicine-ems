@@ -35,7 +35,7 @@ const ContactSummary = () => {
             <p>Martes: 9:00-13:00 y 16:00-20:00</p>
             <p>Miércoles: 9:00-13:00</p>
             <p>Jueves: 10:00-14:00 y 16:00-20:00</p>
-            <p>Viernes: 9:00-15:00</p>
+            <p>Viernes: 10:00-15:00</p>
           </address>
         </div>
         <div>
