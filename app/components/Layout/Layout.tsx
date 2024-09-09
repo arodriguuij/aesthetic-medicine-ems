@@ -10,6 +10,7 @@ import DialogComponent from "../Dialog";
 import useVisibility from "./useVisibility";
 import { usePathname } from "next/navigation";
 import Breadcrumb from "../Breadcrumb";
+import Whatsapp from "../Whatsapp";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -38,13 +39,16 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({
       pathname.includes("/tratamientos/corporal/") ? (
         <>{children}</>
       ) : (
-        <div className="isolate mx-auto  px-6 lg:px-8 items-center">
+        <div className="isolate mx-auto px-6 lg:px-8 items-center">
           <div className="mx-auto py-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
             <Breadcrumb />
           </div>
           {children}
         </div>
       )}
+      <div className="md:hidden">
+        <Whatsapp />
+      </div>
       {isDialogVisible && <DialogComponent />}
       {isPrivacyVisible && <Privacy />}
       {isSnackbarVisible && <SnackBar />}
