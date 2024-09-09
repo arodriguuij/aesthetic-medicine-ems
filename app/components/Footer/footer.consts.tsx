@@ -26,6 +26,8 @@ export const navigation: Navigation = {
       href: "https://www.google.com/maps/place/Policl%C3%ADnica+Navalmoral+SL/@39.8949182,-5.545252,17z/data=!3m1!4b1!4m6!3m5!1s0xd3fd9ca964ee18d:0xd4044ef40795f356!8m2!3d39.8949141!4d-5.5426771!16s%2Fg%2F1tk8ddsz?entry=ttu",
       icon: (props) => <Address props={props} />,
     },
+  ],
+  schedule: [
     {
       name: "Lunes: 15:00-20:00",
       href: "/contacto",
@@ -64,12 +66,12 @@ export const navigation: Navigation = {
       icon: (props) => <Document props={props} />,
       isLink: true,
     },
-    {
+    /* {
       name: "Cookies",
       href: "/cookies",
       icon: (props) => <Document props={props} />,
       isLink: true,
-    },
+    }, */
     {
       name: "Legal",
       href: "/legal",

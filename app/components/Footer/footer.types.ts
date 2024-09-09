@@ -8,6 +8,7 @@ export interface NavigationItem {
 export interface Navigation {
   contact: NavigationItem[];
   support: NavigationItem[];
+  schedule: NavigationItem[];
   legal: NavigationItem[];
   social: NavigationItem[];
 }
