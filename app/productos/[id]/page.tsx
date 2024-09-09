@@ -66,7 +66,7 @@ const Product = async ({ params, searchParams }: PageProps) => {
                       })}
                       width={1000}
                       height={1000}
-                      className="h-full w-full object-cover object-center"
+                      className="h-full w-full object-contain object-center max-h-96"
                       priority={true}
                     />
                   </div>
@@ -119,7 +119,7 @@ const Product = async ({ params, searchParams }: PageProps) => {
                       })}
                       width={1000}
                       height={1000}
-                      className="h-full w-full object-cover object-center"
+                      className="h-full w-full object-contain object-center max-h-96"
                     />
                   </div>
                 </div>
@@ -159,7 +159,7 @@ const Product = async ({ params, searchParams }: PageProps) => {
                       })}
                       width={1000}
                       height={1000}
-                      className="h-full w-full object-cover object-center"
+                      className="h-full w-full object-contain object-center max-h-96"
                     />
                   </div>
                 </div>
