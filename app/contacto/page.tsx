@@ -7,10 +7,20 @@ import Calendar from "./Calendar";
 import ScheduleOfToday from "./ScheduleOfToday";
 import Image from "next/image";
 import { cloudinaryLoader } from "@/utils/cloudinary";
+import useMonths from "./useMonths";
 
 //TODO: Review SSR
 //TODO: When open?
 const Contact = () => {
+  const {
+    selectedMonth,
+    nextMonths,
+    previousMonths,
+    calendar,
+    setSelectedDay,
+    selectedDay,
+  } = useMonths();
+
   return (
     <>
       <div className="relative isolate -z-10 overflow-hidden bg-gradient-to-b from-amber-100/20 py-4">
@@ -30,8 +40,15 @@ const Contact = () => {
           </p>
         </div>
 
-        <Calendar />
-        <ScheduleOfToday />
+        <Calendar
+          selectedMonth={selectedMonth}
+          nextMonths={nextMonths}
+          previousMonths={previousMonths}
+          calendar={calendar}
+          setSelectedDay={setSelectedDay}
+          selectedDay={selectedDay}
+        />
+        <ScheduleOfToday calendar={calendar} selectedDay={selectedDay} selectedMonth={selectedMonth}/>
       </div>
 
       {/* Form */}

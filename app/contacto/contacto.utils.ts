@@ -29,21 +29,82 @@ export const isTodayInArray = (date: string): boolean => {
   return date === todayString;
 };
 
-export const getScheduleOfToday = (): string | undefined => {
+export const getScheduleOfToday = (
+  selectedDay: string,
+  selectedMonth?: Calendar,
+  calendar?: Calendar[]
+) => {
+  const currentMonth = new Date().getMonth();
   const dayOfTheWeek = new Date().getDay();
 
+  let todaySchedule = undefined;
+  let selectedDaySchedule = undefined;
+
+  const isTodayOpen =
+    calendar
+      ?.find((month) => month.id === currentMonth + 1)
+      ?.days.find((day) => day.isToday)?.clinic === "Navalmoral";
+
+  const isSelectedDayOpen =
+    calendar
+      ?.find((month) => month.id === selectedMonth?.id)
+      ?.days.find((day) => day.date === selectedDay)?.clinic === "Navalmoral";
+
+  // TODO: Use
   switch (dayOfTheWeek) {
     case 1: // Monday
-      return "15:00-20:00";
+      todaySchedule = "15:00-20:00";
+      break;
     case 2: // Martes
-      return "9:00-13:00 y 16:00-20:00";
+      todaySchedule = "9:00-13:00 y 16:00-20:00";
+      break;
+
+    case 3: // Miercoles
+      todaySchedule = "9:00-13:00";
+      break;
+
     case 4: // Jueves
-      return "10:00-14:00 y 16:00-20:00";
+      todaySchedule = "10:00-14:00 y 16:00-20:00";
+      break;
+
     case 5: // Viernes
-      return "9:00-15:00";
+      todaySchedule = "10:00-15:00";
+      break;
+
     default:
-      return undefined;
+      todaySchedule = undefined;
+      break;
   }
+
+  switch (new Date(selectedDay).getDay()) {
+    case 1: // Monday
+      selectedDaySchedule = "15:00-20:00";
+      break;
+    case 2: // Martes
+      selectedDaySchedule = "9:00-13:00 y 16:00-20:00";
+      break;
+
+    case 3: // Miercoles
+      selectedDaySchedule = "9:00-13:00";
+      break;
+
+    case 4: // Jueves
+      selectedDaySchedule = "10:00-14:00 y 16:00-20:00";
+      break;
+
+    case 5: // Viernes
+      selectedDaySchedule = "10:00-15:00";
+      break;
+
+    default:
+      selectedDaySchedule = undefined;
+      break;
+  }
+
+  if (!isTodayOpen) todaySchedule = undefined;
+  if (!isSelectedDayOpen) selectedDaySchedule = undefined;
+
+  return { todaySchedule, selectedDaySchedule };
 };
 
 export const isCurrentMonthInArray = (
@@ -59,11 +120,15 @@ export const isCurrentMonthInArray = (
   return date.startsWith(currentMonthString);
 };
 
-export const getDayStyles = (day: Day, selectedMonthId: number) => {
+export const getDayStyles = (
+  day: Day,
+  selectedMonthId: number,
+  selectedDay: string
+) => {
   const styles: string[] = [];
-  /* if (selectedDay === day.date) {
-    styles.push("border-double border-4 border-sky-500");
-  } //bg-amber-500 */
+  if (selectedDay === day.date) {
+    styles.push("border-2 border-amber-500");
+  } //bg-amber-500
   if (day.clinic === "Navalmoral") {
     styles.push("bg-amber-200	!important");
   } else if (day.clinic === "Marbella") {
@@ -170,4 +235,18 @@ export const generateCurrentAndNextSixMonths = (): Calendar[] => {
   }
 
   return months;
+};
+
+export const getTodayDate = (): string => {
+  const hoy = new Date();
+  const year = hoy.getFullYear();
+  const month = (hoy.getMonth() + 1).toString().padStart(2, "0"); // Meses empiezan en 0, por eso sumamos 1
+  const day = hoy.getDate().toString().padStart(2, "0");
+
+  return `${day}-${month}-${year}`;
+};
+
+export const convertDateYMDtoDMY = (fecha: string): string => {
+  const [dia, mes, año] = fecha.split("-");
+  return `${año}-${mes}-${dia}`;
 };

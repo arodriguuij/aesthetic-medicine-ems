@@ -7,6 +7,6 @@ export const navigationMobileProducts = [
 ];
 
 export const navigationMobilePersonal = [
-  { name: "Quien soy", href: "/sobreMi" },
+  { name: "Equipo Médico", href: "/equipoMedico" },
   { name: "Contacto", href: "/contacto" },
 ];

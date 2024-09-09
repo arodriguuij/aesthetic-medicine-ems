@@ -1,7 +1,7 @@
-import React from "react";
-import useMonths from "../useMonths";
+import React, { Dispatch, SetStateAction } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import {
+  Calendar,
   getDayStyles,
   getFormattedDate,
   isTodayInArray,
@@ -9,15 +9,22 @@ import {
 import { classNames } from "@/utils/utilsServer";
 import Skeleton from "@/app/components/Skeleton";
 
-const Calendar = () => {
-  const {
-    selectedMonth,
-    nextMonths,
-    previousMonths,
-    calendar,
-    setSelectedDay,
-  } = useMonths();
-
+interface ICalendar {
+  selectedMonth?: Calendar;
+  nextMonths: () => void;
+  previousMonths: () => void;
+  calendar?: Calendar[];
+  setSelectedDay: Dispatch<SetStateAction<string>>;
+  selectedDay: string;
+}
+const CalendarComponent = ({
+  selectedMonth,
+  nextMonths,
+  previousMonths,
+  calendar,
+  setSelectedDay,
+  selectedDay,
+}: ICalendar) => {
   return calendar === undefined ? (
     <div className="mx-auto max-w-7xl text-center mt-8 lg:px-8 sm:px-6 ">
       <Skeleton />
@@ -85,7 +92,7 @@ const Calendar = () => {
                       dayIdx === month.days.length - 7 ? "rounded-bl-lg" : "",
                       dayIdx === month.days.length - 1 ? "rounded-br-lg" : "",
                       "relative py-1.5  focus:z-10",
-                      ...getDayStyles(day, month.id)
+                      ...getDayStyles(day, month.id, selectedDay)
                     )}
                   >
                     <time
@@ -109,4 +116,4 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;
+export default CalendarComponent;

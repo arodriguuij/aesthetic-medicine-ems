@@ -29,7 +29,7 @@ const useMonths = () => {
   const { data, error, status } = useGetCalendarQuery("");
   const [calendar, setCalendar] = useState<Calendar[]>();
   const [selectedMonth, setSelectedMonth] = useState<Calendar>();
-  const [, setSelectedDay] = useState(getTodayString());
+  const [selectedDay, setSelectedDay] = useState(getTodayString());
 
   const nextMonths = () => {
     if (selectedMonth && calendar)
@@ -61,6 +61,7 @@ const useMonths = () => {
     previousMonths,
     calendar,
     setSelectedDay,
+    selectedDay,
   };
 };
 

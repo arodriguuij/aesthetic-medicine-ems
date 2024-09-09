@@ -713,11 +713,11 @@ const Header = () => {
                       </Link>
 
                       <Link
-                        href="/sobreMi"
+                        href="/equipoMedico"
                         aria-label="Enlace a la pagina sobre mi"
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-amber-600 data-[open]:text-amber-700"
                       >
-                        <div onClick={scrollToTopFncNoScroll}>Sobre mi</div>
+                        <div onClick={scrollToTopFncNoScroll}>Equipo Médico</div>
                       </Link>
 
                       <Link

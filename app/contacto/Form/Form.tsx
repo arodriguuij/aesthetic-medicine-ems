@@ -96,6 +96,7 @@ const Form = () => {
                       id="userName"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       {...register("userName")}
+                      placeholder="Nombre"
                     />
                     {errors.userName?.message && (
                       <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
@@ -133,6 +134,7 @@ const Form = () => {
                       id="phoneNumber"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       {...register("phoneNumber")}
+                      placeholder="Teléfono"
                     />
                     {errors.phoneNumber?.message && (
                       <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
@@ -170,6 +172,7 @@ const Form = () => {
                       id="email"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       {...register("email")}
+                      placeholder="Email"
                     />
                     {errors.email?.message && (
                       <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">
@@ -246,6 +249,7 @@ const Form = () => {
                           message: "Máximo 300 caracteres",
                         },
                       })}
+                      placeholder="Ejemplo: Hola. Me gustaría obtener más información sobre el tratamiento de varices."
                     />
                     {errors.message?.message && (
                       <div className="pointer-events-none inset-y-0 right-0 flex items-center pr-3">

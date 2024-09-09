@@ -1,4 +1,4 @@
-import { people, timeline } from "./sobreMi.constants";
+import { people, timeline } from "./equipoMedico.constants";
 import { cloudinaryLoader } from "../../utils/cloudinary";
 import Image from "next/image";
 
@@ -57,8 +57,8 @@ const AboutMe = () => (
                   fontWeight: "400",
                 }}
               >
-                Mi auténtica pasión es devolver la confianza y autoestima a
-                quienes acuden a mí, con la mayor humildad y honestidad en mi
+                Mi pasión es devolver la confianza y autoestima a
+                quienes acuden a mí, con la mayor dedicación y honestidad en mi
                 trabajo.
               </p>
               <dl className="mt-8 border-t border-gray-900/10 " />
@@ -243,7 +243,7 @@ const AboutMe = () => (
 
     <div className="mx-auto max-w-7xl sm:px-8 pb-4 mt-20">
       <div className="bg-gray-900 pb-20 sm:pb-24 md:pb-0 mt-10">
-        <div className="mx-auto flex max-w-7xl  flex-col items-center gap-x-8 gap-y-10 px-6 sm:gap-y-8 md:px-8 md:flex-row md:items-stretch">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-x-8 gap-y-10 px-6 sm:gap-y-8 md:px-8 md:flex-row md:items-stretch">
           <div className="-mt-8 w-full max-w-2xl md:-mb-8 md:w-96 md:flex-none">
             <div className="relative aspect-[1/1] h-full md:-mx-8 md:mx-0 md:aspect-auto">
               <Image

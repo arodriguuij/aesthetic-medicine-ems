@@ -18,7 +18,7 @@ export const getPages = (
     }
     if (part === "productos") readableTitle = "Productos";
     if (part === "tarjetaRegalo") readableTitle = "Tarjeta regalo";
-    if (part === "sobreMi") readableTitle = "Sobre mi";
+    if (part === "equipoMedico") readableTitle = "Equipo Medico";
     if (part === "contacto") readableTitle = "Contacto";
     if (part === "carrito") readableTitle = "Carrito";
     if (part === "confirmacionPago") readableTitle = "Confirmacion pago";

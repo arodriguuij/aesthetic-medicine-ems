@@ -308,7 +308,7 @@ const HomePage = async () => {
           <div>
             <div className=" sm:flex sm:items-center sm:justify-between xl:px-0">
               <h2 className="text-xl font-bold tracking-tight text-gray-900">
-                Sobre Mi
+                Equipo Médico
               </h2>
             </div>
             <p className="mt-2 text-sm text-gray-500">
@@ -368,8 +368,8 @@ const HomePage = async () => {
                     fontWeight: "400",
                   }}
                 >
-                  Mi auténtica pasión es devolver la confianza y autoestima a
-                  quienes acuden a mí, con la mayor humildad y honestidad en mi
+                  Mi pasión es devolver la confianza y autoestima a
+                  quienes acuden a mí, con la mayor dedicación y honestidad en mi
                   trabajo.
                 </p>
                 <dl className="mt-8 border-t border-gray-900/10 " />
@@ -382,7 +382,7 @@ const HomePage = async () => {
             </div>
 
             <div className="mt-6 flex">
-              <Link href="/sobreMi" aria-label="Enlace a la pagina sobre mi">
+              <Link href="/equipoMedico" aria-label="Enlace a la pagina sobre mi">
                 <div className="text-base font-medium leading-7 text-amber-600 hover:text-amber-500">
                   Saber más sobre Elvira
                   <span aria-hidden="true">&rarr;</span>

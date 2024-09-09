@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <Head>
-        <link rel="canonical" href="https://www.medicinaesteticaems.com`" />
+        <link rel="canonical" href="https://www.medicinaesteticaems.com" />
       </Head>
       <Providers>
         <body>
