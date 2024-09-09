@@ -353,7 +353,7 @@ const Header = () => {
                         setMobileMenuOpen(false);
                         scrollToTopFncNoScroll();
                       }}
-                      className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-amber-50"
+                      className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold leading-7 text-gray-200 hover:bg-gray-800"
                     >
                       {item.name}
                     </div>
