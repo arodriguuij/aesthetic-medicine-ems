@@ -22,6 +22,7 @@ import { schema } from "./validations";
 import { initState } from "./form.constants";
 import Loader from "@/app/components/Loader";
 import { useRouter } from "next/navigation";
+import GiftCardImage from '@/public/Images/GiftCard.avif'
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -65,9 +66,7 @@ const Form = () => {
         <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
           <Image
             alt="Imagen de tarjeta de regalo"
-            src={cloudinaryLoader({
-              src: "EMS/GiftCard/TarjetaRegalo",
-            })}
+            src={GiftCardImage}
             width={1000}
             height={1000}
             className="h-full w-full object-cover object-center"
