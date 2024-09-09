@@ -40,7 +40,7 @@ const ProductList = async () => {
                           })}
                           width={1000}
                           height={1000}
-                          className="h-full w-full object-cover object-center bg-white"
+                          className="h-full w-full object-contain object-center bg-white"
                           priority={true}
                         />
                       </div>
