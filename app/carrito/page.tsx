@@ -26,7 +26,7 @@ const stripePromise = loadStripe(stripePublicKey || "");
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const router = useRouter()
+  const router = useRouter();
 
   const { discount } = useSelector(
     (state: { discount: DiscountState }) => state.discount
@@ -46,13 +46,11 @@ const Cart = () => {
     dispatch(resetGiftCardsOrderHistory());
   }, [dispatch]);
 
-  if (
+  const isStripeHidden =
     !giftCardsData ||
     giftCardsData.length === 0 ||
     giftCardsError ||
-    !giftCard.selectedGiftCardId
-  )
-  router.push("/confirmacionPago");
+    !giftCard.selectedGiftCardId;
 
   if (status === "pending") return <Loader />;
 
@@ -94,6 +92,23 @@ const Cart = () => {
                 {giftCardsError && (
                   <>Error en la carga de las tarjetas de regalo</>
                 )}
+                {!giftCard.selectedGiftCardId && (
+                  <div>
+                    <p className="text-sm">
+                      No hay ninguna tarjeta de regalo añadia. Añade una para
+                      poder proceder al pago. 😀
+                    </p>
+
+                    <button
+                      onClick={() => {
+                        router.push("/tarjetaRegalo");
+                      }}
+                      className="w-full mt-6 text-center rounded-md border border-transparent bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                    >
+                      Añade productos
+                    </button>
+                  </div>
+                )}
                 {giftCardsData && giftCard.selectedGiftCardId && (
                   <CartItem
                     key={giftCard.selectedGiftCardId}
@@ -104,45 +119,51 @@ const Cart = () => {
               </ul>
             </div>
             {/* Voucher */}
-            <VoucherForm />
+            {!isStripeHidden && <VoucherForm />}
             {/* Money */}
-            <dl className="mt-10 space-y-6 text-sm font-medium text-gray-500">
-              <div className="flex justify-between">
-                <dt>Subtotal</dt>
-                <dd className="text-gray-900">{priceAfterDiscount}€</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt>Costes de envío</dt>
-                <dd className="text-gray-900">0.00€</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt>Impuestos</dt>
-                <dd className="text-gray-900">0.00€</dd>
-              </div>
-              <div className="flex justify-between border-t border-gray-200 pt-6 text-gray-900">
-                <dt className="text-base">Total del pedido</dt>
-                <dd className="text-base">{priceAfterDiscount}€</dd>
-              </div>
-            </dl>
+            {!isStripeHidden && (
+              <dl className="mt-10 space-y-2 p-4 text-sm font-medium text-gray-500">
+                <div className="flex justify-between">
+                  <dt>Subtotal</dt>
+                  <dd className="text-gray-900">{priceAfterDiscount}€</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt>Costes de envío</dt>
+                  <dd className="text-gray-900">0.00€</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt>Impuestos</dt>
+                  <dd className="text-gray-900">0.00€</dd>
+                </div>
+                <div className="flex justify-between border-t border-gray-200 pt-6 text-gray-900">
+                  <dt className="text-base">Total del pedido</dt>
+                  <dd className="text-base">{priceAfterDiscount}€</dd>
+                </div>
+              </dl>
+            )}
           </div>
           {/* Stripe */}
-          <div className="mx-auto w-full max-w-3xl">
-            <Elements
-              stripe={stripePromise}
-              options={{
-                mode: "payment",
-                amount: priceAfterDiscount,
-                currency: "eur",
-                locale: "es",
-              }}
-            >
-              <CheckoutPage
-                amount={priceAfterDiscount}
-                discount={discount || 0}
-                giftCard={giftCard}
-              />
-            </Elements>
-          </div>
+          {!isStripeHidden && (
+            <div className="mx-auto w-full max-w-3xl ">
+              <div className=" rounded-lg border border-gray-200 bg-white p-4 shadow-sm  py-2 px-4 mt-4">
+                <Elements
+                  stripe={stripePromise}
+                  options={{
+                    mode: "payment",
+                    amount: priceAfterDiscount,
+                    currency: "eur",
+                    locale: "es",
+                  }}
+                >
+                  <CheckoutPage
+                    amount={priceAfterDiscount}
+                    discount={discount || 0}
+                    giftCard={giftCard}
+                  />
+                </Elements>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>

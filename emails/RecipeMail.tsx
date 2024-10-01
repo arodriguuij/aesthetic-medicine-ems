@@ -196,7 +196,7 @@ const RecipeMail = (giftCard: GiftCardFormWithDiscountAppliedGet) => (
                   marginBottom: "0",
                 }}
               >
-                Viernes: 9:00-15:00
+                Viernes: 9:30-14:30
               </Text>
             </Column>
           </Row>

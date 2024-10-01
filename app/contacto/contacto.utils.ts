@@ -68,7 +68,7 @@ export const getScheduleOfToday = (
       break;
 
     case 5: // Viernes
-      todaySchedule = "10:00-15:00";
+      todaySchedule = "9:30-14:30";
       break;
 
     default:
@@ -93,7 +93,7 @@ export const getScheduleOfToday = (
       break;
 
     case 5: // Viernes
-      selectedDaySchedule = "10:00-15:00";
+      selectedDaySchedule = "9:30-14:30";
       break;
 
     default:

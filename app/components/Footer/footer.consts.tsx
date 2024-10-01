@@ -53,7 +53,7 @@ export const navigation: Navigation = {
       isLink: true,
     },
     {
-      name: "Viernes: 10:00-15:00",
+      name: "Viernes: 9:30-14:30",
       href: "/contacto",
       icon: () => <div className="mr-3 ml-3"></div>,
       isLink: true,

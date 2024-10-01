@@ -27,7 +27,7 @@ const Content = () => {
           className="h-5 w-5 flex-shrink-0 text-gray-400"
           aria-hidden="true"
         />
-        {page.name === "areas" || index === pages.length - 1 ? (
+        {page.name === "Areas" || index === pages.length - 1 ? (
           <p
             aria-hidden="true"
             className="h-5 text-gray-500 mr-4 font-medium text-sm flex-shrink-0"
