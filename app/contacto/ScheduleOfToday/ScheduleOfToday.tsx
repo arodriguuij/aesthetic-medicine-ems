@@ -30,26 +30,26 @@ const ScheduleOfToday = ({
       {todaySchedule ? (
         <h3 className="text-sm font-normal leading-7 text-green-500 flex">
           <Rocket />
-          Hoy ({convertDateYMDtoDMY(today)}), la clinica está abierta:{" "}
+          Hoy {today}, la clinica está abierta:{" "}
           {todaySchedule}
         </h3>
       ) : (
         <h3 className="text-sm font-normal leading-7 text-red-500 flex">
           <Warning />
-          Hoy ({convertDateYMDtoDMY(today)}), la clinica está cerrada
+          Hoy {today}, la clinica está cerrada
         </h3>
       )}
       {convertDateYMDtoDMY(today) !== selectedDay &&
         (selectedDaySchedule ? (
           <h3 className="text-sm font-normal leading-7 text-green-500 flex">
             <Rocket />
-            El día seleccionado ({selectedDay}), la clinica está abierta:{" "}
+            El día seleccionado {convertDateYMDtoDMY(selectedDay)}, la clinica está abierta:{" "}
             {selectedDaySchedule}
           </h3>
         ) : (
           <h3 className="text-sm font-normal leading-7 text-red-500 flex">
             <Warning />
-            El día seleccionado ({selectedDay}), la clinica está cerrada
+            El día seleccionado {convertDateYMDtoDMY(selectedDay)}, la clinica está cerrada
           </h3>
         ))}
     </div>

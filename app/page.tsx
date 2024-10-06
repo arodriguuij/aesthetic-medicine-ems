@@ -229,7 +229,7 @@ const HomePage = async () => {
                                 })}
                                 width={224}
                                 height={320}
-                                className="h-full w-full object-cover object-center"
+                                className="h-full w-full object-contain object-center"
                                 loading="lazy"
                               />
                             </span>

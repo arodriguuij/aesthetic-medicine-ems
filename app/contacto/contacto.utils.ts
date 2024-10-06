@@ -247,6 +247,6 @@ export const getTodayDate = (): string => {
 };
 
 export const convertDateYMDtoDMY = (fecha: string): string => {
-  const [dia, mes, año] = fecha.split("-");
-  return `${año}-${mes}-${dia}`;
+  const [año, mes, dia] = fecha.split("-");
+  return `${dia}-${mes}-${año}`;
 };
