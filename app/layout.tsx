@@ -22,6 +22,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  //return <div>Under maintenance</div>
   return (
     <html lang="en" className={inter.className}>
       <Head>
@@ -33,8 +34,8 @@ export default function RootLayout({
             <Suspense fallback={<Loader />}>{children}</Suspense>
           </Layout>
         </body>
-        {/* <SpeedInsights />
-        <Analytics /> */}
+        <SpeedInsights />
+        <Analytics />
       </Providers>
     </html>
   );
