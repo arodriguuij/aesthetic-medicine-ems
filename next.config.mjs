@@ -15,7 +15,7 @@ const nextConfig = {
 
   redirects() {
     return [
-      process.env.MAINTENANCE_MODE === "1"
+      process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "1"
         ? {
             source: "/((?!maintenance).*)",
             destination: "/maintenance.html",
