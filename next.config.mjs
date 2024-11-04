@@ -22,7 +22,7 @@ const nextConfig = {
             permanent: false,
           }
         : null,
-    ].filter(Boolean);
+    ].filter(Boolean)
   },
 };
 
