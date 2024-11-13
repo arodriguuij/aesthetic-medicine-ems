@@ -22,7 +22,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  //return <div>Under maintenance</div>
+  return <div>Under maintenance</div>
   return (
     <html lang="en" className={inter.className}>
       <Head>
